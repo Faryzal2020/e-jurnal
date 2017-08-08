@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="logo">
-        <img src="logoo.png" alt=""/>
+        <img src="logoS.png" height="110" alt=""/>
     </div>
     <div id="main-panel">
         <div class="content">
@@ -26,8 +26,8 @@
                 <div class="bot_panel">
                     <div class="form">
                         <form action="validasi.php" method="POST" id="login">
-                            <input type="text" name="nip" placeholder="username" />
-                            <input type="password" name="password" placeholder="password" />
+                            <input type="text" name="nip" placeholder="NIP" />
+                            <input type="password" name="password" placeholder="Password" />
                             <input type="submit" name="validasi" value="Login" />
                         </form>
                     </div>

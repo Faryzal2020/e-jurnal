@@ -6,12 +6,19 @@
       $nip = $_SESSION['nip'];
       $level = $_SESSION['level'];
       $nama = $_SESSION['nama'];
+      $email = $_SESSION['email'];
+
+      $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
+      $ALquery = mysqli_query($db,$ALsql);
+
+      if(count($_POST)>0) {
+      }
 ?>
 <!DOCTYPE HTML>
 <html>
    <head>
    <meta charset="utf-8">
-   <title>Login E-Jurnal</title>
+   <title>E-Jurnal Setwapres</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Latest compiled and minified CSS -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,10 +38,10 @@
                include_once "views/admin/home.php";
             }
          ?>
-         <script type="text/javascript" src="js/scripts.js"></script>
          <script type="text/javascript" src="assets/js/jquery.min.js"></script>
          <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
          <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+         <script type="text/javascript" src="js/scripts.js"></script>
       </div>
    </body>
 </html>

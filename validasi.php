@@ -48,7 +48,7 @@
       if($error == 0)
       {
             ?>
-            <script language="JavaScript">alert('Berhasil Login');
+            <script language="JavaScript">
                window.location='index.php'</script>
             <?php
       }

@@ -22,13 +22,16 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn"><a title="" href="logout.php">LOGOUT</a></div>
+					<div class="logoutbtn"><a title="" href="logout.php">LOG OUT</a></div>
 				</div>
 			</div>
 	    </div>
 	</div>
     <div class="pagebody">
     	<div class="sidenav">
+    		<ul>
+				<li class="menu-item"><a href="#">Submit Laporan</a></li>
+			</ul>
 			<ul>
 				<li class="menu-item"><a href="#">Profil Anda</a></li>
 			</ul>
@@ -36,14 +39,14 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					aa
-					<!-- <?php //require "views/admin/submenu/profil.php";?> -->
+					<?php require "views/admin/submenu/submit.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div id="tab2">
+					<?php require "views/admin/submenu/profil.php";?>
 				</div>
 			</div>
 		</div>
     </div>
 
-
-	<script type="text/javascript">
-		
-    </script>
