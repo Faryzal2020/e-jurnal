@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Aug 07, 2017 at 06:53 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `db_kepegawaian`
 --
@@ -490,10 +472,17 @@ CREATE TABLE `jurnal` (
   `nip` int(11) NOT NULL,
   `volume` int(11) NOT NULL,
   `jenis_output` varchar(50) NOT NULL,
-  `waktu_mulai` varchar(5) NOT NULL,
-  `waktu_selesai` varchar(5) NOT NULL,
-  `tanggal_aktivitas` date NOT NULL
+  `waktu_mulai` datetime NOT NULL,
+  `waktu_selesai` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurnal`
+--
+
+INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`) VALUES
+(1, 0, 0, 0, '', '2017-08-07 09:00:00', '2017-08-07 16:00:00'),
+(2, 0, 0, 0, '', '2017-08-07 09:00:00', '2017-08-07 16:00:00');
 
 -- --------------------------------------------------------
 
@@ -524,6 +513,8 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `user` (
   `nip` varchar(12) NOT NULL,
+  `nama_pegawai` varchar(80) NOT NULL,
+  `email_pegawai` varchar(50) NOT NULL,
   `password` varchar(32) NOT NULL,
   `level` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -565,6 +556,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `aktivitas`
   MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+--
+-- AUTO_INCREMENT for table `jurnal`
+--
+ALTER TABLE `jurnal`
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
