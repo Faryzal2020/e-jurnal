@@ -1,27 +1,33 @@
-	<div id="wrapper">
-	    <div id="header">
-	        <div id="logo">
-			    <div id="logo_wrapper">
-			        <img src="logo2.png" height="110" alt=""/>
+	<div class="wrapper">
+	    <div class="header">
+	        <div class="logo">
+			    <div class="logo_wrapper">
+			        <img src="logoS.png" height="110" alt=""/>
 			    </div>
 			</div>
-	    </div>
-	    <div id="menu">
-	        <div class="userpanel">
-			    <h1> LOGGED IN AS: </h1>
-				<table class="UPtable" border="0">
-					<tr>
-						<td class="username" colspan="2"> <?php echo $nama; ?> </td>
-					</tr>
-					<tr>
-						<td class="userid"> <?php echo "User ID: " . $id; ?> </td>
-						<td><a title="" href="logout.php">LOGOUT</a></td>
-					</tr>
-				</table> 
+			<div class="judul">
+				E-Jurnal
+			</div>
+			<div class="userpanel">
+				<div class="UPwrapper">
+				    <h1> LOGGED IN AS: </h1>
+					<table class="UPtable" border="0">
+						<tr>
+							<td class="foto"><div class="userphoto"></div></td>
+						</tr>
+						<tr>
+							<td class="username"> <?php echo $nama; ?> </td>
+						</tr>
+						<tr>
+							<td class="userid"> <?php echo $nip; ?> </td>
+						</tr>
+					</table> 
+					<div class="logoutbtn"><a title="" href="logout.php">LOGOUT</a></div>
+				</div>
 			</div>
 	    </div>
 	</div>
-    <div id="pagebody">
+    <div class="pagebody">
     	<div class="sidenav">
 			<ul>
 				<li class="menu-item"><a href="#">Profil Anda</a></li>
@@ -30,7 +36,8 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					<?php require "views/admin/submenu/profil.php";?>
+					aa
+					<!-- <?php //require "views/admin/submenu/profil.php";?> -->
 				</div>
 			</div>
 		</div>

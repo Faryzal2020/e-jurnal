@@ -1,24 +1,30 @@
-		html, body{ height:100%; width: 1600px; }
+		html, body{ height:100%; width: 100%; }
 		html { display: table; margin: auto; }
 		body{ font-family:Verdana; background-color:#2C383B; margin: 0px; padding: 0px; display: table-cell; }
-		div#logo{ display: inline-block; position: relative; left: 30px; top: 5px; width: 50%; }
-		div#logo_wrapper{ position: relative; }
-		div#wrapper{ background: #FFF; height: 103px; }
-		div#header{ background-color:#ffbb47; position: relative; height: 103px; }
-		div#menu{ background-color:#ffbb47; position: absolute; right: 0; margin-right: 350px; padding: 0px; }
-		.userpanel{ position: absolute; top: 0; right: 0; margin-right: 20px; background: #ECECEC; width: 310px; height: 103px; }
-		.userpanel h1{ margin-left: 20px; font-size: 0.8em; font-weight: 100; }
-		.userpanel td{ text-align: left; }
+		.logo{ background: #2C383B; position: absolute; right: -60px; top: 0px; width: 400px; padding-top: 10px; padding-bottom: 5px; padding-left: 120px; transform: skew(-45deg);}
+		.logo_wrapper{ position: relative; transform: skew(45deg);}
+		.wrapper{ background: #FFF; height: 120px; }
+		.header{ background-color:#4482e5; position: relative; height: 120px; }
+		.page { height: 100vh; }
+		.judul { margin: auto; margin-right: 200px; font-size: 2em; padding-top: 30px; width: 300px;}
+
+		.userpanel{ display: inline-block; position: absolute; top: 0; left: 0; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }
+		.userpanel h1{ font-size: 0.9em; text-align: center; margin-top: 10px;}
+		.userpanel td{ text-align: center; height: 30px; padding-top: 10px; }
 		.userpanel a{ display: inline-block; background: #2C383B; padding: 9px; top: 0; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: solid; border-width: 1px; border-color: #2C383B; border-radius: 3px}
 		.userpanel a:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
-		.UPtable{ width: 95%; padding-right: 10px; margin-top: -2px; margin-left: 17px;}
+		.UPwrapper{ background: #c9c9c9; border: 2px solid #565656; padding: 5px;}
+		.UPtable{ padding-right: 10px; margin-top: -2px; margin-left: 24px;}
+		.foto{ width: 90%; }
+		.userphoto{ width: 130px; height: 180px; background-color: black; margin: auto;}
 		.username{ width: 90%; font-size: 0.9em;}
-		.userid{ width: 70%; font-size: 0.8em; }
-		div#menu .active a{ background: #2C383B; color: #FFF; }
-		div#pagebody{ background: white; height: 100%; margin-top: 20px; display: flex; }
-		.sidenav { background: #ECECEC; height: 100%; flex: 0 0 280px; }
+		.userid{ width: 70%; font-size: 0.9em; }
+		.logoutbtn{ text-align: right; padding-right: 5px; padding-top: 10px; }
+
+		.pagebody{ background: white; height: 100%; margin-top: 20px; display: flex; }
+		.sidenav { background: #c1c1c1; height: 100%; flex: 0 0 250px; padding-top: 240px;}
 		.sidenav ul { margin-top: 40px; margin-left: 20px; padding: 0; }
-		.sidenav ul li { box-shadow:10px 10px 0 rgba(0,0,0,.5); transform: skew(-20deg); margin-left: 10px; margin-right: 0px; margin-bottom: 45px ; padding: 15px; background:#ffbb47; color: #2C383B; border-style: solid; border-width: 1px; border-color: #ECECEC; list-style-type: none; }
+		.sidenav ul li { background:#2C383B; box-shadow:10px 10px 0 rgba(0,0,0,.5); transform: skew(-20deg); margin-left: 10px; margin-right: 0px; margin-bottom: 45px ; padding: 15px;  color: #ECECEC; border: 1px solid; list-style-type: none; }
 		.sidenav ul li:hover {margin-left: 30px; margin-right: -30px;}
 		.sidenav ul li a { transform: skew(20deg); display: block; color: inherit; text-decoration: none; text-align: center; }
 		.menu-item.active { margin-left: 30px; margin-right: -30px; box-shadow: 0 0 0; }

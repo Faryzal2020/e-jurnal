@@ -38,7 +38,9 @@
             else
             {
                $_SESSION['nip'] = $nip;
-               $_SESSION['level']= $row['level'];
+               $_SESSION['level'] = $row['level'];
+               $_SESSION['nama'] = $row['nama_pegawai'];
+               $_SESSION['email'] = $row['email_pegawai'];
             } //end else
          } //end else
       }
