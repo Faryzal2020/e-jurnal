@@ -45,6 +45,15 @@
 		.tCheader label { padding: 30px; background-color: #ECECEC; }
 
 		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; }
+		.dropbtn { background-color:#ffbb47; padding: 16px; cursor: pointer; border: none; box-shadow:5px 5px 0 rgba(0,0,0,.5);}
+		.dropbtn:hover {box-shadow: 0 0 0;}
+		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
+		.dropdownCat-content {margin-top: -10px; margin-left: 30px; display: none; position: absolute; min-width: 160px; z-index: 1; background-color: white;}
+		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none;}
+		.dropdownCat-content a:hover {background-color:#ccc;}
+		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
+		.dropdownCat:hover .dropbtn {background-color: #e2a53d; box-shadow: 0 0 0; cursor: pointer;}
+
 		.actTable { margin: auto; width: 90%; background-color: #ECECEC; }
 		.actTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
 		.actTable td { height: 30px; padding: 5px; }

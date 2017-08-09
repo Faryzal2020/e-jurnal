@@ -2,8 +2,27 @@
 					<div class="tCWrapper">
 						<div class="tCheader">
 							<div class="tchbox">
-								<div class="searchbuku">
+								<div class="searchActivity">
 				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas">
+				                </div>
+				                <div class="dropdownCat">
+				                    <button class="dropbtn" id="ddcBtn">Pilih Kategori</button>
+				                    <div class="dropdownCat-content" id="ddcContent">
+				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
+				                        <?php
+				                            $i=0;
+				                            while ($cat = mysqli_fetch_array($Catquery)) {
+				                                if($cat[$i]==null){
+				                                    echo "";
+				                                } else {
+				                        ?>
+				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
+				                        <?php
+				                                }
+				                            }
+				                        ?>
+				                        
+				                    </div>
 				                </div>
 							</div>
 						</div>

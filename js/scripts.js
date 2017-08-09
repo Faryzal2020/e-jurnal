@@ -21,7 +21,4 @@
             forEach.call(tab, removeActive)
             menuItem[i].classList.add('active')
             tab[i].classList.add('active')
-            if(i==2){
-            	ACsetActive(0)
-            }
         }
