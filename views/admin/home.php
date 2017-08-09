@@ -39,12 +39,12 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					<?php require "views/admin/submenu/submit.php";?>
+					<?php require_once "views/admin/submenu/submit.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div id="tab2">
-					<?php require "views/admin/submenu/profil.php";?>
+					<?php require_once "views/admin/submenu/profil.php";?>
 				</div>
 			</div>
 		</div>

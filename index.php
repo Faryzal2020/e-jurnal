@@ -23,11 +23,8 @@
    <!-- Latest compiled and minified CSS -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
-   <link rel="stylesheet" type="text/css" href="css/homepage2.css">
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/a.css">
+   
    </head>
    <body class="background">
       <div class="page">
@@ -42,6 +39,71 @@
          <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
          <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
          <script type="text/javascript" src="js/scripts.js"></script>
+         <script type="text/javascript">
+            var modal = document.getElementById('tCModal');
+            var namaAct = document.getElementById('tcmNamaAct');
+            var durasiAct = document.getElementById('tcmDurasi');
+            var namaCat = document.getElementById('tcmNamaCat');
+            var idInput = document.getElementsByClassName('tcm_IDAct')[0];
+            var span = document.getElementsByClassName("close")[0];
+            function selectActivity(id, nama, durasi, cat){
+               console.log(id + nama + durasi + cat);
+               modal.style.display = "block";
+               namaAct.innerHTML = nama;
+               durasiAct.innerHTML = durasi;
+               namaCat.innerHTML = cat;
+               idInput.value = i;
+            }
+            span.onclick = function() {
+               modal.style.display = "none";
+            }
+            window.onclick = function(event){
+               if(event.target == modal){
+                  modal.style.display = "none";
+               }
+            }
+
+            function searchAct() {
+               var input, filter, table, tr, td, i;
+               input = document.getElementById("actSearch");
+               filter = input.value.toUpperCase();
+               table = document.getElementById("actTable");
+               tr = table.getElementsByTagName("tr");
+               console.log(filter)
+               if(filter == ''){
+                  for (i = 2; i < tr.length; i++){
+                     td = tr[i].getElementsByTagName("td")[1];
+                     if(td){
+                        tr[i].style.display = "none";
+                     }
+                  }
+                  tr[1].style.display = "";
+               } else {
+                  tr[1].style.display = "none";
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                           tr[i].style.display = "";
+                        } else {
+                           tr[i].style.display = "none";
+                        }
+                     }
+                  }
+               }
+               
+            }
+
+            function validateSJ() {
+               var volumetype = document.forms["FormSJ"]["volumeType"].value;
+
+            }
+         </script>
+         <script type="text/javascript">
+         $('.clockpicker').clockpicker({
+            donetext: 'Done'
+         });
+         </script>
       </div>
    </body>
 </html>
