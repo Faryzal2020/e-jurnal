@@ -41,10 +41,11 @@
 
 		.tabContent { justify-content:center; padding: 20px; }
 		.tCWrapper { display: inline-block; height: 100%; width: 100%; }
-		.tCheader { text-align: center; padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
+		.tCheader { padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
 		.tCheader label { padding: 30px; background-color: #ECECEC; }
 
 		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; }
+		.searchActivity { display: inline-block; margin-left: 50px; width: 40%;}
 		.dropbtn { background-color:#ffbb47; padding: 16px; cursor: pointer; border: none; box-shadow:5px 5px 0 rgba(0,0,0,.5);}
 		.dropbtn:hover {box-shadow: 0 0 0;}
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}

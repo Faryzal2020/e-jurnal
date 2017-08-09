@@ -22,3 +22,4 @@
             menuItem[i].classList.add('active')
             tab[i].classList.add('active')
         }
+        

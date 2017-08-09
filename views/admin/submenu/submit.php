@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="searchActivity">
-				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas">
+				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
 				                </div>
 				                <div class="dropdownCat">
 				                    <button class="dropbtn" id="ddcBtn">Pilih Kategori</button>
@@ -24,6 +24,7 @@
 				                        
 				                    </div>
 				                </div>
+				                <label id="testLabel">test</label>
 							</div>
 						</div>
 						<div class="tCbody">
@@ -36,7 +37,7 @@
 									<th></th>
 								</tr>
 								<tr>
-									<td class="actTableStartCol" colspan="5">Test</td>
+									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
 								</tr>
 								<?php
 									while($al = mysqli_fetch_array($ALquery)) {

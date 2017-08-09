@@ -14,7 +14,6 @@
       $Catquery = mysqli_query($db,$Catsql);
 
       if(count($_POST)>0) {
-         
       }
 ?>
 <!DOCTYPE HTML>
@@ -75,57 +74,66 @@
             }
 
             function searchAct() {
-               var input, filter, catFilter, catBtn, table, tr, td, i, showCount;
+               var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
                catBtn = document.getElementById("ddcBtn");
                input = document.getElementById("actSearch");
                filter = input.value.toUpperCase();
                table = document.getElementById("actTable");
                tr = table.getElementsByTagName("tr");
 
-               if(catBtn.contains("selectd")){
+               if(catBtn.classList.contains("selectd")){
                   catFilter = catBtn.innerHTML;
-                  alert(catFilter);
+               } else {
+                  catFilter = '';
                }
-               console.log(filter)
-               if(filter == ''){
-                  for (i = 2; i < tr.length; i++){
+
+               for (i = 2; i < tr.length; i++){
+                  td = tr[i].getElementsByTagName("td")[1];
+                  if(td){
+                     tr[i].style.display = "none";
+                  }
+               }
+               if(filter != '' && catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
                      td = tr[i].getElementsByTagName("td")[1];
+                     tdcat = tr[i].getElementsByTagName("td")[3];
                      if(td){
-                        tr[i].style.display = "none";
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1 && tdcat.innerHTML.indexOf(catFilter) > -1){
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
                      }
                   }
-               } else {
+               } else if(filter != ''){
                   for (i = 2; i < tr.length; i++) {
                      td = tr[i].getElementsByTagName("td")[1];
                      if(td){
                         if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                            tr[i].style.display = "";
                            showCount++;
-                        } else {
-                           tr[i].style.display = "none";
-                           showCount--;
+                        }
+                     }
+                  }
+               } else if( catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     tdcat = tr[i].getElementsByTagName("td")[3];
+                     if(tdcat){
+                        if(tdcat.innerHTML.indexOf(catFilter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
                         }
                      }
                   }
                }
 
-               if( catFilter != ''){
-                  for (i = 2; i < tr.length; i++) {
-                     tdcat = tr[i].getElementsByTagName("td")[3];
-                     if(tdcat){
-                        if(td.innerHTML.toUpperCase().indexOf(catFilter) > -1) {
-                           tr[i].style.display = "";
-                           showCount++;
-                        } else {
-                           tr[i].style.display = "none";
-                           showCount--;
-                        }
-                     }
-                  }
-               }
-               alert(showCount);
+               document.getElementById("testLabel").innerHTML = showCount;
                if( showCount <= 0 ){
                   tr[1].style.display = "";
+                  if( filter != '' || catFilter != ''){
+                     document.getElementById("actTableMessage").innerHTML = "No Result";
+                  } else {
+                     document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  }
                } else {
                   tr[1].style.display = "none";
                }
