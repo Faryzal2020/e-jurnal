@@ -50,18 +50,15 @@ function getCalender($year = '',$month = '')
 		<div id="calender_section_bot">
 			<ul>
 			<?php 
-				$dayCount = 1; 
+				$dayCount = 1;
+				$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						//Include db configuration file
-						include 'config.php';
-						//Get number of events based on the current date
 						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'";
 						$result = mysqli_query($db, $kalendersql);
-						$eventNum = mysqli_fetch_array($result);
 						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -190,7 +187,7 @@ function getEvents($date = ''){
 	//Get events based on the current date
 	$GEsql = "SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."'";
 	$result = mysqli_query($db, $GEsql);
-	if(mysqli_fetch_array($result) > 0){?>
+	if($result->num_rows > 0){?>
 		<h2>Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
 		<ul>
         <?php
