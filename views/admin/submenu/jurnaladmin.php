@@ -7,33 +7,27 @@
 						<div class="tCbody">
 							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
 								<tr>
-									<th style="width: 60px">NIP</th>
-									<th>Nama Pegawai</th>
-									<th style="width: 150px">Email</th>
-									<th style="width: 80px"></th>
-								</tr>
-								<tr>
-									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
+									<th style="min-width: 130px">NIP</th>
+									<th style="min-width: 320px">Nama Pegawai</th>
+									<th style="min-width: 220px">Email</th>
+									<th style="min-width: 130px"></th>
 								</tr>
 								<?php
-									while($al = mysqli_fetch_array($ALquery)) {
-										$idAct = $al['id_aktivitas'];
-										$namaAct = $al['nama_aktivitas'];
-										$durasi = $al['durasi'];
-										$namaCateg = $al['nama_kategori'];
+									while($al = mysqli_fetch_array($DPquery)) {
+										$nip = $al['nip'];
+										$nama = $al['nama_pegawai'];
+										$email = $al['email_pegawai'];
 								?>
-								<tr style="display: none">
-									<td style="text-align: center;"><?php echo $idAct; ?></td>
-									<td><?php echo $namaAct ?></td>
-									<td style="text-align: center;"><?php echo $durasi . " Menit"?></td>
-									<td style="text-align: center;"><?php echo $namaCateg ?></td>
+								<tr>
+									<td style="text-align: center;"><?php echo $nip; ?></td>
+									<td><?php echo $nama ?></td>
+									<td style="text-align: center;"><?php echo $email ?></td>
 									<td style="text-align: center; width: 80px;">
-										<a class="selectActbtn" onclick="selectActivity(
-											'<?php echo $idAct; ?>',
-											'<?php echo $namaAct; ?>',
-											'<?php echo $durasi; ?>',
-											'<?php echo $namaCateg; ?>'
-										)">Pilih</a>
+										<a class="selectActbtn" onclick="lihatJurnal(
+											'<?php echo $nip; ?>',
+											'<?php echo $nama; ?>',
+											'<?php echo $email; ?>'
+										)">Lihat Jurnal</a>
 									</td>
 								</tr>
 								<?php

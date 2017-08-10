@@ -22,6 +22,7 @@
       $Catquery = mysqli_query($db,$Catsql);
       // Daftar Pegawai
       $DPsql = "SELECT * FROM user WHERE user.level = 'staff'";
+      $DPquery = mysqli_query($db,$DPsql);
 
       if(count($_POST)>0) {
           
