@@ -26,7 +26,8 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
    <link rel="stylesheet" type="text/css" href="css/a.css">
-
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    
    </head>
    <body class="background">
       <div class="page">
@@ -67,7 +68,7 @@
             var ubah = document.querySelectorAll('.tombol_ubah')
             var ubah_ubah = document.querySelectorAll('.ubah_ubah')
             var forEach = Array.prototype.forEach;
-            setActive_ubah(0)
+            
             forEach.call(ubah, ubah_addListener)
             
             function ubah_addListener (r, m) {

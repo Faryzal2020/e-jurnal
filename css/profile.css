@@ -1,0 +1,8 @@
+.content_profile { justify-content:center; padding: 5px; }
+.content_wrapper_profile { display: inline-block; height: 100%; width: 100%; }
+.profile_header { text-align: center; padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
+.profile_header label { padding: 30px; background-color: #ECECEC;   width: 100%; height: auto;}
+.body_profile { background-color: #ECECEC; width: 100%; height: auto; margin: auto; }
+.tombol_ubah { background:#ECECEC; # background-color: #111111; width: auto;  margin: auto; margin-left: auto; margin-right: auto; box-shadow: 1 1 0; color: black}
+.ubah_ubah { display: none; width: 100%; }
+.ubah_ubah.active { display: block; }
