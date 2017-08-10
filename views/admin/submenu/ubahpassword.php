@@ -9,21 +9,21 @@
 				                  
                                       <tr>
                                           <td>Password Lama </td>
-                                          <td>:<input type="text" id="password_lama"  placeholder="Masukkan Password Lama Anda" style="width: 410px">
+                                          <td>:<input type="password" id="password_lama" name="password_lama" placeholder="Masukkan Password Lama Anda" style="width: 410px" value="">
                                       </td>
                                       </tr>
                                       <tr>
                                           <td>Password Baru </td>
-                                          <td>:<input type="text" id="password_baru"  placeholder="Masukkan Password yang ingin Anda Gunakan" style="width: 410px">
+                                          <td>:<input type="password" id="password_baru"  name="password_baru" placeholder="Masukkan Password yang ingin Anda Gunakan" style="width: 410px" value="">
                                       </td>
                                       </tr>
                                       <tr>
                                           <td>Konfirmasi Password Baru </td>
-                                          <td>:<input type="text" id="password_baru_konfirmasi"  placeholder="Konfirmasi Password yang ingin Anda Gunakan" style="width: 410px">
+                                          <td>:<input type="password" id="password_baru_konfirmasi" name="password_baru_konfirmasi" placeholder="Konfirmasi Password yang ingin Anda Gunakan" style="width: 410px" value="">
                                       </td>
                                       </tr>
                                      <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validatepass()">Submit</a></td>
 			                                </tr>
                                     
                                     

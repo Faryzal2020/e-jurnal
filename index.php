@@ -20,6 +20,8 @@
       $Catquery = mysqli_query($db,$Catsql);
 
       if(count($_POST)>0) {
+          
+         ?><script type="text/javascript"> alert('$_POST');</script><?php
          if(!empty($_POST['tcm_idAct'])){
             $id = $_POST['tcm_idAct'];
             $vol = $_POST['volume'];
@@ -32,19 +34,25 @@
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`)  
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype')";
             mysqli_query($db,$SJsql);
-            Redirect('index.php');
          } else if( !empty($_POST['nama_pegawai'])){
               $nip = $_SESSION['nip'];
               $nama = $_POST['nama_pegawai'];
               $email = $_POST['email_pegawai'];
               $_SESSION['nama'] = $nama;
               $_SESSION['email'] = $email;
-              $bio_update = ("UPDATE user SET nama_pegawai='$nama',
+              $bio_update = ("UPDATE user SET       nama_pegawai='$nama',
                                                     email_pegawai='$email'
                                                     WHERE nip='$nip'");
               mysqli_query($db,$bio_update);
+          } else if( !empty($_POST['password_baru'])){
+              $nip = $_SESSION['nip'];
+              $password = $_POST['password_baru'];
+              $pass_update = ("UPDATE user SET password='$password' WHERE nip = '$nip'");
+              mysqli_query($db,$pass_update);
           }
-      }
+        Redirect('index.php');
+        }
+      
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -163,6 +171,34 @@
                  }
                  
              }
+              function validatepass(){
+                 var password_lama = document.forms['Formpass']['password_lama'].value;
+                 var password_baru = document.forms['Formpass']['password_baru'].value;
+                 var password_baru_konfirmasi = document.forms['Formpass']['password_baru_konfirmasi'].value;
+                 if (password_lama == "" || password_baru == "" || password_baru_konfirmasi=="")                 {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                     <?php  $passnya = "SELECT password FROM user WHERE nip = '$nip'";
+                            $pass = mysqli_query($db,$passnya);
+                    while($password=mysqli_fetch_array($pass)){
+                     ?>
+                     if (password_lama == "<?php echo $password['password']; ?>"){
+                         if(password_baru == password_baru_konfirmasi){
+                                console.log(password_lama + password_baru + password_baru_konfirmasi);
+                                document.getElementById("Formpass").submit();
+                                alert("Password Telah Diganti");
+                            } else {
+                                alert("Password Baru Tidak Sesuai dengan Konfirmasi");
+                            }
+                     }
+                     else{
+                         alert("Password Lama Tidak Sesuai");
+                     }
+                  <?php
+                    }
+                  ?>
+                 }
+              }
              
             function pass_selectActivity(){
                     pass_select.style.display = "block";
