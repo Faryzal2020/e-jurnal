@@ -2,10 +2,7 @@
 					<div class="tCWrapper">
 						<div class="tCheader">
 							<div class="tchbox">
-								<div class="searchActivity">
-				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
-				                </div>
-				                <div class="dropdownCat">
+								<div class="dropdownCat">
 				                    <button class="dropbtn" id="ddcBtn">Pilih Kategori</button>
 				                    <div class="dropdownCat-content" id="ddcContent">
 				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
@@ -21,20 +18,22 @@
 				                                }
 				                            }
 				                        ?>
-				                        
 				                    </div>
 				                </div>
-				                <label id="testLabel">test</label>
+								<div class="searchActivity">
+				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
+				                </div>
+				                Jumlah result: <label id="actCount">0</label>
 							</div>
 						</div>
 						<div class="tCbody">
 							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
 								<tr>
-									<th>No</th>
+									<th style="width: 60px">No</th>
 									<th>Nama Aktivitas</th>
-									<th>Durasi(Menit)</th>
-									<th>Kategori</th>
-									<th></th>
+									<th style="width: 150px">Standar Waktu Pengerjaan</th>
+									<th style="width: 130px">Kategori</th>
+									<th style="width: 80px"></th>
 								</tr>
 								<tr>
 									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
@@ -49,8 +48,8 @@
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
 									<td><?php echo $namaAct ?></td>
-									<td style="text-align: center;"><?php echo $durasi ?></td>
-									<td><?php echo $namaCateg ?></td>
+									<td style="text-align: center;"><?php echo $durasi . " Menit"?></td>
+									<td style="text-align: center;"><?php echo $namaCateg ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="selectActivity(
 											'<?php echo $idAct; ?>',
@@ -77,7 +76,7 @@
 			                                    <td colspan="3"><label id="tcmNamaAct"></label></td>
 			                                </tr>
 			                                <tr>
-			                                	<td><label>Durasi</label></td>
+			                                	<td><label>Standar Waktu</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><label id="tcmDurasi"></label> Menit</td>
 			                                </tr>

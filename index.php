@@ -2,6 +2,12 @@
    session_start();
    include("config.php");
 
+   function Redirect($url, $permanent = false)
+   {
+       header('Location: ' . $url, true, $permanent ? 301 : 302);
+       exit();
+   }
+
    if (isset($_SESSION['nip'])){
       $nip = $_SESSION['nip'];
       $level = $_SESSION['level'];
@@ -14,6 +20,20 @@
       $Catquery = mysqli_query($db,$Catsql);
 
       if(count($_POST)>0) {
+         if(!empty($_POST['tcm_idAct'])){
+            $id = $_POST['tcm_idAct'];
+            $vol = $_POST['volume'];
+            $voltype = $_POST['volumeType'];
+            $mulai = $_POST['tglMulai'] .' '. $_POST['jamMulai'] . ':00';
+            $selesai = $_POST['tglSelesai'] .' '. $_POST['jamSelesai'] . ':00';
+            $tgljurnal = date("Y-m-d");
+            $acttype = $_POST['actType'];
+            $msg;
+            $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`)  
+                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype')";
+            mysqli_query($db,$SJsql);
+            Redirect('index.php');
+         }
       }
 ?>
 <!DOCTYPE HTML>
@@ -150,7 +170,7 @@
                   }
                }
 
-               document.getElementById("testLabel").innerHTML = showCount;
+               document.getElementById("actCount").innerHTML = showCount;
                if( showCount <= 0 ){
                   tr[1].style.display = "";
                   if( filter != '' || catFilter != ''){
@@ -177,6 +197,31 @@
 
             function validateSJ() {
                var volumetype = document.forms["FormSJ"]["volumeType"].value;
+               var tglMulai = document.forms["FormSJ"]["tglMulai"].value;
+               var tglSelesai = document.forms["FormSJ"]["tglSelesai"].value;
+               var jamMulai = document.forms["FormSJ"]["jamMulai"].value;
+               var jamSelesai = document.forms["FormSJ"]["jamSelesai"].value;
+               var error = 0;
+               var msg;
+               if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
+                  msg = "Semua kolom harus diisi";
+                  error++;
+               } else if ( tglMulai > tglSelesai){
+                  msg = "Tanggal selesai tidak boleh lebih awal dari tanggal mulai";
+                  error++;
+               } else if ( tglMulai == tglSelesai) {
+                  if ( jamMulai >= jamSelesai ) {
+                     msg = "Jam selesai tidak boleh lebih awal atau sama dengan jam mulai di hari yang sama"
+                     error++;
+                  }
+               }
+
+               if ( error == 0){
+                  alert("ok");
+                  document.getElementById("FormSJ").submit();
+               } else {
+                  alert(msg);
+               }
 
             }
          </script>
@@ -185,7 +230,7 @@
             document.getElementById("ddcContent").classList.toggle("show");
          })
          $('.clockpicker').clockpicker({
-            donetext: 'Done'
+            autoclose: true
          });
          </script>
       </div>
