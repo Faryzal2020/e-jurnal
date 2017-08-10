@@ -14,10 +14,14 @@
       $nama = $_SESSION['nama'];
       $email = $_SESSION['email'];
 
+      // Activity List
       $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
       $ALquery = mysqli_query($db,$ALsql);
+      // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
+      // Daftar Pegawai
+      $DPsql = "SELECT * FROM user WHERE user.level = 'staff'";
 
       if(count($_POST)>0) {
          if(!empty($_POST['tcm_idAct'])){
@@ -52,25 +56,32 @@
    <meta charset="utf-8">
    <title>E-Jurnal Setwapres</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="css/css.css">
+   <link type="text/css" rel="stylesheet" href="css/calendarstyle.css"/>    
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
    <link rel="stylesheet" type="text/css" href="css/a.css">
-    <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
    </head>
    <body class="background">
       <div class="page">
-         <?php 
-            if ($level == '2'){
+         <?php
+            include_once('functions.php');
+            if ($level == 'staff'){
                include_once "views/staf/home.php";
             } else {
                include_once "views/admin/home.php";
             }
          ?>
-         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-         <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
          <script type="text/javascript" src="js/scripts.js"></script>
          <script type="text/javascript">
             var modal = document.getElementById('tCModal');
@@ -274,6 +285,9 @@
                   alert(msg);
                }
 
+            }
+            function lihat() {
+              document.getElementById("id")
             }
          </script>
          <script type="text/javascript">

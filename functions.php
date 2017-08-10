@@ -59,7 +59,9 @@ function getCalender($year = '',$month = '')
 						//Include db configuration file
 						include 'config.php';
 						//Get number of events based on the current date
-						$result = $conn->query("SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'");
+						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'";
+						$result = mysqli_query($db, $kalendersql);
+						$eventNum = mysqli_fetch_array($result);
 						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -186,8 +188,9 @@ function getEvents($date = ''){
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
-	$result = $conn->query("SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."'");
-	if($result->num_rows > 0){?>
+	$GEsql = "SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."'";
+	$result = mysqli_query($db, $GEsql);
+	if(mysqli_fetch_array($result) > 0){?>
 		<h2>Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
 		<ul>
         <?php
