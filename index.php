@@ -11,7 +11,7 @@
    if (isset($_SESSION['nip'])){
       $nip = $_SESSION['nip'];
       $level = $_SESSION['level'];
-      $nama = $_SESSION['nama'];
+      $nama = $_SESSION['nama'];    
       $email = $_SESSION['email'];
 
       // Activity List
