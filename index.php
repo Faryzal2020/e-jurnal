@@ -46,10 +46,23 @@
             var namaAct = document.getElementById('tcmNamaAct');
             var durasiAct = document.getElementById('tcmDurasi');
             var namaCat = document.getElementById('tcmNamaCat');
-            var idInput = document.getElementsByClassName('tcm_IDAct')[0];
+            var idInput = document.getElementsByClassName('tcm_idAct')[0];
             var span = document.getElementsByClassName("close")[0];
             var ddc = document.getElementById("ddcContent");
 
+            span.onclick = function() {
+               modal.style.display = "none";
+            }
+            window.onclick = function(event){
+               if(event.target == modal){
+                  modal.style.display = "none";
+               }else if (!event.target.matches('.dropbtn')){
+                  var ddc = document.getElementById("ddcContent");
+                  if ( ddc.classList.contains("show")){
+                     ddc.classList.toggle("show");
+                  }
+               }
+            }
 
             var ubah = document.querySelectorAll('.tombol_ubah')
             var ubah_ubah = document.querySelectorAll('.ubah_ubah')
@@ -58,13 +71,13 @@
             forEach.call(ubah, ubah_addListener)
             
             function ubah_addListener (r, m) {
-            console.log('ubah')
-            r.addEventListener('click', function () {
-                setActive_ubah(m)
-            })
+               console.log('ubah')
+               r.addEventListener('click', function () {
+                   setActive_ubah(m)
+               })
             }
             function ubah_removeActive(r) {
-            r.classList.remove('active')
+               r.classList.remove('active')
             }
             
             function setActive_ubah(m) {
@@ -80,20 +93,7 @@
                namaAct.innerHTML = nama;
                durasiAct.innerHTML = durasi;
                namaCat.innerHTML = cat;
-               idInput.value = i;
-            }
-            span.onclick = function() {
-               modal.style.display = "none";
-            }
-            window.onclick = function(event){
-               if(event.target == modal){
-                  modal.style.display = "none";
-               }else if (!event.target.matches('.dropbtn')){
-                  var ddc = document.getElementById("ddcContent");
-                  if ( ddc.classList.contains("show")){
-                     ddc.classList.toggle("show");
-                  }
-               }
+               idInput.value = id;
             }
 
             function searchAct() {
