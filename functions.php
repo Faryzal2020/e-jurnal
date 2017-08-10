@@ -51,10 +51,10 @@ function getCalender($year = '',$month = '')
 			<ul>
 			<?php 
 				$dayCount = 1;
-				$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
+						include("config.php");
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
 						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'";

@@ -34,7 +34,7 @@
 		div#tab1{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
 		div#tab2{ font-weight: 500; font-size: 1.2em; padding: 100px; }
 		div#tab3{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
-		div#tab4{ display: block; font-weight: 500; font-size: 1.2em; padding: 80px; padding-top: 40px; }
+		div#tab4{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
 
 		input[type=submit] { border: 0 none; padding: 5px 15px; background: #ffbb47; cursor: pointer; box-shadow:3px 3px 0 rgba(0,0,0,.5); }
 		input[type=submit]:hover {background-color: #e2a53d; box-shadow: 0 0 0;}
@@ -55,7 +55,7 @@
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
 		.actCount { padding: 10px; margin: auto; }
 
-		.actTable { margin: auto; width: 90%; background-color: #ECECEC; }
+		.actTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
 		.actTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
 		.actTable td { height: 30px; padding: 5px; }
 		.selectActbtn { background-color: #2C383B; cursor: pointer; text-decoration: none; color: #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); padding: 1px 5px 1px 5px;}
