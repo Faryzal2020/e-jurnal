@@ -27,8 +27,8 @@
 						
 					</div>
                     <div >
-                    <button class="tombol_ubah"><a href="#">Ubah Password</a></button>
-                    <button class="tombol_ubah"><a href="#">Ubah Biodata</a></button>
+                    <button class="tombol_ubah" onclick="pass_selectActivity()"><a href="#">Ubah Password</a></button>
+                    <button class="tombol_ubah" onclick="bio_selectActivity('<?php echo $nip; ?>')"><a href="#">Ubah Biodata</a></button>
                      </div>
 		              <div class="content">
                         <div class="ubah_ubah">

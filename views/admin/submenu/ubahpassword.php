@@ -1,1 +1,41 @@
-<h1> TEST UBAH Password</h1>
+                <div class="content_profile">
+					<div class="pass_select" id="pass_select">
+                        <div class="pass_select-content">
+                            <span class="tutup">&times;</span>
+                            <div id="password_label">Ubah Password</div>
+							<div class="profile_password">
+						      <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tablepass">
+                                <form name="Formpass" id="Formpass" method="post" action="">
+				                  
+                                      <tr>
+                                          <td>Password Lama </td>
+                                          <td>:<input type="text" id="password_lama"  placeholder="Masukkan Password Lama Anda" style="width: 410px">
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                          <td>Password Baru </td>
+                                          <td>:<input type="text" id="password_baru"  placeholder="Masukkan Password yang ingin Anda Gunakan" style="width: 410px">
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                          <td>Konfirmasi Password Baru </td>
+                                          <td>:<input type="text" id="password_baru_konfirmasi"  placeholder="Konfirmasi Password yang ingin Anda Gunakan" style="width: 410px">
+                                      </td>
+                                      </tr>
+                                     <tr>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()">Submit</a></td>
+			                                </tr>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                  </form>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                      
