@@ -33,7 +33,17 @@
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype')";
             mysqli_query($db,$SJsql);
             Redirect('index.php');
-         }
+         } else if( !empty($_POST['nama_pegawai'])){
+              $nip = $_SESSION['nip'];
+              $nama = $_POST['nama_pegawai'];
+              $email = $_POST['email_pegawai'];
+              $_SESSION['nama'] = $nama;
+              $_SESSION['email'] = $email;
+              $bio_update = ("UPDATE user SET nama_pegawai='$nama',
+                                                    email_pegawai='$email'
+                                                    WHERE nip='$nip'");
+              mysqli_query($db,$bio_update);
+          }
       }
 ?>
 <!DOCTYPE HTML>
@@ -70,21 +80,40 @@
             var idInput = document.getElementsByClassName('tcm_idAct')[0];
             var span = document.getElementsByClassName("close")[0];
             var ddc = document.getElementById("ddcContent");
-
+            var pass_select = document.getElementById('pass_select');
+            var tutup = document.getElementsByClassName("tutup")[0];
+            var bio_select = document.getElementById('bio_select'); 
+            var tutupin = document.getElementsByClassName("tutupin")[0];
+            
             span.onclick = function() {
-               modal.style.display = "none";
+                modal.style.display = "none";
             }
+            tutup.onclick = function() {
+                pass_select.style.display = "none";
+            }
+            tutupin.onclick = function() {
+                bio_select.style.display = "none";
+            }
+            
             window.onclick = function(event){
-               if(event.target == modal){
-                  modal.style.display = "none";
-               }else if (!event.target.matches('.dropbtn')){
-                  var ddc = document.getElementById("ddcContent");
-                  if ( ddc.classList.contains("show")){
-                     ddc.classList.toggle("show");
-                  }
-               }
+                if(event.target == modal || event.target == pass_select || event.target == bio_select){
+                    modal.style.display = "none";
+                    pass_select.style.display = "none";
+                    bio_select.style.display = "none";
+                }else if (!event.target.matches('.dropbtn')){
+                    var ddc = document.getElementById("ddcContent");
+                    if ( ddc.classList.contains("show")){
+                        ddc.classList.toggle("show");
+                    }
+                }else {
+                        if (event.target == pass_select){
+                        pass_select.style.display = "none";
+                        }
+                        if (event.target == bio_select){
+                        bio_select.style.display = "none";
+                        }
+                }
             }
-
             var ubah = document.querySelectorAll('.tombol_ubah')
             var ubah_ubah = document.querySelectorAll('.ubah_ubah')
             var forEach = Array.prototype.forEach;
@@ -100,7 +129,7 @@
             function ubah_removeActive(r) {
                r.classList.remove('active')
             }
-            
+             
             function setActive_ubah(m) {
                 forEach.call(ubah, ubah_removeActive)
                 forEach.call(ubah_ubah, ubah_removeActive)
@@ -115,6 +144,28 @@
                durasiAct.innerHTML = durasi;
                namaCat.innerHTML = cat;
                idInput.value = id;
+            }
+            function bio_selectActivity(nip){
+                var nomorinduks = document.getElementById("nomorinduks");
+                bio_select.style.display = "block";
+                nomorinduks.innerHTML = nip;
+                var nip_input = document.forms['Formbio']['nip_input'].value;
+                nip_input = nip;
+            }
+             
+             function validateUB(){
+                 var nama_pegawai = document.forms['Formbio']['nama_pegawai'].value;
+                var email_pegawai = document.forms['Formbio']['email_pegawai'].value;
+                 if (nama_pegawai == "" || email_pegawai == "") {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                     document.getElementById("Formbio").submit();
+                 }
+                 
+             }
+             
+            function pass_selectActivity(){
+                    pass_select.style.display = "block";
             }
 
             function searchAct() {
