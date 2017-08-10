@@ -14,19 +14,19 @@
 								</tr>
 								<?php
 									while($al = mysqli_fetch_array($DPquery)) {
-										$nip = $al['nip'];
-										$nama = $al['nama_pegawai'];
-										$email = $al['email_pegawai'];
+										$JAnip = $al['nip'];
+										$JAnama = $al['nama_pegawai'];
+										$JAemail = $al['email_pegawai'];
 								?>
 								<tr>
-									<td style="text-align: center;"><?php echo $nip; ?></td>
-									<td><?php echo $nama ?></td>
-									<td style="text-align: center;"><?php echo $email ?></td>
+									<td style="text-align: center;"><?php echo $JAnip; ?></td>
+									<td><?php echo $JAnama ?></td>
+									<td style="text-align: center;"><?php echo $JAemail ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="lihatJurnal(
-											'<?php echo $nip; ?>',
-											'<?php echo $nama; ?>',
-											'<?php echo $email; ?>'
+											'<?php echo $JAnip; ?>',
+											'<?php echo $JAnama; ?>',
+											'<?php echo $JAemail; ?>'
 										)">Lihat Jurnal</a>
 									</td>
 								</tr>
