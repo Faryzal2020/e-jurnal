@@ -30,7 +30,13 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item"><a href="#">Submit Laporan</a></li>
+				<li class="menu-item"><a href="#">Home</a></li>
+			</ul>
+    		<ul>
+				<li class="menu-item"><a href="#">Submit Jurnal</a></li>
+			</ul>
+    		<ul>
+				<li class="menu-item"><a href="#">Daftar Jurnal</a></li>
 			</ul>
 			<ul>
 				<li class="menu-item"><a href="#">Profil Anda</a></li>
@@ -39,11 +45,21 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					<?php require_once "views/admin/submenu/submit.php";?>
+					<?php require_once "views/admin/submenu/kalender.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div id="tab2">
+					<?php require_once "views/admin/submenu/submit.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div id="tab3">
+					<?php require_once "views/admin/submenu/jurnaladmin.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div id="tab4">
 					<?php require_once "views/admin/submenu/profil.php";?>
 				</div>
 			</div>

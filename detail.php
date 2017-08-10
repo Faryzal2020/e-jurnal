@@ -4,8 +4,7 @@
 	include_once "object.php";
 
 if (getParam("menu")=="lihat"){
-    include_once "config.php";
-    $dat = mysqli_query($conn,"select * from jurnal,aktivitas,user where jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND id_jurnal = '$_GET[id_jurnal]'");
+    $dat = mysqli_query($db,"select * from jurnal,aktivitas,user where jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND id_jurnal = '$_GET[id_jurnal]'");
     //$q = mysqli_fetch_array(mysqli_query($conn,$dat));
     
     while($d=mysqli_fetch_array($dat)){
