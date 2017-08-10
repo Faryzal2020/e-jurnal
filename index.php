@@ -51,6 +51,29 @@
             var ddc = document.getElementById("ddcContent");
 
 
+            var ubah = document.querySelectorAll('.tombol_ubah')
+            var ubah_ubah = document.querySelectorAll('.ubah_ubah')
+            var forEach = Array.prototype.forEach;
+            setActive_ubah(0)
+            forEach.call(ubah, ubah_addListener)
+            
+            function ubah_addListener (r, m) {
+            console.log('ubah')
+            r.addEventListener('click', function () {
+                setActive_ubah(m)
+            })
+            }
+            function ubah_removeActive(r) {
+            r.classList.remove('active')
+            }
+            
+            function setActive_ubah(m) {
+                forEach.call(ubah, ubah_removeActive)
+                forEach.call(ubah_ubah, ubah_removeActive)
+                ubah[m].classList.add('active')
+                ubah_ubah[m].classList.add('active')
+            }
+             
             function selectActivity(id, nama, durasi, cat){
                console.log(id + nama + durasi + cat);
                modal.style.display = "block";
