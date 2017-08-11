@@ -1,5 +1,4 @@
 <div class="w3-content" style="max-width:1600px">
-  </header>
   <div class="w3-row w3-padding w3-border">
     <div class="w3-col l12 s12">
       <div class="w3-container w3-white w3-margin w3-padding-large">

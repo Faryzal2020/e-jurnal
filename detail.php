@@ -1,20 +1,12 @@
 
     
-    <div class="content_detail">
+                <div class="content_detail">
 					<div class="detail_select" id="detail_select">
                         <div class="detail_select-content">
                             <span class="tutup_detail">&times;</span>
                             <div id="detail_label">Detail Jurnal</div>
 							<div class="detail_jurnal">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example" width=50% cellpadding=0 cellspacing=0 border=0 valign=top>
-
-<?php
-	include_once "object.php";
-    include_once "config.php";
-    
-    
-?>
-
                                     <tr>
                                         <td>ID Jurnal</td>     
                                         <td><label id="labelID"></label></td>
@@ -59,6 +51,8 @@
                                         <td>Tanggal Pembuatan jurnal</td>
                                         <td><label id="tanggal_jurnal"></label> - <label id="bulan_jurnal"> </label> - <label id="tahun_jurnal"></label></td>
                                     </tr>
-
-
-                            </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>

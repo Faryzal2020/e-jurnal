@@ -86,7 +86,8 @@ $nip = $_SESSION['nip'];
    <body class="background">
       <div class="page">
          <?php
-            include_once('functions.php');
+            include_once "functions.php";
+            include_once "object.php";
             if ($level == 'staff'){
                include_once "views/staf/home.php";
             } else {
@@ -120,16 +121,20 @@ $nip = $_SESSION['nip'];
             tutupin.onclick = function() {
                 bio_select.style.display = "none";
             }
+            tutup_detail.onclick = function() {
+                detail_select.style.display = "none";
+            }
             tutupLJ.onclick = function() {
                 modalLJ.style.display = "none";
             }
             
             window.onclick = function(event){
                 console.log(event);
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == bio_select){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == bio_select || event.target == detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     bio_select.style.display = "none";
+                    detail_select.style.display = "none";
                     modalLJ.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");

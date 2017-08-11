@@ -45,7 +45,7 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					<?php require_once "views/admin/submenu/placeholder.php";?>
+					<?php require_once "views/admin/submenu/kalender.php";?>
 				</div>
 			</div>
 			<div class="tab">
