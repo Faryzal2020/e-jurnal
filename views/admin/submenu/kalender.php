@@ -7,7 +7,8 @@
         <br>
         <div id="calendar_div">
 	          <?php echo getCalender(); ?>
-        </div>   
+        </div>
+        <?php include_once "detail.php"; ?>
       </div>
     </div>
   </div>

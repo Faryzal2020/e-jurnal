@@ -179,6 +179,57 @@ function getYearList($selected = ''){
 /*
  * Get events by date
  */
+function pecahTanggal($jam_tanggal){
+    $pecah_tanggal = $jam_tanggal[0];
+                                                $pecah_jam = $pecah_jam_tanggal[1];
+                                                $pisah_tanggal = explode("-",$pecah_tanggal);
+                                                $tahun = $pisah_tanggal[0];
+                                                $bulan = $pisah_tanggal[1];
+                                                $hari = $pisah_tanggal[2];
+                                                switch ($bulan) {
+                                                    case "1":
+                                                        $namabulan= "Januari";
+                                                        break;
+                                                    case "2":
+                                                        $namabulan= "Februari";
+                                                        break;
+                                                    case "3":
+                                                        $namabulan= "Maret";
+                                                        break;
+                                                    case "4":
+                                                        $namabulan= "April";
+                                                        break;
+                                                    case "5":
+                                                        $namabulan= "Mei";
+                                                        break;
+                                                    case "6":
+                                                        $namabulan= "Juni";
+                                                        break;
+                                                    case "7":
+                                                        $namabulan= "Juli";
+                                                        break;
+                                                    case "8":
+                                                        $namabulan= "Agustus";
+                                                        break;
+                                                    case "9":
+                                                        $namabulan= "September";
+                                                        break;
+                                                    case "10":
+                                                        $namabulan= "Oktober";
+                                                        break;
+                                                    case "11":
+                                                        $namabulan= "November";
+                                                        break;
+                                                    case "12":
+                                                        $namabulan= "Desember";
+                                                        break;
+                                                    default:
+                                                        break;    
+                                                }
+    $hasil = $hari.' - '.$namabulan.' - '.$tahun;
+    return $hasil;
+}
+
 function getEvents($date = ''){
 	//Include db configuration file
 	include 'config.php';
@@ -194,7 +245,8 @@ function getEvents($date = ''){
 		while($row = $result->fetch_assoc()){  ?>
             <li> Jurnal : <?php echo $row['nama_aktivitas'];?> 
                 dibuat oleh <?php echo $row['nama_pegawai']; ?>
-            <a href="detail.php?menu=lihat&id_jurnal=<?php echo $row['id_jurnal']?>">Detail</a>
+            <button class="tombol_detail" onclick="detail_selectActivity('<?php $row['id_jurnal']; ?>')"><a href="#">Detail</a></button>
+            <!--<a href="detail.php?menu=lihat&id_jurnal=<?php//echo $row['id_jurnal']?>">Detail</a>-->
             </li>
         <?php     
         }

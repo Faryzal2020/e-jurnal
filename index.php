@@ -106,6 +106,8 @@ $nip = $_SESSION['nip'];
             var tutup = document.getElementsByClassName("tutup")[0];
             var bio_select = document.getElementById('bio_select'); 
             var tutupin = document.getElementsByClassName("tutupin")[0];
+            var detail_select = document.getElementById('detail_select'); 
+            var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
             
             span.onclick = function() {
                 modal.style.display = "none";
@@ -116,12 +118,16 @@ $nip = $_SESSION['nip'];
             tutupin.onclick = function() {
                 bio_select.style.display = "none";
             }
+            tutup_detail.onclick = function() {
+                detail_select.style.display = "none";
+            }
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == pass_select || event.target == bio_select){
+                if(event.target == modal || event.target == pass_select || event.target == bio_select || event.target == detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     bio_select.style.display = "none";
+                    detail_select.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     if ( ddc.classList.contains("show")){
@@ -133,6 +139,9 @@ $nip = $_SESSION['nip'];
                         }
                         if (event.target == bio_select){
                         bio_select.style.display = "none";
+                        }
+                        if (event.target == detail_select){
+                        detail_select.style.display = "none";
                         }
                 }
             }
@@ -175,6 +184,11 @@ $nip = $_SESSION['nip'];
                 nip_input = nip;
             }
              
+            function detail_selectActivity(id_jurnal, ){
+                document.getElementById("detail_select").style.display = "block";
+                document.getElementById("labelID").innerHTML = id_jurnal;
+            }
+             
              function validateUB(){
                  var nama_pegawai = document.forms['Formbio']['nama_pegawai'].value;
                 var email_pegawai = document.forms['Formbio']['email_pegawai'].value;
@@ -196,7 +210,7 @@ $nip = $_SESSION['nip'];
                             $pass = mysqli_query($db,$passnya);
                     while($password=mysqli_fetch_array($pass)){
                      ?>
-                     alert(<?php echo $nip; ?>)
+                    
                      if (password_lama == "<?php echo $password['password']; ?>"){
                          if(password_baru == password_baru_konfirmasi){
                                 console.log(password_lama + password_baru + password_baru_konfirmasi);

@@ -2,7 +2,7 @@
 					<div class="bio_select" id="bio_select">
                         <div class="bio_select-content">
                             <span class="tutupin">&times;</span>
-                            <div id="bio_label">Ubah Password</div>
+                            <div id="bio_label">Ubah Biodata</div>
 							<div class="profile_bio">
 						      <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tablepass">
                                 <form name="Formbio" id="Formbio" method="post" action="">
