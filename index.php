@@ -7,6 +7,8 @@
        header('Location: ' . $url, true, $permanent ? 301 : 302);
        exit();
    }
+$nip = $_SESSION['nip'];
+?> <script> console.log('<?php echo $nip ?>');</script><?php 
 
    if (isset($_SESSION['nip'])){
       $nip = $_SESSION['nip'];
@@ -194,6 +196,7 @@
                             $pass = mysqli_query($db,$passnya);
                     while($password=mysqli_fetch_array($pass)){
                      ?>
+                     alert(<?php echo $nip; ?>)
                      if (password_lama == "<?php echo $password['password']; ?>"){
                          if(password_baru == password_baru_konfirmasi){
                                 console.log(password_lama + password_baru + password_baru_konfirmasi);
