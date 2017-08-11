@@ -57,7 +57,7 @@ function getCalender($year = '',$month = '')
 						include("config.php");
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'";
+						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."' AND nip='".$_SESSION['nip']."'";
 						$result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
 						//Define date cell color
@@ -94,7 +94,7 @@ function getCalender($year = '',$month = '')
 		function getCalendar(target_div,year,month){
 			$.ajax({
 				type:'POST',
-				url:'functions.php',
+				url:'functions_staff.php',
 				data:'func=getCalender&year='+year+'&month='+month,
 				success:function(html){
 					$('#'+target_div).html(html);
@@ -105,7 +105,7 @@ function getCalender($year = '',$month = '')
 		function getEvents(date){
 			$.ajax({
 				type:'POST',
-				url:'functions.php',
+				url:'functions_staff.php',
 				data:'func=getEvents&date='+date,
 				success:function(html){
 					$('#event_list').html(html);
@@ -114,17 +114,6 @@ function getCalender($year = '',$month = '')
 			});
 		}
 		
-		function addEvent(date){
-			$.ajax({
-				type:'POST',
-				url:'functions.php',
-				data:'func=addEvent&date='+date,
-				success:function(html){
-					$('#event_list').html(html);
-					$('#event_list').slideDown('slow');
-				}
-			});
-		}
 		
 		$(document).ready(function(){
 			$('.date_cell').mouseenter(function(){
@@ -181,21 +170,26 @@ function getYearList($selected = ''){
  */
 function getEvents($date = ''){
 	//Include db configuration file
+    session_start();
 	include 'config.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
-	$GEsql = "SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."'";
+	$GEsql = "SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."' AND user.nip='".$_SESSION['nip']."' AND nama_pegawai='".$_SESSION['nama']."'";
 	$result = mysqli_query($db, $GEsql);
 	if($result->num_rows > 0){?>
 		<h2>Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
 		<ul>
         <?php
-		while($row = $result->fetch_assoc()){  ?>
+		while($row = mysqli_fetch_array($result)){
+            $nomorIP = $row['nip'];
+            if ($nomorIP == $_SESSION['nip']){
+            ?>
+            
             <li> Jurnal : <?php echo $row['nama_aktivitas'];?> 
                 dibuat oleh <?php echo $row['nama_pegawai']; ?>
             <button class="tombol_detail" 
-                    onclick="detail_selectActivity('<?php echo $row['id_jurnal']; ?>',
+                    onclick="staff_detail_selectActivity('<?php echo $row['id_jurnal']; ?>',
                                                     '<?php echo $row['nama_aktivitas']; ?>',
                                                     '<?php echo $row['nama_pegawai']; ?>',
                                                     '<?php echo $row['volume']; ?>',
@@ -459,7 +453,8 @@ function getEvents($date = ''){
                 <a href="#">Detail</a></button>
             <!--<a href="detail.php?menu=lihat&id_jurnal=<?php//echo $row['id_jurnal']?>">Detail</a>-->
             </li>
-        <?php     
+        <?php 
+            }
         }
 		?></ul>
 <?php

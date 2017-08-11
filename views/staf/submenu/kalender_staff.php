@@ -8,6 +8,7 @@
         <div id="calendar_div">
 	          <?php echo getCalender(); ?>
         </div>   
+          <?php include_once "detail_staff.php"; ?>
       </div>
     </div>
   </div>
