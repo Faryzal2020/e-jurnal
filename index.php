@@ -403,16 +403,17 @@ $nip = $_SESSION['nip'];
             }
 
             function lihatJurnalStaff(nip) {
-              var tahun = document.getElementById("LJSpilihTahun");
-              var bulan = document.getElementById("LJSpilihBulan");
+              var tahun = document.getElementById("LJSpilihTahun").value;
+              var bulan = document.getElementById("LJSpilihBulan").value;
+              var data = { 'nip': nip, 'tahun': tahun, 'bulan': bulan }
               $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
                 url: "tabelLJstaff.php",             
                 dataType: "html",   //expect html to be returned
-                data: {nip:nip, tahun:tahun, bulan:bulan},               
+                data: data,               
                 success: function(response){                    
                     $("#tableLJstaffContainer").html(response); 
-                    //alert(response);
+                    alert(response);
                 }
               });
             }
