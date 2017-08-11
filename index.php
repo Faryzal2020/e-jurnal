@@ -25,6 +25,9 @@ $nip = $_SESSION['nip'];
       // Daftar Pegawai
       $DPsql = "SELECT * FROM user WHERE user.level = 'staff'";
       $DPquery = mysqli_query($db,$DPsql);
+      // Jurnal Staff
+      $LJstaffsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
+      $LJstaffquery = mysqli_query($db, $LJstaffsql);
 
       if(count($_POST)>0) {
           
@@ -125,9 +128,12 @@ $nip = $_SESSION['nip'];
             tutup_detail.onclick = function() {
                 detail_select.style.display = "none";
             }
-            tutupLJ.onclick = function() {
+            if ( typeof tutupLJ != 'undefined'){
+              tutupLJ.onclick = function() {
                 modalLJ.style.display = "none";
+              }
             }
+            
             
             window.onclick = function(event){
                 console.log(event);
@@ -391,6 +397,21 @@ $nip = $_SESSION['nip'];
                 data: {nip:nip},               
                 success: function(response){                    
                     $("#tableContainer").html(response); 
+                    //alert(response);
+                }
+              });
+            }
+
+            function lihatJurnalStaff(nip) {
+              var tahun = document.getElementById("LJSpilihTahun");
+              var bulan = document.getElementById("LJSpilihBulan");
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "tabelLJstaff.php",             
+                dataType: "html",   //expect html to be returned
+                data: {nip:nip, tahun:tahun, bulan:bulan},               
+                success: function(response){                    
+                    $("#tableLJstaffContainer").html(response); 
                     //alert(response);
                 }
               });
