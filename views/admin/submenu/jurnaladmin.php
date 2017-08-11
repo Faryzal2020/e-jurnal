@@ -39,7 +39,6 @@
 			                        <span class="tutupLJ">&times;</span>
 			                        <div id="tCModalLabel">Daftar Jurnal</div>
 			                        <div class="headerLJ">
-			                        	test
 			                        </div>
 			                        <div id="tableContainer">
 			                        </div>
