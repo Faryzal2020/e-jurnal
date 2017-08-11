@@ -35,7 +35,7 @@
 								?>
 							</table>
 							<div id="modalLJ" class="tCmodal">
-			                    <div class="tCmodal-content">
+			                    <div class="modalLJ-content">
 			                        <span class="tutupLJ">&times;</span>
 			                        <div id="tCModalLabel">Daftar Jurnal</div>
 			                        <div class="headerLJ">

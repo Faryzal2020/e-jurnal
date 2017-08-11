@@ -1,11 +1,12 @@
 		html, body{ height:100%; width: 100%; }
 		html { display: table; margin: auto; }
 		body{ font-family:Verdana; background-color:#2C383B; margin: 0px; padding: 0px; display: table-cell; }
-		.logo{ background: #2C383B; position: absolute; right: -60px; top: 0px; width: 400px; padding-top: 10px; padding-bottom: 5px; padding-left: 120px; transform: skew(-45deg);}
-		.logo_wrapper{ position: relative; transform: skew(45deg);}
+		.logo{ background: #2C383B; position: absolute; right: 60; top: 0; height: 120px; width: 250px; transform: skew(-45deg);}
+		.logo_wrapper{ position: absolute; right: 80; top: 10; }
+		.logo_panel{ position: absolute; top: 0; right: 0; background: #2C383B; height: 120px; width: 140px; }
 		.wrapper{ background: #FFF; height: 120px; }
 		.header{ background-color:#4482e5; position: relative; height: 120px; }
-		.page { height: 100%; }
+		.page { height: 100%; max-width: 1500px; margin: auto; }
 		.judul { margin: auto; margin-right: 200px; font-size: 2em; padding-top: 30px; width: 300px;}
 
 		.userpanel{ display: inline-block; position: absolute; top: 0; left: 0; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }
@@ -13,8 +14,8 @@
 		.userpanel td{ text-align: center; height: 30px; padding-top: 10px; }
 		.userpanel a{ display: inline-block; background: #2C383B; padding: 9px; top: 0; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: solid; border-width: 1px; border-color: #2C383B; border-radius: 3px}
 		.userpanel a:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
-		.UPwrapper{ background: #c9c9c9; border: 2px solid #565656; padding: 5px;}
-		.UPtable{ margin: auto;}
+		.userpanelwrapper{ background: #c9c9c9; border: 2px solid #565656; padding: 5px;}
+		.userpaneltable{ margin: auto;}
 		.foto{ width: 90%; }
 		.userphoto{ width: 120px; height: 150px; background-color: black; margin: auto;}
 		.username{ width: 90%; font-size: 0.9em;}
@@ -23,18 +24,16 @@
 
 		.pagebody{ background: white; overflow: auto; margin-top: 20px; display: flex; }
 		.sidenav { background: #c1c1c1; flex: 0 0 250px; padding-top: 210px; min-height: 100vh;}
-		.sidenav ul { margin-top: 40px; margin-left: 20px; padding: 0; }
-		.sidenav ul li { background:#2C383B; box-shadow:10px 10px 0 rgba(0,0,0,.5); transform: skew(-20deg); margin-left: 10px; margin-right: 0px; margin-bottom: 45px ; padding: 15px;  color: #ECECEC; border: 1px solid; list-style-type: none; }
+		.sidenav ul { margin-top: 15px; margin-left: 15px; padding-left: 10px; }
+		.sidenav ul li { background:#2C383B; box-shadow:10px 10px 0 rgba(0,0,0,.5); transform: skew(-20deg); margin-left: 10px; margin-right: 0px; margin-bottom: 20px ; padding: 15px;  color: #ECECEC; border: 1px solid #ECECEC; list-style-type: none; }
 		.sidenav ul li:hover {margin-left: 30px; margin-right: -30px;}
+		.sidenav ul li:active { background-color: #ECECEC; border: 1px solid #2C383B; color: #2C383B; }
 		.sidenav ul li a { transform: skew(20deg); display: block; color: inherit; text-decoration: none; text-align: center; }
-		.menu-item.active { margin-left: 30px; margin-right: -30px; box-shadow: 0 0 0; }
+		.menu-item.active {margin-left: 30px; margin-right: -30px; box-shadow: 0 0 0; }
 		.tab { display: none; width: 100%; }
 		.tab.active { display: block; }
 		.content{ flex: 1; }
-		div#tab1{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
-		div#tab2{ font-weight: 500; font-size: 1.2em; padding: 100px; }
-		div#tab3{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
-		div#tab4{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
+		.tabN{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
 
 		input[type=submit] { border: 0 none; padding: 5px 15px; background: #ffbb47; cursor: pointer; box-shadow:3px 3px 0 rgba(0,0,0,.5); }
 		input[type=submit]:hover {background-color: #e2a53d; box-shadow: 0 0 0;}
@@ -64,11 +63,16 @@
 		.tCmodal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
 		.tCmodal-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 700px; }
 		.tableSJ td {padding: 5px;}
-		.close { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
-		.close:hover, .close:focus { color: #333333; text-decoration: none; cursor: pointer; }
+		.close, .tutupLJ { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus{ color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 		.SJbtnSubmit:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
-		.UPwrapper { padding-top: 30px; border: 0px; background-color: white; }
+
+		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
+		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 500px; width: max-content; }
+		#tableContainer { display: block; margin: auto; width: 90%; }
+		.tabelLJ { table-layout: auto; width: 100%; }
+		.tableLJ th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
 
 		* { transition: all .1s ease}

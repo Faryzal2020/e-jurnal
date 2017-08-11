@@ -5,13 +5,13 @@ $nip = $_GET['nip'];
 $LJsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas WHERE j.nip = '$nip'";
 $result = mysqli_query($db, $LJsql);
 
-echo "<table border='1' >
+echo "<table border='1' class='tabelLJ'>
 <tr>
-<td align=center> <b>Roll No</b></td>
-<td align=center><b>Name</b></td>
-<td align=center><b>Address</b></td>
-<td align=center><b>Stream</b></td></td>
-<td align=center><b>Status</b></td>";
+<th> <b>ID Jurnal</b></th>
+<th><b>Volume</b></th>
+<th><b>Jenis Output</b></th>
+<th><b>Waktu Mulai</b></th>
+<th><b>Waktu Selesai</b></th>";
 
 while($data = mysqli_fetch_row($result))
 {   

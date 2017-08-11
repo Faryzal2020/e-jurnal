@@ -27,8 +27,8 @@
 						
 					</div>
                     <div class="UPwrapper">
-                    <button class="tombol_ubah" onclick="pass_selectActivity()"><a href="#">Ubah Password</a></button>
-                    <button class="tombol_ubah" onclick="bio_selectActivity('<?php echo $nip; ?>')"><a href="#">Ubah Biodata</a></button>
+                    <button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
+                    <button class="tombol_ubah" onclick="bio_selectActivity('<?php echo $nip; ?>')">Ubah Biodata</button>
                      </div>
 		              <div class="content">
                         <div class="ubah_ubah">
