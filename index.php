@@ -108,7 +108,9 @@ $nip = $_SESSION['nip'];
             var tutupin = document.getElementsByClassName("tutupin")[0];
             var detail_select = document.getElementById('detail_select'); 
             var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
-            
+            var tutupLJ = document.getElementsByClassName("tutupLJ")[0];
+            var modalLJ = document.getElementById('modalLJ'); 
+
             span.onclick = function() {
                 modal.style.display = "none";
             }
@@ -118,31 +120,22 @@ $nip = $_SESSION['nip'];
             tutupin.onclick = function() {
                 bio_select.style.display = "none";
             }
-            tutup_detail.onclick = function() {
-                detail_select.style.display = "none";
+            tutupLJ.onclick = function() {
+                modalLJ.style.display = "none";
             }
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == pass_select || event.target == bio_select || event.target == detail_select){
+                console.log(event);
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == bio_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     bio_select.style.display = "none";
-                    detail_select.style.display = "none";
+                    modalLJ.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
                     }
-                }else {
-                        if (event.target == pass_select){
-                        pass_select.style.display = "none";
-                        }
-                        if (event.target == bio_select){
-                        bio_select.style.display = "none";
-                        }
-                        if (event.target == detail_select){
-                        detail_select.style.display = "none";
-                        }
                 }
             }
             var ubah = document.querySelectorAll('.tombol_ubah')
@@ -340,17 +333,30 @@ $nip = $_SESSION['nip'];
                }
 
             }
-            function lihat() {
-              document.getElementById("id")
+            function lihatJurnal(nip, nama, email) {
+              document.getElementById("modalLJ").style.display = "block";
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "tabelLihatJurnal.php",             
+                dataType: "html",   //expect html to be returned
+                data: {nip:nip},               
+                success: function(response){                    
+                    $("#tableContainer").html(response); 
+                    //alert(response);
+                }
+              });
             }
          </script>
          <script type="text/javascript">
-         $('.dropbtn').click(function(){
-            document.getElementById("ddcContent").classList.toggle("show");
-         })
-         $('.clockpicker').clockpicker({
-            autoclose: true
+         $(document).ready(function(){
+           $('.dropbtn').click(function(){
+              document.getElementById("ddcContent").classList.toggle("show");
+           })
+           $('.clockpicker').clockpicker({
+              autoclose: true
+           });
          });
+         
          </script>
       </div>
    </body>
