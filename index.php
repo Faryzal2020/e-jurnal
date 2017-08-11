@@ -86,12 +86,12 @@ $nip = $_SESSION['nip'];
    <body class="background">
       <div class="page">
          <?php
-            include_once "functions.php";
-            include_once "object.php";
             if ($level == 'staff'){
-               include_once "views/staf/home.php";
+                include_once "functions_staff.php";
+                include_once "views/staf/home_staff.php";
             } else {
-               include_once "views/admin/home.php";
+                include_once "functions.php";
+                include_once "views/admin/home.php";
             }
          ?>
          <script type="text/javascript" src="js/scripts.js"></script>
@@ -111,6 +111,7 @@ $nip = $_SESSION['nip'];
             var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
             var tutupLJ = document.getElementsByClassName("tutupLJ")[0];
             var modalLJ = document.getElementById('modalLJ'); 
+             
 
             span.onclick = function() {
                 modal.style.display = "none";
@@ -183,6 +184,30 @@ $nip = $_SESSION['nip'];
             }
              
             function detail_selectActivity(id_jurnal, nama_aktivitas, nama_pegawai,volume,satuan_output,durasi,tanggal_mulai,bulan_mulai,tahun_mulai,tanggal_selesai,bulan_selesai,tahun_selesai,jam_mulai,jam_selesai,durasi_pekerjaan,jurnal_tanggal,jurnal_bulan,jurnal_tahun){
+                console.log(id_jurnal + nama_aktivitas + nama_pegawai + volume + satuan_output + durasi + tanggal_mulai + bulan_mulai + tahun_mulai + tanggal_selesai + bulan_selesai + tahun_selesai + jam_mulai + jam_selesai + durasi_pekerjaan + jurnal_tanggal + jurnal_bulan + jurnal_tahun);
+                document.getElementById("detail_select").style.display = "block";
+                document.getElementById("labelID").innerHTML = id_jurnal;
+                document.getElementById("nama_aktiv").innerHTML = nama_aktivitas;
+                document.getElementById("pembuat").innerHTML = nama_pegawai;
+                document.getElementById("vol").innerHTML = volume;
+                document.getElementById("satuan").innerHTML = satuan_output; 
+                document.getElementById("waktu_efektif").innerHTML = durasi;
+                document.getElementById("mulai_tanggal").innerHTML = tanggal_mulai;
+                document.getElementById("mulai_bulan").innerHTML = bulan_mulai;
+                document.getElementById("mulai_tahun").innerHTML = tahun_mulai;
+                document.getElementById("selesai_tanggal").innerHTML = tanggal_selesai;
+                document.getElementById("selesai_bulan").innerHTML = bulan_selesai;
+                document.getElementById("selesai_tahun").innerHTML = tahun_selesai;
+                document.getElementById("mulai_jam").innerHTML = jam_mulai;
+                document.getElementById("selesai_jam").innerHTML = jam_selesai;
+                document.getElementById("lama_kerja").innerHTML = durasi_pekerjaan;
+                document.getElementById("tanggal_jurnal").innerHTML = jurnal_tanggal;
+                document.getElementById("bulan_jurnal").innerHTML = jurnal_bulan;
+                document.getElementById("tahun_jurnal").innerHTML = jurnal_tahun;
+               
+            }
+             
+             function staff_detail_selectActivity(id_jurnal, nama_aktivitas, nama_pegawai,volume,satuan_output,durasi,tanggal_mulai,bulan_mulai,tahun_mulai,tanggal_selesai,bulan_selesai,tahun_selesai,jam_mulai,jam_selesai,durasi_pekerjaan,jurnal_tanggal,jurnal_bulan,jurnal_tahun){
                 console.log(id_jurnal + nama_aktivitas + nama_pegawai + volume + satuan_output + durasi + tanggal_mulai + bulan_mulai + tahun_mulai + tanggal_selesai + bulan_selesai + tahun_selesai + jam_mulai + jam_selesai + durasi_pekerjaan + jurnal_tanggal + jurnal_bulan + jurnal_tahun);
                 document.getElementById("detail_select").style.display = "block";
                 document.getElementById("labelID").innerHTML = id_jurnal;

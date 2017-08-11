@@ -26,7 +26,6 @@
 .tutupin { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
 .tutupin:hover, .tutupin:focus { color: #333333; text-decoration: none; cursor: pointer; }
 
-.content_profile { justify-content:center; padding: 5px; }
 .detail_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
 .detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 700px; }
 .detail_jurnal { background-color:#ECECEC;}
@@ -35,4 +34,13 @@
 .tutup_detail:hover, .tutup_detail:focus { color: #333333; text-decoration: none; cursor: pointer; }
 .tombol_detail { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 .tombol_detail:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
-		
+
+.staff_detail_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
+.staff_detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 700px; }
+.staff_detail_jurnal { background-color:#ECECEC;}
+#staff_detail_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
+.staff_tutup_detail { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+.staff_tutup_detail:hover, .tutup_detail:focus { color: #333333; text-decoration: none; cursor: pointer; }
+.staff_tombol_detail { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
+.staff_tombol_detail:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+				

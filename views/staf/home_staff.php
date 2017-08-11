@@ -45,22 +45,22 @@
 		<div class="content">
 			<div class="tab">
 				<div id="tab1">
-					<?php require_once "views/admin/submenu/kalender.php";?>
+					<?php require_once "views/staf/submenu/kalender_staff.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div id="tab2">
-					<?php require_once "views/admin/submenu/submit.php";?>
+					<?php require_once "views/staf/submenu/submit.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div id="tab3">
-					<?php require_once "views/admin/submenu/jurnaladmin.php";?>
+					<?php require_once "views/staf/submenu/jurnaladmin.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div id="tab4">
-					<?php require_once "views/admin/submenu/profil.php";?>
+					<?php require_once "views/staf/submenu/profil.php";?>
 				</div>
 			</div>
 		</div>
