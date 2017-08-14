@@ -75,4 +75,10 @@
 		.tabelLJ { table-layout: auto; width: 100%; }
 		.tableLJ th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
 
+		.LJSfilter { margin-left: 30px; }
+		.LJSfilter div { display: inline-block; }
+		.LJSbtn { background-color:#2C383B; margin-left: 10px; padding: 3px 7px 3px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.LJSbtn:active { box-shadow: 0 0 0; }
+
 		* { transition: all .1s ease}

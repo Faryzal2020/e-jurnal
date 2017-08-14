@@ -2,10 +2,18 @@
 include("config.php");
 
 $nip = $_GET['nip'];
-$tahun = $_GET['tahun'];
-$bulan = $_GET['bulan'];
-$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND month(j.tanggal_jurnal)='$bulan'";
-$result = mysqli_query($db, $LJsql);
+$tipeFilter = $_GET['filType'];
+$LJSsql = "";
+if( $tipeFilter == 'Mingguan'){
+	$tanggal = $_GET['tanggal'];
+	$weekBefore = date('Y-m-d', strtotime($tanggal . ' -1 week'));
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
+} else {
+	$tahun = $_GET['tahun'];
+	$bulan = $_GET['bulan'];
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND month(j.tanggal_jurnal)='$bulan'";
+}
+$result = mysqli_query($db, $LJSsql);
 
 echo "<table border='1' class='tabelLJ' cellpadding='20'>
 <tr>
@@ -20,19 +28,25 @@ echo "<table border='1' class='tabelLJ' cellpadding='20'>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Input Jurnal</b></th>
 </tr>";
 
-while($data = mysqli_fetch_row($result))
-{   
+if(mysqli_num_rows($result) > 0){
+    while($data = mysqli_fetch_row($result))
+    {   
+        echo "<tr>";
+        echo "<td align=center>$data[0]</td>";
+        echo "<td align=center style='padding: 10px; max-width: 410px;'>$data[7]</td>";
+        echo "<td align=center>$data[6]</td>";
+        echo "<td align=center style='width:130px;'>$data[9]</td>";
+        echo "<td align=center>$data[1]</td>";
+        echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
+        echo "<td align=center style='width: 140px;'>$data[3]</td>";
+        echo "<td align=center style='width: 140px;'>$data[4]</td>";
+        echo "<td align=center>$data[5]</td>";
+        echo "</tr>";
+    }
+} else {
     echo "<tr>";
-    echo "<td align=center>$data[0]</td>";
-    echo "<td align=center style='padding: 10px; max-width: 410px;'>$data[7]</td>";
-    echo "<td align=center>$data[6]</td>";
-    echo "<td align=center style='width:130px;'>$data[9]</td>";
-    echo "<td align=center>$data[1]</td>";
-    echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
-    echo "<td align=center style='width: 140px;'>$data[3]</td>";
-    echo "<td align=center style='width: 140px;'>$data[4]</td>";
-    echo "<td align=center>$data[5]</td>";
+    echo "<td align=center colspan='9'>Tidak ada data</td>";
     echo "</tr>";
+    echo "</table>";
 }
-echo "</table>";
 ?>

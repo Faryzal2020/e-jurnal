@@ -30,8 +30,6 @@ $nip = $_SESSION['nip'];
       $LJstaffquery = mysqli_query($db, $LJstaffsql);
 
       if(count($_POST)>0) {
-          
-         ?><script type="text/javascript"> alert('$_POST');</script><?php
          if(!empty($_POST['tcm_idAct'])){
             $id = $_POST['tcm_idAct'];
             $vol = $_POST['volume'];
@@ -145,8 +143,12 @@ $nip = $_SESSION['nip'];
                     modalLJ.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
+                    var rep = document.getElementById("repContent");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
+                    }
+                    if ( rep.classList.contains("show")){
+                        rep.classList.toggle("show");
                     }
                 }
             }
@@ -359,6 +361,24 @@ $nip = $_SESSION['nip'];
                searchAct();
             }
 
+            selectReport('Mingguan');
+            function selectReport(rep) {
+               repBtn = document.getElementById("repBtn");
+               $mingguan = document.getElementsByClassName("LJSfilter")[0];
+               $bulanan = document.getElementsByClassName("LJSfilter")[1];
+               document.getElementById("repContent").classList.toggle("show");
+               repBtn.innerHTML = rep;
+
+               if( rep == 'Mingguan'){
+                  $mingguan.style.display = "inline-block";
+                  $bulanan.style.display = "none";
+               } else {
+                  $bulanan.style.display = "inline-block";
+                  $mingguan.style.display = "none";
+               }
+               document.getElementById("LJSfilterType").value = rep;
+            }
+
             function validateSJ() {
                var volumetype = document.forms["FormSJ"]["volumeType"].value;
                var tglMulai = document.forms["FormSJ"]["tglMulai"].value;
@@ -374,8 +394,11 @@ $nip = $_SESSION['nip'];
                   msg = "Tanggal selesai tidak boleh lebih awal dari tanggal mulai";
                   error++;
                } else if ( tglMulai == tglSelesai) {
-                  if ( jamMulai >= jamSelesai ) {
-                     msg = "Jam selesai tidak boleh lebih awal atau sama dengan jam mulai di hari yang sama"
+                  if ( jamMulai > jamSelesai ) {
+                     msg = "Jam selesai tidak boleh lebih awal dari jam mulai di hari yang sama"
+                     error++;
+                  } else {
+                     msg = "Jam selesai tidak boleh sama dengan jam mulai di hari yang sama"
                      error++;
                   }
                }
@@ -403,25 +426,39 @@ $nip = $_SESSION['nip'];
             }
 
             function lihatJurnalStaff(nip) {
-              var tahun = document.getElementById("LJSpilihTahun").value;
-              var bulan = document.getElementById("LJSpilihBulan").value;
-              var data = { 'nip': nip, 'tahun': tahun, 'bulan': bulan }
-              $.ajax({    //create an ajax request to load_page.php
-                type: "GET",
-                url: "tabelLJstaff.php",             
-                dataType: "html",   //expect html to be returned
-                data: data,               
-                success: function(response){                    
-                    $("#tableLJstaffContainer").html(response); 
-                    alert(response);
+              var filType = document.getElementById("LJSfilterType").value;
+              var data;
+              if ( filType == 'Mingguan'){
+                var tanggal = document.getElementById("LJSpilihTanggal").value;
+                if ( tanggal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tanggal': tanggal }
                 }
-              });
+              } else {
+                var tahun = document.getElementById("LJSpilihTahun").value;
+                var bulan = document.getElementById("LJSpilihBulan").value;
+                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan }
+              }
+
+              if ( typeof data === 'undefined'){
+                alert("Kolom pilih tanggal harus diisi");
+              } else {
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "tabelLJstaff.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: data,               
+                  success: function(response){                    
+                      $("#tabelLJstaffContainer").html(response);
+                  }
+                });
+              }
             }
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
+              document.getElementById("repContent").classList.toggle("show");
            })
            $('.clockpicker').clockpicker({
               autoclose: true

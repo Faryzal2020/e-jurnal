@@ -19,7 +19,7 @@ echo "<table border='1' class='tabelLJ' cellpadding='20'>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Input Jurnal</b></th>
 </tr>";
-if($result->num_row > 0){
+if($result){
     while($data = mysqli_fetch_row($result))
     {   
         echo "<tr>";
@@ -34,10 +34,9 @@ if($result->num_row > 0){
         echo "<td align=center>$data[5]</td>";
         echo "</tr>";
     }
-    echo "</table>";
 } else {
     echo "<tr>";
-        echo "<td align=center colspan='9'>Tidak ada data</td>";
+    echo "<td align=center colspan='9'>Tidak ada data</td>";
     echo "</tr>";
     echo "</table>";
 }
