@@ -211,7 +211,7 @@ function getEvents($date = ''){
 		<ul>
         <?php
 		while($row = $result->fetch_assoc()){  ?>
-            <li> Jurnal : <?php echo $row['nama_pegawai']; ?>
+            <li> <span> Jurnal : <?php echo $row['nama_pegawai']; ?> </span>
             <button class="tombol_detail" 
                     onclick="detail_selectActivity('<?php echo $row['nip']; ?>',
                                                     '<?php echo $row['nama_pegawai']; ?>',
