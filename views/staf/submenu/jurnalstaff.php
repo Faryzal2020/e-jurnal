@@ -10,8 +10,8 @@
 				                    </div>
 				                </div>
 								<div class="LJSfilter" style="display: none">
-									<div class="LJSpilihTanggal">
-										<input id="LJSpilihTanggal" type="date" value="">
+									<div class="LJSpilihMinggu">
+										<input id="LJSpilihMinggu" type="text" value="">
 									</div>
 								</div>
 				                <div class="LJSfilter" style="display: none">

@@ -2,12 +2,12 @@
 include("config.php");
 
 $nip = $_GET['nip'];
-$tipeFilter = $_GET['filType'];
+$tipeFilter = $_GET['tipeFilter'];
 $LJSsql = "";
 if( $tipeFilter == 'Mingguan'){
-	$tanggal = $_GET['tanggal'];
-	$weekBefore = date('Y-m-d', strtotime($tanggal . ' -1 week'));
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
+	$tahun = $_GET['tahun'];
+	$minggu = $_GET['minggu'];
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND week(j.tanggal_jurnal)='$minggu'";
 } else {
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];

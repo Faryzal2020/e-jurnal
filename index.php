@@ -82,6 +82,7 @@ $nip = $_SESSION['nip'];
    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript" src="js/weekPicker.js"></script>
     
    </head>
    <body class="background">
@@ -416,21 +417,22 @@ $nip = $_SESSION['nip'];
 
             function lihatJurnalStaff(nip) {
               var filType = document.getElementById("LJSfilterType").value;
-              var data;
+              var data = "kosong";
               if ( filType == 'Mingguan'){
-                var tanggal = document.getElementById("LJSpilihTanggal").value;
-                if ( tanggal != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'tanggal': tanggal }
+                var tahunMinggu = document.getElementById("LJSpilihMinggu").value;
+                var split = tahunMinggu.split("-");
+                var tahun = split[0];
+                var minggu = split[1];
+                if ( tahunMinggu != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
                 }
               } else {
                 var tahun = document.getElementById("LJSpilihTahun").value;
                 var bulan = document.getElementById("LJSpilihBulan").value;
-                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan }
+                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
               }
 
-              if ( typeof data === 'undefined'){
-                alert("Kolom pilih tanggal harus diisi");
-              } else {
+              if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
                   url: "tabelLJstaff.php",             
@@ -440,11 +442,14 @@ $nip = $_SESSION['nip'];
                       $("#tabelLJstaffContainer").html(response);
                   }
                 });
+              } else {
+                alert("Kolom filter kosong");
               }
             }
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
+           convertToWeekPicker($("#LJSpilihMinggu"));
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
               document.getElementById("repContent").classList.toggle("show");

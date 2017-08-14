@@ -48,7 +48,7 @@
 		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
 		.dropbtn:active { box-shadow: 0 0 0; }
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
-		.dropdownCat-content {margin-top: -24px; margin-left: 30px; display: none; position: absolute; min-width: 160px; z-index: 1; background-color: white;}
+		.dropdownCat-content { margin-left: 30px; display: none; position: absolute; min-width: 160px; z-index: 1; background-color: white;}
 		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none; border: 1px solid #ccc;}
 		.dropdownCat-content a:hover {background-color:#ccc;}
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
@@ -77,6 +77,7 @@
 
 		.LJSfilter { margin-left: 30px; }
 		.LJSfilter div { display: inline-block; }
+		#LJSpilihMinggu { width: 163px; }
 		.LJSbtn { background-color:#2C383B; margin-left: 10px; padding: 3px 7px 3px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active { box-shadow: 0 0 0; }

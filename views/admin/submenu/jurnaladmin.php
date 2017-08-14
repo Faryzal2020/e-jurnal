@@ -2,6 +2,10 @@
 					<div class="tCWrapper">
 						<div class="tCheader">
 							<div class="tchbox">
+								<div class="pilihanJurnal">
+				                    <a onclick="selectJA('Pribadi')" href="#">Jurnal Saya</a>
+				                    <a onclick="selectJA('Pegawai')" href="#">Jurnal Pegawai</a>
+				                </div>
 							</div>
 						</div>
 						<div class="tCbody">
