@@ -4,6 +4,7 @@
                                         <span class="tutup_detail">&times;</span>
                                         <div id="detail_label">Detail Jurnal</div>
                                         <div class="detail_jurnal">
+                                            <li>Kumpulan Jurnal Milik :  <label id="jurnal_nama"> </label></li>
                                         </div>
                                             <table class="tabledata" id="tabledata" width=100% cellpadding=0 cellspacing=0 border=1 valign=top>
                                             </table>
