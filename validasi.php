@@ -40,7 +40,9 @@
                $_SESSION['nip'] = $nip;
                $_SESSION['level'] = $row['level'];
                $_SESSION['nama'] = $row['nama_pegawai'];
-               $_SESSION['email'] = $row['email_pegawai'];
+               $_SESSION['bagian'] = $row['bagian'];
+               $_SESSION['nipb'] = $row['id_pegawai'];
+               $_SESSION['jabatan'] = $row['jabatan'];
             } //end else
          } //end else
       }

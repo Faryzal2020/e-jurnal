@@ -19,6 +19,9 @@
 							<td class="username"> <?php echo $nama; ?> </td>
 						</tr>
 						<tr>
+							<td class="jabatan"> <?php echo $jabatan; ?> </td>
+						</tr>
+						<tr>
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 

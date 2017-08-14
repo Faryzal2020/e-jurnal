@@ -13,24 +13,33 @@
 								<tr>
 									<th style="min-width: 130px">NIP</th>
 									<th style="min-width: 320px">Nama Pegawai</th>
-									<th style="min-width: 220px">Email</th>
+									<th style="min-width: 220px">Bagian</th>
+									<th style="min-width: 220px">Jabatan</th>
 									<th style="min-width: 130px"></th>
 								</tr>
 								<?php
-									while($al = mysqli_fetch_array($DPquery)) {
+									if ( $level == 2 ){
+										$Admquery = $DPSquery;
+									} else {
+										$Admquery = $DPquery;
+									}
+									while($al = mysqli_fetch_array($Admquery)) {
 										$JAnip = $al['nip'];
 										$JAnama = $al['nama_pegawai'];
-										$JAemail = $al['email_pegawai'];
+										$JAbagian= $al['bagian'];
+										$JAjabatan = $al['jabatan'];
 								?>
 								<tr>
 									<td style="text-align: center;"><?php echo $JAnip; ?></td>
 									<td><?php echo $JAnama ?></td>
-									<td style="text-align: center;"><?php echo $JAemail ?></td>
+									<td style="text-align: center;"><?php echo $JAbagian ?></td>
+									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="lihatJurnal(
 											'<?php echo $JAnip; ?>',
 											'<?php echo $JAnama; ?>',
-											'<?php echo $JAemail; ?>'
+											'<?php echo $JAbagian; ?>',
+											'<?php echo $JAjabatan; ?>'
 										)">Lihat Jurnal</a>
 									</td>
 								</tr>

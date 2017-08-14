@@ -12,9 +12,11 @@ $nip = $_SESSION['nip'];
 
    if (isset($_SESSION['nip'])){
       $nip = $_SESSION['nip'];
+      $nipb = $_SESSION['nipb'];
       $level = $_SESSION['level'];
       $nama = $_SESSION['nama'];    
-      $email = $_SESSION['email'];
+      $bagian= $_SESSION['bagian'];
+      $jabatan = $_SESSION['jabatan'];
 
       // Activity List
       $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
@@ -23,8 +25,11 @@ $nip = $_SESSION['nip'];
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
       // Daftar Pegawai
-      $DPsql = "SELECT * FROM user WHERE user.level = 'staff'";
+      $DPsql = "SELECT * FROM user WHERE user.level < '$level'";
       $DPquery = mysqli_query($db,$DPsql);
+      // Daftar Pegawai Subbagian
+      $DPSsql = "SELECT * FROM user WHERE user.level < '$level' AND user.bagian = '$bagian'";
+      $DPSquery = mysqli_query($db,$DPSsql);
       // Jurnal Staff
       $LJstaffsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
       $LJstaffquery = mysqli_query($db, $LJstaffsql);
@@ -88,7 +93,7 @@ $nip = $_SESSION['nip'];
    <body class="background">
       <div class="page">
          <?php
-            if ($level == 'staff'){
+            if ($level == '1'){
                 include_once "functions_staff.php";
                 include_once "views/staf/home_staff.php";
             } else {
@@ -107,8 +112,6 @@ $nip = $_SESSION['nip'];
             var ddc = document.getElementById("ddcContent");
             var pass_select = document.getElementById('pass_select');
             var tutup = document.getElementsByClassName("tutup")[0];
-            var bio_select = document.getElementById('bio_select'); 
-            var tutupin = document.getElementsByClassName("tutupin")[0];
             var detail_select = document.getElementById('detail_select'); 
             var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
             var tutupLJ = document.getElementsByClassName("tutupLJ")[0];
@@ -120,9 +123,6 @@ $nip = $_SESSION['nip'];
             }
             tutup.onclick = function() {
                 pass_select.style.display = "none";
-            }
-            tutupin.onclick = function() {
-                bio_select.style.display = "none";
             }
             tutup_detail.onclick = function() {
                 detail_select.style.display = "none";
@@ -136,10 +136,9 @@ $nip = $_SESSION['nip'];
             
             window.onclick = function(event){
                 console.log(event);
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == bio_select || event.target == detail_select){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
-                    bio_select.style.display = "none";
                     detail_select.style.display = "none";
                     modalLJ.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
@@ -184,13 +183,6 @@ $nip = $_SESSION['nip'];
                namaCat.innerHTML = cat;
                idInput.value = id;
             }
-            function bio_selectActivity(nip){
-                var nomorinduks = document.getElementById("nomorinduks");
-                bio_select.style.display = "block";
-                nomorinduks.innerHTML = nip;
-                var nip_input = document.forms['Formbio']['nip_input'].value;
-                nip_input = nip;
-            }
              
             function detail_selectActivity(nip_nip, nama, tanggal_tanggal){
                 document.getElementById("detail_select").style.display = "block";
@@ -229,16 +221,6 @@ $nip = $_SESSION['nip'];
                
             }
              
-             function validateUB(){
-                 var nama_pegawai = document.forms['Formbio']['nama_pegawai'].value;
-                var email_pegawai = document.forms['Formbio']['email_pegawai'].value;
-                 if (nama_pegawai == "" || email_pegawai == "") {
-                     alert("Semua kolom harus diisi");
-                 } else {
-                     document.getElementById("Formbio").submit();
-                 }
-                 
-             }
               function validatepass(){
                  var password_lama = document.forms['Formpass']['password_lama'].value;
                  var password_baru = document.forms['Formpass']['password_baru'].value;
@@ -401,7 +383,7 @@ $nip = $_SESSION['nip'];
                }
 
             }
-            function lihatJurnal(nip, nama, email) {
+            function lihatJurnal(nip, nama, bagian, jabatan) {
               document.getElementById("modalLJ").style.display = "block";
               $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
