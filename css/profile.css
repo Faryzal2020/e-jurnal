@@ -27,8 +27,8 @@
 .tutupin:hover, .tutupin:focus { color: #333333; text-decoration: none; cursor: pointer; }
 
 .detail_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
-.detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 700px; }
-.detail_jurnal { background-color:#ECECEC;}
+.detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 100%; }
+.detail_jurnal { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
 #detail_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 .tutup_detail { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
 .tutup_detail:hover, .tutup_detail:focus { color: #333333; text-decoration: none; cursor: pointer; }
@@ -43,4 +43,11 @@
 .staff_tutup_detail:hover, .tutup_detail:focus { color: #333333; text-decoration: none; cursor: pointer; }
 .staff_tombol_detail { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 .staff_tombol_detail:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+
+#tabledata { display: block; margin: auto; }
+.tabledata { table-layout: auto; }
+.tabledata th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none; width: 500px}
+
+		* { transition: all .1s ease}
+ 
 				

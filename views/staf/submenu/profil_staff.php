@@ -33,12 +33,12 @@
 		              <div class="content">
                         <div class="ubah_ubah">
                             <div id="ubah_ubah1">
-                                <?php require_once "views/admin/submenu/ubahpassword.php";?>
+                                <?php require_once "views/staf/submenu/ubahpassword_staff.php";?>
                             </div>
                         </div>
                         <div class="ubah_ubah">
                             <div id="ubah_ubah2">
-                                <?php require_once "views/admin/submenu/ubahbiodata.php";?>
+                                <?php require_once "views/staf/submenu/ubahbiodata_staff.php";?>
                             </div>
                         </div>
 				</div>
