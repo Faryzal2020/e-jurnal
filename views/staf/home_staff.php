@@ -60,7 +60,7 @@
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/staf/submenu/profil.php";?>
+					<?php require_once "views/staf/submenu/profil_staff.php";?>
 				</div>
 			</div>
 		</div>
