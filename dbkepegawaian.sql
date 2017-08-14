@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Aug 11, 2017 at 08:11 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `dbkepegawaian`
 --
@@ -501,20 +483,20 @@ CREATE TABLE `jurnal` (
 --
 
 INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`) VALUES
-(1, 5, '012f', 4, 'naskah', '2017-08-02 09:00:00', '2017-08-02 16:15:00', '2017-08-02', 'Umum'),
-(2, 100, '010r', 7, 'laporan per 1x survey', '2017-08-01 09:00:00', '2017-08-01 16:00:00', '2017-08-01', 'Umum'),
-(3, 321, '012f', 1, 'laporan', '2017-08-08 08:00:00', '2017-08-08 09:00:00', '2017-08-08', 'SKP'),
-(4, 1, '010r', 1, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'SKP'),
-(5, 232, '001i', 3, 'laporan', '2017-08-04 10:24:00', '2017-08-04 17:00:00', '2017-08-04', 'SKP'),
-(6, 122, '002v', 8, 'Lembar', '2017-08-08 13:30:00', '2017-08-08 17:00:00', '2017-08-08', 'Umum'),
-(7, 126, '003u', 1, 'Kegiatan', '2017-08-07 08:20:00', '2017-08-07 20:00:00', '2017-08-07', 'SKP'),
-(8, 128, '004s', 1, 'Laporan Kunjungan', '2017-08-07 07:30:00', '2017-08-07 17:27:00', '2017-08-07', 'SKP'),
-(9, 211, '005n', 3, 'Laporan', '2017-08-01 07:50:00', '2017-08-01 15:00:00', '2017-08-01', 'SKP'),
-(10, 358, '006h', 1, 'Kegiatan', '2017-08-08 08:00:00', '2017-08-10 09:30:00', '2017-08-10', 'Umum'),
-(11, 353, '007k', 3, 'Surat', '2017-08-02 10:00:00', '2017-08-02 10:37:00', '2017-08-02', 'Umum'),
-(12, 83, '008l', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', 'SKP'),
-(13, 149, '009d', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', 'SKP'),
-(14, 264, '011a', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', 'SKP');
+(1, 1, '180003512', 1, 'Kegiatan', '2017-06-18 13:00:00', '2017-06-18 15:15:00', '2017-06-18', 'SKP'),
+(2, 118, '180004373', 3, 'laporan per 1x survey', '2017-07-24 11:00:00', '2017-07-24 16:00:00', '2017-07-24', 'SKP'),
+(3, 335, '180005067', 5, 'laporan', '2016-08-08 10:00:00', '2016-08-08 13:47:00', '2016-08-08', 'Umum'),
+(4, 320, '180002527', 10, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'Umum'),
+(6, 319, '180002527', 8, 'Lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'Umum'),
+(7, 126, '180002527', 1, 'Kegiatan', '2017-08-01 08:20:00', '2017-08-01 12:00:00', '2017-08-01', 'SKP'),
+(8, 402, '180002997', 1, 'Kegiatan', '2017-08-07 07:30:00', '2017-08-07 09:45:00', '2017-08-07', 'SKP'),
+(9, 211, '180004854', 3, 'Laporan', '2017-08-07 07:50:00', '2017-08-07 15:00:00', '2017-08-01', 'SKP'),
+(10, 358, '180004854', 1, 'Kegiatan', '2017-08-03 08:00:00', '2017-08-03 10:30:00', '2017-08-03', 'Umum'),
+(11, 353, '180003445', 3, 'Surat', '2017-07-26 10:00:00', '2017-07-26 10:37:00', '2017-07-26', 'Umum'),
+(12, 83, '180004895', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', 'SKP'),
+(13, 149, '180004895', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', 'SKP'),
+(14, 264, '180002527', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', 'Umum'),
+(15, 36, '180004854', 1, 'Laporan', '2017-08-10 09:30:00', '2017-08-10 11:00:00', '2017-09-11', 'Umum');
 
 -- --------------------------------------------------------
 
@@ -545,29 +527,35 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `user` (
   `nip` varchar(12) NOT NULL,
+  `id_pegawai` varchar(20) NOT NULL,
   `nama_pegawai` varchar(80) NOT NULL,
-  `email_pegawai` varchar(50) NOT NULL,
+  `jabatan` varchar(150) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `level` varchar(50) NOT NULL
+  `level` varchar(50) NOT NULL,
+  `bagian` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`nip`, `nama_pegawai`, `email_pegawai`, `password`, `level`) VALUES
-('001i', 'M. Iqbal', 'iqbal@hotmail.com', 'iqbal123', 'admin'),
-('002v', 'Vareza', 'varezasan@yahoo.com', 'rezaliqo', 'staff'),
-('003u', 'Umiyati', 'umi1996@gmail.com', 'umiyati96', 'staff'),
-('004s', 'Sabila', 'salsabila@google.co.id', 'kakakkucing', 'staff'),
-('005n', 'Nanang', 'k.rezka@yahoo.com', 'mujahid18', 'staff'),
-('006h', 'Hilmi', 'ahmad.h@google.com', 'hilmi123', 'staff'),
-('007k', 'Hikmah', 'hikmahaj@hotmail.com', 'kudillaj', 'staff'),
-('008l', 'Latifah', 'latifah@google.com', 'latifahaja', 'staff'),
-('009d', 'Siti', 'siti.27@yahoo.co.id', 'siti1996', 'staff'),
-('010r', 'Rifqi D', 'riefqayx@gmail.com', 'rifqi1111', 'staff'),
-('011a', 'Nur Asiah', 'nasiahur@hotmail.com', 'asiahnur', 'staff'),
-('012f', 'Fakhrizal', 'fary2020@gmail.com', 'fary2020', 'admin');
+INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `jabatan`, `password`, `level`, `bagian`) VALUES
+('180002527', '196206271981031001', 'Suprapto', 'Pengadministrasi Persuratan', '180002527', '1', 'tata usaha kepegawaian'),
+('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 'Kepala Subbagian Pembinaan dan Kesejahteraan Pegawai', '180002997', '2', 'pembinaan dan kesejahteraan pegawai'),
+('180003445', '196306271986031003', 'Purwanto', 'Kepala Subbagian Pengembangan Kompetensi Pegawai', '180003445', '2', 'pengembangan kompetensi pegawai'),
+('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180003512', '3', ''),
+('180003782', '19700205 199303 1004', 'Hasim Mukti', 'Arsiparis Mahir', '180003782', '1', 'tata usaha kepegawaian'),
+('180004373', '19701111 199703 2001', 'Susi Susanti, S.H.', 'Kepala Bagian Kepegawaian', '180004373', '3', ''),
+('180004854', '198401192005012001', 'Amelia Irna Mayarni Sitohang, S.E.', 'Analis Sumber Daya Manusia Aparatur', '180004854', '1', 'pembinaan dan kesejahteraan pegawai'),
+('180004895', '197903292005011001', 'Firman Setiana, S.AP.', 'Analis Jabatan ', '180004895', '1', 'pengembangan kompetensi pegawai'),
+('180005067', '197110192006042001', 'Catherine Tulus Olivia, S.E., M.E.', 'Kepala Subbagian Tata Usaha Kepegawaian', '180005067', '2', 'tata usaha kepegawaian'),
+('180005163', '196509282007012026', 'Endah Takariyanti', 'Pengadministrasi Umum', '180005163', '1', 'pembinaan dan kesejahteraan pegawai'),
+('180005172', '197407052007011006', 'Ade Wahyudin', 'Pengolah Data', '180005172', '1', 'pembinaan dan kesejahteraan pegawai'),
+('180005548', '198410062010121002', 'Oktaviano Yohannes Pantow, S.E.', 'Analis Kinerja', '180005548', '1', 'tata usaha kepegawaian'),
+('180005605', '198904032014022001', 'Irene Astika Dewi, S.I.Kom.', 'Pengelola Naskah', '180005605', '1', 'tata usaha kepegawaian'),
+('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 'Analis Sumber Daya Manusia Aparatur', '180005606', '1', 'tata usaha kepegawaian'),
+('180005736', '199209302015032001', 'Temy Pratiwi, S.H.', 'Analis Sumber Daya Manusia Aparatur', '180005736', '1', 'pengembangan kompetensi pegawai'),
+('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 'Sekretaris Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180005781', '1', 'tata usaha kepegawaian');
 
 --
 -- Indexes for dumped tables
@@ -610,7 +598,7 @@ ALTER TABLE `aktivitas`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
