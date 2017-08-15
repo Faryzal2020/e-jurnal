@@ -55,10 +55,20 @@ function getCalender($year = '',$month = '')
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
 						include("config.php");
+                        if (!isset($_SESSION['nip'])){
+                            session_start();
+                        }
+                        $level = $_SESSION['level'];
+                        $bagian = $_SESSION['bagian'];
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."'";
-						$result = mysqli_query($db, $kalendersql);
+                        if($level == 2){
+						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level < '$level' AND user.bagian = '$bagian'";
+                        } 
+                        else{
+                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level < '$level'";
+                        }
+                        $result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -182,17 +192,26 @@ function getYearList($selected = ''){
 function getEvents($date = ''){
 	//Include db configuration file
 	include 'config.php';
+    session_start();
+    $level = $_SESSION['level'];
+    $bagian = $_SESSION['bagian'];
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
-	$GEsql = "SELECT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."'";
+    if ($level == 2){
+            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level < '$level' AND user.bagian = '$bagian'";    
+    }
+    else{
+            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level < '$level'";  
+    }
+	
 	$result = mysqli_query($db, $GEsql);
 	if($result->num_rows > 0){?>
-		<h2>Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
+		<h2>Pemilik Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
 		<ul>
         <?php
 		while($row = $result->fetch_assoc()){  ?>
-            <li> Jurnal : <?php echo $row['nama_pegawai']; ?>
+            <li> <span> Jurnal : <?php echo $row['nama_pegawai']; ?> </span>
             <button class="tombol_detail" 
                     onclick="detail_selectActivity('<?php echo $row['nip']; ?>',
                                                     '<?php echo $row['nama_pegawai']; ?>',

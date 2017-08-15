@@ -186,6 +186,7 @@ $nip = $_SESSION['nip'];
              
             function detail_selectActivity(nip_nip, nama, tanggal_tanggal){
                 document.getElementById("detail_select").style.display = "block";
+                document.getElementById("jurnal_nama").innerHTML = nama;
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
                 url: "detailajax.php",             
