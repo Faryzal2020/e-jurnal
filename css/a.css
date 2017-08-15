@@ -71,7 +71,7 @@
 		.SJbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 		.SJbtnSubmit:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
 
-		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
+		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
 		.pilihanJurnal { padding-left: 30px; padding-top: 10px; display: inline-block;}
 		.pjBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none;}
 		.pjBtn:active { box-shadow: 0 0 0; text-decoration: none; }

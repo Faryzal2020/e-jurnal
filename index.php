@@ -151,7 +151,8 @@ $nip = $_SESSION['nip'];
                       if ( rep.classList.contains("show")){
                           rep.classList.toggle("show");
                       }
-                    } else if (fil){
+                    }
+                    if (fil){
                       if ( fil.classList.contains("show")){
                           fil.classList.toggle("show");
                       }
@@ -396,16 +397,8 @@ $nip = $_SESSION['nip'];
             }
             function lihatJurnal(nip, nama, bagian, jabatan) {
               document.getElementById("modalLJ").style.display = "block";
-              $.ajax({    //create an ajax request to load_page.php
-                type: "GET",
-                url: "tabelLihatJurnal.php",             
-                dataType: "html",   //expect html to be returned
-                data: {nip:nip},               
-                success: function(response){                    
-                    $("#tableContainer").html(response); 
-                    //alert(response);
-                }
-              });
+              document.getElementById("labelPemilikJurnal").innerHTML = nama;
+              document.getElementById("LJSnip").value = nip;
             }
 
 
@@ -459,12 +452,44 @@ $nip = $_SESSION['nip'];
             }
 
             function lihatJurnalAdmin(nip) {
+              var filType = document.getElementById("LJAfilterType").value;
+              var data = "kosong";
+              if ( filType == 'Mingguan'){
+                var tahunMinggu = document.getElementById("LJApilihMinggu").value;
+                var split = tahunMinggu.split("-");
+                var tahun = split[0];
+                var minggu = split[1];
+                if ( tahunMinggu != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
+                }
+              } else {
+                var tahun = document.getElementById("LJApilihTahun").value;
+                var bulan = document.getElementById("LJApilihBulan").value;
+                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
+              }
 
+              if ( data != 'kosong'){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "tabelLJstaff.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: data,               
+                  success: function(response){                    
+                      $("#JAtabelA").html(response);
+                  }
+                });
+              } else {
+                alert("Kolom filter kosong");
+              }
             }
 
             function lihatJurnalStaff(nip) {
               var filType = document.getElementById("LJSfilterType").value;
               var data = "kosong";
+
+              if (document.getElementById("LJSnip")){
+                nip = document.getElementById("LJSnip").value;
+              }
               if ( filType == 'Mingguan'){
                 var tahunMinggu = document.getElementById("LJSpilihMinggu").value;
                 var split = tahunMinggu.split("-");
@@ -497,12 +522,16 @@ $nip = $_SESSION['nip'];
          <script type="text/javascript">
          $(document).ready(function(){
            document.getElementById("pjBtn1").classList.add("active");
-           convertToWeekPicker($("#LJApilihMinggu"));
+           if (document.getElementById("LJApilihMinggu")){
+            convertToWeekPicker($("#LJApilihMinggu"));
+           }
+            convertToWeekPicker($("#LJSpilihMinggu"));
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
               if (document.getElementById("repContent")){
                 document.getElementById("repContent").classList.toggle("show");
-              } else {
+              }
+              if (document.getElementById("filContent")){
                 document.getElementById("filContent").classList.toggle("show");
               }
            })
