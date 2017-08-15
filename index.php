@@ -147,7 +147,10 @@ $nip = $_SESSION['nip'];
                     pass_select.style.display = "none";
                     detail_select.style.display = "none";
                     staff_detail_select.style.display = "none";
-                    modalLJ.style.display = "none";
+                    
+                    if(modalLJ){
+                      modalLJ.style.display = "none";
+                    }
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
@@ -441,21 +444,23 @@ $nip = $_SESSION['nip'];
             JAfilter('Mingguan');
             function JAfilter(fil) {
                btn = document.getElementById("filBtn");
-               var mingguan = document.getElementsByClassName("LJAfilter")[0];
-               var bulanan = document.getElementsByClassName("LJAfilter")[1];
-               document.getElementById("filContent").classList.toggle("show");
-               btn.innerHTML = fil;
+               if(btn){
+                 var mingguan = document.getElementsByClassName("LJAfilter")[0];
+                 var bulanan = document.getElementsByClassName("LJAfilter")[1];
+                 document.getElementById("filContent").classList.toggle("show");
+                 btn.innerHTML = fil;
 
-               if ( typeof mingguan === 'undefined'){
-                 } else {
-                 if( fil == 'Mingguan'){
-                    mingguan.style.display = "inline-block";
-                    bulanan.style.display = "none";
-                 } else {
-                    bulanan.style.display = "inline-block";
-                    mingguan.style.display = "none";
+                 if ( typeof mingguan === 'undefined'){
+                   } else {
+                   if( fil == 'Mingguan'){
+                      mingguan.style.display = "inline-block";
+                      bulanan.style.display = "none";
+                   } else {
+                      bulanan.style.display = "inline-block";
+                      mingguan.style.display = "none";
+                   }
+                    document.getElementById("LJAfilterType").value = fil;
                  }
-                  document.getElementById("LJAfilterType").value = fil;
                }
             }
 
@@ -529,7 +534,9 @@ $nip = $_SESSION['nip'];
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
-           document.getElementById("pjBtn1").classList.add("active");
+           if (document.getElementById("pjBtn1")){
+             document.getElementById("pjBtn1").classList.add("active");
+           }
            if (document.getElementById("LJApilihMinggu")){
             convertToWeekPicker($("#LJApilihMinggu"));
            }

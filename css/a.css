@@ -79,8 +79,10 @@
 		.pjBtn { background-color:#2C383B; padding: 4px 9px 4px 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJApfilter { padding-top: 10px; margin-left: 20px }
+		.LJAfilter { margin-left: 20px }
 		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 7px; margin-left: 10px; padding: 1px 7px 1px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.LJAbtn:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
@@ -89,10 +91,10 @@
 		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 10px;}
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 10px; }
-		.LJSfilter { margin-left: 30px; }
+		.LJSfilter { margin-left: 30px; padding-top: 9px;}
 		.LJSfilter div { display: inline-block; }
 		#LJSpilihMinggu { width: 163px; }
-		.LJSbtn { background-color:#2C383B; margin-left: 10px; padding: 3px 7px 3px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; margin-left: 10px; padding: 1px 7px 1px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active { box-shadow: 0 0 0; }
 
