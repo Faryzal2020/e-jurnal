@@ -134,8 +134,10 @@ $nip = $_SESSION['nip'];
               }
             }
             
-            tutup_detail.onclick = function() {
-                detail_select.style.display = "none";
+            if(typeof tutup_detail !== 'undefined'){   
+                tutup_detail.onclick = function() {
+                    detail_select.style.display = "none";
+                }
             }
             if ( typeof tutupLJ != 'undefined' ){
               tutupLJ.onclick = function() {
@@ -148,8 +150,10 @@ $nip = $_SESSION['nip'];
                 if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
-                    detail_select.style.display = "none";
-
+                    
+                    if (detail_select){
+                        detail_select.style.display = "none";
+                    }
                     if(staff_detail_select){
                       staff_detail_select.style.display = "none";
                     }
@@ -388,6 +392,8 @@ $nip = $_SESSION['nip'];
                var jamSelesai = document.forms["FormSJ"]["jamSelesai"].value;
                var error = 0;
                var msg;
+                alert(jamMulai);
+                alert(jamSelesai);
                if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
                   msg = "Semua kolom harus diisi";
                   error++;
@@ -398,7 +404,7 @@ $nip = $_SESSION['nip'];
                   if ( jamMulai > jamSelesai ) {
                      msg = "Jam selesai tidak boleh lebih awal dari jam mulai di hari yang sama"
                      error++;
-                  } else {
+                  } else if(jamMulai == jamSelesai) {
                      msg = "Jam selesai tidak boleh sama dengan jam mulai di hari yang sama"
                      error++;
                   }
