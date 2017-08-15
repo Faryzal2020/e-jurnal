@@ -127,8 +127,11 @@ $nip = $_SESSION['nip'];
                 pass_select.style.display = "none";
             }
             
-            staff_tutup_detail.onclick = function() {
-                staff_detail_select.style.display = "none";
+            if(typeof staff_tutup_detail === 'undefined'){
+            } else {
+              staff_tutup_detail.onclick = function() {
+                  staff_detail_select.style.display = "none";
+              }
             }
             
             tutup_detail.onclick = function() {
@@ -146,7 +149,10 @@ $nip = $_SESSION['nip'];
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     detail_select.style.display = "none";
-                    staff_detail_select.style.display = "none";
+
+                    if(staff_detail_select){
+                      staff_detail_select.style.display = "none";
+                    }
                     
                     if(modalLJ){
                       modalLJ.style.display = "none";
