@@ -1,11 +1,11 @@
 
     
                 <div class="content_detail">
-					<div class="detail_select" id="detail_select">
-                        <div class="detail_select-content">
-                            <span class="tutup_detail">&times;</span>
-                            <div id="detail_label">Detail Jurnal</div>
-							<div class="detail_jurnal">
+					<div class="staff_detail_select" id="staff_detail_select">
+                        <div class="staff_detail_select-content">
+                            <span class="staff_tutup_detail">&times;</span>
+                            <div id="staff_detail_label">Detail Jurnal</div>
+							<div class="staff_detail_jurnal">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example" width=50% cellpadding=0 cellspacing=0 border=0 valign=top>
                                     <tr>
                                         <td>ID Jurnal</td>     

@@ -112,7 +112,9 @@ $nip = $_SESSION['nip'];
             var ddc = document.getElementById("ddcContent");
             var pass_select = document.getElementById('pass_select');
             var tutup = document.getElementsByClassName("tutup")[0];
-            var detail_select = document.getElementById('detail_select'); 
+            var detail_select = document.getElementById('detail_select');
+            var staff_detail_select = document.getElementById('staff_detail_select');
+            var staff_tutup_detail = document.getElementsByClassName("staff_tutup_detail")[0];
             var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
             var tutupLJ = document.getElementsByClassName("tutupLJ")[0];
             var modalLJ = document.getElementById('modalLJ'); 
@@ -124,10 +126,15 @@ $nip = $_SESSION['nip'];
             tutup.onclick = function() {
                 pass_select.style.display = "none";
             }
+            
+            staff_tutup_detail.onclick = function() {
+                staff_detail_select.style.display = "none";
+            }
+            
             tutup_detail.onclick = function() {
                 detail_select.style.display = "none";
             }
-            if ( typeof tutupLJ != 'undefined'){
+            if ( typeof tutupLJ != 'undefined' ){
               tutupLJ.onclick = function() {
                 modalLJ.style.display = "none";
               }
@@ -135,10 +142,11 @@ $nip = $_SESSION['nip'];
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     detail_select.style.display = "none";
+                    staff_detail_select.style.display = "none";
                     modalLJ.style.display = "none";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
@@ -207,7 +215,7 @@ $nip = $_SESSION['nip'];
              
              function staff_detail_selectActivity(id_jurnal, nama_aktivitas, nama_pegawai,volume,satuan_output,durasi,tanggal_mulai,bulan_mulai,tahun_mulai,tanggal_selesai,bulan_selesai,tahun_selesai,jam_mulai,jam_selesai,durasi_pekerjaan,jurnal_tanggal,jurnal_bulan,jurnal_tahun){
                 console.log(id_jurnal + nama_aktivitas + nama_pegawai + volume + satuan_output + durasi + tanggal_mulai + bulan_mulai + tahun_mulai + tanggal_selesai + bulan_selesai + tahun_selesai + jam_mulai + jam_selesai + durasi_pekerjaan + jurnal_tanggal + jurnal_bulan + jurnal_tahun);
-                document.getElementById("detail_select").style.display = "block";
+                document.getElementById("staff_detail_select").style.display = "block";
                 document.getElementById("labelID").innerHTML = id_jurnal;
                 document.getElementById("nama_aktiv").innerHTML = nama_aktivitas;
                 document.getElementById("pembuat").innerHTML = nama_pegawai;

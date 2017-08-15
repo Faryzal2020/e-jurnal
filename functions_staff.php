@@ -55,6 +55,9 @@ function getCalender($year = '',$month = '')
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
 						include("config.php");
+                        if(!isset($_SESSION['nip'])){
+                            session_start();
+                        }
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
 						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."' AND nip='".$_SESSION['nip']."'";
