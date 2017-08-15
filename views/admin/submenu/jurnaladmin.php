@@ -6,56 +6,62 @@
 				                    <a class="pjBtn" id="pjBtn1" onclick="selectJA('Pribadi')" href="#">Jurnal Saya</a>
 				                    <a class="pjBtn" id="pjBtn2" onclick="selectJA('Pegawai')" href="#">Jurnal Pegawai</a>
 				                </div>
-				                <div class="PJAfilter">
+				                <div class="PJAfilter" id="PJAfilter">
 					                <div class="dropdownCat">
-					                    <button class="dropbtn" id="repBtn"></button>
-					                    <div class="dropdownCat-content" id="repContent">
-					                        <a onclick="selectReport('Mingguan')" href="#">Mingguan</a>
-					                        <a onclick="selectReport('Bulanan')" href="#">Bulanan</a>
+					                    <button class="dropbtn" id="filBtn"></button>
+					                    <div class="dropdownCat-content" id="filContent">
+					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan</a>
+					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan</a>
 					                    </div>
 					                </div>
-									<div class="LJApilihMinggu" style="display: none">
-										<input id="LJApilihMinggu" type="text" value="">
+					                <div class="LJAfilter">
+										<div class="LJApilihMinggu">
+											<input type="text" id="LJApilihMinggu" value="<?php echo date("Y-W")?>" />
+										</div>
 									</div>
-									<div class="LJApilihTahun" style="display: none">
-										<select id="LJApilihTahun">
-											<?php
-												$lsjTahunA = date("Y") - 10;
-												$lsjTahunB = date("Y");
-												for($i=$lsjTahunA; $i < $lsjTahunB; $i++){
-											?>
-											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-											<?php
-												}
-											?>
-											<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-										</select>
-									</div>
-									<div class="LJApilihBulan">
-										<select id="LJApilihBulan">
-											<?php
-												$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-												for($i=1;$i<=12;$i++){
-													$x = str_pad($i,2,0, STR_PAD_LEFT);
-													if($x == date("m")){
-												?>
-											<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
+									<div class="LJAfilter" style="display: none;">
+										<div class="LJApilihTahun">
+											<select id="LJApilihTahun">
 												<?php
-													} else {
+													$lsjTahunA = date("Y") - 10;
+													$lsjTahunB = date("Y");
+													for($i=$lsjTahunA; $i < $lsjTahunB; $i++){
 												?>
-											<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
+												<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 												<?php
 													}
-												}
 												?>
-										</select>
+												<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+											</select>
+										</div>
+										<div class="LJApilihBulan">
+											<select id="LJApilihBulan">
+												<?php
+													$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+													for($i=1;$i<=12;$i++){
+														$x = str_pad($i,2,0, STR_PAD_LEFT);
+														if($x == date("m")){
+													?>
+												<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
+													<?php
+														} else {
+													?>
+												<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
+													<?php
+														}
+													}
+													?>
+											</select>
+										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
 									<a class="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')">Ok</a>
 								</div>
 							</div>
 						</div>
-						<div class="tCbody">
+						<div class="tCbody2" id="JAtabelA">
+						</div>
+						<div class="tCbody" id="JAtabelS" style="display:none">
 							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
 								<tr>
 									<th style="min-width: 130px">NIP</th>

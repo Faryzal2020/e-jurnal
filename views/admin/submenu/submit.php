@@ -20,10 +20,12 @@
 				                        ?>
 				                    </div>
 				                </div>
-								<div class="searchActivity">
-				                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
+				                <div class="SAwrapper">
+									<div class="searchActivity">
+					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
+					                </div>
+					                Jumlah result: <label id="actCount">0</label>
 				                </div>
-				                Jumlah result: <label id="actCount">0</label>
 							</div>
 						</div>
 						<div class="tCbody">

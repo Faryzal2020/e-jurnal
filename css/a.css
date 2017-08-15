@@ -43,8 +43,8 @@
 		.tCWrapper { display: inline-block; height: 100%; width: 100%; }
 		.tCheader { padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
 
-		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; padding-top: 17px;}
-		.searchActivity { display: inline-block; margin-left: 30px; width: 60%; padding-right: 20px;}
+		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
+		.searchActivity { display: inline-block; margin-left: 30px; width: 60%; padding-right: 20px; }
 		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px;}
 		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
 		.dropbtn:active { box-shadow: 0 0 0; }
@@ -53,6 +53,7 @@
 		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none; border: 1px solid #ccc;}
 		.dropdownCat-content a:hover {background-color:#ccc;}
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
+		.SAwrapper { flex: 1; padding-top: 7px; }
 		.actCount { padding: 10px; margin: auto; }
 
 		.actTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
@@ -76,13 +77,18 @@
 		.pjBtn:active { box-shadow: 0 0 0; text-decoration: none; }
 		.pjBtn.active { box-shadow: 0 0 0; text-decoration: none; background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
 		.pjBtn { background-color:#2C383B; padding: 4px 9px 4px 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
-		.PJAfilter { display: inline; }
+		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
+		.LJApfilter { padding-top: 10px; margin-left: 20px }
+		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 7px; margin-left: 10px; padding: 1px 7px 1px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJApilihMinggu { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
 		.tabelLJ { table-layout: auto; width: 100%; }
 		.tableLJ th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
-
+		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 10px;}
+		.LJApilihTahun { margin-left: 20px; }
+		.LJApilihBulan { margin-right: 10px; }
 		.LJSfilter { margin-left: 30px; }
 		.LJSfilter div { display: inline-block; }
 		#LJSpilihMinggu { width: 163px; }

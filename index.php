@@ -135,7 +135,6 @@ $nip = $_SESSION['nip'];
             
             
             window.onclick = function(event){
-                console.log(event);
                 if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
@@ -144,11 +143,18 @@ $nip = $_SESSION['nip'];
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
+                    var fil = document.getElementById("filContent");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
                     }
-                    if ( rep.classList.contains("show")){
-                        rep.classList.toggle("show");
+                    if (rep){
+                      if ( rep.classList.contains("show")){
+                          rep.classList.toggle("show");
+                      }
+                    } else if (fil){
+                      if ( fil.classList.contains("show")){
+                          fil.classList.toggle("show");
+                      }
                     }
                 }
             }
@@ -337,21 +343,22 @@ $nip = $_SESSION['nip'];
             selectReport('Mingguan');
             function selectReport(rep) {
                repBtn = document.getElementById("repBtn");
-               var mingguan = document.getElementsByClassName("LJSfilter")[0];
-               var bulanan = document.getElementsByClassName("LJSfilter")[1];
-               document.getElementById("repContent").classList.toggle("show");
-               repBtn.innerHTML = rep;
+               if (repBtn){
+                 var mingguan = document.getElementsByClassName("LJSfilter")[0];
+                 var bulanan = document.getElementsByClassName("LJSfilter")[1];
+                 document.getElementById("repContent").classList.toggle("show");
+                 repBtn.innerHTML = rep;
 
-               if ( typeof mingguan === 'undefined'){
-                 } else {
-                 if( rep == 'Mingguan'){
-                    mingguan.style.display = "inline-block";
-                    bulanan.style.display = "none";
-                 } else {
-                    bulanan.style.display = "inline-block";
-                    mingguan.style.display = "none";
+                 if (mingguan){
+                   if( rep == 'Mingguan'){
+                      mingguan.style.display = "inline-block";
+                      bulanan.style.display = "none";
+                   } else {
+                      bulanan.style.display = "inline-block";
+                      mingguan.style.display = "none";
+                   }
+                    document.getElementById("LJSfilterType").value = rep;
                  }
-                  document.getElementById("LJSfilterType").value = rep;
                }
             }
 
@@ -407,15 +414,48 @@ $nip = $_SESSION['nip'];
               var btn2 = document.getElementById("pjBtn2");
               if ( type == "Pribadi"){
                 if (!btn1.classList.contains("active")){
+                  var filter = document.getElementById("PJAfilter");
+                  var tabelA = document.getElementById("JAtabelA");
+                  var tabelS = document.getElementById("JAtabelS");
+                  tabelA.style.display = "block";
+                  tabelS.style.display = "none";
+                  filter.style.display = "flex";
                   btn1.classList.add("active");
                   btn2.classList.remove("active");
                 }
               } else {
                 if (!btn2.classList.contains("active")){
+                  var filter = document.getElementById("PJAfilter");
+                  var tabelA = document.getElementById("JAtabelA");
+                  var tabelS = document.getElementById("JAtabelS");
+                  tabelS.style.display = "block";
+                  tabelA.style.display = "none";
+                  filter.style.display = "none";
                   btn2.classList.add("active");
                   btn1.classList.remove("active");
                 }
               }
+            }
+
+            JAfilter('Mingguan');
+            function JAfilter(fil) {
+               btn = document.getElementById("filBtn");
+               var mingguan = document.getElementsByClassName("LJAfilter")[0];
+               var bulanan = document.getElementsByClassName("LJAfilter")[1];
+               document.getElementById("filContent").classList.toggle("show");
+               btn.innerHTML = fil;
+
+               if ( typeof mingguan === 'undefined'){
+                 } else {
+                 if( fil == 'Mingguan'){
+                    mingguan.style.display = "inline-block";
+                    bulanan.style.display = "none";
+                 } else {
+                    bulanan.style.display = "inline-block";
+                    mingguan.style.display = "none";
+                 }
+                  document.getElementById("LJAfilterType").value = fil;
+               }
             }
 
             function lihatJurnalAdmin(nip) {
@@ -457,10 +497,14 @@ $nip = $_SESSION['nip'];
          <script type="text/javascript">
          $(document).ready(function(){
            document.getElementById("pjBtn1").classList.add("active");
-           convertToWeekPicker($("#LJSpilihMinggu"));
+           convertToWeekPicker($("#LJApilihMinggu"));
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
-              document.getElementById("repContent").classList.toggle("show");
+              if (document.getElementById("repContent")){
+                document.getElementById("repContent").classList.toggle("show");
+              } else {
+                document.getElementById("filContent").classList.toggle("show");
+              }
            })
            $('.clockpicker').clockpicker({
               autoclose: true
