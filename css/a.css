@@ -71,6 +71,13 @@
 		.SJbtnSubmit:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
+		.pilihanJurnal { padding-left: 30px; padding-top: 10px; display: inline-block;}
+		.pjBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none;}
+		.pjBtn:active { box-shadow: 0 0 0; text-decoration: none; }
+		.pjBtn.active { box-shadow: 0 0 0; text-decoration: none; background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
+		.pjBtn { background-color:#2C383B; padding: 4px 9px 4px 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
+		.PJAfilter { display: inline; }
+		.PJAfilter .dropdownCat { display: inline-block; }
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
 		.tabelLJ { table-layout: auto; width: 100%; }

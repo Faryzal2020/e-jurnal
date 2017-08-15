@@ -336,19 +336,22 @@ $nip = $_SESSION['nip'];
             selectReport('Mingguan');
             function selectReport(rep) {
                repBtn = document.getElementById("repBtn");
-               $mingguan = document.getElementsByClassName("LJSfilter")[0];
-               $bulanan = document.getElementsByClassName("LJSfilter")[1];
+               var mingguan = document.getElementsByClassName("LJSfilter")[0];
+               var bulanan = document.getElementsByClassName("LJSfilter")[1];
                document.getElementById("repContent").classList.toggle("show");
                repBtn.innerHTML = rep;
 
-               if( rep == 'Mingguan'){
-                  $mingguan.style.display = "inline-block";
-                  $bulanan.style.display = "none";
-               } else {
-                  $bulanan.style.display = "inline-block";
-                  $mingguan.style.display = "none";
+               if ( typeof mingguan === 'undefined'){
+                 } else {
+                 if( rep == 'Mingguan'){
+                    mingguan.style.display = "inline-block";
+                    bulanan.style.display = "none";
+                 } else {
+                    bulanan.style.display = "inline-block";
+                    mingguan.style.display = "none";
+                 }
+                  document.getElementById("LJSfilterType").value = rep;
                }
-               document.getElementById("LJSfilterType").value = rep;
             }
 
             function validateSJ() {
@@ -397,6 +400,27 @@ $nip = $_SESSION['nip'];
               });
             }
 
+
+            function selectJA(type){
+              var btn1 = document.getElementById("pjBtn1");
+              var btn2 = document.getElementById("pjBtn2");
+              if ( type == "Pribadi"){
+                if (!btn1.classList.contains("active")){
+                  btn1.classList.add("active");
+                  btn2.classList.remove("active");
+                }
+              } else {
+                if (!btn2.classList.contains("active")){
+                  btn2.classList.add("active");
+                  btn1.classList.remove("active");
+                }
+              }
+            }
+
+            function lihatJurnalAdmin(nip) {
+
+            }
+
             function lihatJurnalStaff(nip) {
               var filType = document.getElementById("LJSfilterType").value;
               var data = "kosong";
@@ -431,6 +455,7 @@ $nip = $_SESSION['nip'];
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
+           document.getElementById("pjBtn1").classList.add("active");
            convertToWeekPicker($("#LJSpilihMinggu"));
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
