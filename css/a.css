@@ -14,7 +14,7 @@
 		.userpanel td{ text-align: center; height: 30px; padding-top: 10px; }
 		.userpanel a{ display: inline-block; background: #2C383B; padding: 9px; top: 0; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: solid; border-width: 1px; border-color: #2C383B; border-radius: 3px}
 		.userpanel a:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
-		.userpanelwrapper{ position: relative; background: #c9c9c9; border: 2px solid #565656; padding: 5px; padding-bottom: 360px; max-height: 350px;}
+		.userpanelwrapper{ position: relative; background: whitesmoke; border: 2px solid #565656; padding: 5px; padding-bottom: 360px; max-height: 350px;}
 		.userpaneltable{ margin: auto;}
 		.foto{ width: 90%; }
 		.userphoto{ width: 120px; height: 150px; background-color: black; margin: auto;}
@@ -24,7 +24,7 @@
 		.logoutbtn{ position: absolute; bottom: 5; right: 5; text-align: right; padding-right: 5px; padding-top: 10px; }
 
 		.pagebody{ background: white; overflow: auto; margin-top: 20px; display: flex; }
-		.sidenav { background: #c1c1c1; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}
+		.sidenav { background: #ECECEC; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}
 		.sidenav ul { margin-top: 15px; margin-left: 15px; padding-left: 10px; }
 		.sidenav ul li { background:#2C383B; box-shadow:10px 10px 0 rgba(0,0,0,.5); transform: skew(-20deg); margin-left: 10px; margin-right: 0px; margin-bottom: 20px ; padding: 10px;  color: #ECECEC; border: 1px solid #ECECEC; list-style-type: none; }
 		.sidenav ul li:hover {margin-left: 30px; margin-right: -30px;}
@@ -45,7 +45,7 @@
 
 		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
 		.searchActivity { display: inline-block; margin-left: 30px; width: 60%; padding-right: 20px; }
-		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px;}
+		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
 		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
 		.dropbtn:active { box-shadow: 0 0 0; }
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
@@ -79,7 +79,7 @@
 		.pjBtn { display: block; background-color:#2C383B; padding: 1px 7px 1px 7px; margin-top: 8px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 7px; padding: 1px 7px 1px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
@@ -94,9 +94,9 @@
 		.LJSfilter div { display: inline-block; }
 		#LJSpilihMinggu, #LJApilihMinggu { width: 163px; }
 		#LJSpilihTahun, #LJSpilihBulan, #LJApilihTahun, #LJApilihBulan { height: 30px; }
-		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 8px; margin-left: 10px; padding: 1px 7px 1px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active { box-shadow: 0 0 0; }
-		.wrapperTotalWaktu { padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }
+		.wrapperTotalWaktu { display: inline-block; padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }
 
 		* { transition: all .1s ease}

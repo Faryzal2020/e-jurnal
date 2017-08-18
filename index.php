@@ -293,7 +293,7 @@ $nip = $_SESSION['nip'];
                tr = table.getElementsByTagName("tr");
 
                if(catBtn.classList.contains("selectd")){
-                  catFilter = catBtn.innerHTML;
+                  catFilter = ddcbtnLabel.innerHTML;
                } else {
                   catFilter = '';
                }
@@ -352,24 +352,33 @@ $nip = $_SESSION['nip'];
 
             function selectCat(cat) {
                catBtn = document.getElementById("ddcBtn");
+               label = document.getElementById("ddcbtnLabel");
+               icon1 = document.getElementById("iconDDC1");
+               icon2 = document.getElementById("iconDDC2");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
+                  icon1.style.display = "none";
+                  icon2.style.display = "";
                } else {
+                  cat = "Pilih Kategori";
                   catBtn.classList.toggle("selectd");
+                  icon2.style.display = "none";
+                  icon1.style.display = "";
                }
                document.getElementById("ddcContent").classList.toggle("show");
-               catBtn.innerHTML = cat;
+               label.innerHTML = cat;
                searchAct();
             }
 
             selectReport('Mingguan');
             function selectReport(rep) {
                repBtn = document.getElementById("repBtn");
+               label = document.getElementById("repbtnLabel");
                if (repBtn){
                  var mingguan = document.getElementsByClassName("LJSfilter")[0];
                  var bulanan = document.getElementsByClassName("LJSfilter")[1];
                  document.getElementById("repContent").classList.toggle("show");
-                 repBtn.innerHTML = rep;
+                 label.innerHTML = rep;
 
                  if (mingguan){
                    if( rep == 'Mingguan'){
@@ -456,11 +465,12 @@ $nip = $_SESSION['nip'];
             JAfilter('Mingguan');
             function JAfilter(fil) {
                btn = document.getElementById("filBtn");
+               label = document.getElementById("PJAbtnLabel");
                if(btn){
                  var mingguan = document.getElementsByClassName("LJAfilter")[0];
                  var bulanan = document.getElementsByClassName("LJAfilter")[1];
                  document.getElementById("filContent").classList.toggle("show");
-                 btn.innerHTML = fil;
+                 label.innerHTML = fil;
 
                  if ( typeof mingguan === 'undefined'){
                    } else {
@@ -502,8 +512,8 @@ $nip = $_SESSION['nip'];
                   success: function(response){                    
                       $("#JAtabelA").html(response);
 
-                      if(document.getElementById("LJStotalwaktu")){
-                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById("LJStotalwaktu").value;
+                      if(document.getElementById(nip)){
+                        document.getElementById("labelTotalWaktuAdm").innerHTML = document.getElementById(nip).value;
                       }
                   }
                 });
@@ -541,9 +551,8 @@ $nip = $_SESSION['nip'];
                   data: data,               
                   success: function(response){                    
                       $("#tabelLJstaffContainer").html(response);
-
-                      if(document.getElementById("LJStotalwaktu")){
-                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById("LJStotalwaktu").value;
+                      if(document.getElementById(nip)){
+                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById(nip).value;
                       }
                   }
                 });

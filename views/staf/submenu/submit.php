@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="ddcBtn">Pilih Kategori</button>
+				                    <button class="dropbtn" id="ddcBtn"><span id="iconDDC1" class="glyphicon glyphicon-chevron-down"></span><span id="iconDDC2" class="glyphicon glyphicon-chevron-right" style="display:none;"></span> <span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span></button>
 				                    <div class="dropdownCat-content" id="ddcContent">
 				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
 				                        <?php
@@ -13,7 +13,7 @@
 				                                    echo "";
 				                                } else {
 				                        ?>
-				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
+				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <?php
 				                                }
 				                            }
@@ -59,7 +59,7 @@
 											'<?php echo $namaAct; ?>',
 											'<?php echo $durasi; ?>',
 											'<?php echo $namaCateg; ?>'
-										)">Pilih</a>
+										)"><span class="glyphicon glyphicon-ok"></span></a>
 									</td>
 								</tr>
 								<?php

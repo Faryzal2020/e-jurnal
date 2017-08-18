@@ -3,10 +3,10 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="repBtn"></button>
+				                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 				                    <div class="dropdownCat-content" id="repContent">
-				                        <a onclick="selectReport('Mingguan')" href="#">Mingguan</a>
-				                        <a onclick="selectReport('Bulanan')" href="#">Bulanan</a>
+				                        <a onclick="selectReport('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectReport('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="LJSfilter" style="display: none">
@@ -50,7 +50,7 @@
 									</div>
 								</div>
 								<input id="LJSfilterType" type="hidden" value="">
-								<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')">Ok</a>
+								<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 								<div class="wrapperTotalWaktu">
 									Total Jam Produktif: 
 									<label id="labelTotalWaktu"></label>

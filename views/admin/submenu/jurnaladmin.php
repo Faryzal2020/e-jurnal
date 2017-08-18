@@ -8,7 +8,7 @@
 				                </div>
 				                <div class="PJAfilter" id="PJAfilter">
 					                <div class="dropdownCat">
-					                    <button class="dropbtn" id="filBtn"></button>
+					                    <button class="dropbtn" id="filBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 					                    <div class="dropdownCat-content" id="filContent">
 					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan</a>
 					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan</a>
@@ -55,10 +55,10 @@
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
-									<a class="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')">Ok</a>
+									<a class="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 									<div class="wrapperTotalWaktu">
 									Total Jam Produktif: 
-									<label id="labelTotalWaktu"></label>
+									<label id="labelTotalWaktuAdm"></label>
 								</div>
 								</div>
 							</div>
@@ -110,10 +110,10 @@
 			                        <div id="tCModalLabel">Daftar jurnal milik: <label id="labelPemilikJurnal"></label></div>
 			                        <div class="headerLJ">
 			                        	<div class="dropdownCat">
-						                    <button class="dropbtn" id="repBtn"></button>
+						                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 						                    <div class="dropdownCat-content" id="repContent">
-						                        <a onclick="selectReport('Mingguan')" href="#">Mingguan</a>
-						                        <a onclick="selectReport('Bulanan')" href="#">Bulanan</a>
+						                        <a onclick="selectReport('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+						                        <a onclick="selectReport('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 						                    </div>
 						                </div>
 										<div class="LJSfilter" style="display: none">
@@ -158,7 +158,11 @@
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')">Ok</a>
+										<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+				                        <div class="wrapperTotalWaktu">
+											Total Jam Produktif: 
+											<label id="labelTotalWaktu"></label>
+										</div>
 			                        </div>
 			                        <div id="tabelLJstaffContainer">
 			                        </div>

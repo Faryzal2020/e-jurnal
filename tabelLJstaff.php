@@ -34,7 +34,7 @@ echo "<table border='1' class='tabelLJ' cellpadding='20'>
 
 if(mysqli_num_rows($result) > 0){
     $data2 = mysqli_fetch_row($result2);
-    echo "<input type=hidden id='LJStotalwaktu' value='$data2[0]' />";
+    echo "<input type=hidden id='$nip' value='$data2[0]' />";
     while($data = mysqli_fetch_row($result))
     {   
         echo "<tr>";
