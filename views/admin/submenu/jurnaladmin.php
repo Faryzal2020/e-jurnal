@@ -10,8 +10,8 @@
 					                <div class="dropdownCat">
 					                    <button class="dropbtn" id="filBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 					                    <div class="dropdownCat-content" id="filContent">
-					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan</a>
-					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan</a>
+					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 					                    </div>
 					                </div>
 					                <div class="LJAfilter">
