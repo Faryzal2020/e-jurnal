@@ -501,6 +501,10 @@ $nip = $_SESSION['nip'];
                   data: data,               
                   success: function(response){                    
                       $("#JAtabelA").html(response);
+
+                      if(document.getElementById("LJStotalwaktu")){
+                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById("LJStotalwaktu").value;
+                      }
                   }
                 });
               } else {
@@ -537,6 +541,10 @@ $nip = $_SESSION['nip'];
                   data: data,               
                   success: function(response){                    
                       $("#tabelLJstaffContainer").html(response);
+
+                      if(document.getElementById("LJStotalwaktu")){
+                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById("LJStotalwaktu").value;
+                      }
                   }
                 });
               } else {

@@ -51,6 +51,10 @@
 								</div>
 								<input id="LJSfilterType" type="hidden" value="">
 								<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')">Ok</a>
+								<div class="wrapperTotalWaktu">
+									Total Jam Produktif: 
+									<label id="labelTotalWaktu"></label>
+								</div>
 							</div>
 						</div>
 			            <div id="tabelLJstaffContainer">

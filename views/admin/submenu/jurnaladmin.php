@@ -56,6 +56,10 @@
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
 									<a class="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')">Ok</a>
+									<div class="wrapperTotalWaktu">
+									Total Jam Produktif: 
+									<label id="labelTotalWaktu"></label>
+								</div>
 								</div>
 							</div>
 						</div>
