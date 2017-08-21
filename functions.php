@@ -63,10 +63,10 @@ function getCalender($year = '',$month = '')
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
                         if($level == 2){
-						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level < '$level' AND user.bagian = '$bagian'";
+						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian'";
                         } 
                         else{
-                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level < '$level'";
+                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level <= '$level'";
                         }
                         $result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
@@ -151,8 +151,13 @@ function getCalender($year = '',$month = '')
 			$('.year_dropdown').on('change',function(){
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
 			});
-			$(document).click(function(){
-				$('#event_list').slideUp('slow');
+			$(document).click(function(e){
+                if(!$(e.target).hasClass('pjBtn')){
+                    if(!$(e.target).hasClass('tombol_detail')){
+                    $('#event_list').slideUp('slow');    
+                    }
+				    
+                }
 			});
 		});
 	</script>
@@ -197,12 +202,13 @@ function getEvents($date = ''){
     $bagian = $_SESSION['bagian'];
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
+    require_once "views/admin/submenu/detail_admin.php";
 	//Get events based on the current date
-    if ($level == 2){
-            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level < '$level' AND user.bagian = '$bagian'";    
+    /*if ($level == 2){
+            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level <= '$level' AND user.bagian = '$bagian'";    
     }
     else{
-            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level < '$level'";  
+            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level <= '$level'";  
     }
 	
 	$result = mysqli_query($db, $GEsql);
@@ -219,9 +225,9 @@ function getEvents($date = ''){
             </li>
         <?php     
         }
+     
 		?></ul>
 <?php
-	}
+	}*/
+        //pembuka php cadangan
 }
-
-?>

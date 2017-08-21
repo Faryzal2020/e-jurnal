@@ -1,7 +1,7 @@
 body{ font-family: sans-serif;}
 .none{ display:none;}
 .dropdown{color: #444444;font-size:17px;}
-#calender_section{ width:700px; margin:30px auto 0;}
+#calender_section{ width:750px; margin: auto ;}
 #calender_section h2{ background-color:#efefef; color:#444444; font-size:17px; text-align:center; line-height:40px;}
 #calender_section h2 a{ color:#F58220; float:none;}
 #calender_section_top{ width:100%; float:left; margin-top:20px;}

@@ -1124,7 +1124,7 @@ a {
     margin-bottom: 16px!important
 }
 .w3-margin {
-    margin: 16px!important
+    margin: 0
 }
 .w3-margin-top {
     margin-top: 16px!important
@@ -1139,13 +1139,13 @@ a {
     margin-right: 16px!important
 }
 .w3-padding-small {
-    padding: 4px 8px!important
+    padding: 0
 }
 .w3-padding {
-    padding: 8px 16px!important
+    padding: 0
 }
 .w3-padding-large {
-    padding: 12px 24px!important
+    padding-bottom: 40px
 }
 .w3-padding-16 {
     padding-top: 16px!important;

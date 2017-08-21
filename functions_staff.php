@@ -80,8 +80,8 @@ function getCalender($year = '',$month = '')
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">Lihat</a>':'';
-						echo '</div></div>';
+                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="staff_detail_selectActivity(\''.$currentDate.'\');">Lihat</a>':'';
+                        echo '</div></div>';
 						
 						echo '</li>';
 						$dayCount++;
@@ -105,7 +105,7 @@ function getCalender($year = '',$month = '')
 			});
 		}
 		
-		function getEvents(date){
+		/*function getEvents(date){
 			$.ajax({
 				type:'POST',
 				url:'functions_staff.php',
@@ -115,7 +115,7 @@ function getCalender($year = '',$month = '')
 					$('#event_list').slideDown('slow');
 				}
 			});
-		}
+		}*/
 		
 		
 		$(document).ready(function(){
@@ -171,7 +171,7 @@ function getYearList($selected = ''){
 /*
  * Get events by date
  */
-function getEvents($date = ''){
+/*function getEvents($date = ''){
 	//Include db configuration file
     session_start();
 	include 'config.php';
@@ -464,4 +464,4 @@ function getEvents($date = ''){
 	}
 }
 
-?>
+?>*/

@@ -242,8 +242,21 @@ $nip = $_SESSION['nip'];
                     }
               });  
             }
+            function staff_detail_selectActivity( staff_tanggal_tanggal){
+                document.getElementById("staff_detail_select").style.display = "block";
+                //document.getElementById("jurnal_nama").innerHTML = nama;
+                $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "staff_detailajax.php",             
+                dataType: "html",   //expect html to be returned
+                data: { staff_tanggal_tanggal:staff_tanggal_tanggal},               
+                success: function(response){   
+                    $("#staff_tabledata").html(response); 
+                    }
+              });  
+            }
              
-             function staff_detail_selectActivity(id_jurnal, nama_aktivitas, nama_pegawai,volume,satuan_output,durasi,tanggal_mulai,bulan_mulai,tahun_mulai,tanggal_selesai,bulan_selesai,tahun_selesai,jam_mulai,jam_selesai,durasi_pekerjaan,jurnal_tanggal,jurnal_bulan,jurnal_tahun){
+             /*function staff_detail_selectActivity(id_jurnal, nama_aktivitas, nama_pegawai,volume,satuan_output,durasi,tanggal_mulai,bulan_mulai,tahun_mulai,tanggal_selesai,bulan_selesai,tahun_selesai,jam_mulai,jam_selesai,durasi_pekerjaan,jurnal_tanggal,jurnal_bulan,jurnal_tahun){
                 console.log(id_jurnal + nama_aktivitas + nama_pegawai + volume + satuan_output + durasi + tanggal_mulai + bulan_mulai + tahun_mulai + tanggal_selesai + bulan_selesai + tahun_selesai + jam_mulai + jam_selesai + durasi_pekerjaan + jurnal_tanggal + jurnal_bulan + jurnal_tahun);
                 document.getElementById("staff_detail_select").style.display = "block";
                 document.getElementById("labelID").innerHTML = id_jurnal;
@@ -265,7 +278,7 @@ $nip = $_SESSION['nip'];
                 document.getElementById("bulan_jurnal").innerHTML = jurnal_bulan;
                 document.getElementById("tahun_jurnal").innerHTML = jurnal_tahun;
                
-            }
+            }*/
              
               function validatepass(){
                  var password_lama = document.forms['Formpass']['password_lama'].value;
@@ -451,8 +464,6 @@ $nip = $_SESSION['nip'];
                var keterangan = document.forms["FormSJ"]["keterangan"].value;
                var error = 0;
                var msg;
-                alert(jamMulai);
-                alert(jamSelesai);
                if (volumetype == "" || keterangan == "" || tglMulai == "" || tglSelesai == ""){
                   msg = "Semua kolom harus diisi";
                   error++;
@@ -550,6 +561,30 @@ $nip = $_SESSION['nip'];
                   filter.style.display = "none";
                   btn2.classList.add("active");
                   btn1.classList.remove("active");
+                }
+              }
+            }
+            function selectTYPE(type,nipnya_sendiri){
+              var tombol1 = document.getElementById("tombol1");
+              var tombol2 = document.getElementById("tombol2");
+                //alert(type)
+              if ( type == "sendiri"){
+                if (!tombol1.classList.contains("active")){
+                  var tabelADMIN = document.getElementById("JAtabelADMIN");
+                  var tabelSTAFF = document.getElementById("JAtabelSTAFF");
+                  tabelADMIN.style.display = "block";
+                  tabelSTAFF.style.display = "none";
+                  tombol1.classList.add("active");
+                  tombol2.classList.remove("active");
+                }
+              } else {
+                if (!tombol2.classList.contains("active")){
+                  var tabelADMIN = document.getElementById("JAtabelADMIN");
+                  var tabelSTAFF = document.getElementById("JAtabelSTAFF");
+                  tabelSTAFF.style.display = "block";
+                  tabelADMIN.style.display = "none";
+                  tombol2.classList.add("active");
+                  tombol1.classList.remove("active");
                 }
               }
             }
