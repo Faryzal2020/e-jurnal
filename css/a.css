@@ -74,10 +74,11 @@
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
 		.pilihanJurnal { padding-left: 30px; margin-top: -16px; display: block;}
-		.pjBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none;}
-		.pjBtn:active { box-shadow: 0 0 0; text-decoration: none; }
-		.pjBtn.active { box-shadow: 0 0 0; text-decoration: none; background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
-		.pjBtn { display: block; background-color:#2C383B; padding: 1px 7px 1px 7px; border-radius: 5px; margin-top: 8px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
+		.pjBtn:hover, .pjkBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none;}
+		.pjBtn:active, .pjkBtn:active { box-shadow: 0 0 0; text-decoration: none; }
+		.pjBtn.active, .pjkBtn.active { box-shadow: 0 0 0; text-decoration: none; background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
+		.pjBtn, .pjkBtn { display: block; background-color:#2C383B; padding: 1px 7px 1px 7px; border-radius: 5px; margin-top: 8px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
+		.pjkBtn { display: inline-block; }
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
 		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}

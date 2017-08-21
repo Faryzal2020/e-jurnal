@@ -48,8 +48,8 @@ $nip = $_SESSION['nip'];
             $acttype = $_POST['actType'];
             $ket = $_POST['keterangan'];
             $msg;
-            $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`)  
-                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype')";
+            $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`, `keterangan`)  
+                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype','$ket')";
             mysqli_query($db,$SJsql);
          } else if( !empty($_POST['password_baru'])){
               $nip = $_SESSION['nip'];

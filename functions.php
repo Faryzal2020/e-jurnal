@@ -152,7 +152,7 @@ function getCalender($year = '',$month = '')
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
 			});
 			$(document).click(function(e){
-                if(!$(e.target).hasClass('pjBtn')){
+                if(!$(e.target).hasClass('pjkBtn')){
                     if(!$(e.target).hasClass('tombol_detail')){
                     $('#event_list').slideUp('slow');    
                     }

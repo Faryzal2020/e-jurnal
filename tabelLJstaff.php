@@ -8,12 +8,12 @@ $LJStotalwaktu = "";
 if( $tipeFilter == 'Mingguan'){
 	$tahun = $_GET['tahun'];
 	$minggu = $_GET['minggu'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND week(j.tanggal_jurnal)='$minggu'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND week(j.tanggal_jurnal)='$minggu'";
     $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND week(j.tanggal_jurnal)='$minggu'";
 } else {
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, timediff(j.waktu_selesai,j.waktu_mulai) as total_waktu FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND month(j.tanggal_jurnal)='$bulan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND month(j.tanggal_jurnal)='$bulan'";
     $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_jurnal)='$tahun' AND month(j.tanggal_jurnal)='$bulan'";
 }
 $result = mysqli_query($db, $LJSsql);
@@ -38,6 +38,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em;'><b>Waktu Mulai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em;'><b>Waktu Selesai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Tanggal Input Jurnal</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Keterangan</b></th>
     </tr>";
     $data2 = mysqli_fetch_row($result2);
     echo "<input type=hidden id='$nip' value='$data2[0]' />";
@@ -53,6 +54,7 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[3]</td>";
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[4]</td>";
         echo "<td align=center style='width: 120px; font-size: 0.9em;'>$data[5]</td>";
+        echo "<td align=center style='width: 25%; font-size: 0.8em;'>$data[10]</td>";
         echo "</tr>";
     }
 } else {
@@ -67,6 +69,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em;'><b>Waktu Mulai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em;'><b>Waktu Selesai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Tanggal Input Jurnal</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Keterangan</b></th>
     </tr>";
     echo "<tr>";
     echo "<td align=center colspan='9'>Tidak ada data</td>";
