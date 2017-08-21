@@ -414,8 +414,6 @@ $nip = $_SESSION['nip'];
                var jamSelesai = document.forms["FormSJ"]["jamSelesai"].value;
                var error = 0;
                var msg;
-                alert(jamMulai);
-                alert(jamSelesai);
                if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
                   msg = "Semua kolom harus diisi";
                   error++;
