@@ -1,13 +1,12 @@
 <?php
 include("config.php");
-
-$nip_beda = $_GET['nip_nip'];
-$tanggal_beda = $_GET['tanggal_tanggal'];
+session_start();
+$staff_tanggal = $_GET['staff_tanggal_tanggal'];
                                                 
-$deSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_jurnal, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '$tanggal_beda' AND jurnal.nip = '$nip_beda'";
-$detail = mysqli_query($db, $deSQL);
+$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_jurnal, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
+$detail = mysqli_query($db, $xeSQL);
 
-echo "<table border='1' class='tabledata' cellpadding='50' width= '100%'>
+echo "<table border='1' class='staff_tabledata' cellpadding='50' width= '100%'>
 <tr>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
@@ -44,6 +43,7 @@ while($data = mysqli_fetch_row($detail))
     echo "<td align=center style='width: 140px;'>$durasi_pekerjaan Menit</td>";
     echo "<td align=center>$data[5]</td>";
     echo "<td align=center style='width: 140px;'>$data[11]</td>";
+    
     echo "</tr>";
 }
 echo "</table>";

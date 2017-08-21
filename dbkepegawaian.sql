@@ -475,28 +475,33 @@ CREATE TABLE `jurnal` (
   `waktu_mulai` datetime NOT NULL,
   `waktu_selesai` datetime NOT NULL,
   `tanggal_jurnal` date NOT NULL,
-  `jenis_aktivitas` varchar(10) NOT NULL
+  `jenis_aktivitas` varchar(10) NOT NULL,
+  `keterangan` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jurnal`
 --
 
-INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`) VALUES
-(1, 1, '180003512', 1, 'Kegiatan', '2017-06-18 13:00:00', '2017-06-18 15:15:00', '2017-06-18', 'SKP'),
-(2, 118, '180004373', 3, 'laporan per 1x survey', '2017-07-24 11:00:00', '2017-07-24 16:00:00', '2017-07-24', 'SKP'),
-(3, 335, '180005067', 5, 'laporan', '2016-08-08 10:00:00', '2016-08-08 13:47:00', '2016-08-08', 'Umum'),
-(4, 320, '180002527', 10, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'Umum'),
-(6, 319, '180002527', 8, 'Lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'Umum'),
-(7, 126, '180002527', 1, 'Kegiatan', '2017-08-01 08:20:00', '2017-08-01 12:00:00', '2017-08-01', 'SKP'),
-(8, 402, '180002997', 1, 'Kegiatan', '2017-08-07 07:30:00', '2017-08-07 09:45:00', '2017-08-07', 'SKP'),
-(9, 211, '180004854', 3, 'Laporan', '2017-08-07 07:50:00', '2017-08-07 15:00:00', '2017-08-01', 'SKP'),
-(10, 358, '180004854', 1, 'Kegiatan', '2017-08-03 08:00:00', '2017-08-03 10:30:00', '2017-08-03', 'Umum'),
-(11, 353, '180003445', 3, 'Surat', '2017-07-26 10:00:00', '2017-07-26 10:37:00', '2017-07-26', 'Umum'),
-(12, 83, '180004895', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', 'SKP'),
-(13, 149, '180004895', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', 'SKP'),
-(14, 264, '180002527', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', 'Umum'),
-(15, 36, '180004854', 1, 'Laporan', '2017-08-10 09:30:00', '2017-08-10 11:00:00', '2017-09-11', 'Umum');
+INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`, `keterangan`) VALUES
+(1, 1, '180003512', 1, 'Kegiatan', '2017-06-18 13:00:00', '2017-06-18 15:15:00', '2017-06-18', 'skp', ''),
+(2, 118, '180004373', 3, 'laporan per 1x survey', '2017-07-24 11:00:00', '2017-07-24 16:00:00', '2017-07-24', 'skp', ''),
+(3, 335, '180005067', 5, 'laporan', '2016-08-08 10:00:00', '2016-08-08 13:47:00', '2016-08-08', 'umum', ''),
+(4, 320, '180002527', 10, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'umum', ''),
+(6, 319, '180002527', 8, 'Lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', 'umum', ''),
+(7, 126, '180002527', 1, 'Kegiatan', '2017-08-01 08:20:00', '2017-08-01 12:00:00', '2017-08-01', 'skp', ''),
+(8, 402, '180002997', 1, 'Kegiatan', '2017-08-07 07:30:00', '2017-08-07 09:45:00', '2017-08-07', 'skp', ''),
+(9, 211, '180004854', 3, 'Laporan', '2017-08-07 07:50:00', '2017-08-07 15:00:00', '2017-08-01', 'skp', ''),
+(10, 358, '180004854', 1, 'Kegiatan', '2017-08-03 08:00:00', '2017-08-03 10:30:00', '2017-08-03', 'umum', ''),
+(11, 353, '180003445', 3, 'Surat', '2017-07-26 10:00:00', '2017-07-26 10:37:00', '2017-07-26', 'umum', ''),
+(12, 83, '180004895', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', 'skp', ''),
+(13, 149, '180004895', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', 'skp', ''),
+(14, 264, '180002527', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', 'umum', ''),
+(15, 36, '180004854', 1, 'Laporan', '2017-08-10 09:30:00', '2017-08-10 11:00:00', '2017-09-11', 'umum', ''),
+(16, 1, '180004854', 1, 'Laporan', '2017-08-15 07:30:00', '2017-08-15 11:30:00', '2017-08-15', 'skp', ''),
+(17, 121, '180003512', 2, 'Laporan', '2017-08-18 08:30:00', '2017-08-18 10:00:00', '2017-08-18', 'skp', ''),
+(18, 56, '180003512', 1, 'Kegiatan', '2017-08-21 09:00:00', '2017-08-21 11:00:00', '2017-08-21', 'skp', ''),
+(19, 161, '180003512', 3, 'Laporan', '2017-08-18 10:00:00', '2017-08-18 12:00:00', '2017-08-21', 'umum', '');
 
 -- --------------------------------------------------------
 
@@ -543,7 +548,7 @@ INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `jabatan`, `password`, 
 ('180002527', '196206271981031001', 'Suprapto', 'Pengadministrasi Persuratan', '180002527', '1', 'tata usaha kepegawaian'),
 ('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 'Kepala Subbagian Pembinaan dan Kesejahteraan Pegawai', '180002997', '2', 'pembinaan dan kesejahteraan pegawai'),
 ('180003445', '196306271986031003', 'Purwanto', 'Kepala Subbagian Pengembangan Kompetensi Pegawai', '180003445', '2', 'pengembangan kompetensi pegawai'),
-('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180003512', '3', ''),
+('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180003512', '4', ''),
 ('180003782', '19700205 199303 1004', 'Hasim Mukti', 'Arsiparis Mahir', '180003782', '1', 'tata usaha kepegawaian'),
 ('180004373', '19701111 199703 2001', 'Susi Susanti, S.H.', 'Kepala Bagian Kepegawaian', '180004373', '3', ''),
 ('180004854', '198401192005012001', 'Amelia Irna Mayarni Sitohang, S.E.', 'Analis Sumber Daya Manusia Aparatur', '180004854', '1', 'pembinaan dan kesejahteraan pegawai'),
@@ -598,7 +603,7 @@ ALTER TABLE `aktivitas`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
