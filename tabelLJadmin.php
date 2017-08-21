@@ -19,13 +19,13 @@ if( $tipeFilter == 'Mingguan'){
 $result = mysqli_query($db, $LJSsql);
 $result2 = mysqli_query($db, $LJStotalwaktu);
 
-echo "<table border='1' class='tabelLJ' id='tabelLJajax' cellpadding='20'>";
+echo "<table border='1' class='tabelLJ' id='tabelLJajaxADM' cellpadding='20'>";
 
 if(mysqli_num_rows($result) > 0){
     echo "<caption class='btn-toolbar'>
-    <button id='csvBtn' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
-    <button id='xlsBtn' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
-    <button id='pdfBtn' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
+    <button id='csvBtnADM' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
+    <button id='xlsBtnADM' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
+    <button id='pdfBtnADM' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
     </caption>";
     echo "
     <tr>

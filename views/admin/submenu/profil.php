@@ -24,18 +24,17 @@
 									<td><span id="jabatan"><?php echo $jabatan; ?></span></td>
 								</tr>
 							</table>
-                                
 						</div>
-						
 					</div>
                     <div class="UPwrapper">
-                    <button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
-                     </div>
-		              <div class="content">
+                    	<button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
+                    </div>
+		            <div class="content">
                         <div class="ubah_ubah">
                             <div id="ubah_ubah1">
                                 <?php require_once "views/admin/submenu/ubahpassword.php";?>
                             </div>
                         </div>
+                    </div>
 				</div>
 	

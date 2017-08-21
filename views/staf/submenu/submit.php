@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="ddcBtn"><span id="iconDDC1" class="glyphicon glyphicon-chevron-down"></span><span id="iconDDC2" class="glyphicon glyphicon-chevron-right" style="display:none;"></span> <span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span></button>
+				                    <button class="dropbtn" id="ddcBtn"><span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="ddcContent">
 				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
 				                        <?php
@@ -24,7 +24,7 @@
 									<div class="searchActivity">
 					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
 					                </div>
-						            Jumlah result: 
+						            Result: 
 						            <label id="actCount">0</label>
 				                </div>
 							</div>
@@ -105,6 +105,11 @@
 			                                	<td><label>Jenis Volume</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 260px" type="text" name="volumeType" placeholder="Contoh: Buku, Lembar, dll"></td>
+			                                </tr>
+			                                <tr>
+			                                	<td><label>Keterangan</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value=""></textarea></td>
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>

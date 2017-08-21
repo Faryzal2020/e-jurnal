@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
+				                    <button class="dropbtn" id="repBtn"><span id="repbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="repContent">
 				                        <a onclick="selectReport('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectReport('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>

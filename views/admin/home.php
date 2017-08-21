@@ -44,6 +44,15 @@
 			<ul>
 				<li class="menu-item"><a href="#">Profil Anda</a></li>
 			</ul>
+			<?php
+				if ($level == 99){
+			?>
+			<ul>
+				<li class="menu-item"><a href="#">Edit Account</a></li>
+			</ul>
+			<?php
+				}
+			?>
         </div> 
 		<div class="content">
 			<div class="tab">
@@ -66,6 +75,17 @@
 					<?php require_once "views/admin/submenu/profil.php";?>
 				</div>
 			</div>
+			<?php
+				if ($level == 99){
+			?>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/admin/submenu/promosi.php";?>
+				</div>
+			</div>
+			<?php
+				}
+			?>
 		</div>
     </div>
 

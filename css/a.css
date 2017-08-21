@@ -45,41 +45,42 @@
 
 		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
 		.searchActivity { display: inline-block; margin-left: 30px; width: 60%; padding-right: 20px; }
-		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
+		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; border-radius: 5px; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
 		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
 		.dropbtn:active { box-shadow: 0 0 0; }
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
-		.dropdownCat-content { margin-left: 30px; display: none; position: absolute; min-width: 160px; z-index: 1; background-color: white;}
+		.dropdownCat-content { margin-left: 5px; display: none; position: absolute; min-width: 160px; max-width: 170px; z-index: 1; background-color: white;}
 		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none; border: 1px solid #ccc;}
 		.dropdownCat-content a:hover {background-color:#ccc;}
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
 		.SAwrapper { flex: 1; padding-top: 7px; }
 		.actCount { padding: 10px; margin: auto; }
 
-		.actTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
-		.actTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
-		.actTable td { height: 30px; padding: 5px; }
+		.actTable, .epTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
+		.actTable th, .epTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
+		.actTable td, .epTable td { height: 30px; padding: 5px; }
 		.selectActbtn { background-color: #2C383B; cursor: pointer; text-decoration: none; color: #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); padding: 1px 5px 1px 5px;}
 		.selectActbtn:hover { text-decoration: none; color: #2C383B; background-color: #ECECEC; border: 1px solid #2C383B; }
 		.selectActbtn:active { box-shadow: 0 0 0; }
 		.tCmodal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
 		.tCmodal-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 700px; }
-		.tableSJ td {padding: 5px;}
-		.close, .tutupLJ { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
-		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus{ color: #333333; text-decoration: none; cursor: pointer; }
+		.tableSJ td, .tableEA td {padding: 5px;}
+		.close, .tutupLJ, .EAclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus{ 
+			color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
-		.SJbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
-		.SJbtnSubmit:hover{ background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+		.SJbtnSubmit, .EAbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
+		.SJbtnSubmit:hover, .EAbtnSubmit:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
 		.pilihanJurnal { padding-left: 30px; margin-top: -16px; display: block;}
 		.pjBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none;}
 		.pjBtn:active { box-shadow: 0 0 0; text-decoration: none; }
 		.pjBtn.active { box-shadow: 0 0 0; text-decoration: none; background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
-		.pjBtn { display: block; background-color:#2C383B; padding: 1px 7px 1px 7px; margin-top: 8px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
+		.pjBtn { display: block; background-color:#2C383B; padding: 1px 7px 1px 7px; border-radius: 5px; margin-top: 8px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 131px; text-decoration: none;}
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
@@ -94,7 +95,7 @@
 		.LJSfilter div { display: inline-block; }
 		#LJSpilihMinggu, #LJApilihMinggu { width: 163px; }
 		#LJSpilihTahun, #LJSpilihBulan, #LJApilihTahun, #LJApilihBulan { height: 30px; }
-		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active { box-shadow: 0 0 0; }
 		.wrapperTotalWaktu { display: inline-block; padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }

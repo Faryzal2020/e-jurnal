@@ -24,6 +24,9 @@ $nip = $_SESSION['nip'];
       // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
+      // Semua Pegawan
+      $ALLsql = "SELECT * FROM user WHERE user.level < 99";
+      $ALLquery = mysqli_query($db,$ALLsql);
       // Daftar Pegawai
       $DPsql = "SELECT * FROM user WHERE user.level < '$level'";
       $DPquery = mysqli_query($db,$DPsql);
@@ -43,26 +46,26 @@ $nip = $_SESSION['nip'];
             $selesai = $_POST['tglSelesai'] .' '. $_POST['jamSelesai'] . ':00';
             $tgljurnal = date("Y-m-d");
             $acttype = $_POST['actType'];
+            $ket = $_POST['keterangan'];
             $msg;
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_jurnal`, `jenis_aktivitas`)  
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','$acttype')";
             mysqli_query($db,$SJsql);
-         } else if( !empty($_POST['nama_pegawai'])){
-              $nip = $_SESSION['nip'];
-              $nama = $_POST['nama_pegawai'];
-              $email = $_POST['email_pegawai'];
-              $_SESSION['nama'] = $nama;
-              $_SESSION['email'] = $email;
-              $bio_update = ("UPDATE user SET       nama_pegawai='$nama',
-                                                    email_pegawai='$email'
-                                                    WHERE nip='$nip'");
-              mysqli_query($db,$bio_update);
-          } else if( !empty($_POST['password_baru'])){
+         } else if( !empty($_POST['password_baru'])){
               $nip = $_SESSION['nip'];
               $password = $_POST['password_baru'];
               $pass_update = ("UPDATE user SET password='$password' WHERE nip = '$nip'");
               mysqli_query($db,$pass_update);
-          }
+         } else if( !empty($_POST['EAnip'])){
+            $nip = $_POST['EAnip'];
+            $nama = $_POST['nama'];
+            $bagian = $_POST['bagian'];
+            $jabatan = $_POST['jabatan'];
+            $password = $_POST['password'];
+            $level = $_POST['level'];
+            $EAsql = "UPDATE user SET nama_pegawai = '$nama', bagian = '$bagian', jabatan = '$jabatan', password = '$password', level = '$level' WHERE nip = '$nip'";
+            mysqli_query($db,$EAsql);
+         }
         Redirect('index.php');
         }
       
@@ -87,6 +90,12 @@ $nip = $_SESSION['nip'];
    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript" src="js/FileSaver/FileSaver.min.js"></script>
+   <script type="text/javascript" src="js/js-xlsx/xlsx.core.min.js"></script>
+   <script type="text/javascript" src="js/jsPDF/jspdf.min.js"></script>
+   <script type="text/javascript" src="js/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+   <script type="text/javascript" src="js/html2canvas/html2canvas.min.js"></script>
+   <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
     
    </head>
@@ -117,7 +126,9 @@ $nip = $_SESSION['nip'];
             var staff_tutup_detail = document.getElementsByClassName("staff_tutup_detail")[0];
             var tutup_detail = document.getElementsByClassName("tutup_detail")[0];
             var tutupLJ = document.getElementsByClassName("tutupLJ")[0];
-            var modalLJ = document.getElementById('modalLJ'); 
+            var modalLJ = document.getElementById('modalLJ');
+            var closeEA = document.getElementsByClassName("EAclose")[0];
+            var modalEA = document.getElementById('ModalEA');
              
 
             span.onclick = function() {
@@ -127,14 +138,13 @@ $nip = $_SESSION['nip'];
                 pass_select.style.display = "none";
             }
             
-            if(typeof staff_tutup_detail === 'undefined'){
-            } else {
+            if(typeof staff_tutup_detail != 'undefined'){
               staff_tutup_detail.onclick = function() {
                   staff_detail_select.style.display = "none";
               }
             }
             
-            if(typeof tutup_detail !== 'undefined'){   
+            if(typeof tutup_detail != 'undefined'){   
                 tutup_detail.onclick = function() {
                     detail_select.style.display = "none";
                 }
@@ -144,10 +154,15 @@ $nip = $_SESSION['nip'];
                 modalLJ.style.display = "none";
               }
             }
+            if ( typeof closeEA != 'undefined' ){
+              closeEA.onclick = function() {
+                modalEA.style.display = "none";
+              }
+            }
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     
@@ -157,9 +172,11 @@ $nip = $_SESSION['nip'];
                     if(staff_detail_select){
                       staff_detail_select.style.display = "none";
                     }
-                    
                     if(modalLJ){
                       modalLJ.style.display = "none";
+                    }
+                    if(modalEA){
+                      modalEA.style.display = "none";
                     }
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
@@ -350,20 +367,52 @@ $nip = $_SESSION['nip'];
                }
             }
 
+            function searchAcc() {
+               var input, filter, sbFilter, ssbBtn, table, tr, td, i, showCount = 0;
+               input = document.getElementById("pegSearch");
+               filter = input.value.toUpperCase();
+               table = document.getElementById("epTable");
+               tr = table.getElementsByTagName("tr");
+
+               for (i = 2; i < tr.length; i++){
+                  td = tr[i].getElementsByTagName("td")[1];
+                  if(td){
+                     tr[i].style.display = "none";
+                  }
+               }
+               if(filter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+               }
+
+               document.getElementById("pegCount").innerHTML = showCount;
+               if( showCount <= 0 ){
+                  tr[1].style.display = "";
+                  if( filter != ''){
+                     document.getElementById("pegTableMessage").innerHTML = "No Result";
+                  } else {
+                     document.getElementById("pegTableMessage").innerHTML = "Mulai pencarian karyawan dengan mengetik nama pada kolom search";
+                  }
+               } else {
+                  tr[1].style.display = "none";
+               }
+            }
+
             function selectCat(cat) {
                catBtn = document.getElementById("ddcBtn");
                label = document.getElementById("ddcbtnLabel");
-               icon1 = document.getElementById("iconDDC1");
-               icon2 = document.getElementById("iconDDC2");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
-                  icon1.style.display = "none";
-                  icon2.style.display = "";
                } else {
                   cat = "Pilih Kategori";
                   catBtn.classList.toggle("selectd");
-                  icon2.style.display = "none";
-                  icon1.style.display = "";
                }
                document.getElementById("ddcContent").classList.toggle("show");
                label.innerHTML = cat;
@@ -399,11 +448,12 @@ $nip = $_SESSION['nip'];
                var tglSelesai = document.forms["FormSJ"]["tglSelesai"].value;
                var jamMulai = document.forms["FormSJ"]["jamMulai"].value;
                var jamSelesai = document.forms["FormSJ"]["jamSelesai"].value;
+               var keterangan = document.forms["FormSJ"]["keterangan"].value;
                var error = 0;
                var msg;
                 alert(jamMulai);
                 alert(jamSelesai);
-               if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
+               if (volumetype == "" || keterangan == "" || tglMulai == "" || tglSelesai == ""){
                   msg = "Semua kolom harus diisi";
                   error++;
                } else if ( tglMulai > tglSelesai){
@@ -420,17 +470,59 @@ $nip = $_SESSION['nip'];
                }
 
                if ( error == 0){
-                  alert("ok");
+                  alert("Berhasil submit jurnal");
                   document.getElementById("FormSJ").submit();
                } else {
                   alert(msg);
                }
 
             }
-            function lihatJurnal(nip, nama, bagian, jabatan) {
+
+            function validateEA() {
+               var nama = document.forms["FormEA"]["nama"].value;
+               var bagian = document.forms["FormEA"]["bagian"].value;
+               var jabatan = document.forms["FormEA"]["jabatan"].value;
+               var password = document.forms["FormEA"]["password"].value;
+               var level = document.forms["FormEA"]["level"].value;
+               var error = 0;
+               var msg;
+                alert(jamMulai);
+                alert(jamSelesai);
+               if (nama == "" || jabatan == "" || bagian == "" || password == "" || level == ""){
+                  msg = "Tidak boleh ada kolom yang kosong";
+                  error++;
+               } else if ( level > 99){
+                  msg = "Level tidak boleh lebih dari 99";
+                  error++;
+               } else if ( level = 99){
+                  msg = "Level tidak boleh sama dengan 99";
+                  error++;
+               }
+
+               if ( error == 0){
+                  alert("Berhasil edit account");
+                  document.getElementById("FormEA").submit();
+               } else {
+                  alert(msg);
+               }
+
+            }
+
+            function lihatJurnal(nip, nama) {
               document.getElementById("modalLJ").style.display = "block";
               document.getElementById("labelPemilikJurnal").innerHTML = nama;
               document.getElementById("LJSnip").value = nip;
+            }
+
+            function editAccount(nip, nama, bagian, jabatan, level, password){
+              document.getElementById("ModalEA").style.display = "block";
+              document.getElementById("labelPemilikAccount").innerHTML = nip;
+              document.getElementById("EAnip").value = nip;
+              document.getElementById("inputNama").value = nama;
+              document.getElementById("inputBagian").value = bagian;
+              document.getElementById("inputJabatan").value = jabatan;
+              document.getElementById("inputLevel").value = level;
+              document.getElementById("inputPassword").value = password;
             }
 
 
@@ -506,7 +598,7 @@ $nip = $_SESSION['nip'];
               if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
-                  url: "tabelLJstaff.php",             
+                  url: "tabelLJadmin.php",             
                   dataType: "html",   //expect html to be returned
                   data: data,               
                   success: function(response){                    
@@ -514,6 +606,33 @@ $nip = $_SESSION['nip'];
 
                       if(document.getElementById(nip)){
                         document.getElementById("labelTotalWaktuAdm").innerHTML = document.getElementById(nip).value;
+                        var csv = document.getElementById("csvBtnADM");
+                        var xls = document.getElementById("xlsBtnADM");
+                        var pdf = document.getElementById("pdfBtnADM");
+                        csv.addEventListener('click', function(e){
+                          $('#tabelLJajaxADM').tableExport({
+                            type:'csv',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        xls.addEventListener('click', function(e){
+                          $('#tabelLJajaxADM').tableExport({
+                            type:'xls',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        pdf.addEventListener('click', function(e){
+                          $('#tabelLJajaxADM').tableExport({
+                            type:'pdf',
+                            jspdf: {
+                              orientation: 'l'
+                            },
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
                       }
                   }
                 });
@@ -553,6 +672,33 @@ $nip = $_SESSION['nip'];
                       $("#tabelLJstaffContainer").html(response);
                       if(document.getElementById(nip)){
                         document.getElementById("labelTotalWaktu").innerHTML = document.getElementById(nip).value;
+                        var csv = document.getElementById("csvBtn");
+                        var xls = document.getElementById("xlsBtn");
+                        var pdf = document.getElementById("pdfBtn");
+                        csv.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'csv',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        xls.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'xls',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        pdf.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'pdf',
+                            jspdf: {
+                              orientation: 'l'
+                            },
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
                       }
                   }
                 });

@@ -8,7 +8,7 @@
 				                </div>
 				                <div class="PJAfilter" id="PJAfilter">
 					                <div class="dropdownCat">
-					                    <button class="dropbtn" id="filBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span></button>
+					                    <button class="dropbtn" id="filBtn"><span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 					                    <div class="dropdownCat-content" id="filContent">
 					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -94,9 +94,7 @@
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="lihatJurnal(
 											'<?php echo $JAnip; ?>',
-											'<?php echo $JAnama; ?>',
-											'<?php echo $JAbagian; ?>',
-											'<?php echo $JAjabatan; ?>'
+											'<?php echo $JAnama; ?>'
 										)">Lihat Jurnal</a>
 									</td>
 								</tr>
