@@ -327,7 +327,6 @@ $nip = $_SESSION['nip'];
                } else {
                   catFilter = '';
                }
-               console.log(tr.length);
                for (i = 2; i < tr.length; i++){
                   td = tr[i].getElementsByTagName("td")[1];
                   if(td){

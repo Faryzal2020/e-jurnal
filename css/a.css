@@ -43,7 +43,7 @@
 		.tCWrapper { display: inline-block; height: 100%; width: 100%; }
 		.tCheader { padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
 
-		.tchbox { background-color: #ECECEC; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
+		.tchbox { background-color: #ECECEC; min-width: 90%; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
 		.searchActivity { display: inline-block; margin-left: 30px; width: 60%; padding-right: 20px; }
 		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; border-radius: 5px; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
 		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
@@ -100,5 +100,5 @@
 		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active { box-shadow: 0 0 0; }
 		.wrapperTotalWaktu { display: inline-block; padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }
-
-		* { transition: all .1s ease}
+		#event_list { transition: all 0s ease 0s; }
+		*:not(.date_popup_wrap) { transition: all .1s ease}

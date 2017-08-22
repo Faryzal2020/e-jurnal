@@ -45,7 +45,7 @@
 				<li class="menu-item"><a href="#">Profil Anda</a></li>
 			</ul>
 			<?php
-				if ($level == 99){
+				if ($level == 99 || $level == 98){
 			?>
 			<ul>
 				<li class="menu-item"><a href="#">Edit Account</a></li>
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<?php
-				if ($level == 99){
+				if ($level == 99 || $level == 98){
 			?>
 			<div class="tab">
 				<div class="tabN">

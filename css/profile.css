@@ -62,7 +62,5 @@
 #tabledata { display: block; margin: auto; }
 .tabledata { table-layout: auto; }
 .tabledata th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none; width: 500px}
-
-		* { transition: all .1s ease}
  
 				
