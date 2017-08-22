@@ -33,17 +33,17 @@ while($data = mysqli_fetch_row($detail))
     
     echo "<tr>";
     echo "<td align=center>$data[0]</td>";
-    echo "<td align=center style='padding: 10px; max-width: 410px;'>$data[7]</td>";
+    echo "<td align=center style='padding: 10px; max-width: 410px; width: 25%;'>$data[7]</td>";
     echo "<td align=center>$data[6]</td>";
     echo "<td align=center style='width:130px;'>$data[9]</td>";
     echo "<td align=center style='width:130px;'>$data[10] Menit</td>";
     echo "<td align=center>$data[1]</td>";
     echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
-    echo "<td align=center style='width: 140px;'>$data[3]</td>";
-    echo "<td align=center style='width: 140px;'>$data[4]</td>";
+    echo "<td align=center style='min-width: 100px;'>$data[3]</td>";
+    echo "<td align=center style='min-width: 100px;'>$data[4]</td>";
     echo "<td align=center style='width: 140px;'>$durasi_pekerjaan Menit</td>";
     echo "<td align=center>$data[5]</td>";
-    echo "<td align=center style='width: 140px;'>$data[11]</td>";
+    echo "<td align=center style='width: 20%; min-width: 150px;'>$data[11]</td>";
     echo "</tr>";
 }
 echo "</table>";

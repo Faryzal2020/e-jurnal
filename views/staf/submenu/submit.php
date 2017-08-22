@@ -22,6 +22,9 @@
 				                </div>
 								<div class="SAwrapper">
 									<div class="searchActivity">
+										<div class="searchIconWrapperAct">
+				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
+				                		</div>
 					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;">
 					                </div>
 						            Result: 

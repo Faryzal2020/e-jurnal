@@ -5,7 +5,7 @@
 							<label>DATA PEMILIK ACCOUNT</label>
 						</div>
 						<div class="body_profile">
-							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
+							<table class="profileTable" border="1" cellpadding="20" align="center">
 								<tr>
 									<td><label>NIP</label></td>
 									
@@ -24,18 +24,17 @@
 									<td><span id="jabatan"><?php echo $jabatan; ?></span></td>
 								</tr>
 							</table>
-                                
 						</div>
-						
 					</div>
                     <div class="UPwrapper">
-                    <button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
-                     </div>
-		              <div class="content">
+                    	<button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
+                    </div>
+		            <div class="content">
                         <div class="ubah_ubah">
                             <div id="ubah_ubah1">
                                 <?php require_once "views/staf/submenu/ubahpassword_staff.php";?>
                             </div>
                         </div>
+                    </div>
 				</div>
 	

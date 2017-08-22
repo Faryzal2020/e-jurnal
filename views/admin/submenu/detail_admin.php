@@ -47,7 +47,7 @@
 										<button class="tombol_detail" 
                     onclick="detail_selectActivity('<?php echo $JAnip ?>',
                                                     '<?php echo $JAnama ?>',
-                                                    '<?php echo $date ?>')"><a href="#">Detail</a></button>
+                                                    '<?php echo $date ?>')">Detail</button>
 									</td>
 								</tr>
 								<?php
@@ -104,7 +104,7 @@
 										<button class="tombol_detail" 
                     onclick="detail_selectActivity('<?php echo $JAnip ?>',
                                                     '<?php echo $JAnama ?>',
-                                                    '<?php echo $date ?>')"><a href="#">Detail</a></button>
+                                                    '<?php echo $date ?>')">Detail</button>
 									</td>
 								</tr>
 								<?php

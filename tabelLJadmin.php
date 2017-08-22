@@ -54,7 +54,7 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[3]</td>";
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[4]</td>";
         echo "<td align=center style='width: 120px; font-size: 0.9em;'>$data[5]</td>";
-        echo "<td align=center style='width: 25%; font-size: 0.8em;'>$data[10]</td>";
+        echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
         echo "</tr>";
     }
 } else {
@@ -72,7 +72,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Keterangan</b></th>
     </tr>";
     echo "<tr>";
-    echo "<td align=center colspan='9'>Tidak ada data</td>";
+    echo "<td align=center colspan='10'>Tidak ada data</td>";
     echo "</tr>";
     echo "</table>";
 }

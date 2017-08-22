@@ -11,7 +11,7 @@
 				                </div>
 								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihMinggu">
-										<input id="LJSpilihMinggu" type="text" value=""/>
+										<input id="LJSpilihMinggu" type="text" value="<?php echo date('Y-W');?>"/>
 									</div>
 								</div>
 				                <div class="LJSfilter" style="display: none">

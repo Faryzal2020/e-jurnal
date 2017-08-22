@@ -4,7 +4,9 @@
                                         <span class="tutup_detail">&times;</span>
                                         <div id="detail_label">Detail Jurnal</div>
                                         <div class="detail_jurnal">
-                                            <li>Kumpulan Jurnal Milik :  <label id="jurnal_nama"> </label></li>
+                                            <div class="DJmilikWrapper">
+                                            Kumpulan Jurnal Milik :  <label id="jurnal_nama"> </label>
+                                            </div>
                                         </div>
                                         <div id="tabledata">
                                         </div>
