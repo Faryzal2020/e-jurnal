@@ -73,18 +73,17 @@
 								</tr>
 								<?php
 									if ( $level == 2 ){
-                                        $GEsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_jurnal='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_jurnal='$date'";
 									} else {
-                                        $GEsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_jurnal='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_jurnal='$date'";
 									}
                                      
                                     
                                     $result = mysqli_query($db, $GEsql);
                                     if(mysqli_num_rows($result) > 0){
-                                        
                                     while($row = $result->fetch_assoc()){
                                         $JA_nip = $row['nip'];
-                                    }
+                                    
                                     
                                     $GAUsql = "SELECT * FROM user WHERE nip='$JA_nip'";            
                                     $hasil = mysqli_query($db, $GAUsql);
@@ -110,6 +109,7 @@
 								</tr>
 								<?php
 									}
+                                    }
                                 }else {
                                         echo "<tr>";
                                         echo "<td align=center colspan='9'>Tidak ada data</td>";
