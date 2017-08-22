@@ -319,7 +319,7 @@ $nip = $_SESSION['nip'];
                catBtn = document.getElementById("ddcBtn");
                input = document.getElementById("actSearch");
                filter = input.value.toUpperCase();
-               table = document.getElementById("actTable");
+               table = document.getElementById("actListTable");
                tr = table.getElementsByTagName("tr");
 
                if(catBtn.classList.contains("selectd")){
@@ -327,7 +327,7 @@ $nip = $_SESSION['nip'];
                } else {
                   catFilter = '';
                }
-
+               console.log(tr.length);
                for (i = 2; i < tr.length; i++){
                   td = tr[i].getElementsByTagName("td")[1];
                   if(td){

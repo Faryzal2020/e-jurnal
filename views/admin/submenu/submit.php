@@ -30,7 +30,7 @@
 							</div>
 						</div>
 						<div class="tCbody">
-							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
+							<table class="actListTable" id="actListTable" border="1" cellpadding="20" align="center">
 								<tr>
 									<th style="width: 60px">No</th>
 									<th>Nama Aktivitas</th>
