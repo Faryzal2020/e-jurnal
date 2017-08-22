@@ -5,7 +5,7 @@
 							<label>DATA PEMILIK ACCOUNT</label>
 						</div>
 						<div class="body_profile">
-							<table class="actTable" id="actTable" border="1" cellpadding="20" align="center">
+							<table class="profileTable" border="1" cellpadding="20" align="center">
 								<tr>
 									<td><label>NIP</label></td>
 									

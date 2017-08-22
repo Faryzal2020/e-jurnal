@@ -4,11 +4,12 @@
 
 .content_profile { justify-content:center; padding: 5px; }
 .content_wrapper_profile { display: block; height: auto; width: 80%; margin: auto;}
-.profile_header { text-align: center; padding-bottom: 20px; justify-content:center; height: 100px; width: 100%; }
+.profile_header { text-align: center; padding-bottom: 20px; min-width: 420px; max-width: 614px; margin: auto; justify-content:center; height: 100px; width: 100%; }
 .profile_header label { padding: 30px; background-color: #ECECEC;   width: 100%; height: auto;}
 .profile_password { background-color:#ECECEC;}
-.body_profile { background-color: #ECECEC; width: 100%; height: auto; margin: auto; }
-.tombol_ubah { background:#2C383B; width: 160px; margin-left: 30px; border: 1px solid #ECECEC; color: #ECECEC; text-decoration: none; float: right; box-shadow: 2px 2px 0 rgba(0,0,0,.5)}
+.body_profile { width: 100%; height: auto; margin: auto; min-width: 420px; }
+.profileTable td { padding: 5px 5px 5px 10px;  }
+.tombol_ubah { background:#2C383B; border-radius: 3px; width: 160px; margin-left: 30px; border: 1px solid #ECECEC; color: #ECECEC; text-decoration: none; float: right; box-shadow: 2px 2px 0 rgba(0,0,0,.5)}
 .tombol_ubah:hover { background: #ECECEC; border: 1px solid #2C383B; color: #2C383B; }
 .tombol_ubah:active { box-shadow: 0 0 0; }
 .ubah_ubah { display: none; width: 100%; }
@@ -16,7 +17,7 @@
 .tablepass td {padding: 3px;}
 
 
-.UPwrapper { padding-top: 15px; border: 0px; background-color: white; width: 80%; margin: auto; }
+.UPwrapper { padding-top: 15px; border: 0px; background-color: white; min-width: 420px; width: 80%; max-width: 614px; margin: auto; }
 .pass_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
 .pass_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 700px; }
 #password_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
@@ -31,7 +32,7 @@
 .tutupin:hover, .tutupin:focus { color: #333333; text-decoration: none; cursor: pointer; }
 
 
-.detail_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
+.detail_select { display: none; position: fixed; overflow: auto; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
 .detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 90vw; min-width: 870px }
 .detail_jurnal { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
 #detail_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}

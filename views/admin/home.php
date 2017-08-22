@@ -33,22 +33,22 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item"><a href="#">Home</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><a href="#">Submit Jurnal</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><a href="#">Daftar Jurnal</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Daftar Jurnal</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item"><a href="#">Profil Anda</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
 			</ul>
 			<?php
 				if ($level == 99 || $level == 98){
 			?>
 			<ul>
-				<li class="menu-item"><a href="#">Edit Account</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<?php
 				}

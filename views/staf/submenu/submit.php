@@ -22,7 +22,7 @@
 				                </div>
 								<div class="SAwrapper">
 									<div class="searchActivity">
-					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%">
+					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;">
 					                </div>
 						            Result: 
 						            <label id="actCount">0</label>

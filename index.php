@@ -133,6 +133,7 @@ $nip = $_SESSION['nip'];
 
             span.onclick = function() {
                 modal.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
             }
             tutup.onclick = function() {
                 pass_select.style.display = "none";
@@ -167,7 +168,7 @@ $nip = $_SESSION['nip'];
                     pass_select.style.display = "none";
                     
                     if (detail_select){
-                        detail_select.style.display = "none";
+                      detail_select.style.display = "none";
                     }
                     if(staff_detail_select){
                       staff_detail_select.style.display = "none";
@@ -178,6 +179,7 @@ $nip = $_SESSION['nip'];
                     if(modalEA){
                       modalEA.style.display = "none";
                     }
+                    document.getElementsByTagName("body")[0].style.overflow = "";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
@@ -221,6 +223,7 @@ $nip = $_SESSION['nip'];
             }
              
             function selectActivity(id, nama, durasi, cat){
+               document.getElementsByTagName("body")[0].style.overflow = "hidden";
                console.log(id + nama + durasi + cat);
                modal.style.display = "block";
                namaAct.innerHTML = nama;
@@ -232,6 +235,7 @@ $nip = $_SESSION['nip'];
             function detail_selectActivity(nip_nip, nama, tanggal_tanggal){
                 document.getElementById("detail_select").style.display = "block";
                 document.getElementById("jurnal_nama").innerHTML = nama;
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
                 url: "detailajax.php",             
@@ -312,6 +316,7 @@ $nip = $_SESSION['nip'];
              
             function pass_selectActivity(){
                     pass_select.style.display = "block";
+                    document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
 
             function searchAct() {
@@ -522,6 +527,7 @@ $nip = $_SESSION['nip'];
               document.getElementById("modalLJ").style.display = "block";
               document.getElementById("labelPemilikJurnal").innerHTML = nama;
               document.getElementById("LJSnip").value = nip;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
 
             function editAccount(nip, nama, bagian, jabatan, level, password){
@@ -533,6 +539,7 @@ $nip = $_SESSION['nip'];
               document.getElementById("inputJabatan").value = jabatan;
               document.getElementById("inputLevel").value = level;
               document.getElementById("inputPassword").value = password;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
 
 

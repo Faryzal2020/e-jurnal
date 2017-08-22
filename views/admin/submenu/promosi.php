@@ -3,8 +3,11 @@
 						<div class="tCheader">
 							<div class="tchbox">
 				                <div class="SAwrapper">
-									<div class="searchActivity">
-					                    <input type="text" id="pegSearch" onkeyup="searchAcc()" placeholder="Search Nama Pegawai" style="width: 100%">
+				                	<div class="searchIconWrapper">
+				                		<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
+				                	</div>
+									<div class="searchPegawai">
+					                    <input type="text" id="pegSearch" onkeyup="searchAcc()" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
 					                </div>
 						            Result: 
 						            <label id="pegCount">0</label>
