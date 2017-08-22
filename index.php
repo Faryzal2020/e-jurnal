@@ -501,15 +501,13 @@ $nip = $_SESSION['nip'];
                var level = document.forms["FormEA"]["level"].value;
                var error = 0;
                var msg;
-                alert(jamMulai);
-                alert(jamSelesai);
                if (nama == "" || jabatan == "" || bagian == "" || password == "" || level == ""){
                   msg = "Tidak boleh ada kolom yang kosong";
                   error++;
                } else if ( level > 99){
                   msg = "Level tidak boleh lebih dari 99";
                   error++;
-               } else if ( level = 99){
+               } else if ( level == 99){
                   msg = "Level tidak boleh sama dengan 99";
                   error++;
                }
@@ -528,6 +526,7 @@ $nip = $_SESSION['nip'];
               document.getElementById("labelPemilikJurnal").innerHTML = nama;
               document.getElementById("LJSnip").value = nip;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              document.getElementById("tabelLJstaffContainer").innerHTML = "";
             }
 
             function editAccount(nip, nama, bagian, jabatan, level, password){
