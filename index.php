@@ -66,7 +66,7 @@ $nip = $_SESSION['nip'];
             $level = $_POST['level'];
             $EAsql = "UPDATE user SET nama_pegawai = '$nama', bagian = '$bagian', jabatan = '$jabatan', password = '$password', level = '$level' WHERE nip = '$nip'";
             mysqli_query($db,$EAsql);
-         }
+         } 
         Redirect('index.php');
         }
       
@@ -85,8 +85,10 @@ $nip = $_SESSION['nip'];
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+   <link rel="stylesheet" type="text/css" href="css/profile.css"><link rel="stylesheet" type="text/css" href="css/pure.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
    <link rel="stylesheet" type="text/css" href="css/a.css">
-   <link rel="stylesheet" type="text/css" href="css/profile.css">
+	
    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
@@ -98,6 +100,9 @@ $nip = $_SESSION['nip'];
    <script type="text/javascript" src="js/html2canvas/html2canvas.min.js"></script>
    <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
+   <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+   <script type="text/javascript" src="js/script.js"></script>   
+
     
    </head>
    <body class="background">
@@ -134,8 +139,9 @@ $nip = $_SESSION['nip'];
             var modalDJS = document.getElementById('modalDJS');
             var closeDJS2 = document.getElementsByClassName("DJS2close")[0];
             var modalDJS2 = document.getElementById('modalDJS2');
+            var foto_select = document.getElementById('foto_select');
+            var foto_tutup = document.getElementsByClassName("foto_tutup")[0];
              
-
             span.onclick = function() {
                 modal.style.display = "none";
                 document.getElementsByTagName("body")[0].style.overflow = "";
@@ -144,6 +150,12 @@ $nip = $_SESSION['nip'];
                 pass_select.style.display = "none";
             }
             
+            if(typeof foto_tutup != 'undefined'){
+              foto_tutup.onclick = function() {
+                  foto_select.style.display = "none";
+              }
+            }
+             
             if(typeof staff_tutup_detail != 'undefined'){
               staff_tutup_detail.onclick = function() {
                   staff_detail_select.style.display = "none";
@@ -179,9 +191,10 @@ $nip = $_SESSION['nip'];
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
+                    foto_select.style.display = "none";
                     
                     if (detail_select){
                       detail_select.style.display = "none";
@@ -230,6 +243,10 @@ $nip = $_SESSION['nip'];
                     }
                 }
             }
+            function select_file(){
+			document.getElementById('image').click();
+			return false;
+		    }
             var ubah = document.querySelectorAll('.tombol_ubah')
             var ubah_ubah = document.querySelectorAll('.ubah_ubah')
             var forEach = Array.prototype.forEach;
@@ -344,8 +361,17 @@ $nip = $_SESSION['nip'];
                  }
               }
              
+             
+             
+             
+             
+             
             function pass_selectActivity(){
                     pass_select.style.display = "block";
+                    document.getElementsByTagName("body")[0].style.overflow = "hidden";
+            }
+            function ubah_foto(){
+                    foto_select.style.display = "block";
                     document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
 

@@ -22,11 +22,18 @@
 		.userpanelwrapper{ position: relative; background: whitesmoke; border: 2px solid #565656; padding: 5px; padding-bottom: 360px; max-height: 350px;}
 		.userpaneltable{ margin: auto;}
 		.foto{ width: 90%; }
-		.userphoto{ width: 120px; height: 150px; background-color: black; margin: auto;}
+		.userphoto{ width: 120px; height: 150px; background-color: white; margin: auto;}
+        .userphoto a img { border-radius: 40%; border: 3px solid #337cc5; }
 		.username{ width: 90%; font-size: 0.9em;}
 		.jabatan { font-size: 0.8em; }
 		.userid{ width: 70%; font-size: 0.9em; }
 		.logoutbtn{ position: absolute; bottom: 5; right: 5; text-align: right; padding-right: 5px; padding-top: 10px; }
+        .logo_setwapres {
+            width: auto;
+            height: 110px;
+            overflow: auto;
+        }
+        
 
 		.pagebody{ background: white; overflow: auto; margin-top: 20px; display: flex; }
 		.sidenav { background: #ECECEC; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}
