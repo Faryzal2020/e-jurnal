@@ -65,7 +65,8 @@
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
-			                                    <td colspan="3"><label id="edjsNamaAct"></label></td>
+			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
+			                                    <td><a onclick="DJSpilihAct()">Ganti</a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -142,6 +143,82 @@
 			                                </tr>
 			                        </table>
 			                    </form>
+			                </div>
+			            </div>
+			            <div id="modalDJS2" class="tCmodal zindex2">
+			                <div class="tCmodal-content fit-width">
+			                    <span class="close DJS2close">&times;</span>
+			                    <div id="tCModalLabel">Ganti aktivitas</div>
+			                    <div class="tCheader">
+									<div class="tchbox">
+										<div class="dropdownCat">
+						                    <button class="dropbtn" id="pacBtn"><span id="pacbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+						                    <div class="dropdownCat-content" id="pacContent">
+						                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
+						                        <?php
+						                            $i=0;
+						                            while ($cat = mysqli_fetch_array($Catquery)) {
+						                                if($cat[$i]==null){
+						                                    echo "";
+						                                } else {
+						                        ?>
+						                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
+						                        <?php
+						                                }
+						                            }
+						                        ?>
+						                    </div>
+						                </div>
+										<div class="SAwrapper">
+											<div class="searchActivity">
+												<div class="searchIconWrapperAct">
+						                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
+						                		</div>
+							                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;">
+							                </div>
+								            Result: 
+								            <label id="actCount">0</label>
+						                </div>
+									</div>
+								</div>
+								<div class="tCbody">
+									<table class="actListTable" id="actListTable" border="1" cellpadding="20" align="center">
+										<tr>
+											<th style="width: 60px">No</th>
+											<th>Nama Aktivitas</th>
+											<th style="width: 150px">Standar Waktu Pengerjaan</th>
+											<th style="width: 130px">Kategori</th>
+											<th style="width: 80px"></th>
+										</tr>
+										<tr>
+											<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
+										</tr>
+										<?php
+											while($al = mysqli_fetch_array($ALquery2)) {
+												$idAct = $al['id_aktivitas'];
+												$namaAct = $al['nama_aktivitas'];
+												$durasi = $al['durasi'];
+												$namaCateg = $al['nama_kategori'];
+										?>
+										<tr style="display: none">
+											<td style="text-align: center;"><?php echo $idAct; ?></td>
+											<td><?php echo $namaAct ?></td>
+											<td style="text-align: center;"><?php echo $durasi . " Menit"?></td>
+											<td style="text-align: center;"><?php echo $namaCateg ?></td>
+											<td style="text-align: center; width: 80px;">
+												<a class="selectActbtn" onclick="selectActivity(
+													'<?php echo $idAct; ?>',
+													'<?php echo $namaAct; ?>',
+													'<?php echo $durasi; ?>',
+													'<?php echo $namaCateg; ?>'
+												)"><span class="glyphicon glyphicon-ok"></span></a>
+											</td>
+										</tr>
+										<?php
+											}
+										?>
+									</table>
+								</div>
 			                </div>
 			            </div>
 					</div>

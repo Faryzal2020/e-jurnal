@@ -21,10 +21,11 @@ $nip = $_SESSION['nip'];
       // Activity List
       $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
       $ALquery = mysqli_query($db,$ALsql);
+      $ALquery2 = mysqli_query($db,$ALsql);
       // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
-      // Semua Pegawan
+      // Semua Pegawai
       $ALLsql = "SELECT * FROM user WHERE user.level < 99";
       $ALLquery = mysqli_query($db,$ALLsql);
       // Daftar Pegawai
@@ -131,6 +132,8 @@ $nip = $_SESSION['nip'];
             var modalEA = document.getElementById('ModalEA');
             var closeDJS = document.getElementsByClassName("DJSclose")[0];
             var modalDJS = document.getElementById('modalDJS');
+            var closeDJS2 = document.getElementsByClassName("DJS2close")[0];
+            var modalDJS2 = document.getElementById('modalDJS2');
              
 
             span.onclick = function() {
@@ -165,12 +168,18 @@ $nip = $_SESSION['nip'];
             if ( typeof closeDJS != 'undefined' ){
               closeDJS.onclick = function() {
                 modalDJS.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
+            if ( typeof closeDJS2 != 'undefined' ){
+              closeDJS2.onclick = function() {
+                modalDJS2.style.display = "none";
               }
             }
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     
@@ -186,10 +195,16 @@ $nip = $_SESSION['nip'];
                     if(modalEA){
                       modalEA.style.display = "none";
                     }
-                    if(modalDJS){
-                      modalDJS.style.display = "none";
-                    }
                     document.getElementsByTagName("body")[0].style.overflow = "";
+                    if(modalDJS){
+                      if(modalDJS2.style.display != "block"){
+                        modalDJS.style.display = "none";
+                      } else {
+                        modalDJS2.style.display = "none";
+                        document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                      }
+                    }
+                    
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
@@ -533,6 +548,10 @@ $nip = $_SESSION['nip'];
             function editDJ(idJ,nip) {
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                document.getElementById("modalDJS").style.display = "block";
+            }
+
+            function DJSpilihAct() {
+              document.getElementById("modalDJS2").style.display = "block"
             }
 
             function validateSJ() {

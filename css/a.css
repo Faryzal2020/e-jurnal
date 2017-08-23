@@ -69,7 +69,9 @@
 		.selectActbtn:hover { text-decoration: none; color: #2C383B; background-color: #ECECEC; border: 1px solid #2C383B; }
 		.selectActbtn:active { box-shadow: 0 0 0; }
 		.tCmodal { display: none; overflow: auto; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
+		.zindex2 { z-index: 2; }
 		.tCmodal-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 700px; }
+		.fit-width { width: fit-content; }
 		.tableSJ td, .tableEA td {padding: 5px;}
 		.close, .tutupLJ, .EAclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
 		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus{ 
