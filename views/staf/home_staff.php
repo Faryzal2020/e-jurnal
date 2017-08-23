@@ -39,7 +39,10 @@
 				<li class="menu-item"><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Daftar Jurnal</a></li>
+				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
+			</ul>
+    		<ul>
+				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">List Jurnal</a></li>
 			</ul>
 			<ul>
 				<li class="menu-item"><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
@@ -54,6 +57,11 @@
 			<div class="tab">
 				<div class="tabN">
 					<?php require_once "views/staf/submenu/submit.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/staf/submenu/draftjurnal.php";?>
 				</div>
 			</div>
 			<div class="tab">

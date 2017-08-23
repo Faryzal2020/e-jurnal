@@ -98,13 +98,13 @@
 		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 8px;}
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 10px; }
-		.LJSfilter { margin-left: 30px; padding-top: 8px;}
-		.LJSfilter div { display: inline-block; }
-		#LJSpilihMinggu, #LJApilihMinggu { width: 163px; }
-		#LJSpilihTahun, #LJSpilihBulan, #LJApilihTahun, #LJApilihBulan { height: 30px; }
-		.LJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
-		.LJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
-		.LJSbtn:active { box-shadow: 0 0 0; }
+		.LJSfilter, .DJSfilter { margin-left: 30px; padding-top: 8px;}
+		.LJSfilter div, .DJSfilter div { display: inline-block; }
+		#LJSpilihMinggu, #LJApilihMinggu, #DJSpilihMinggu { width: 163px; }
+		#LJSpilihTahun, #LJSpilihBulan, #LJApilihTahun, #LJApilihBulan, #DJSpilihTahun, #DJSpilihBulan { height: 30px; }
+		.LJSbtn, .DJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn:hover, .DJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.LJSbtn:active, .DJSbtn:active { box-shadow: 0 0 0; }
 		.wrapperTotalWaktu { display: inline-block; padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }
 		#event_list { transition: all 0s ease 0s; }
 		.searchIconWrapper { display: flex; position: absolute; height: 30px; width: 40px; margin-left: 40px; border-top-left-radius: 4px; border-bottom-left-radius: 4px; background-color: #2C383B;}

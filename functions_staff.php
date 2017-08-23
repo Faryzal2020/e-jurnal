@@ -60,7 +60,7 @@ function getCalender($year = '',$month = '')
                         }
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE Tanggal_Jurnal = '".$currentDate."' AND nip='".$_SESSION['nip']."'";
+						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE tanggal_simpan = '".$currentDate."' AND nip='".$_SESSION['nip']."'";
 						$result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
 						//Define date cell color

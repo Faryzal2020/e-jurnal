@@ -63,10 +63,10 @@ function getCalender($year = '',$month = '')
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
                         if($level == 2){
-						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian'";
+						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_simpan = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian'";
                         } 
                         else{
-                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND Tanggal_Jurnal = '".$currentDate."' AND user.level <= '$level'";
+                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_simpan = '".$currentDate."' AND user.level <= '$level'";
                         }
                         $result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;

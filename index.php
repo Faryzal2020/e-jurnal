@@ -129,6 +129,8 @@ $nip = $_SESSION['nip'];
             var modalLJ = document.getElementById('modalLJ');
             var closeEA = document.getElementsByClassName("EAclose")[0];
             var modalEA = document.getElementById('ModalEA');
+            var closeDJS = document.getElementsByClassName("DJSclose")[0];
+            var modalDJS = document.getElementById('modalDJS');
              
 
             span.onclick = function() {
@@ -160,10 +162,15 @@ $nip = $_SESSION['nip'];
                 modalEA.style.display = "none";
               }
             }
+            if ( typeof closeDJS != 'undefined' ){
+              closeDJS.onclick = function() {
+                modalDJS.style.display = "none";
+              }
+            }
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
                     
@@ -179,11 +186,15 @@ $nip = $_SESSION['nip'];
                     if(modalEA){
                       modalEA.style.display = "none";
                     }
+                    if(modalDJS){
+                      modalDJS.style.display = "none";
+                    }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
                     var fil = document.getElementById("filContent");
+                    var djs = document.getElementById("djsContent");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
                     }
@@ -195,6 +206,11 @@ $nip = $_SESSION['nip'];
                     if (fil){
                       if ( fil.classList.contains("show")){
                           fil.classList.toggle("show");
+                      }
+                    }
+                    if (djs){
+                      if ( djs.classList.contains("show")){
+                          djs.classList.toggle("show");
                       }
                     }
                 }
@@ -224,7 +240,6 @@ $nip = $_SESSION['nip'];
              
             function selectActivity(id, nama, durasi, cat){
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
-               console.log(id + nama + durasi + cat);
                modal.style.display = "block";
                namaAct.innerHTML = nama;
                durasiAct.innerHTML = durasi;
@@ -457,6 +472,67 @@ $nip = $_SESSION['nip'];
                     document.getElementById("LJSfilterType").value = rep;
                  }
                }
+            }
+
+            selectDJS('Mingguan');
+            function selectDJS(t) {
+               btn = document.getElementById("djsBtn");
+               label = document.getElementById("djsbtnLabel");
+               if (btn){
+                 var mingguan = document.getElementsByClassName("DJSfilter")[0];
+                 var bulanan = document.getElementsByClassName("DJSfilter")[1];
+                 document.getElementById("djsContent").classList.toggle("show");
+                 label.innerHTML = t;
+
+                 if (mingguan){
+                   if( t == 'Mingguan'){
+                      mingguan.style.display = "inline-block";
+                      bulanan.style.display = "none";
+                   } else {
+                      bulanan.style.display = "inline-block";
+                      mingguan.style.display = "none";
+                   }
+                    document.getElementById("DJSfilterType").value = t;
+                 }
+               }
+            }
+
+            function lihatDJS(nip){
+              var filType = document.getElementById("DJSfilterType").value;
+              var data = "kosong";
+
+              if ( filType == 'Mingguan'){
+                var tahunMinggu = document.getElementById("DJSpilihMinggu").value;
+                var split = tahunMinggu.split("-");
+                var tahun = split[0];
+                var minggu = split[1];
+                if ( tahunMinggu != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
+                }
+              } else {
+                var tahun = document.getElementById("DJSpilihTahun").value;
+                var bulan = document.getElementById("DJSpilihBulan").value;
+                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
+              }
+              console.log(data);
+              if ( data != 'kosong'){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "tabelDraftStaff.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: data,               
+                  success: function(response){                    
+                      $("#tabelDJstaffContainer").html(response);
+                  }
+                });
+              } else {
+                alert("Kolom filter kosong");
+              }
+            }
+
+            function editDJ(idJ,nip) {
+               document.getElementsByTagName("body")[0].style.overflow = "hidden";
+               document.getElementById("modalDJS").style.display = "block";
             }
 
             function validateSJ() {
@@ -755,7 +831,10 @@ $nip = $_SESSION['nip'];
            if (document.getElementById("LJApilihMinggu")){
             convertToWeekPicker($("#LJApilihMinggu"));
            }
-            convertToWeekPicker($("#LJSpilihMinggu"));
+           if (document.getElementById("DJSpilihMinggu")){
+            convertToWeekPicker($("#DJSpilihMinggu"));
+           }
+           convertToWeekPicker($("#LJSpilihMinggu"));
            $('.dropbtn').click(function(){
               document.getElementById("ddcContent").classList.toggle("show");
               if (document.getElementById("repContent")){
@@ -763,6 +842,9 @@ $nip = $_SESSION['nip'];
               }
               if (document.getElementById("filContent")){
                 document.getElementById("filContent").classList.toggle("show");
+              }
+              if (document.getElementById("djsContent")){
+                document.getElementById("djsContent").classList.toggle("show");
               }
            })
            $('.clockpicker').clockpicker({
