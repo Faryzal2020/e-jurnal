@@ -43,6 +43,7 @@
                $_SESSION['bagian'] = $row['bagian'];
                $_SESSION['nipb'] = $row['id_pegawai'];
                $_SESSION['jabatan'] = $row['jabatan'];
+               $_SESSION['tab'] = 0;
             } //end else
          } //end else
       }

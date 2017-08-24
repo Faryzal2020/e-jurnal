@@ -54,7 +54,7 @@ if(mysqli_num_rows($result) > 0){
     }
 } else {
     echo "<tr>";
-    echo "<td align=center colspan='10'>Tidak ada data</td>";
+    echo "<td id='noData' align=center colspan='11'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";

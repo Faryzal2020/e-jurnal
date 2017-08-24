@@ -1,7 +1,7 @@
 				<div class="tabContent">
 					<div class="tCWrapper">
 						<div class="tCheader">
-							<div class="tchbox">
+							<div class="tchbox relative">
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="djsBtn"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
@@ -51,6 +51,9 @@
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
 								<a class="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+								<div class="kirimBtnWrapper">
+									<a class="kirimBtn disable" id="kirimBtn">Submit Jurnal</a>
+								</div>
 							</div>
 						</div>
 			            <div id="tabelDJstaffContainer">

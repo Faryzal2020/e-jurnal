@@ -12,7 +12,7 @@
 				                </div>
 								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihHari">
-										<input id="LJSpilihHari" class="w163" type="text" value="<?php echo date('Y-m-d');?>"/>
+										<input id="LJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
 									</div>
 								</div>
 								<div class="LJSfilter" style="display: none">

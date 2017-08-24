@@ -7,8 +7,7 @@
        header('Location: ' . $url, true, $permanent ? 301 : 302);
        exit();
    }
-$nip = $_SESSION['nip'];
-?> <script> console.log('<?php echo $nip ?>');</script><?php 
+   $nip = $_SESSION['nip'];
 
    if (isset($_SESSION['nip'])){
       $nip = $_SESSION['nip'];
@@ -617,7 +616,7 @@ $nip = $_SESSION['nip'];
                }
             }
 
-            selectDJS('Mingguan');
+            
             function selectDJS(t) {
                btn = document.getElementById("djsBtn");
                label = document.getElementById("djsbtnLabel");
@@ -666,6 +665,11 @@ $nip = $_SESSION['nip'];
                   data: data,               
                   success: function(response){                    
                       $("#tabelDJstaffContainer").html(response);
+                      if(document.getElementById("noData")){
+                        document.getElementById("kirimBtn").classList.add("disable");
+                      } else {
+                        document.getElementById("kirimBtn").classList.remove("disable");
+                      }
                   }
                 });
               } else {
@@ -1042,6 +1046,7 @@ $nip = $_SESSION['nip'];
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
+           selectDJS('Mingguan');
            if (document.getElementById("pjBtn1")){
              document.getElementById("pjBtn1").classList.add("active");
            }

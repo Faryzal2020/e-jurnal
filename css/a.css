@@ -1,9 +1,9 @@
 		html, body{ height:100%; width: 100%; }
 		html { display: table; margin: auto; }
 		body{ font-family:Verdana; background-color:#2C383B; margin: 0px; padding: 0px; display: table-cell; }
-		.logo{ background: #2C383B; position: absolute; right: 60; top: 0; height: 120px; width: 250px; transform: skew(-45deg);}
-		.logo_wrapper{ position: absolute; right: 80; top: 10; }
-		.logo_panel{ position: absolute; top: 0; right: 0; background: #2C383B; height: 120px; width: 140px; }
+		.logo{ background: #2C383B; position: absolute; right: 60px; top: 0px; height: 120px; width: 250px; transform: skew(-45deg);}
+		.logo_wrapper{ position: absolute; right: 80px; top: 10px; }
+		.logo_panel{ position: absolute; top: 0px; right: 0px; background: #2C383B; height: 120px; width: 140px; }
 		.wrapper{ background: #FFF; height: 120px; }
 		.header{ background-color:#4482e5; position: relative; height: 120px;
 			background: red; /* For browsers that do not support gradients */    
@@ -14,11 +14,11 @@
 		.page { height: 100%; max-width: 1500px; margin: auto; }
 		.judul { margin: auto; margin-right: 200px; text-shadow: 1px 1px #00ccff; font-size: 2em; padding-top: 35px; width: 300px;}
 
-		.userpanel{ display: inline-block; position: absolute; top: 0; left: 0; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }
+		.userpanel{ display: inline-block; position: absolute; top: 0px; left: 0px; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }
 		.userpanel h1{ font-size: 0.9em; text-align: center; margin-top: 10px; margin-bottom: 5px;}
 		.userpanel td{ text-align: center; height: 30px; padding-top: 10px; }
-		.logout{ display: inline-block; background: #2C383B; padding: 9px; top: 0; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: solid; border-width: 1px; border-color: #2C383B; border-radius: 3px}
-        .tampil-foto{ width:100%; height: 100%;  display: inline-block; background: #2C383B;  padding: 0px;  top: 0; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: none; border-width: 1px; border-color: #2C383B; border-radius: 3px}
+		.logout{ display: inline-block; background: #2C383B; padding: 9px; top: 0px; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: solid; border-width: 1px; border-color: #2C383B; border-radius: 3px}
+        .tampil-foto{ width:100%; height: 100%;  display: inline-block; background: #2C383B;  padding: 0px;  top: 0px; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: none; border-width: 1px; border-color: #2C383B; border-radius: 3px}
 		.logout:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
 		.tampil-foto:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
         .userpanelwrapper{ position: relative; background: whitesmoke; border: 2px solid #565656; padding: 5px; padding-bottom: 360px; max-height: 350px;}
@@ -29,7 +29,7 @@
 		.username{ width: 90%; font-size: 0.9em;}
 		.jabatan { font-size: 0.8em; }
 		.userid{ width: 70%; font-size: 0.9em; }
-		.logoutbtn{ position: absolute; bottom: 5; right: 5; text-align: right; padding-right: 5px; padding-top: 10px; }
+		.logoutbtn{ position: absolute; bottom: 5px; right: 5px; text-align: right; padding-right: 5px; padding-top: 10px; }
         .logo_setwapres {
             width: auto;
             height: 110px;
@@ -60,9 +60,9 @@
 		.tchbox { background-color: #ECECEC; min-width: 890px; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
 		.searchActivity { display: inline-block; margin-left: 60px; width: 60%; padding-right: 20px; }
 		.searchPegawai { display: inline-block; width: 70%; padding-right: 20px; margin-left: 80px; }
-		.dropbtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; border-radius: 5px; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
-		.dropbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; }
-		.dropbtn:active { box-shadow: 0 0 0; }
+		.dropbtn, .kirimBtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; border-radius: 5px; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
+		.dropbtn:hover, .kirimBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B; color: #2C383B; text-decoration: none; }
+		.dropbtn:active, .kirimBtn:active { box-shadow: 0 0 0; }
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
 		.dropdownCat-content { margin-left: 5px; display: none; position: absolute; min-width: 160px; max-width: 170px; z-index: 1; background-color: white;}
 		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none; border: 1px solid #ccc;}
@@ -70,6 +70,9 @@
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
 		.SAwrapper { flex: 1; padding-top: 7px; position: relative;}
 		.actCount, .pacCount { padding: 10px; margin: auto; }
+		.relative { position: relative; }
+		.kirimBtnWrapper { position: absolute; right: 69px; top: 27px; }
+		.disable { background-color: #686868; pointer-events: none; cursor: default; color: #b7b7b7; box-shadow: 0 0 0; }
 
 		.actTable, .epTable, .actListTable, .pacListTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
 		.actTable th, .epTable th, .actListTable th, .pacListTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
@@ -100,7 +103,7 @@
 		.pjkBtn { display: inline-block; }
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
@@ -115,7 +118,7 @@
 		.LJSfilter div, .DJSfilter div { display: inline-block; }
 		.w163 { width: 163px; }
 		.h30 { height: 30px; }
-		.LJSbtn, .DJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJSbtn, .DJSbtn { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; margin-left: 10px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover, .DJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active, .DJSbtn:active { box-shadow: 0 0 0; }
 		.wrapperTotalWaktu { display: inline-block; padding: 11px; padding-left: 20px; margin-bottom: 15px; margin-left: 25px; border-left: 2px solid #ccc; }
