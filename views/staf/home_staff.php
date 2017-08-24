@@ -3,7 +3,7 @@
 	        <div class="logo"></div>
 			<div class="logo_panel"></div>
 			<div class="logo_wrapper">
-			    <img src="logoS.png" height="110" alt=""/>
+			    <img class="logo_setwapres" src="logoS.png" height="110" alt=""/>
 			</div>
 			<div class="judul">
 				E-Jurnal
@@ -13,7 +13,19 @@
 				    <h1> LOGGED IN AS: </h1>
 					<table class="userpaneltable" border="0">
 						<tr>
-							<td class="foto"><div class="userphoto"></div></td>
+							<td class="foto"><div class="userphoto">
+                                <a onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
+									  <?php 
+									  	  	$query = "SELECT * FROM user WHERE nip='".$_SESSION['nip']."'";
+									  		$q = mysqli_query($db,$query);
+									  		$row = mysqli_fetch_assoc($q);
+
+									  		if(!empty($row['foto'])){
+										  ?>
+									  		<img style="width:100px;height:135px;" src=<?php echo "images/".$row['foto'];?>></a>
+									  <?php }else{ ?>
+									  		<img style="width:100px;height:135px;" src="images/empty.jpg"></a>
+									  <?php } ?></div></td>
 						</tr>
 						<tr>
 							<td class="username"> <?php echo $nama; ?> </td>

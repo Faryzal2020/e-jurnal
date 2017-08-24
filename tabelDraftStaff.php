@@ -7,11 +7,11 @@ $LJSsql = "";
 if( $tipeFilter == 'Mingguan'){
 	$tahun = $_GET['tahun'];
 	$minggu = $_GET['minggu'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'simpan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'simpan'";
 } else {
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND month(j.tanggal_simpan)='$bulan' AND j.status_jurnal = 'simpan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND month(j.tanggal_simpan)='$bulan' AND j.status_jurnal = 'simpan'";
 }
 $result = mysqli_query($db, $LJSsql);
 
@@ -35,7 +35,9 @@ if(mysqli_num_rows($result) > 0){
     while($data = mysqli_fetch_row($result))
     {   
         $idJurnal = $data[0];
-        echo "<input type=hidden class='DJSidJurnal' value='$idJurnal' />";
+        $idAct = $data[11];
+        $durasi = $data[12];
+        //echo "<input type=hidden class='DJSidJurnal' value='$idJurnal' />";
         echo "<tr>";
         echo "<td align=center>$idJurnal</td>";
         echo "<td align=center style='padding: 10px; max-width: 410px;'>$data[7]</td>";
@@ -47,7 +49,7 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[4]</td>";
         echo "<td align=center style='width: 120px; font-size: 0.9em;'>$data[5]</td>";
         echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
-        echo "<td align=center style=\"font-size: 0.8em;\"><a class=\"selectActBtn\" onclick=\"editDJ($idJurnal,$nip)\"><span class=\"glyphicon glyphicon-ok\"></span></a></td>";
+        echo "<td align=center style=\"font-size: 0.8em;\"><a class=\"selectActBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\"><span class=\"glyphicon glyphicon-edit\"></span></a></td>";
         echo "</tr>";
     }
 } else {

@@ -5,7 +5,13 @@ $nip = $_GET['nip'];
 $tipeFilter = $_GET['tipeFilter'];
 $LJSsql = "";
 $LJStotalwaktu = "";
-if( $tipeFilter == 'Mingguan'){
+if( $tipeFilter == 'Harian'){
+    $tahun = $_GET['tahun'];
+    $bulan = $_GET['bulan'];
+    $hari = $_GET['hari'];
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan' AND day(j.tanggal_kirim)='$hari'";
+    $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan' AND day(j.tanggal_kirim)='$hari'";
+} else if( $tipeFilter == 'Mingguan'){
 	$tahun = $_GET['tahun'];
 	$minggu = $_GET['minggu'];
     $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND week(j.tanggal_kirim)='$minggu'";

@@ -25,7 +25,7 @@
 										<div class="searchIconWrapperAct">
 				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                		</div>
-					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;">
+					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas">
 					                </div>
 						            Result: 
 						            <label id="actCount">0</label>
@@ -148,6 +148,7 @@
 			                                    <td colspan="3"><select name="actType">
 			                                			<option value="umum">Umum</option>
 			                                			<option value="skp">SKP</option>
+			                                			<option value="tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
 			                                <tr>

@@ -67,11 +67,12 @@
 		.dropdownCat-content a:hover {background-color:#ccc;}
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
 		.SAwrapper { flex: 1; padding-top: 7px; position: relative;}
-		.actCount { padding: 10px; margin: auto; }
+		.actCount, .pacCount { padding: 10px; margin: auto; }
 
-		.actTable, .epTable, .actListTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
-		.actTable th, .epTable th, .actListTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
-		.actTable td, .epTable td, .actListTable td { height: 30px; padding: 5px; }
+		.actTable, .epTable, .actListTable, .pacListTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
+		.actTable th, .epTable th, .actListTable th, .pacListTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
+		.actTable td, .epTable td, .actListTable td, .pacListTable td { height: 30px; padding: 5px; }
+		#actSearch, #pacSearch { width: 100%; padding-left: 10px; height: 30px; }
 		.selectActbtn { background-color: #2C383B; cursor: pointer; border-radius: 2px; border: 1px solid #2C383B; text-decoration: none; color: #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); padding: 1px 5px 1px 5px;}
 		.selectActbtn:hover { text-decoration: none; color: #2C383B; background-color: #ECECEC; border: 1px solid #2C383B; }
 		.selectActbtn:active { box-shadow: 0 0 0; }
@@ -79,7 +80,8 @@
 		.zindex2 { z-index: 2; }
 		.tCmodal-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 700px; }
 		.fit-width { width: fit-content; }
-		.tableSJ td, .tableEA td {padding: 5px;}
+		.tableType { width: 80%; }
+		.tableSJ td, .tableEA td, .tableEDJS td {padding: 5px;}
 		.close, .tutupLJ, .EAclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
 		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus{ 
 			color: #333333; text-decoration: none; cursor: pointer; }
@@ -109,8 +111,8 @@
 		.LJApilihBulan { margin-right: 10px; }
 		.LJSfilter, .DJSfilter { margin-left: 30px; padding-top: 8px;}
 		.LJSfilter div, .DJSfilter div { display: inline-block; }
-		#LJSpilihMinggu, #LJApilihMinggu, #DJSpilihMinggu { width: 163px; }
-		#LJSpilihTahun, #LJSpilihBulan, #LJApilihTahun, #LJApilihBulan, #DJSpilihTahun, #DJSpilihBulan { height: 30px; }
+		.w163 { width: 163px; }
+		.h30 { height: 30px; }
 		.LJSbtn, .DJSbtn { background-color:#2C383B; height: fit-content; margin-top: 9px; border-radius: 5px; margin-left: 10px; padding: 1px 7px 5px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJSbtn:hover, .DJSbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJSbtn:active, .DJSbtn:active { box-shadow: 0 0 0; }

@@ -3,20 +3,26 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="repBtn"><span id="repbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="repBtn"><span id="repbtnLabel" style="pointer-events: none;">Harian</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="repContent">
+				                        <a onclick="selectReport('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectReport('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectReport('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="LJSfilter" style="display: none">
+									<div class="LJSpilihHari">
+										<input id="LJSpilihHari" class="w163" type="text" value="<?php echo date('Y-m-d');?>"/>
+									</div>
+								</div>
+								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihMinggu">
-										<input id="LJSpilihMinggu" type="text" value="<?php echo date('Y-W');?>"/>
+										<input id="LJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>"/>
 									</div>
 								</div>
 				                <div class="LJSfilter" style="display: none">
 									<div class="LJSpilihTahun">
-										<select id="LJSpilihTahun">
+										<select id="LJSpilihTahun" class="h30">
 											<?php
 												$lsjTahunA = date("Y") - 10;
 												$lsjTahunB = date("Y");
@@ -30,7 +36,7 @@
 										</select>
 									</div>
 									<div class="LJSpilihBulan">
-										<select id="LJSpilihBulan">
+										<select id="LJSpilihBulan" class="h30">
 											<?php
 												$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 												for($i=1;$i<=12;$i++){
