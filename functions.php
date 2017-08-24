@@ -31,8 +31,8 @@ function getCalender($year = '',$month = '')
 	<div id="calender_section">
 		<h2>
         	<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');"><span class="glyphicon glyphicon-backward" style="pointer-events: none;"></a>
-            <select name="month_dropdown" class="month_dropdown dropdown"><?php echo getAllMonths($dateMonth); ?></select>
-			<select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>
+            <select name="month_dropdown" class="month_dropdown dropdown" title="bulan"><?php echo getAllMonths($dateMonth); ?></select>
+			<select name="year_dropdown" class="year_dropdown dropdown" title="tahun"><?php echo getYearList($dateYear); ?></select>
             <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');"><span class="glyphicon glyphicon-forward" style="pointer-events: none;"></a>
         </h2>
 		<div id="event_list" class="none"></div>
@@ -87,7 +87,7 @@ function getCalender($year = '',$month = '')
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">Lihat</a>':'';
+						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
 						echo '</div></div>';
 						
 						echo '</li>';
