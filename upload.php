@@ -11,7 +11,8 @@ if(isset($_POST['savefoto']))
 	$allowed_filetypes = array('.jpg','.jpeg','.png','.gif');
 	$max_filesize = 10485760;
 	$upload_path = 'images/';
-	$filename = $_FILES['pilihFoto']['name'];
+    $temp = explode(".", $_FILES['pilihFoto']['name']);
+	$filename = $nama_baru = $_SESSION['nip'] . '.' . end($temp);
 	$ext = substr($filename, strpos($filename,'.'), strlen($filename)-1);
 
 	if(!in_array($ext,$allowed_filetypes))

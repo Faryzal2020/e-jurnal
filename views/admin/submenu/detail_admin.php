@@ -18,7 +18,7 @@
 									<th style="min-width: 80px"></th>
 								</tr>
 								<?php
-									$GUAsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.nip = '".$_SESSION['nip']."' AND jurnal.tanggal_jurnal='$date'";
+									$GUAsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.nip = '".$_SESSION['nip']."' AND jurnal.tanggal_simpan='$date'";
 									 
                                     
                                     $dapat = mysqli_query($db, $GUAsql);
@@ -73,9 +73,9 @@
 								</tr>
 								<?php
 									if ( $level == 2 ){
-                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_jurnal='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_simpan='$date'";
 									} else {
-                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_jurnal='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_simpan='$date'";
 									}
                                      
                                     

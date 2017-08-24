@@ -40,7 +40,7 @@
 
 
 .detail_select { display: none; position: fixed; overflow: auto; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
-.detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 90vw; min-width: 870px }
+.detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 95vw; min-width: min-content; }
 .detail_jurnal { height: 60px; background-color: #ECECEC; margin-bottom: 20px; }
 .DJmilikWrapper { padding-left: 30px; padding-top: 16px; }
 #detail_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
@@ -58,7 +58,7 @@
 .detail_pilihanJurnal { padding-left: 30px; margin-top: -16px; display: block;}
 
 .staff_detail_select { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
-.staff_detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 90vw; min-width: min-content; }
+.staff_detail_select-content { background-color: #FEFEFE; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 95vw; min-width: min-content; }
 .staff_detail_jurnal { background-color:#ECECEC;}
 #staff_detail_label { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 .staff_tutup_detail { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }

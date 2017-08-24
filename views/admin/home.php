@@ -14,7 +14,7 @@
 					<table class="userpaneltable" border="0">
 						<tr>
 							<td class="foto"><div class="userphoto">
-                                <a onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
+                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
 									  <?php 
 									  	  	$query = "SELECT * FROM user WHERE nip='".$_SESSION['nip']."'";
 									  		$q = mysqli_query($db,$query);
@@ -22,9 +22,9 @@
 
 									  		if(!empty($row['foto'])){
 										  ?>
-									  		<img style="width:100px;height:135px;" src=<?php echo "images/".$row['foto'];?>></a>
+									  		<img  src=<?php echo "images/".$row['foto'];?>></a>
 									  <?php }else{ ?>
-									  		<img style="width:100px;height:135px;" src="images/empty.jpg"></a>
+									  		<img  src="images/empty.jpg"></a>
 									  <?php } ?></div></td>
 						</tr>
 						<tr>
@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn"><a title="" href="logout.php">LOG OUT <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn"><a class="logout" title="" href="logout.php">LOG OUT <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -120,18 +120,17 @@
                         <div class="foto_select-content">
                             <span class="foto_tutup">&times;</span>
                             <form action = "upload.php" method="post" enctype="multipart/form-data">
-                            <table width=50% cellpadding=4 cellspacing=1 border=0 valign=top>
+                            <table width=100% cellpadding=4 cellspacing=1 border=0 valign=top>
                                 <tr><td><br></td></tr>
                                 <tr>
-                                    <td style="width:20px;"></td>
-                                    <td><label>Pilih Foto</label></td>
-                                    <td style="width:50px;"></td>
-                                    <td><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 1 MB</p></td>
+                                    <td style="width:20%;"><label>Pilih Foto</label></td>
+                                    <td ></td>
+                                    <td style="width:50px;"><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 1 MB</p></td>
                                 </tr>
                                 <tr>
                                     <td style="width:20px;"></td>
                                     <td colspan=2></td>
-                                    <td><button type="submit" name="savefoto" class="btn blue">Upload</button></td>
+                                    <td><button type="submit" name="savefoto" class="btn left blue">Upload</button></td>
                                 </tr>
                             </table>
                         </form>

@@ -114,9 +114,6 @@ $nip = $_SESSION['nip'];
    <script type="text/javascript" src="js/html2canvas/html2canvas.min.js"></script>
    <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
-   <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
-   <script type="text/javascript" src="js/script.js"></script>   
-
     
    </head>
    <body class="background">
