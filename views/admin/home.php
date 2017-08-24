@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn"><a class="logout" title="" href="logout.php">LOG OUT <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" ><a class="logout" title="" href="logout.php" >LOG OUT <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -45,25 +45,25 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="Klik untuk melihat jurnal kalender" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
+				<li class="menu-item" title="Klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
+				<li class="menu-item" title="Klik untuk melihat jurnal yang belum dikirim" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Daftar Jurnal</a></li>
+				<li class="menu-item" title="Klik untuk melihat jurnal yang sudah dikirim!" ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Daftar Jurnal</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
+				<li class="menu-item"  title="Klik untuk melihat profil" ><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
 			</ul>
 			<?php
 				if ($level == 99){
 			?>
 			<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
+				<li class="menu-item" title="Klik untuk mengubah data pegawai"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<?php
 				}
