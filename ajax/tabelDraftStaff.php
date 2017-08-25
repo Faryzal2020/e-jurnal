@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../config.php");
 
 $nip = $_GET['nip'];
 $tipeFilter = $_GET['tipeFilter'];

@@ -309,7 +309,7 @@
                 document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
-                url: "detailajax.php",             
+                url: "ajax/detailajax.php",             
                 dataType: "html",   //expect html to be returned
                 data: {nip_nip:nip_nip , tanggal_tanggal:tanggal_tanggal},               
                 success: function(response){                    
@@ -322,7 +322,7 @@
                 //document.getElementById("jurnal_nama").innerHTML = nama;
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
-                url: "staff_detailajax.php",             
+                url: "ajax/staff_detailajax.php",             
                 dataType: "html",   //expect html to be returned
                 data: { staff_tanggal_tanggal:staff_tanggal_tanggal},               
                 success: function(response){   
@@ -679,7 +679,7 @@
               if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
-                  url: "tabelDraftStaff.php",             
+                  url: "ajax/tabelDraftStaff.php",             
                   dataType: "html",   //expect html to be returned
                   data: data,               
                   success: function(response){                    
@@ -1099,7 +1099,7 @@
               if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
-                  url: "tabelLJstaff.php",             
+                  url: "ajax/tabelLJstaff.php",             
                   dataType: "html",   //expect html to be returned
                   data: data,               
                   success: function(response){                    
