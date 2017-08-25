@@ -458,7 +458,26 @@ INSERT INTO `aktivitas` (`id_aktivitas`, `id_kategori`, `nama_aktivitas`, `duras
 (436, 3, 'menyusun/menyiapkan bahan paparan pimpinan', 60),
 (437, 1, 'menyusun perencanaan anggaran (per kegiatan)', 120),
 (438, 3, 'menyususn perencanaan kebutuhan pegawai', 60),
-(439, 1, 'menyusun usulan rencana kerja', 60);
+(439, 1, 'menyusun usulan rencana kerja', 60),
+(440, 5, 'cuti besar', 0),
+(441, 5, 'cuti bersalin (anak ke-4 dst)', 0),
+(442, 5, 'cuti bersalin', 0),
+(443, 5, 'cuti luar tang. Neg.', 0),
+(444, 5, 'cuti keguguran kandungan', 0),
+(445, 5, 'cuti alasan penting', 0),
+(446, 5, 'cuti penting khusus', 0),
+(447, 5, 'cuti sakit', 0),
+(448, 5, 'cuti sakit pasca rawat inap', 0),
+(449, 5, 'cuti tahunan', 0),
+(450, 5, 'dinas luar', 0),
+(451, 5, 'lepas piket', 0),
+(452, 5, 'masa peralihan jabatan', 0),
+(453, 5, 'masa persiapan pensiun', 0),
+(454, 5, 'perjalanan dinas', 0),
+(455, 5, 'sakit dirawat', 0),
+(456, 5, 'tugas belajar DN', 0),
+(457, 5, 'tugas belajar LN', 0),
+(458, 5, 'tugas luar', 0);
 
 -- --------------------------------------------------------
 
@@ -507,7 +526,7 @@ INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_outpu
 (20, 206, '180002997', 1, 'Laporan', '2017-08-22 10:00:00', '2017-08-22 10:30:00', '2017-08-22', '0000-00-00', 'simpan', 'skp', ''),
 (21, 302, '180005067', 2, 'Laporan', '2017-08-04 08:30:00', '2017-08-04 12:30:00', '2017-08-04', '0000-00-00', 'simpan', 'umum', ''),
 (22, 140, '180004854', 1, 'Laporan', '2017-08-22 09:00:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'skp', ''),
-(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'umum', 'test');
+(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'tambahan', 'test');
 
 -- --------------------------------------------------------
 
@@ -528,7 +547,8 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'teknis'),
 (2, 'operasional'),
 (3, 'administrasi'),
-(4, 'pelayanan');
+(4, 'pelayanan'),
+(5, 'kehadiran');
 
 -- --------------------------------------------------------
 
@@ -606,7 +626,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `aktivitas`
 --
 ALTER TABLE `aktivitas`
-  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440;
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=459;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
@@ -616,7 +636,7 @@ ALTER TABLE `jurnal`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

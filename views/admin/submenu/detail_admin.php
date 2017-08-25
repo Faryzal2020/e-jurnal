@@ -18,7 +18,7 @@
 									<th style="min-width: 80px"></th>
 								</tr>
 								<?php
-									$GUAsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.nip = '".$_SESSION['nip']."' AND jurnal.tanggal_simpan='$date'";
+									$GUAsql = "SELECT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.nip = '".$_SESSION['nip']."' AND jurnal.tanggal_kirim='$date'";
 									 
                                     
                                     $dapat = mysqli_query($db, $GUAsql);
@@ -44,7 +44,7 @@
 									<td style="text-align: center;"><?php echo $JAbagian ?></td>
 									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center;     width: 80px;">
-										<button class="tombol_detail" 
+										<button class="tombol_detail"  title="klik untuk melihat detail jurnal anda"
                     onclick="detail_selectActivity('<?php echo $JAnip ?>',
                                                     '<?php echo $JAnama ?>',
                                                     '<?php echo $date ?>')">Detail</button>
@@ -73,9 +73,9 @@
 								</tr>
 								<?php
 									if ( $level == 2 ){
-                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_simpan='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND user.bagian = '$bagian' AND jurnal.tanggal_kirim='$date' AND jurnal.status_jurnal='kirim'";
 									} else {
-                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_simpan='$date'";
+                                        $GEsql = "SELECT DISTINCT user.nip FROM user,jurnal WHERE user.nip=jurnal.nip AND user.level < '$level' AND jurnal.tanggal_kirim='$date' AND jurnal.status_jurnal='kirim'";
 									}
                                      
                                     
@@ -101,7 +101,7 @@
 									<td style="text-align: center;"><?php echo $JAbagian ?></td>
 									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center; width: 80px;">
-										<button class="tombol_detail" 
+										<button class="tombol_detail" title="klik untuk melihat detail jurnal"
                     onclick="detail_selectActivity('<?php echo $JAnip ?>',
                                                     '<?php echo $JAnama ?>',
                                                     '<?php echo $date ?>')">Detail</button>

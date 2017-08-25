@@ -63,10 +63,10 @@ function getCalender($year = '',$month = '')
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
                         if($level == 2){
-						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_simpan = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian'";
+						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_kirim = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian' AND jurnal.status_jurnal='kirim'";
                         } 
                         else{
-                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_simpan = '".$currentDate."' AND user.level <= '$level'";
+                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_kirim = '".$currentDate."' AND user.level <= '$level' AND jurnal.status_jurnal='kirim'";
                         }
                         $result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
@@ -82,15 +82,16 @@ function getCalender($year = '',$month = '')
 						echo '<span>';
 						echo $dayCount;
 						echo '</span>';
-						
+						if($eventNum > 0){
 						//Hover event popup
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
 						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
 						echo '</div></div>';
-						
+                        
 						echo '</li>';
+                        }
 						$dayCount++;
 			?>
 			<?php }else{ ?>

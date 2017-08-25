@@ -45,19 +45,19 @@
    <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda&#013;-Jurnal pegawai yang telah dikirim" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
+				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
+				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal yang belum dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-list-alt"></span><a href="#">List Jurnal</a></li>
+				<li class="menu-item" title="klik untuk melihat dan mencetak :&#013;-Jurnal anda yang sudah dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">List Jurnal</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item"><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
+				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
 			</ul>
         </div> 
 		<div class="content">
