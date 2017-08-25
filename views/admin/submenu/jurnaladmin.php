@@ -168,7 +168,7 @@
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk selesai meihat jurnal"></span></a>
 				                        <div class="wrapperTotalWaktu">
 											Total Jam Produktif: 
 											<label id="labelTotalWaktu"></label>

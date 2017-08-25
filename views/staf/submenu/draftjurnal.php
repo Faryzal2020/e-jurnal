@@ -6,9 +6,9 @@
 				                    <button class="dropbtn" id="djsBtn" title="melihat draft jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
 
-				                        <a onclick="selectDJS('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Harian')" href="#" title="melihat draft jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat draft jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat draft jurnal berdasarkan bulanan">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
@@ -164,7 +164,7 @@
 			                    <div class="tCheader">
 									<div class="tchbox">
 										<div class="dropdownCat">
-						                    <button class="dropbtn" id="pacBtn"><span id="pacbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+						                    <button class="dropbtn" id="pacBtn" title="klik untuk mengubah kategori"><span id="pacbtnLabel" style="pointer-events: none;" >Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 						                    <div class="dropdownCat-content" id="pacContent">
 						                        <a onclick="selectCat2('Semua')" href="#">Semua Kategori</a>
 						                        <?php
@@ -186,7 +186,7 @@
 												<div class="searchIconWrapperAct">
 						                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 						                		</div>
-							                    <input type="text" id="pacSearch" onkeyup="searchAct2()" placeholder="Search Aktivitas">
+							                    <input type="text" id="pacSearch" onkeyup="searchAct2()" placeholder="Search Aktivitas" title="mencari aktivitas yang ingin diganti">
 							                </div>
 								            Result: 
 								            <label id="pacCount">0</label>
@@ -223,7 +223,7 @@
 													'<?php echo $namaAct; ?>',
 													'<?php echo $durasi; ?>',
 													'<?php echo $namaCateg; ?>'
-												)"><span class="glyphicon glyphicon-ok"></span></a>
+												)"><span class="glyphicon glyphicon-ok" title="klik untuk selesai mengganti aktivitas"></span></a>
 											</td>
 										</tr>
 										<?php
