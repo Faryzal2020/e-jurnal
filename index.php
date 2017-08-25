@@ -20,7 +20,8 @@
       // Activity List
       $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
       $ALquery = mysqli_query($db,$ALsql);
-      $ALquery2 = mysqli_query($db,$ALsql);
+      $ALsql2 = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori WHERE k.nama_kategori != 'kehadiran'";
+      $ALquery2 = mysqli_query($db,$ALsql2);
       // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
@@ -190,7 +191,6 @@
             if ( typeof closeDJS2 != 'undefined' ){
               closeDJS2.onclick = function() {
                 modalDJS2.style.display = "none";
-                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             

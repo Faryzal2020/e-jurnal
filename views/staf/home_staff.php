@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn"><a class="logout" title="" href="logout.php">LOG OUT <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn"><a class="logout" title="" href="logout.php">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -56,8 +56,8 @@
     		<ul>
 				<li class="menu-item" title="klik untuk melihat dan mencetak :&#013;-Jurnal anda yang sudah dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">List Jurnal</a></li>
 			</ul>
-			<ul>
-				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profil Anda</a></li>
+			<ul class="menuProfil">
+				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
 			</ul>
         </div> 
 		<div class="content">

@@ -168,7 +168,7 @@
 						                        <?php
 						                            $i=0;
 						                            while ($cat = mysqli_fetch_array($Catquery2)) {
-						                                if($cat[$i]==null){
+						                                if($cat[$i]==null || $cat['nama_kategori'] == "kehadiran"){
 						                                    echo "";
 						                                } else {
 						                        ?>

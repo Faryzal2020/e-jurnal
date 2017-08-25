@@ -13,7 +13,7 @@
 				                </div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+										<input id="DJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 									</div>
 								</div>
 								<div class="DJSfilter" style="display: none">
@@ -170,7 +170,7 @@
 						                        <?php
 						                            $i=0;
 						                            while ($cat = mysqli_fetch_array($Catquery2)) {
-						                                if($cat[$i]==null){
+						                                if($cat[$i]==null || $cat['nama_kategori'] == "kehadiran"){
 						                                    echo "";
 						                                } else {
 						                        ?>
