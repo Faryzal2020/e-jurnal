@@ -3,8 +3,9 @@
 						<div class="tCheader">
 							<div class="tchbox relative">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="djsBtn"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="djsBtn" title="melihat draft jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
+
 				                        <a onclick="selectDJS('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -17,12 +18,12 @@
 								</div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihMinggu">
-										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>"/>
+										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
 									</div>
 								</div>
 				                <div class="DJSfilter" style="display: none">
 									<div class="DJSpilihTahun">
-										<select id="DJSpilihTahun" class="h30">
+										<select id="DJSpilihTahun" class="h30" title="pilih tahun" >
 											<?php
 												$lsjTahunA = date("Y") - 10;
 												$lsjTahunB = date("Y");
@@ -36,7 +37,7 @@
 										</select>
 									</div>
 									<div class="DJSpilihBulan">
-										<select id="DJSpilihBulan" class="h30">
+										<select id="DJSpilihBulan" class="h30" title="pilih bulan">
 											<?php
 												$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 												for($i=1;$i<=12;$i++){
@@ -56,9 +57,10 @@
 									</div>
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
-								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat draft jurnal"></span></a>
 								<div class="kirimBtnWrapper">
-									<a class="kirimBtn disable" id="kirimBtn" onclick="submitDraftS()">Submit Jurnal</a>
+
+									<a class="kirimBtn disable" id="kirimBtn" title="klik untuk mengirim jurnal&#013;jurnal yang dikirim tidak bisa diubah kembali">Submit Jurnal</a>
 								</div>
 							</div>
 						</div>
@@ -76,7 +78,7 @@
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td><a class="gantiActDJ" onclick="DJSgantiAct()">Ganti</a></td>
+			                                    <td><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas">Ganti</a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -91,7 +93,7 @@
 			                                <tr>
 			                                    <td><label>Volume</label></td>
 			                                    <td>:</td>
-			                                    <td colspan="3"><select id="edjsVolume" name="edjsVolume">
+			                                    <td colspan="3"><select id="edjsVolume" name="edjsVolume" title="masukkan jumlah output yang dikerjakan">
 			                                    <?php
 			                                    	for ($n = 1; $n <= 10; $n++){
 			                                    ?>
@@ -104,20 +106,20 @@
 			                                <tr>
 			                                	<td><label>Jenis Volume</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 260px" type="text" id="edjsVolumeType" name="edjsVolumeType" placeholder="Contoh: Buku, Lembar, dll"></td>
+			                                    <td colspan="3"><input style="width: 260px" type="text" id="edjsVolumeType" name="edjsVolumeType" placeholder="Contoh: Buku, Lembar, dll" title="masukan jenis output yang dikerjakan"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Keterangan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><textarea rows="3" cols="40" id="edjsKeterangan" name="edjsKeterangan" form="FormDJS"></textarea></td>
+			                                    <td colspan="3"><textarea rows="3" cols="40" id="edjsKeterangan" name="edjsKeterangan" form="FormDJS" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglMulai" name="edjsTglMulai" value=""></td>
+			                                    <td><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td style="width: 120px">
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30">
+													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -128,10 +130,10 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value=""></td>
+			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30">
+													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30"  title="masukkan jam selesai aktivitas pada jurnal anda">
 													    <span class="input-group-addon">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -142,14 +144,14 @@
 			                                <tr>
 			                                	<td><label>Jenis Aktifitas</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><select id="edjsActType" name="edjsActType">
+			                                    <td colspan="3"><select id="edjsActType" name="edjsActType" title="masukkan jenis aktivitas yang anda kerjakan">
 			                                			<option value="umum">Umum</option>
 			                                			<option value="skp">SKP</option>
 			                                			<option value="tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="DJSSubmit" class="SJbtnSubmit" onclick="validateEDJ()">Simpan</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="DJSSubmit" class="SJbtnSubmit" onclick="validateEDJ()" title="klik untuk selesai mengedit">Simpan</a></td>
 			                                </tr>
 			                        </table>
 			                    </form>
