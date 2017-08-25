@@ -51,20 +51,6 @@
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `status_jurnal`, `jenis_aktivitas`, `keterangan`)  
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','simpan','$acttype','$ket')";
             mysqli_query($db,$SJsql);
-         } else if(!empty($_POST['EDJSidJ'])){
-            $id = $_POST['EDJSidJ'];
-            $idAct = $_POST['EDJSidAct'];
-            $vol = $_POST['edjsVolume'];
-            $voltype = $_POST['edjsVolumeType'];
-            $jamMulai = date('G:i', strtotime($_POST['edjsJamMulai']));
-            $jamSelesai = date('G:i', strtotime($_POST['edjsJamSelesai']));
-            $mulai = $_POST['edjsTglMulai'] .' '. $jamMulai . ':00';
-            $selesai = $_POST['edjsTglSelesai'] .' '. $jamSelesai . ':00';
-            $acttype = $_POST['edjsActType'];
-            $ket = $_POST['edjsKeterangan'];
-            $EDJsql = "UPDATE jurnal SET id_aktivitas = '$idAct', nip = '$nip', volume = '$vol', jenis_output = '$voltype', waktu_mulai = '$mulai', waktu_selesai = '$selesai', jenis_aktivitas = '$acttype', keterangan = '$ket' WHERE id_jurnal = '$id'";
-            //echo "<script type='javascript'>alert($EDJsql);</script>";
-            mysqli_query($db,$EDJsql);
          } else if( !empty($_POST['password_baru'])){
               $nip = $_SESSION['nip'];
               $password = $_POST['password_baru'];
@@ -117,6 +103,8 @@
    </head>
    <body class="background">
       <div class="page">
+          <input type="hidden" id="selectedTab" value="<?php echo $_SESSION['tab']; ?>"/>
+          <input type="hidden" id="userNip" value="<?php echo $_SESSION['nip']; ?>"/>
          <?php
             if ($level == '1'){
                 include_once "functions_staff.php";
@@ -164,28 +152,33 @@
             if(typeof foto_tutup != 'undefined'){
               foto_tutup.onclick = function() {
                   foto_select.style.display = "none";
+                  document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
              
             if(typeof staff_tutup_detail != 'undefined'){
               staff_tutup_detail.onclick = function() {
                   staff_detail_select.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             
             if(typeof tutup_detail != 'undefined'){   
                 tutup_detail.onclick = function() {
-                    detail_select.style.display = "none";
+                  detail_select.style.display = "none";
+                  document.getElementsByTagName("body")[0].style.overflow = "";
                 }
             }
             if ( typeof tutupLJ != 'undefined' ){
               tutupLJ.onclick = function() {
                 modalLJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             if ( typeof closeEA != 'undefined' ){
               closeEA.onclick = function() {
                 modalEA.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             if ( typeof closeDJS != 'undefined' ){
@@ -197,6 +190,7 @@
             if ( typeof closeDJS2 != 'undefined' ){
               closeDJS2.onclick = function() {
                 modalDJS2.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             
@@ -616,14 +610,13 @@
                }
             }
 
-            
             function selectDJS(t) {
                btn = document.getElementById("djsBtn");
                label = document.getElementById("djsbtnLabel");
                if (btn){
                  var mingguan = document.getElementsByClassName("DJSfilter")[0];
                  var bulanan = document.getElementsByClassName("DJSfilter")[1];
-                 document.getElementById("djsContent").classList.toggle("show");
+                 document.getElementById("djsContent").classList.remove("show");
                  label.innerHTML = t;
 
                  if (mingguan){
@@ -691,7 +684,7 @@
                     document.getElementById("edjsNamaCat").innerHTML = row.cells[3].innerHTML;
                     document.getElementById("edjsVolume").selectedIndex = row.cells[4].innerHTML-1;
                     document.getElementById("edjsVolumeType").value = row.cells[5].innerHTML;
-                    document.getElementById("edjsKeterangan").value += row.cells[9].innerHTML;
+                    document.getElementById("edjsKeterangan").value = row.cells[9].innerHTML;
                     var mulai = row.cells[6].innerHTML.split(" ");
                     var selesai = row.cells[7].innerHTML.split(" ");
                     document.getElementById("edjsTglMulai").value = mulai[0];
@@ -701,6 +694,22 @@
                     document.getElementById("edjsActType").value = row.cells[2].innerHTML;
                   }
                }
+            }
+
+            function deleteDJ(idJ){
+              if(confirm("Jurnal Draft dengan id " + idJ + " akan dihapus")){
+                $.ajax({
+                    dataType: 'html',
+                    url:'ajax/deleteJurnalStaff.php',
+                    method:'post',
+                    data : { 'id':idJ },
+                    success:function(a){
+                      alert(a);
+                      document.getElementById("tabelDJstaffContainer").innerHTML = "";
+                      eventFire(document.getElementById("DJSbtn"), 'click');
+                    }
+                  });
+              }
             }
 
             function DJSgantiAct() {
@@ -740,8 +749,22 @@
                   }
                }
                if ( error == 0){
-                  alert("Berhasil submit jurnal");
-                  document.getElementById("FormDJS").submit();
+                  //document.getElementById("FormDJS").submit();
+                  $.ajax({
+                    dataType: 'html',
+                    url:'ajax/editJurnalStaff.php',
+                    method:'post',
+                    data : $('#FormDJS').serialize(),
+                    success:function(a){
+                      alert(a);
+                      document.getElementById('modalDJS').style.display = "none";
+                      document.getElementsByTagName("body")[0].style.overflow = "";
+                      document.getElementById("tabelDJstaffContainer").innerHTML = "";
+                      eventFire(document.getElementById("DJSbtn"), 'click');
+                      //alert("Berhasil submit jurnal");
+                      //lihatDJS(document.getElementById("userNip").value);
+                    }
+                  });
                } else {
                   alert(msg);
                }
@@ -882,7 +905,6 @@
               }
             }
 
-            JAfilter('Mingguan');
             function JAfilter(fil) {
                btn = document.getElementById("filBtn");
                label = document.getElementById("PJAbtnLabel");
@@ -1043,10 +1065,28 @@
                 alert("Kolom filter kosong");
               }
             }
+
+            function eventFire(el, etype){
+              if (el.fireEvent) {
+                el.fireEvent('on' + etype);
+              } else {
+                var evObj = document.createEvent('Events');
+                evObj.initEvent(etype, true, false);
+                el.dispatchEvent(evObj);
+              }
+            }
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
-           selectDJS('Mingguan');
+           JAfilter('Mingguan');
+           selectDJS('Bulanan');
+           eventFire(document.getElementById("DJSbtn"), 'click');
+           if(document.getElementById("LJSbtn")){
+              eventFire(document.getElementById("LJSbtn"), 'click');
+           }
+
+
+
            if (document.getElementById("pjBtn1")){
              document.getElementById("pjBtn1").classList.add("active");
            }

@@ -28,7 +28,7 @@ echo "
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em;'><b>Waktu Selesai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Tanggal Input Jurnal</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Keterangan</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:60px'><b>Edit</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:60px'><b>Edit / Delete</b></th>
     </tr>";
 
 if(mysqli_num_rows($result) > 0){
@@ -49,7 +49,12 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[4]</td>";
         echo "<td align=center style='width: 120px; font-size: 0.9em;'>$data[5]</td>";
         echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
-        echo "<td align=center style=\"font-size: 0.8em;\"><a class=\"selectActBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\"><span class=\"glyphicon glyphicon-edit\"></span></a></td>";
+        echo "<td align=center style=\"font-size: 0.8em;\">
+                <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
+                    <span class=\"glyphicon glyphicon-edit\"></span></a>
+                <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
+                    <span class=\"glyphicon glyphicon-trash\"></span></a>
+            </td>";
         echo "</tr>";
     }
 } else {

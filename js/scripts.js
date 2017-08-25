@@ -2,14 +2,10 @@
         var menuItem = document.querySelectorAll('.menu-item')
         var tab = document.querySelectorAll('.tab')
         var forEach = Array.prototype.forEach;
-        localStorage.lastTab = 0;
-        if(typeof(Storage) !== "undefined"){
-            if(!localStorage.lastTab){
-                localStorage.lastTab = 0;
-            }
-            console.log("last tab: " + localStorage.lastTab);
-            setActive(localStorage.lastTab);
-        }
+        var sel = document.getElementById("selectedTab");
+        
+        setActive(sel.value);
+        
 
         forEach.call(menuItem, addListener)
 
@@ -28,9 +24,13 @@
             forEach.call(tab, removeActive)
             menuItem[i].classList.add('active')
             tab[i].classList.add('active')
-            if(typeof(Storage) !== "undefined"){
-                localStorage.lastTab = i;
-                console.log("last tab: " + localStorage.lastTab);
-            }
+            $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "ajax/updateTab.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'tab':i },               
+                success: function(response){
+                }
+            });
         }
         

@@ -50,7 +50,7 @@
 									</div>
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
-								<a class="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 								<div class="kirimBtnWrapper">
 									<a class="kirimBtn disable" id="kirimBtn">Submit Jurnal</a>
 								</div>
@@ -143,7 +143,7 @@
 			                                	</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="DJSSubmit" class="SJbtnSubmit" onclick="validateEDJ()">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="DJSSubmit" class="SJbtnSubmit" onclick="validateEDJ()">Simpan</a></td>
 			                                </tr>
 			                        </table>
 			                    </form>
