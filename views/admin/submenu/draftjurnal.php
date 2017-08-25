@@ -12,12 +12,12 @@
 				                </div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+										<input id="DJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 									</div>
 								</div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihMinggu">
-										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>"/>
+										<input id="DJSpilihMinggu" class="w163 h30" type="text" value="<?php echo date('Y-W');?>"/>
 									</div>
 								</div>
 				                <div class="DJSfilter" style="display: none">

@@ -18,7 +18,7 @@
 								</div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihMinggu">
-										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
+										<input id="DJSpilihMinggu" class="w163 h30" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
 									</div>
 								</div>
 				                <div class="DJSfilter" style="display: none">

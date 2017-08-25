@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../config.php");
 
 $nip_beda = $_GET['nip_nip'];
 $tanggal_beda = $_GET['tanggal_tanggal'];

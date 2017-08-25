@@ -17,12 +17,12 @@
 					                </div>
 									<div class="LJAfilter" style="display: none">
 										<div class="LJApilihHari">
-											<input id="LJApilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+											<input id="LJApilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 										</div>
 									</div>
 					                <div class="LJAfilter">
 										<div class="LJApilihMinggu">
-											<input type="text" id="LJApilihMinggu" class="w163" value="<?php echo date("Y-W");?>" />
+											<input type="text" id="LJApilihMinggu" class="w163 h30" value="<?php echo date("Y-W");?>" />
 										</div>
 									</div>
 									<div class="LJAfilter" style="display: none;">
@@ -123,12 +123,12 @@
 						                </div>
 										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihHari">
-												<input id="LJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+												<input id="LJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 											</div>
 										</div>
 										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihMinggu">
-												<input id="LJSpilihMinggu" class="w163" type="text" value="<?php echo date("Y-W");?>"/>
+												<input id="LJSpilihMinggu" class="w163 h30" type="text" value="<?php echo date("Y-W");?>"/>
 											</div>
 										</div>
 						                <div class="LJSfilter" style="display: none">
