@@ -4,10 +4,15 @@ include("config.php");
 $nip = $_GET['nip'];
 $tipeFilter = $_GET['tipeFilter'];
 $LJSsql = "";
-if( $tipeFilter == 'Mingguan'){
+if( $tipeFilter == 'Harian'){
 	$tahun = $_GET['tahun'];
-	$minggu = $_GET['minggu'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'simpan'";
+	$bulan = $_GET['bulan'];
+    $hari = $_GET['hari'];
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND month(j.tanggal_simpan)='$bulan' AND day(j.tanggal_simpan)='$hari' AND j.status_jurnal = 'simpan'";
+} else if( $tipeFilter == 'Mingguan'){
+    $tahun = $_GET['tahun'];
+    $minggu = $_GET['minggu'];
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'simpan'";
 } else {
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
@@ -40,14 +45,14 @@ if(mysqli_num_rows($result) > 0){
         //echo "<input type=hidden class='DJSidJurnal' value='$idJurnal' />";
         echo "<tr>";
         echo "<td align=center>$idJurnal</td>";
-        echo "<td align=center style='padding: 10px; max-width: 410px;'>$data[7]</td>";
+        echo "<td align=center style='padding: 10px; max-width: 410px; min-width: 140px; font-size:0.82em;'>$data[7]</td>";
         echo "<td align=center>$data[6]</td>";
         echo "<td align=center style='width:130px;'>$data[9]</td>";
         echo "<td align=center>$data[1]</td>";
         echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[3]</td>";
         echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[4]</td>";
-        echo "<td align=center style='width: 120px; font-size: 0.9em;'>$data[5]</td>";
+        echo "<td align=center style='width: 140px; font-size: 0.9em;'>$data[5]</td>";
         echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
