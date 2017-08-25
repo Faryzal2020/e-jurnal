@@ -896,6 +896,7 @@
               document.getElementById("LJSnip").value = nip;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
               document.getElementById("tabelLJstaffContainer").innerHTML = "";
+              eventFire(document.getElementById("LJSbtn"), 'click');
             }
 
             function editAccount(nip, nama, bagian, jabatan, level, password){
@@ -967,19 +968,26 @@
                btn = document.getElementById("filBtn");
                label = document.getElementById("PJAbtnLabel");
                if(btn){
-                 var mingguan = document.getElementsByClassName("LJAfilter")[0];
-                 var bulanan = document.getElementsByClassName("LJAfilter")[1];
+                 var harian = document.getElementsByClassName("LJAfilter")[0];
+                 var mingguan = document.getElementsByClassName("LJAfilter")[1];
+                 var bulanan = document.getElementsByClassName("LJAfilter")[2];
                  document.getElementById("filContent").classList.toggle("show");
                  label.innerHTML = fil;
 
-                 if ( typeof mingguan === 'undefined'){
+                 if ( typeof harian === 'undefined'){
                    } else {
-                   if( fil == 'Mingguan'){
+                   if( fil == 'Harian'){
+                      harian.style.display = "inline-block";
+                      bulanan.style.display = "none";
+                      mingguan.style.display = "none";
+                   } else if( fil == 'Mingguan'){
                       mingguan.style.display = "inline-block";
                       bulanan.style.display = "none";
+                      harian.style.display = "none";
                    } else {
                       bulanan.style.display = "inline-block";
                       mingguan.style.display = "none";
+                      harian.style.display = "none";
                    }
                     document.getElementById("LJAfilterType").value = fil;
                  }
@@ -989,7 +997,16 @@
             function lihatJurnalAdmin(nip) {
               var filType = document.getElementById("LJAfilterType").value;
               var data = "kosong";
-              if ( filType == 'Mingguan'){
+              if ( filType == 'Harian'){
+                var tanggal = document.getElementById("LJApilihHari").value;
+                var split = tanggal.split("-");
+                var tahun = split[0];
+                var bulan = split[1];
+                var hari = split[2];
+                if ( tanggal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+                }
+              } else if ( filType == 'Mingguan'){
                 var tahunMinggu = document.getElementById("LJApilihMinggu").value;
                 var split = tahunMinggu.split("-");
                 var tahun = split[0];
@@ -1006,7 +1023,7 @@
               if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
-                  url: "tabelLJadmin.php",             
+                  url: "ajax/tabelLJadmin.php",             
                   dataType: "html",   //expect html to be returned
                   data: data,               
                   success: function(response){                    
@@ -1136,15 +1153,16 @@
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
-           JAfilter('Mingguan');
+           JAfilter('Bulanan');
            selectDJS('Bulanan');
            selectReport('Bulanan');
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){
               eventFire(document.getElementById("LJSbtn"), 'click');
            }
-
-
+           if(document.getElementById("LJAbtn")){
+              eventFire(document.getElementById("LJAbtn"), 'click');
+           }
 
            if (document.getElementById("pjBtn1")){
              document.getElementById("pjBtn1").classList.add("active");

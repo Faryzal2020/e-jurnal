@@ -10,18 +10,24 @@
 					                <div class="dropdownCat">
 					                    <button class="dropbtn" id="filBtn"><span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 					                    <div class="dropdownCat-content" id="filContent">
+				                        	<a onclick="JAfilter('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 					                    </div>
 					                </div>
+									<div class="LJAfilter" style="display: none">
+										<div class="LJApilihHari">
+											<input id="LJApilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+										</div>
+									</div>
 					                <div class="LJAfilter">
 										<div class="LJApilihMinggu">
-											<input type="text" id="LJApilihMinggu" value="<?php echo date("Y-W")?>" />
+											<input type="text" id="LJApilihMinggu" class="w163" value="<?php echo date("Y-W");?>" />
 										</div>
 									</div>
 									<div class="LJAfilter" style="display: none;">
 										<div class="LJApilihTahun">
-											<select id="LJApilihTahun">
+											<select id="LJApilihTahun" class="h30">
 												<?php
 													$lsjTahunA = date("Y") - 10;
 													$lsjTahunB = date("Y");
@@ -35,7 +41,7 @@
 											</select>
 										</div>
 										<div class="LJApilihBulan">
-											<select id="LJApilihBulan">
+											<select id="LJApilihBulan" class="h30">
 												<?php
 													$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 													for($i=1;$i<=12;$i++){
@@ -55,7 +61,7 @@
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
-									<a class="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 									<div class="wrapperTotalWaktu">
 									Total Jam Produktif: 
 									<label id="labelTotalWaktuAdm"></label>
@@ -110,18 +116,24 @@
 			                        	<div class="dropdownCat">
 						                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 						                    <div class="dropdownCat-content" id="repContent">
+				                        		<a onclick="selectReport('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 						                        <a onclick="selectReport('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 						                        <a onclick="selectReport('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 						                    </div>
 						                </div>
 										<div class="LJSfilter" style="display: none">
+											<div class="LJSpilihHari">
+												<input id="LJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+											</div>
+										</div>
+										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihMinggu">
-												<input id="LJSpilihMinggu" type="text" value=""/>
+												<input id="LJSpilihMinggu" class="w163" type="text" value="<?php echo date("Y-W");?>"/>
 											</div>
 										</div>
 						                <div class="LJSfilter" style="display: none">
 											<div class="LJSpilihTahun">
-												<select id="LJSpilihTahun">
+												<select id="LJSpilihTahun" class="h30">
 													<?php
 														$lsjTahunA = date("Y") - 10;
 														$lsjTahunB = date("Y");
@@ -135,7 +147,7 @@
 												</select>
 											</div>
 											<div class="LJSpilihBulan">
-												<select id="LJSpilihBulan">
+												<select id="LJSpilihBulan" class="h30">
 													<?php
 														$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 														for($i=1;$i<=12;$i++){
@@ -156,7 +168,7 @@
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 				                        <div class="wrapperTotalWaktu">
 											Total Jam Produktif: 
 											<label id="labelTotalWaktu"></label>

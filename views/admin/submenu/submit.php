@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="ddcBtn"  title="klik untuk memilih kategori"><span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="ddcBtn" title="klik untuk memilih kategori"><span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="ddcContent">
 				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
 				                        <?php
@@ -54,7 +54,13 @@
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
 									<td><?php echo $namaAct ?></td>
-									<td style="text-align: center;"><?php echo $durasi . " Menit"?></td>
+									<td style="text-align: center;"><?php 
+										if ($durasi == 0) {
+											echo "-";
+										} else {
+											echo $durasi . " Menit";
+										}
+									?></td>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="selectActivity(
@@ -74,7 +80,7 @@
 			                        <span class="close">&times;</span>
 			                        <div id="tCModalLabel">Submit Jurnal</div>
 			                        <form name="FormSJ" id="FormSJ" method="post" action="">
-			                            <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableSJ">
+			                            <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableSJ" id="tableSJ">
 			                                <tr><input type="hidden" name="tcm_idAct" class="tcm_idAct" value=""/></tr>
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
