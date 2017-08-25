@@ -80,7 +80,7 @@ function getCalender($year = '',$month = '')
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="staff_detail_selectActivity(\''.$currentDate.'\');">Lihat</a>':'';
+                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="staff_detail_selectActivity(\''.$currentDate.'\');" title="klik untuk melihat jurnal anda yang tersedia">Lihat</a>':'';
                         echo '</div></div>';
 						
 						echo '</li>';

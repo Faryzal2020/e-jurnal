@@ -27,7 +27,7 @@
 						</div>
 					</div>
                     <div class="UPwrapper">
-                    	<button class="tombol_ubah" onclick="pass_selectActivity()">Ubah Password</button>
+                    	<button class="tombol_ubah" onclick="pass_selectActivity()" title="klik untuk mengubah password akun anda">Ubah Password</button>
                     </div>
 		            <div class="content">
                         <div class="ubah_ubah">

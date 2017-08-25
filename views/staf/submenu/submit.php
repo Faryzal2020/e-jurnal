@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="ddcBtn"><span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="ddcBtn" title="klik untuk memilih kategori :&#013;+kehadiran berisi kegiatan diluar kantor"><span id="ddcbtnLabel" style="pointer-events: none;">Pilih Kategori</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="ddcContent">
 				                        <a onclick="selectCat('Semua')" href="#">Semua Kategori</a>
 				                        <?php
@@ -25,7 +25,7 @@
 										<div class="searchIconWrapperAct">
 				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                		</div>
-					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas">
+					                    <input type="text" id="actSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" title="mencari aktivitas yang ingin anda input">
 					                </div>
 						            Result: 
 						            <label id="actCount">0</label>
@@ -62,7 +62,7 @@
 											'<?php echo $namaAct; ?>',
 											'<?php echo $durasi; ?>',
 											'<?php echo $namaCateg; ?>'
-										)"><span class="glyphicon glyphicon-ok"></span></a>
+										)"><span class="glyphicon glyphicon-ok" title="klik untuk memilih aktivitas ini"></span></a>
 									</td>
 								</tr>
 								<?php
@@ -94,7 +94,7 @@
 			                                <tr>
 			                                    <td><label>Volume</label></td>
 			                                    <td>:</td>
-			                                    <td colspan="3"><select name="volume">
+			                                    <td colspan="3"><select name="volume"  title="masukkan jumlah output yang dikerjakan">
 			                                    <?php
 			                                    	for ($n = 1; $n <= 10; $n++){
 			                                    ?>
@@ -107,20 +107,20 @@
 			                                <tr>
 			                                	<td><label>Jenis Volume</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 260px" type="text" name="volumeType" placeholder="Contoh: Buku, Lembar, dll"></td>
+			                                    <td colspan="3"><input style="width: 260px" type="text" name="volumeType" placeholder="Contoh: Buku, Lembar, dll"  title="masukan jenis output yang dikerjakan"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Keterangan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value=""></textarea></td>
+			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value="" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglMulai" value=""></td>
+			                                    <td><input type="date" name="tglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td style="width: 120px">
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamMulai" value="09:30">
+													    <input type="text" class="form-control" name="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -131,10 +131,10 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglSelesai" value=""></td>
+			                                    <td><input type="date" name="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamSelesai" value="09:30">
+													    <input type="text" class="form-control" name="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
 													    <span class="input-group-addon">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -145,14 +145,14 @@
 			                                <tr>
 			                                	<td><label>Jenis Aktifitas</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><select name="actType">
+			                                    <td colspan="3"><select name="actType" title="masukkan jenis aktivitas yang anda kerjakan">
 			                                			<option value="umum">Umum</option>
 			                                			<option value="skp">SKP</option>
 			                                			<option value="tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()" title="klik untuk menyimpan jurnal anda dalam draft">Submit</a></td>
 			                                </tr>
 			                            </table>
 			                        </form>
