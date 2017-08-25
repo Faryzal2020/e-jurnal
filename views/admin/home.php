@@ -95,11 +95,6 @@
 					<?php require_once "views/admin/submenu/profil.php";?>
 				</div>
 			</div>
-            <div class="ubahfoto">
-				<div class="ubahfoto1">
-					<?php require_once "views/admin/submenu/kalender.php";?>
-				</div>
-			</div>
 			<?php
 				if ($level == 99 || $level == 98){
 			?>

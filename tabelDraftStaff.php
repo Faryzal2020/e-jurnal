@@ -51,9 +51,9 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-edit\"></span></a>
+                    <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-trash\"></span></a>
+                    <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a>
             </td>";
         echo "</tr>";
     }
