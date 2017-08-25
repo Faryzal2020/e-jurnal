@@ -54,7 +54,13 @@
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
 									<td><?php echo $namaAct ?></td>
-									<td style="text-align: center;"><?php echo $durasi . " Menit"?></td>
+									<td style="text-align: center;"><?php 
+										if ($durasi == 0) {
+											echo "-";
+										} else {
+											echo $durasi . " Menit";
+										}
+									?></td>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="selectActivity(
@@ -74,7 +80,7 @@
 			                        <span class="close">&times;</span>
 			                        <div id="tCModalLabel">Submit Jurnal</div>
 			                        <form name="FormSJ" id="FormSJ" method="post" action="">
-			                            <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableSJ">
+			                            <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableSJ" id="tableSJ">
 			                                <tr><input type="hidden" name="tcm_idAct" class="tcm_idAct" value=""/></tr>
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>

@@ -5,10 +5,17 @@
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="djsBtn" title="melihat draft jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
-				                        <a onclick="selectDJS('Mingguan')" href="#" >Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+				                        <a onclick="selectDJS('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
+								<div class="DJSfilter" style="display: none">
+									<div class="DJSpilihHari">
+										<input id="DJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/>
+									</div>
+								</div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihMinggu">
 										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
@@ -52,6 +59,7 @@
 								<input id="DJSfilterType" type="hidden" value="">
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat draft jurnal"></span></a>
 								<div class="kirimBtnWrapper">
+
 									<a class="kirimBtn disable" id="kirimBtn" title="klik untuk mengirim jurnal&#013;jurnal yang dikirim tidak bisa diubah kembali">Submit Jurnal</a>
 								</div>
 							</div>

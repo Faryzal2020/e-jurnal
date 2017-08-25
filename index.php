@@ -286,11 +286,21 @@
              
             function selectActivity(id, nama, durasi, cat){
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+               var tabel = document.getElementById("tableSJ");
+               var vt = document.forms['FormSJ']['volumeType'];
+               for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
                modal.style.display = "block";
                namaAct.innerHTML = nama;
                durasiAct.innerHTML = durasi;
                namaCat.innerHTML = cat;
                idInput.value = id;
+               if(cat == "kehadiran"){
+                 tabel.rows[2].style.display = "none";
+                 tabel.rows[4].style.display = "none";
+                 tabel.rows[5].style.display = "none";
+                 tabel.rows[9].style.display = "none";
+                 vt = "-";
+               }
             }
              
             function detail_selectActivity(nip_nip, nama, tanggal_tanggal){
@@ -580,7 +590,7 @@
                searchAct2();
             }
 
-            selectReport('Harian');
+            
             function selectReport(rep) {
                repBtn = document.getElementById("repBtn");
                label = document.getElementById("repbtnLabel");
@@ -614,18 +624,25 @@
                btn = document.getElementById("djsBtn");
                label = document.getElementById("djsbtnLabel");
                if (btn){
-                 var mingguan = document.getElementsByClassName("DJSfilter")[0];
-                 var bulanan = document.getElementsByClassName("DJSfilter")[1];
+                 var harian = document.getElementsByClassName("DJSfilter")[0];
+                 var mingguan = document.getElementsByClassName("DJSfilter")[1];
+                 var bulanan = document.getElementsByClassName("DJSfilter")[2];
                  document.getElementById("djsContent").classList.remove("show");
                  label.innerHTML = t;
 
                  if (mingguan){
-                   if( t == 'Mingguan'){
+                   if( t == 'Harian'){
+                      harian.style.display = "inline-block";
+                      bulanan.style.display = "none";
+                      mingguan.style.display = "none";
+                   } else if( t == 'Mingguan'){
                       mingguan.style.display = "inline-block";
                       bulanan.style.display = "none";
+                      harian.style.display = "none";
                    } else {
                       bulanan.style.display = "inline-block";
                       mingguan.style.display = "none";
+                      harian.style.display = "none";
                    }
                     document.getElementById("DJSfilterType").value = t;
                  }
@@ -636,7 +653,16 @@
               var filType = document.getElementById("DJSfilterType").value;
               var data = "kosong";
 
-              if ( filType == 'Mingguan'){
+              if ( filType == 'Harian'){
+                var tanggal = document.getElementById("DJSpilihHari").value;
+                var split = tanggal.split("-");
+                var tahun = split[0];
+                var bulan = split[1];
+                var hari = split[2];
+                if ( tanggal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+                }
+              } else if ( filType == 'Mingguan'){
                 var tahunMinggu = document.getElementById("DJSpilihMinggu").value;
                 var split = tahunMinggu.split("-");
                 var tahun = split[0];
@@ -674,7 +700,7 @@
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                document.getElementById("modalDJS").style.display = "block";
                var table = document.getElementById("tabelDJajax");
-               for(var i=0; i<table.rows.length; i++){
+               for(var i=1; i<table.rows.length; i++){
                   if(table.rows[i].cells[0].innerHTML == idJ){
                     var row = table.rows[i];
                     document.getElementById("EDJSidJ").value = idJ;
@@ -768,6 +794,38 @@
                } else {
                   alert(msg);
                }
+            }
+
+            function submitDraftS(){
+              var table = document.getElementById("tabelDJajax");
+              var len = table.rows.length - 1;
+              var count = 0;
+              if(confirm("Sebanyak "+len+" jurnal akan disubmit ke atasan anda, jurnal yang sudah disubmit tidak bisa diedit kembali")){
+                for(var i=1; i<table.rows.length; i++){
+                  var idJ = table.rows[i].cells[0].innerHTML;
+                  $.ajax({
+                      dataType: 'html',
+                      url:'ajax/kirimJurnal.php',
+                      method:'post',
+                      data : { 'id':idJ },
+                      success:function(a){
+                        if(a=="1"){
+                          count += 1;
+                        }
+                      }
+                  });
+                  if(i == table.rows.length-1){
+                    if(count>0){
+                      alert("Submit jurnal berhasil, jumlah jurnal yang di submit: "+count);
+                    } else {
+                      alert("Submit jurnal gagal");
+                    }
+                  }
+                }
+                
+                document.getElementById("tabelDJstaffContainer").innerHTML = "";
+                eventFire(document.getElementById("DJSbtn"), 'click');
+              }
             }
 
             function validateSJ() {
@@ -1080,6 +1138,7 @@
          $(document).ready(function(){
            JAfilter('Mingguan');
            selectDJS('Bulanan');
+           selectReport('Bulanan');
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){
               eventFire(document.getElementById("LJSbtn"), 'click');
