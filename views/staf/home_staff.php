@@ -45,7 +45,7 @@
    <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda&#013;-Jurnal pegawai yang telah dikirim" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="klik untuk melihat jurnal anda" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
