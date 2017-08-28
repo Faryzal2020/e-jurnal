@@ -17,7 +17,7 @@
 		.userpanel{ display: inline-block; z-index: 1; position: absolute; top: 0px; left: 0px; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }
 		.userpanel h1{ font-size: 0.9em; text-align: center; margin-top: 10px; margin-bottom: 5px;}
 		.userpanel td{ text-align: center; height: 30px; padding-top: 10px; }
-		.logout { display: inline; color: inherit; text-decoration: none; text-align: left; padding-left: 10px; pointer-events: none; }
+		.logout { display: inline; color: inherit; text-decoration: none; text-align: left; padding-left: 10px; }
         .tampil-foto{ width:100%; height: 100%;  display: inline-block; background: #2C383B;  padding: 0px;  top: 0px; margin-top: 0px; margin-left: 0px; font-size: 0.7em; text-decoration: none; color: #ECECEC; border-style: none; border-width: 1px; border-color: #2C383B; border-radius: 3px}
 		.tampil-foto:hover{ background: #ECECEC; color: #2C383B; border-style: solid; border-width: 1px; border-color: #2C383B; }
         .userpanelwrapper{ position: relative; background: whitesmoke; border: 2px solid #565656; padding: 5px; padding-bottom: 360px; max-height: 350px;}

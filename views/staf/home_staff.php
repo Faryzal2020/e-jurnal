@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn"><a class="logout" title="" href="logout.php">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" title=""><a class="logout" title="klik untuk log-out account" href="logout.php">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
