@@ -530,42 +530,45 @@
             function searchAcc() {
                var input, filter, sbFilter, ssbBtn, table, tr, td, i, showCount = 0;
                input = document.getElementById("pegSearch");
-               filter = input.value.toUpperCase();
-               table = document.getElementById("epTable");
-               tr = table.getElementsByTagName("tr");
+               if(input){
+                 filter = input.value.toUpperCase();
+                 table = document.getElementById("epTable");
+                 tr = table.getElementsByTagName("tr");
 
-               for (i = 2; i < tr.length; i++){
-                  td = tr[i].getElementsByTagName("td")[1];
-                  if(td){
-                     tr[i].style.display = "";
-                  }
-               }
-               if(filter != ''){
-                  for (i = 2; i < tr.length; i++) {
-                     td = tr[i].getElementsByTagName("td")[1];
-                     if(td){
-                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                           
-                           tr[i].style.display = "";
-                           showCount++;
-                        } else {
-                           tr[i].style.display = "none";
-                        }
-                     }
-                  }
-               }
+                 for (i = 2; i < tr.length; i++){
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if(td){
+                       tr[i].style.display = "";
+                    }
+                 }
+                 if(filter != ''){
+                    for (i = 2; i < tr.length; i++) {
+                       td = tr[i].getElementsByTagName("td")[1];
+                       if(td){
+                          if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                             
+                             tr[i].style.display = "";
+                             showCount++;
+                          } else {
+                             tr[i].style.display = "none";
+                          }
+                       }
+                    }
+                 }
 
-               if( filter != ''){
-                document.getElementById("pegCount").innerHTML = showCount;
-                if( showCount <= 0){
-                  tr[1].style.display = "";
-                  document.getElementById("pegTableMessage").innerHTML = "No Result";
-                } else {
-                  tr[1].style.display = "none";
-                }
-               } else {
-                document.getElementById("pegCount").innerHTML = tr.length;
+                 if( filter != ''){
+                  document.getElementById("pegCount").innerHTML = showCount;
+                  if( showCount <= 0){
+                    tr[1].style.display = "";
+                    document.getElementById("pegTableMessage").innerHTML = "No Result";
+                  } else {
+                    tr[1].style.display = "none";
+                  }
+                 } else {
+                  document.getElementById("pegCount").innerHTML = tr.length;
+                 }
                }
+               
             }
 
             function selectCat(cat) {
