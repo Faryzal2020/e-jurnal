@@ -48,13 +48,13 @@
 				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda yang telah dikirim&#013;-Jurnal pegawai yang telah dikirim" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Submit Jurnal</a></li>
-			</ul>
-    		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal yang belum dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Draft Jurnal</a></li>
+				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal anda dan jurnal pegawai yang sudah dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >List Jurnal</a></li>
+			</ul>
+			<ul>
+				<li class="menu-item" title="klik untuk mengubah data pegawai"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
@@ -63,27 +63,27 @@
 		<div class="content">
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/kalender.php";?>
+					<?php require_once "views/adminWeb/submenu/kalender.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/submit.php";?>
+					<?php require_once "views/adminWeb/submenu/actList.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/draftjurnal.php";?>
+					<?php require_once "views/adminWeb/submenu/jurnalpegawai.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/jurnaladmin.php";?>
+					<?php require_once "views/adminWeb/submenu/promosi.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/profil.php";?>
+					<?php require_once "views/adminWeb/submenu/profil.php";?>
 				</div>
 			</div>
 		</div>

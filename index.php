@@ -27,13 +27,13 @@
       $Catquery = mysqli_query($db,$Catsql);
       $Catquery2 = mysqli_query($db,$Catsql);
       // Semua Pegawai
-      $ALLsql = "SELECT * FROM user WHERE user.level < 99";
+      $ALLsql = "SELECT * FROM user WHERE user.level < 99 ORDER BY user.nama_pegawai";
       $ALLquery = mysqli_query($db,$ALLsql);
       // Daftar Pegawai
-      $DPsql = "SELECT * FROM user WHERE user.level < '$level'";
+      $DPsql = "SELECT * FROM user WHERE user.level < '$level' ORDER BY user.nama_pegawai";
       $DPquery = mysqli_query($db,$DPsql);
       // Daftar Pegawai Subbagian
-      $DPSsql = "SELECT * FROM user WHERE user.level < '$level' AND user.bagian = '$bagian'";
+      $DPSsql = "SELECT * FROM user WHERE user.level < '$level' AND user.bagian = '$bagian' ORDER BY user.nama_pegawai";
       $DPSquery = mysqli_query($db,$DPSsql);
       // Jurnal Staff
       $LJstaffsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
@@ -110,6 +110,9 @@
             if ($level == '1'){
                 include_once "functions_staff.php";
                 include_once "views/staf/home_staff.php";
+            } else if ($level == '99') {
+                include_once "functions.php";
+                include_once "views/adminWeb/home.php";
             } else {
                 include_once "functions.php";
                 include_once "views/admin/home.php";
@@ -534,7 +537,7 @@
                for (i = 2; i < tr.length; i++){
                   td = tr[i].getElementsByTagName("td")[1];
                   if(td){
-                     tr[i].style.display = "none";
+                     tr[i].style.display = "";
                   }
                }
                if(filter != ''){
@@ -542,23 +545,26 @@
                      td = tr[i].getElementsByTagName("td")[1];
                      if(td){
                         if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                           
                            tr[i].style.display = "";
                            showCount++;
+                        } else {
+                           tr[i].style.display = "none";
                         }
                      }
                   }
                }
 
-               document.getElementById("pegCount").innerHTML = showCount;
-               if( showCount <= 0 ){
+               if( filter != ''){
+                document.getElementById("pegCount").innerHTML = showCount;
+                if( showCount <= 0){
                   tr[1].style.display = "";
-                  if( filter != ''){
-                     document.getElementById("pegTableMessage").innerHTML = "No Result";
-                  } else {
-                     document.getElementById("pegTableMessage").innerHTML = "Mulai pencarian karyawan dengan mengetik nama pada kolom search";
-                  }
-               } else {
+                  document.getElementById("pegTableMessage").innerHTML = "No Result";
+                } else {
                   tr[1].style.display = "none";
+                }
+               } else {
+                document.getElementById("pegCount").innerHTML = tr.length;
                }
             }
 
@@ -1142,12 +1148,14 @@
             }
 
             function eventFire(el, etype){
-              if (el.fireEvent) {
-                el.fireEvent('on' + etype);
-              } else {
-                var evObj = document.createEvent('Events');
-                evObj.initEvent(etype, true, false);
-                el.dispatchEvent(evObj);
+              if(el){
+                if (el.fireEvent) {
+                  el.fireEvent('on' + etype);
+                } else {
+                  var evObj = document.createEvent('Events');
+                  evObj.initEvent(etype, true, false);
+                  el.dispatchEvent(evObj);
+                }
               }
             }
          </script>
@@ -1156,6 +1164,7 @@
            JAfilter('Bulanan');
            selectDJS('Bulanan');
            selectReport('Bulanan');
+           searchAcc();
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){
               eventFire(document.getElementById("LJSbtn"), 'click');
