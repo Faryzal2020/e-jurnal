@@ -7,7 +7,7 @@
 				                		<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                	</div>
 									<div class="searchPegawai">
-					                    <input type="text" id="pegSearch" onkeyup="searchAcc()" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
+					                    <input type="text" id="pegSearch" onkeyup="searchAcc()" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;" title="mencari nama pegawai">
 					                </div>
 						            Result: 
 						            <label id="pegCount">0</label>
@@ -47,7 +47,7 @@
 											'<?php echo $JAjabatan; ?>',
 											'<?php echo $JAlevel; ?>',
 											'<?php echo $al['password']; ?>'
-										)">Edit Account</a>
+										)" title="klik untuk mengedit account ini">Edit Account</a>
 									</td>
 								</tr>
 								<?php
@@ -65,27 +65,27 @@
 			                                <tr>
 			                                	<td><label>Nama</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputNama" name="nama" value=""></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputNama" name="nama" value="" title="nama pegawai"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Bagian</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputBagian" name="bagian" value=""></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputBagian" name="bagian" value="" title="bagian level < 3 :&#013;-pembinaan dan kesejahteraan pegawai&#013;-pengembangan kompetensi pegawai&#013;-tata usaha kepegawaian"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Jabatan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><textarea style="width: 100%" type="text" id="inputJabatan" name="jabatan" value="" form="FormEA"></textarea></td>
+			                                    <td colspan="3"><textarea style="width: 100%" type="text" id="inputJabatan" name="jabatan" value="" form="FormEA" title="jabatan pegawai" title="jabatan pegawai"></textarea></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Password</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputPassword" name="password" value=""></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputPassword" name="password" value="" title="password pegawai"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Level</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input type="text" name="level" id="inputLevel" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></td>
+			                                    <td colspan="3"><input type="text" name="level" id="inputLevel" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="-level 1 merupakan pegawai&#013;-level 2 merupakan kepala subbagian&#013;-level 3 merupakan kepala bagian&#013;-level 4 merupakan kepala biro"></td>
 			                                </tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EASubmit" class="EAbtnSubmit" onclick="validateEA()">Submit</a></td>
