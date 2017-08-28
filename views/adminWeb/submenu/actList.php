@@ -39,7 +39,6 @@
 									<th>Nama Aktivitas</th>
 									<th style="width: 150px">Standar Waktu Pengerjaan</th>
 									<th style="width: 130px">Kategori</th>
-									<th style="width: 80px"></th>
 								</tr>
 								<tr>
 									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
@@ -62,14 +61,6 @@
 										}
 									?></td>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
-									<td style="text-align: center; width: 80px;">
-										<a class="selectActbtn" onclick="selectActivity(
-											'<?php echo $idAct; ?>',
-											'<?php echo $namaAct; ?>',
-											'<?php echo $durasi; ?>',
-											'<?php echo $namaCateg; ?>'
-										)"><span class="glyphicon glyphicon-ok"  title="klik untuk memilih aktivitas ini"></span></a>
-									</td>
 								</tr>
 								<?php
 									}

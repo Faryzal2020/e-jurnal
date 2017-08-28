@@ -50,9 +50,6 @@
     		<ul>
 				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
 			</ul>
-    		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal anda dan jurnal pegawai yang sudah dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >List Jurnal</a></li>
-			</ul>
 			<ul>
 				<li class="menu-item" title="klik untuk mengubah data pegawai"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
@@ -73,12 +70,7 @@
 			</div>
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/adminWeb/submenu/jurnalpegawai.php";?>
-				</div>
-			</div>
-			<div class="tab">
-				<div class="tabN">
-					<?php require_once "views/adminWeb/submenu/promosi.php";?>
+					<?php require_once "views/adminWeb/submenu/accountList.php";?>
 				</div>
 			</div>
 			<div class="tab">

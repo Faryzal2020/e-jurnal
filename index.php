@@ -143,6 +143,8 @@
             var modalDJS2 = document.getElementById('modalDJS2');
             var foto_select = document.getElementById('foto_select');
             var foto_tutup = document.getElementsByClassName("foto_tutup")[0];
+            var modalTA = document.getElementById("ModalTA");
+            var closeTA = document.getElementsByClassName("TAclose")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -196,10 +198,16 @@
                 modalDJS2.style.display = "none";
               }
             }
+            if ( typeof closeTA != 'undefined' ){
+              closeTA.onclick = function() {
+                modalTA.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -218,6 +226,9 @@
                     }
                     if(modalEA){
                       modalEA.style.display = "none";
+                    }
+                    if(modalTA){
+                      modalTA.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalDJS){
@@ -261,9 +272,9 @@
                 }
             }
             function select_file(){
-			      document.getElementById('image').click();
-			      return false;
-		    }
+    			    document.getElementById('image').click();
+    			    return false;
+    		    }
             var ubah = document.querySelectorAll('.tombol_ubah')
             var ubah_ubah = document.querySelectorAll('.ubah_ubah')
             var forEach = Array.prototype.forEach;
@@ -896,10 +907,80 @@
                } else {
                   alert(msg);
                }
+            }
 
+            function validateTA() {
+               var nip = document.forms["FormTA"]["nip"].value;
+               var nipbaru = document.forms["FormTA"]["nipbaru"].value;
+               var nama = document.forms["FormTA"]["nama"].value;
+               var bagian = document.forms["FormTA"]["bagian"].value;
+               var jabatan = document.forms["FormTA"]["jabatan"].value;
+               var password = document.forms["FormTA"]["password"].value;
+               var level = document.forms["FormTA"]["level"].value;
+               var error = 0;
+               var msg;
+               if (nip == "" || nama == "" || jabatan == "" || bagian == "" || password == "" || level == ""){
+                  msg = "Tidak boleh ada kolom yang kosong";
+                  error++;
+               } else if ( level > 99){
+                  msg = "Level tidak boleh lebih dari 99";
+                  error++;
+               } else if ( level == 99){
+                  msg = "Level tidak boleh sama dengan 99";
+                  error++;
+               }
+
+               data = { 'nip':nip, 'nipbaru':nipbaru, 'nama':nama, 'bagian':bagian, 'jabatan':jabatan, 'password':password, 'level':level };
+               if ( error == 0){
+                  alert("Berhasil edit account");
+                  document.getElementById("FormTA").submit();
+                  var nipExists = true;
+                  var existingName;
+                  $.ajax({
+                      dataType: 'html',
+                      url:'ajax/cekNip.php',
+                      method:'post',
+                      data : { 'nip':nip },
+                      success:function(a){
+                        if(a == 'y'){
+                          nipExists = false;
+                        } else {
+                          existingName = a;
+                        }
+                      }
+                  });
+                  if(!nipExists){
+                    $.ajax({
+                      dataType: 'html',
+                      url:'ajax/tambahAccount.php',
+                      method:'post',
+                      data : data,
+                      success:function(a){
+                        if(a){
+                          alert("Berhasil menambahkan account baru dengan nip: "+a);
+                        } else {
+                          alert("Gagal menambahkan account baru");
+                        }
+                      }
+                    });
+                  } else {
+                    alert("NIP yang dimasukkan sudah ada di database, nama pegawai pemilik nip tersebut: "+existingName);
+                  }
+               } else {
+                  alert(msg);
+               }
             }
 
             function lihatJurnal(nip, nama) {
+              document.getElementById("modalLJ").style.display = "block";
+              document.getElementById("labelPemilikJurnal").innerHTML = nama;
+              document.getElementById("LJSnip").value = nip;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              document.getElementById("tabelLJstaffContainer").innerHTML = "";
+              eventFire(document.getElementById("LJSbtn"), 'click');
+            }
+
+            function lihatJurnalADM(nip, nama) {
               document.getElementById("modalLJ").style.display = "block";
               document.getElementById("labelPemilikJurnal").innerHTML = nama;
               document.getElementById("LJSnip").value = nip;
@@ -1148,6 +1229,86 @@
               } else {
                 alert("Kolom filter kosong");
               }
+            }
+
+            function lihatJurnalSemua(nip) {
+              var filType = document.getElementById("LJSfilterType").value;
+              var data = "kosong";
+
+              if (document.getElementById("LJSnip")){
+                nip = document.getElementById("LJSnip").value;
+              }
+              if ( filType == 'Harian'){
+                var tanggal = document.getElementById("LJSpilihHari").value;
+                var split = tanggal.split("-");
+                var tahun = split[0];
+                var bulan = split[1];
+                var hari = split[2];
+                if ( tanggal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+                }
+              } else if ( filType == 'Mingguan'){
+                var tahunMinggu = document.getElementById("LJSpilihMinggu").value;
+                var split = tahunMinggu.split("-");
+                var tahun = split[0];
+                var minggu = split[1];
+                if ( tahunMinggu != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
+                }
+              } else {
+                var tahun = document.getElementById("LJSpilihTahun").value;
+                var bulan = document.getElementById("LJSpilihBulan").value;
+                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
+              }
+
+              if ( data != 'kosong'){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "ajax/tabelLJsemua.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: data,               
+                  success: function(response){                    
+                      $("#tabelLJstaffContainer").html(response);
+                      if(document.getElementById(nip)){
+                        var csv = document.getElementById("csvBtn");
+                        var xls = document.getElementById("xlsBtn");
+                        var pdf = document.getElementById("pdfBtn");
+                        csv.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'csv',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        xls.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'xls',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        pdf.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'pdf',
+                            jspdf: {
+                              orientation: 'l'
+                            },
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                      }
+                  }
+                });
+              } else {
+                alert("Kolom filter kosong");
+              }
+            }
+
+            function openTAform(){
+              document.getElementById("ModalTA").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+
             }
 
             function eventFire(el, etype){
