@@ -932,10 +932,7 @@
 
                data = { 'nip':nip, 'nipbaru':nipbaru, 'nama':nama, 'bagian':bagian, 'jabatan':jabatan, 'password':password, 'level':level };
                if ( error == 0){
-                  alert("Berhasil edit account");
                   document.getElementById("FormTA").submit();
-                  var nipExists = true;
-                  var existingName;
                   $.ajax({
                       dataType: 'html',
                       url:'ajax/cekNip.php',
@@ -943,29 +940,24 @@
                       data : { 'nip':nip },
                       success:function(a){
                         if(a == 'y'){
-                          nipExists = false;
+                          $.ajax({
+                            dataType: 'html',
+                            url:'ajax/tambahAccount.php',
+                            method:'post',
+                            data : data,
+                            success:function(b){
+                              if(b){
+                                alert("Berhasil menambahkan account baru dengan nip: "+b);
+                              } else {
+                                alert("Gagal menambahkan account baru");
+                              }
+                            }
+                          });
                         } else {
-                          existingName = a;
+                          alert("NIP yang dimasukkan sudah ada di database, nama pegawai pemilik nip tersebut: "+a);
                         }
                       }
                   });
-                  if(!nipExists){
-                    $.ajax({
-                      dataType: 'html',
-                      url:'ajax/tambahAccount.php',
-                      method:'post',
-                      data : data,
-                      success:function(a){
-                        if(a){
-                          alert("Berhasil menambahkan account baru dengan nip: "+a);
-                        } else {
-                          alert("Gagal menambahkan account baru");
-                        }
-                      }
-                    });
-                  } else {
-                    alert("NIP yang dimasukkan sudah ada di database, nama pegawai pemilik nip tersebut: "+existingName);
-                  }
                } else {
                   alert(msg);
                }
