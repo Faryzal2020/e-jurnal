@@ -18,14 +18,17 @@
       $jabatan = $_SESSION['jabatan'];
 
       // Activity List
-      $ALsql = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
+      $ALsql = "SELECT k.id_kategori,a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
       $ALquery = mysqli_query($db,$ALsql);
+       
       $ALsql2 = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori WHERE k.nama_kategori != 'kehadiran'";
       $ALquery2 = mysqli_query($db,$ALsql2);
       // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
       $Catquery2 = mysqli_query($db,$Catsql);
+      $Catquery3 = mysqli_query($db,$Catsql);
+      $Catquery4 = mysqli_query($db,$Catsql);
       // Semua Pegawai
       $ALLsql = "SELECT * FROM user WHERE user.level < 99 ORDER BY user.nama_pegawai";
       $ALLquery = mysqli_query($db,$ALLsql);
@@ -66,7 +69,20 @@
             $level = $_POST['level'];
             $EAsql = "UPDATE user SET nama_pegawai = '$nama', bagian = '$bagian', jabatan = '$jabatan', password = '$password', level = '$level' WHERE nip = '$nip'";
             mysqli_query($db,$EAsql);
-         } 
+         } else if( !empty($_POST['aktivitas'])){
+            $aktivitas = $_POST['aktivitas'];
+            $kategori = $_POST['kategori'];
+            $durasi = $_POST['durasi'];
+            $insertact = "INSERT INTO aktivitas(`id_kategori`, `nama_aktivitas`, `durasi`) VALUES ('$kategori','$aktivitas','$durasi')";
+            mysqli_query($db,$insertact);
+         } else if( !empty($_POST['id_aktivitas'])){
+            $aktivitas = $_POST['inputaktivitas'];
+            $idaktivitas = $_POST['id_aktivitas'];
+            $kategori = $_POST['input_idkategori'];
+            $durasi = $_POST['inputdurasi'];
+            $updateact = "update aktivitas SET id_kategori='$kategori', nama_aktivitas='$aktivitas' , durasi='$durasi' WHERE id_aktivitas ='$idaktivitas'" ;
+            mysqli_query($db,$updateact);
+         }
         Redirect('index.php');
         }
       
@@ -145,6 +161,10 @@
             var foto_tutup = document.getElementsByClassName("foto_tutup")[0];
             var modalTA = document.getElementById("ModalTA");
             var closeTA = document.getElementsByClassName("TAclose")[0];
+            var modalact = document.getElementById("ModalAct");
+            var closeAct = document.getElementsByClassName("Actclose")[0];
+            var modalEact = document.getElementById("ModalEact");
+            var closeEAct = document.getElementsByClassName("EActclose")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -204,10 +224,23 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+             
+            if ( typeof closeAct != 'undefined' ){
+              closeAct.onclick = function() {
+                modalact.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
+            if ( typeof closeEAct != 'undefined' ){
+              closeEAct.onclick = function() {
+                modalEact.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact|| event.target == modalEact){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -229,6 +262,12 @@
                     }
                     if(modalTA){
                       modalTA.style.display = "none";
+                    }
+                    if(modalact){
+                      modalact.style.display = "none";
+                    }
+                    if(modalEact){
+                      modalEact.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalDJS){
@@ -970,6 +1009,31 @@
                   alert(msg);
                }
             }
+            function validateTA_Act(){
+                 var aktivitas = document.forms['FormTA_Act']['aktivitas'].value;
+                 var kategori = document.forms['FormTA_Act']['kategori'].value;
+                 var durasi = document.forms['FormTA_Act']['durasi'].value;
+                 if (aktivitas == "" || kategori == "" || durasi=="")                 {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                                console.log(aktivitas + kategori + durasi);
+                                document.getElementById("FormTA_Act").submit();
+                                alert("Aktivitas Baru telah Ditambahkan");
+                        }
+              }
+            function validateTA_EAct(){
+                 var id_aktivitas = document.forms['FormTA_EAct']['id_aktivitas'].value;
+                 var aktivitas = document.forms['FormTA_EAct']['inputaktivitas'].value;
+                 var kategori = document.forms['FormTA_EAct']['input_idkategori'].value;
+                 var durasi = document.forms['FormTA_EAct']['inputdurasi'].value;
+                 if (id_aktivitas == "" || aktivitas == "" || kategori == "" || durasi=="")                 {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                                console.log(id_aktivitas + aktivitas + kategori + durasi);
+                                document.getElementById("FormTA_EAct").submit();
+                                alert("Aktivitas telah Diubah");
+                        }
+              }
 
             function lihatJurnal(nip, nama) {
               document.getElementById("modalLJ").style.display = "block";
@@ -1000,6 +1064,49 @@
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
+             function editAktivitas(id_aktivitas, nama_aktivitas, durasi, id_kategori){
+              console.log(id_aktivitas + nama_aktivitas + durasi + id_kategori )
+              document.getElementById("ModalEact").style.display = "block";
+              document.getElementById("labelaktivitas").innerHTML = nama_aktivitas;
+              document.getElementById("id_aktivitas").value = id_aktivitas;
+              document.getElementById("inputaktivitas").value = nama_aktivitas;
+              document.getElementById("inputdurasi").value = durasi;
+              document.getElementById("input_idkategori").value = id_kategori;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+            }
+             function deleteAktivitas(id_aktivitas){
+               data = { 'id_aktivitas':id_aktivitas };
+                  alert("Menghapus Aktivitas");
+                  var jurnalExists = true;
+                  $.ajax({
+                      dataType: 'html',
+                      url:'ajax/cekjurnal.php',
+                      method:'post',
+                      data : { 'id_aktivitas':id_aktivitas },
+                      success:function(a){
+                        if(a == 'n'){
+                          //jurnalExists = false;
+                          $.ajax({
+                                  dataType: 'html',
+                                  url:'ajax/hapusjurnal.php',
+                                  method:'post',
+                                  data : data,
+                                  success:function(){
+                                      alert("Berhasil menghapus aktivitas ");
+                                      location.reload();
+                                    }
+                                });
+                        } else {
+                                alert("Terdapat "+a+" Jurnal yang menggunakan aktivitas ini");
+                      }
+                          }
+                  });
+                  
+                    
+               
+              
+            }
+
 
 
             function selectJA(type){
@@ -1307,6 +1414,11 @@
 
             function openTAform(){
               document.getElementById("ModalTA").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+
+            }
+            function Actform(){
+              document.getElementById("ModalAct").style.display = "block";
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
             }

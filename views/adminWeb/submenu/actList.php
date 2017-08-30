@@ -21,7 +21,7 @@
 				                    </div>
 				                </div>
 				                <div class="SAwrapper">
-									<div class="searchActivity">
+									<div class="searchActivityadmin">
 										<div class="searchIconWrapperAct">
 				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                		</div>
@@ -29,16 +29,20 @@
 					                </div>
 						            Result: 
 						            <label id="actCount">0</label>
+                                     <div class="tambahAktivitas">
+						            	<button id="TAact" class="TAact" onclick="Actform()" title="Tambah account pegawai"><span class="glyphicon glyphicon-plus"></span></button>
+						            </div>
 				                </div>
 							</div>
 						</div>
 						<div class="tCbody">
 							<table class="actListTable" id="actListTable" border="1" cellpadding="20" align="center">
 								<tr>
-									<th style="width: 60px">No</th>
-									<th>Nama Aktivitas</th>
-									<th style="width: 150px">Standar Waktu Pengerjaan</th>
-									<th style="width: 130px">Kategori</th>
+									<th style="min-width: 60px">No</th>
+									<th style="min-width: 320px">Nama Aktivitas</th>
+									<th style="min-width: 220px">Standar Waktu Pengerjaan</th>
+									<th style="min-width: 220px">Kategori</th>
+									<th style="min-width: 130px"></th>
 								</tr>
 								<tr>
 									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
@@ -49,6 +53,8 @@
 										$namaAct = $al['nama_aktivitas'];
 										$durasi = $al['durasi'];
 										$namaCateg = $al['nama_kategori'];
+                                        $idCateg = $al['id_kategori'];
+                                        
 								?>
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
@@ -61,11 +67,60 @@
 										}
 									?></td>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
+                                    <td style="text-align: center; width: 80px;">
+										<a onclick="editAktivitas(
+											'<?php echo $idAct; ?>',
+											'<?php echo $namaAct; ?>',
+											'<?php echo $durasi; ?>',
+											'<?php echo $idCateg; ?>'
+										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
+										<a class="deleteDJBtn" onclick="deleteAktivitas('<?php echo $idAct; ?>')" style="display: inline; font-size: 1.5em;">
+                    					   <span class="glyphicon glyphicon-trash" title="Hapus Aktivitas"></span></a>
+									</td>
 								</tr>
 								<?php
 									}
 								?>
 							</table>
+                            <div id="ModalEact" class="tCmodal">
+                            <div class="tCmodal-content">
+			                    <span class="EActclose">&times;</span>
+			                    <div id="tCModalLabel">Edit Aktivitas : <label id="labelaktivitas"></label></div>
+			                    <form name="FormTA_EAct" id="FormTA_EAct" method="post" action="">
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableTA">
+			                                <tr><input type="hidden" name="id_aktivitas" id="id_aktivitas" value=""/></tr>
+                                            <tr>
+			                                	<td><label>Nama Aktivitas</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputaktivitas" name="inputaktivitas" value="" title="masukkan aktivitas baru"></td>
+			                                </tr>
+			                               <tr>
+			                                    <td><label>Kategori</label></td>
+			                                    <td>:</td>
+			                                    <td colspan="3"><select name="input_idkategori" id="input_idkategori"  title="masukkan kategori dari aktivitas">
+                                                <option value="">Pilih Aktivitas</option>
+			                                    <?php 
+                                                while ($que = mysqli_fetch_array($Catquery4))
+                                                {
+                                                 ?>
+			                                    		<option value="<?php echo $que['id_kategori']; ?>"><?php echo $que['nama_kategori']; ?></option>
+			                                    <?php
+			                                    	}
+			                                    ?>
+			                                    </select> </td>
+			                                </tr>
+			                                <tr>
+			                                	<td><label>Waktu Efektif</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasi" name="inputdurasi" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
+			                                </tr>
+			                                <tr>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_EAct()">Submit</a></td>
+			                                </tr>
+			                        </table>
+			                    </form>
+			                </div>
+			            </div>
 							<div id="tCModal" class="tCmodal">
 			                    <div class="tCmodal-content">
 			                        <span class="close">&times;</span>
@@ -154,6 +209,45 @@
 			                        </form>
 			                    </div>
 			                </div>
+                             <div id="ModalAct" class="tCmodal">
+			                <div class="tCmodal-content">
+			                    <span class="Actclose">&times;</span>
+			                    <div id="tCModalLabel">Tambah Aktivitas</div>
+			                    <form name="FormTA_Act" id="FormTA_Act" method="post" action="">
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableTA">
+			                                <tr>
+			                                	<td><label>Nama Aktivitas</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputAktivitas" name="aktivitas" value="" title="masukkan aktivitas baru"></td>
+			                                </tr>
+			                               <tr>
+			                                    <td><label>Kategori</label></td>
+			                                    <td>:</td>
+			                                    <td colspan="3"><select name="kategori"  title="masukkan kategori dari aktivitas">
+                                                <option value="">Pilih Aktivitas</option>
+			                                    <?php 
+                                                while ($que = mysqli_fetch_array($Catquery3))
+                                                {
+                                                 ?>
+			                                    		<option value="<?php echo $que['id_kategori']; ?>"><?php echo $que['nama_kategori']; ?></option>
+			                                    <?php
+			                                    	}
+			                                    ?>
+			                                    </select> </td>
+			                                </tr>
+			                                <tr>
+			                                	<td><label>Waktu Efektif</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasi" name="durasi" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
+			                                </tr>
+			                                <tr>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_Act()">Submit</a></td>
+			                                </tr>
+			                        </table>
+			                    </form>
+			                </div>
+			            </div>
+                            
 						</div>
 					</div>
 				</div>

@@ -61,6 +61,7 @@
 
 		.tchbox { background-color: #ECECEC; min-width: 890px; width: 90%; height: 100%; margin: auto; padding-top: 17px; display: flex;}
 		.searchActivity { display: inline-block; margin-left: 60px; width: 60%; padding-right: 20px; }
+		.searchActivityadmin { display: inline-block; margin-left: 60px; width: 40%; padding-right: 20px; }
 		.searchPegawai { display: inline-block; width: 40%; padding-right: 20px; margin-left: 80px; }
 		.dropbtn, .kirimBtn { background-color:#2C383B; padding: 9px; cursor: pointer; border: 1px solid #ECECEC; border-radius: 5px; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC; min-width: 153px;}
 		.dropbtn:hover, .kirimBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B; color: #2C383B; text-decoration: none; }
@@ -89,8 +90,8 @@
 		.fit-width { width: fit-content; }
 		.tableType { width: 80%; }
 		.tableSJ td, .tableEA td, .tableEDJS td {padding: 5px;}
-		.close, .tutupLJ, .EAclose, .TAclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
-		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus{ 
+		.close, .tutupLJ, .EAclose, .TAclose, .Actclose, EActclose   { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus{ 
 			color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
@@ -105,9 +106,9 @@
 		.pjkBtn { display: inline-block; }
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJAbtn, .TAbtn { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
-		.LJAbtn:hover, .TAbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
-		.LJAbtn:active, .TAbtn:active { box-shadow: 0 0 0; }
+		.LJAbtn, .TAbtn , .TAact { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn:hover, .TAbtn:hover, .TAact:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.LJAbtn:active, .TAbtn:active, .TAact:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu, .LJApilihHari { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
@@ -131,8 +132,8 @@
 		.searchIconWrapperAct { display: flex; position: absolute; height: 30px; width: 40px; margin-left: -40px; border-top-left-radius: 4px; border-bottom-left-radius: 4px; background-color: #2C383B;}
 		#iconSearchPeg { display: block; margin: auto; margin-bottom: 8px; color: #ECECEC; }
 
-		.tambahAccount { position: absolute; right: 55px; top: -7px; }
-		.TAbtn { padding: 13px; display: block;}
-		.TAbtn span { display: block; margin: auto; }
+		.tambahAccount, .tambahAktivitas { position: absolute; right: 55px; top: -7px; }
+		.TAbtn, .TAact { padding: 13px; display: block;}
+		.TAbtn span, .TAact span{ display: block; margin: auto; }
 
 		*:not(.date_popup_wrap) { transition: all .1s ease}
