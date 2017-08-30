@@ -55,8 +55,6 @@
 											'<?php echo $JAlevel; ?>',
 											'<?php echo $al['password']; ?>'
 										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
-										<a class="deleteDJBtn" onclick="deleteAccount($JAnip)" style="display: inline; font-size: 1.5em;">
-                    					   <span class="glyphicon glyphicon-trash" title="Hapus account"></span></a>
 									</td>
 								</tr>
 								<?php
