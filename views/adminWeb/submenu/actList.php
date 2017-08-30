@@ -30,7 +30,7 @@
 						            Result: 
 						            <label id="actCount">0</label>
                                      <div class="tambahAktivitas">
-						            	<button id="TAact" class="TAact" onclick="Actform()" title="Tambah account pegawai"><span class="glyphicon glyphicon-plus"></span></button>
+						            	<button id="TAact" class="TAact" onclick="Actform()" title="Tambah Aktivitas Baru"><span class="glyphicon glyphicon-plus"></span></button>
 						            </div>
 				                </div>
 							</div>
@@ -73,7 +73,7 @@
 											'<?php echo $namaAct; ?>',
 											'<?php echo $durasi; ?>',
 											'<?php echo $idCateg; ?>'
-										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
+										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit Aktivitas"></span></a>
 										<a class="deleteDJBtn" onclick="deleteAktivitas('<?php echo $idAct; ?>')" style="display: inline; font-size: 1.5em;">
                     					   <span class="glyphicon glyphicon-trash" title="Hapus Aktivitas"></span></a>
 									</td>
@@ -92,7 +92,7 @@
                                             <tr>
 			                                	<td><label>Nama Aktivitas</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputaktivitas" name="inputaktivitas" value="" title="masukkan aktivitas baru"></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputaktivitas" name="inputaktivitas" value="" title="masukkan aktivitas yang ingin diubah"></td>
 			                                </tr>
 			                               <tr>
 			                                    <td><label>Kategori</label></td>
@@ -115,7 +115,7 @@
 			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasi" name="inputdurasi" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_EAct()">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_EAct()" title="Simpan Perubahan">Submit</a></td>
 			                                </tr>
 			                        </table>
 			                    </form>
@@ -241,7 +241,7 @@
 			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasi" name="durasi" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_Act()">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_Act()" title="Simpan Aktivitas">Submit</a></td>
 			                                </tr>
 			                        </table>
 			                    </form>
