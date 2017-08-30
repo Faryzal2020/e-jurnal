@@ -86,7 +86,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Keterangan</b></th>
     </tr>";
     echo "<tr>";
-    echo "<td align=center colspan='10'>Tidak ada data</td>";
+    echo "<td align=center colspan='12'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";

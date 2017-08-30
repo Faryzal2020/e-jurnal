@@ -14,7 +14,7 @@
 					<table class="userpaneltable" border="0">
 						<tr>
 							<td class="foto"><div class="userphoto">
-                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
+                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload & ubah foto'>
 									  <?php 
 									  	  	$query = "SELECT * FROM user WHERE nip='".$_SESSION['nip']."'";
 									  		$q = mysqli_query($db,$query);
@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn" ><a class="logout" title="klik untuk log-out account" href="logout.php" >Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" ><a class="logout" title="Log out session" href="logout.php" >Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -45,16 +45,16 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda yang telah dikirim&#013;-Jurnal pegawai yang telah dikirim" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="Di menu kalender ini anda dapat melihat&#013;semua jurnal milik semua pegawai&#013;dengan tampilan kalender." ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
+				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" title="klik untuk mengubah data pegawai"><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
+				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<ul class="menuProfil">
-				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
+				<li class="menu-item"  title="Di menu profile anda dapat melihat data&#013;anda dan mengubah password." ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
 			</ul>
         </div> 
 		<div class="content">

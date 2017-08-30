@@ -62,10 +62,6 @@
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
 									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
-									<div class="wrapperTotalWaktu">
-									Total Jam Produktif: 
-									<label id="labelTotalWaktuAdm"></label>
-								</div>
 								</div>
 							</div>
 						</div>
@@ -169,10 +165,6 @@
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
 										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk selesai meihat jurnal"></span></a>
-				                        <div class="wrapperTotalWaktu">
-											Total Jam Produktif: 
-											<label id="labelTotalWaktu"></label>
-										</div>
 			                        </div>
 			                        <div id="tabelLJstaffContainer">
 			                        </div>

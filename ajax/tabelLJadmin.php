@@ -4,26 +4,21 @@ include("../config.php");
 $nip = $_GET['nip'];
 $tipeFilter = $_GET['tipeFilter'];
 $LJSsql = "";
-$LJStotalwaktu = "";
 if( $tipeFilter == 'Harian'){
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
     $hari = $_GET['hari'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan' AND day(j.tanggal_kirim)='$hari'";
-    $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan' AND day(j.tanggal_kirim)='$hari'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.waktu_selesai)='$tahun' AND month(j.waktu_selesai)='$bulan' AND day(j.waktu_selesai)='$hari' AND j.status_jurnal = 'kirim'";
 } else if( $tipeFilter == 'Mingguan'){
     $tahun = $_GET['tahun'];
     $minggu = $_GET['minggu'];
-    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND week(j.tanggal_kirim)='$minggu'";
-    $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND week(j.tanggal_kirim)='$minggu'";
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.waktu_selesai)='$tahun' AND week(j.waktu_selesai)='$minggu' AND j.status_jurnal = 'kirim'";
 } else {
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan'";
-    $LJStotalwaktu = "SELECT sec_to_time(sum(time_to_sec(timediff(j.waktu_selesai,j.waktu_mulai)))) as total_waktu FROM jurnal as j WHERE j.nip = '$nip' AND year(j.tanggal_kirim)='$tahun' AND month(j.tanggal_kirim)='$bulan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.waktu_selesai)='$tahun' AND month(j.waktu_selesai)='$bulan' AND j.status_jurnal = 'kirim'";
 }
 $result = mysqli_query($db, $LJSsql);
-$result2 = mysqli_query($db, $LJStotalwaktu);
 
 echo "<table border='1' class='tabelLJ' id='tabelLJajaxADM' cellpadding='20'>";
 
@@ -46,8 +41,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Tanggal kirim</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.9em; width:120px'><b>Keterangan</b></th>
     </tr>";
-    $data2 = mysqli_fetch_row($result2);
-    echo "<input type=hidden id='$nip' value='$data2[0]' />";
+    echo "<input type=hidden id='$nip' value='' />";
     while($data = mysqli_fetch_row($result))
     {   
         echo "<tr>";

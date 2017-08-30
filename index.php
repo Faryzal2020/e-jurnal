@@ -1120,7 +1120,6 @@
                       $("#JAtabelA").html(response);
 
                       if(document.getElementById(nip)){
-                        document.getElementById("labelTotalWaktuAdm").innerHTML = document.getElementById(nip).value;
                         var csv = document.getElementById("csvBtnADM");
                         var xls = document.getElementById("xlsBtnADM");
                         var pdf = document.getElementById("pdfBtnADM");
@@ -1195,7 +1194,6 @@
                   success: function(response){                    
                       $("#tabelLJstaffContainer").html(response);
                       if(document.getElementById(nip)){
-                        document.getElementById("labelTotalWaktu").innerHTML = document.getElementById(nip).value;
                         var csv = document.getElementById("csvBtn");
                         var xls = document.getElementById("xlsBtn");
                         var pdf = document.getElementById("pdfBtn");
