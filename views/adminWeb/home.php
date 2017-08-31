@@ -14,7 +14,7 @@
 					<table class="userpaneltable" border="0">
 						<tr>
 							<td class="foto"><div class="userphoto">
-                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload & ubah foto'>
+                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
 									  <?php 
 									  	  	$query = "SELECT * FROM user WHERE nip='".$_SESSION['nip']."'";
 									  		$q = mysqli_query($db,$query);
@@ -60,7 +60,7 @@
 		<div class="content">
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/adminWeb/submenu/kalender.php";?>
+					<?php require_once "views/adminWeb/submenu/detail_admin.php";?>
 				</div>
 			</div>
 			<div class="tab">

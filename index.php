@@ -161,6 +161,8 @@
             var foto_tutup = document.getElementsByClassName("foto_tutup")[0];
             var modalTA = document.getElementById("ModalTA");
             var closeTA = document.getElementsByClassName("TAclose")[0];
+            var modalKal = document.getElementById("ModalKal");
+            var closeKal = document.getElementsByClassName("Kalclose")[0];
             var modalact = document.getElementById("ModalAct");
             var closeAct = document.getElementsByClassName("Actclose")[0];
             var modalEact = document.getElementById("ModalEact");
@@ -224,6 +226,12 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+            if ( typeof closeKal != 'undefined' ){
+              closeKal.onclick = function() {
+                modalKal.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
              
             if ( typeof closeAct != 'undefined' ){
               closeAct.onclick = function() {
@@ -240,7 +248,7 @@
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact|| event.target == modalEact){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -268,6 +276,9 @@
                     }
                     if(modalEact){
                       modalEact.style.display = "none";
+                    }
+                    if(modalKal){
+                      modalKal.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalDJS){
@@ -376,15 +387,17 @@
                }
             }
              
-            function detail_selectActivity(nip_nip, nama, tanggal_tanggal){
+            function detail_selectActivity(tanggal_tanggal,nip_nip,namapegawai){
+                console.log(nip_nip);
+                console.log(tanggal_tanggal);
                 document.getElementById("detail_select").style.display = "block";
-                document.getElementById("jurnal_nama").innerHTML = nama;
+                document.getElementById("jurnal_nama").innerHTML = namapegawai;
                 document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
                 url: "ajax/detailajax.php",             
                 dataType: "html",   //expect html to be returned
-                data: {nip_nip:nip_nip , tanggal_tanggal:tanggal_tanggal},               
+                data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip_nip},               
                 success: function(response){                    
                     $("#tabledata").html(response); 
                     }
@@ -466,7 +479,7 @@
                     foto_select.style.display = "block";
                     document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
-
+             
             function searchAct() {
                var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
                catBtn = document.getElementById("ddcBtn");
@@ -1431,8 +1444,22 @@
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
             }
-
-            function eventFire(el, etype){
+             
+            function lihatKalender(niep,namapeg){
+                document.getElementById("ModalKal").style.display = "block";
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "ajax/getcalender.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'niep': niep,'namapeg':namapeg},               
+                  success: function(response){                    
+                      $("#calendar_div").html(response);
+                      console.log(namapeg);
+                  }
+                });
+              }
+             
+             function eventFire(el, etype){
               if(el){
                 if (el.fireEvent) {
                   el.fireEvent('on' + etype);

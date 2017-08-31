@@ -5,7 +5,7 @@
 if(isset($_POST['func']) && !empty($_POST['func'])){
 	switch($_POST['func']){
 		case 'getCalender':
-			getCalender($_POST['year'],$_POST['month']);
+			getCalender($_POST['niep'],$_POST['namapeg'],$_POST['year'],$_POST['month']);
 			break;
 		case 'getEvents':
 			getEvents($_POST['date']);
@@ -18,8 +18,9 @@ if(isset($_POST['func']) && !empty($_POST['func'])){
 /*
  * Get calendar full HTML
  */
-function getCalender($year = '',$month = '')
+function getCalender($niep,$namapeg,$year = '',$month = '')
 {
+    
 	$dateYear = ($year != '')?$year:date("Y");
 	$dateMonth = ($month != '')?$month:date("m");
 	$date = $dateYear.'-'.$dateMonth.'-01';
@@ -30,10 +31,10 @@ function getCalender($year = '',$month = '')
 ?>
 	<div id="calender_section">
 		<h2>
-        	<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');"><span class="glyphicon glyphicon-backward" style="pointer-events: none;"></a>
-            <select name="month_dropdown" class="month_dropdown dropdown" title="bulan"><?php echo getAllMonths($dateMonth); ?></select>
-			<select name="year_dropdown" class="year_dropdown dropdown" title="tahun"><?php echo getYearList($dateYear); ?></select>
-            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');"><span class="glyphicon glyphicon-forward" style="pointer-events: none;"></a>
+        	<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>','<?php echo $niep; ?>','<?php echo $namapeg; ?>');"><span class="glyphicon glyphicon-backward" style="pointer-events: none;"></a>
+            <select name="month_dropdown" class="month_dropdown dropdown"><?php echo getAllMonths($dateMonth); ?></select>
+			<select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>
+            <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>','<?php echo $niep; ?>','<?php echo $namapeg; ?>');"><span class="glyphicon glyphicon-forward" style="pointer-events: none;"></a>
         </h2>
 		<div id="event_list" class="none"></div>
 		<div id="calender_section_top">
@@ -52,23 +53,19 @@ function getCalender($year = '',$month = '')
 			<?php 
 				$dayCount = 1;
 				for($cb=1;$cb<=$boxDisplay;$cb++){
+                    $dapatniep=$niep;
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
-						include("config.php");
-                        if (!isset($_SESSION['nip'])){
-                            session_start();
-                        }
-                        $level = $_SESSION['level'];
-                        $bagian = $_SESSION['bagian'];
+						//include("config.php");
+                        $dbHost = 'localhost';
+                        $dbUsername = 'root';
+                        $dbPassword = '';
+                        $dbName = 'dbkepegawaian';
+                        $db = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-                        if($level == 2){
-						          $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_kirim = '".$currentDate."' AND user.level <= '$level' AND user.bagian = '$bagian' AND jurnal.status_jurnal='kirim'";
-                        } 
-                        else{
-                                  $kalendersql = "SELECT id_jurnal FROM jurnal,user WHERE jurnal.nip=user.nip AND tanggal_kirim = '".$currentDate."' AND user.level <= '$level' AND jurnal.status_jurnal='kirim'";
-                        }
-                        $result = mysqli_query($db, $kalendersql);
+						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE tanggal_simpan = '".$currentDate."' AND nip='".$dapatniep."'";
+						$result = mysqli_query($db, $kalendersql);
 						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -87,9 +84,9 @@ function getCalender($year = '',$month = '')
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');" title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
-						echo '</div></div>';
-                        
+                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
+                        echo '</div></div>';
+						
 						echo '</li>';
                         }
 						$dayCount++;
@@ -99,43 +96,47 @@ function getCalender($year = '',$month = '')
 			<?php } } ?>
 			</ul>
 		</div>
+                <div class="content_detail">
+                                <div class="detail_select" id="detail_select">
+                                    <div class="detail_select-content">
+                                        <span class="tutup_detail">&times;</span>
+                                        <div id="detail_label">Detail Jurnal</div>
+                                        <div class="detail_jurnal">
+                                            <div class="DJmilikWrapper">
+                                            Kumpulan Jurnal Milik :  <label id="jurnal_nama"> </label>
+                                            </div>
+                                        </div>
+                                        <div id="tabledata">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 	</div>
 
 	<script type="text/javascript">
-		function getCalendar(target_div,year,month){
+		function getCalendar(target_div,year,month,niep,namapeg){
 			$.ajax({
 				type:'POST',
 				url:'functions.php',
-				data:'func=getCalender&year='+year+'&month='+month,
+				data:'func=getCalender&niep='+niep+'&namapeg='+namapeg+'&year='+year+'&month='+month,
 				success:function(html){
 					$('#'+target_div).html(html);
 				}
 			});
 		}
 		
-		function getEvents(date){
+		/*function getEvents(date){
 			$.ajax({
 				type:'POST',
-				url:'functions.php',
+				url:'functions_staff.php',
 				data:'func=getEvents&date='+date,
 				success:function(html){
 					$('#event_list').html(html);
 					$('#event_list').slideDown('slow');
 				}
 			});
-		}
+		}*/
 		
-		function addEvent(date){
-			$.ajax({
-				type:'POST',
-				url:'functions.php',
-				data:'func=addEvent&date='+date,
-				success:function(html){
-					$('#event_list').html(html);
-					$('#event_list').slideDown('slow');
-				}
-			});
-		}
 		
 		$(document).ready(function(){
 			$('.date_cell').mouseenter(function(){
@@ -152,13 +153,8 @@ function getCalender($year = '',$month = '')
 			$('.year_dropdown').on('change',function(){
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
 			});
-			$(document).click(function(e){
-                if(!$(e.target).hasClass('pjkBtn')){
-                    if(!$(e.target).hasClass('tombol_detail')){
-                    $('#event_list').slideUp('slow');    
-                    }
-				    
-                }
+			$(document).click(function(){
+				$('#event_list').slideUp('slow');
 			});
 		});
 	</script>
@@ -191,44 +187,303 @@ function getYearList($selected = ''){
 	}
 	return $options;
 }
-
+?>
+                           
+            <?php
 /*
  * Get events by date
  */
-function getEvents($date = ''){
+/*function getEvents($date = ''){
 	//Include db configuration file
-	include 'config.php';
     session_start();
-    $level = $_SESSION['level'];
-    $bagian = $_SESSION['bagian'];
+	include 'config.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
-    require_once "views/admin/submenu/detail_admin.php";
 	//Get events based on the current date
-    /*if ($level == 2){
-            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level <= '$level' AND user.bagian = '$bagian'";    
-    }
-    else{
-            $GEsql = "SELECT DISTINCT user.nip,nama_pegawai FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.tanggal_jurnal = '".$date."' AND user.level <= '$level'";  
-    }
-	
+	$GEsql = "SELECT * FROM jurnal,aktivitas,user WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND jurnal.nip=user.nip AND jurnal.Tanggal_Jurnal = '".$date."' AND user.nip='".$_SESSION['nip']."' AND nama_pegawai='".$_SESSION['nama']."'";
 	$result = mysqli_query($db, $GEsql);
 	if($result->num_rows > 0){?>
-		<h2>Pemilik Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
+		<h2>Jurnal pada tanggal <?php echo date("l, d M Y",strtotime($date)) ?></h2>
 		<ul>
         <?php
-		while($row = $result->fetch_assoc()){  ?>
-            <li> <span> Jurnal : <?php echo $row['nama_pegawai']; ?> </span>
-            <button class="btn pull-right tombol_detail" 
-                    onclick="detail_selectActivity('<?php echo $row['nip']; ?>',
+		while($row = mysqli_fetch_array($result)){
+            $nomorIP = $row['nip'];
+            if ($nomorIP == $_SESSION['nip']){
+            ?>
+            
+            <li> Jurnal : <?php echo $row['nama_aktivitas'];?> 
+                dibuat oleh <?php echo $row['nama_pegawai']; ?>
+            <button class="tombol_detail" 
+                    onclick="staff_detail_selectActivity('<?php echo $row['id_jurnal']; ?>',
+                                                    '<?php echo $row['nama_aktivitas']; ?>',
                                                     '<?php echo $row['nama_pegawai']; ?>',
-                                                    '<?php echo $date ?>')"><a href="#">Detail</a></button>
+                                                    '<?php echo $row['volume']; ?>',
+                                                    '<?php echo $row['jenis_output']; ?>',
+                                                    '<?php echo $row['durasi']; ?>',
+                                                    '<?php  
+                                                            $pecah_jam_tanggal_mulai=explode(" ",$row['waktu_mulai']); 
+                                                            $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
+                                                            $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
+                                                            $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
+                                                            $tahun_mulai = $pisah_tanggal_mulai[0];
+                                                            $bulan_mulai = $pisah_tanggal_mulai[1];
+                                                            $hari_mulai = $pisah_tanggal_mulai[2];
+                                                            echo $hari_mulai; 
+                                                ?>',
+                                                    '<?php  
+                                                            $pecah_jam_tanggal_mulai=explode(" ",$row['waktu_mulai']); 
+                                                            $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
+                                                            $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
+                                                            $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
+                                                            $tahun_mulai = $pisah_tanggal_mulai[0];
+                                                            $bulan_mulai = $pisah_tanggal_mulai[1];
+                                                            $hari_mulai = $pisah_tanggal_mulai[2];
+                                                            switch ($bulan_mulai) {
+                                                                case "1":
+                                                                    $namabulan_mulai= "Januari";
+                                                                    break;
+                                                                case "2":
+                                                                    $namabulan_mulai= "Februari";
+                                                                    break;
+                                                                case "3":
+                                                                    $namabulan_mulai= "Maret";
+                                                                    break;
+                                                                case "4":
+                                                                    $namabulan_mulai= "April";
+                                                                    break;
+                                                                case "5":
+                                                                    $namabulan_mulai= "Mei";
+                                                                    break;
+                                                                case "6":
+                                                                    $namabulan_mulai= "Juni";
+                                                                    break;
+                                                                case "7":
+                                                                    $namabulan_mulai= "Juli";
+                                                                    break;
+                                                                case "8":
+                                                                    $namabulan_mulai= "Agustus";
+                                                                    break;
+                                                                case "9":
+                                                                    $namabulan_mulai= "September";
+                                                                    break;
+                                                                case "10":
+                                                                    $namabulan_mulai= "Oktober";
+                                                                    break;
+                                                                case "11":
+                                                                    $namabulan_mulai= "November";
+                                                                    break;
+                                                                case "12":
+                                                                    $namabulan_mulai= "Desember";
+                                                                    break;
+                                                                default:
+                                                                    break;    
+                                                            }
+                                                            echo $namabulan_mulai;
+                                            ?>',
+                                                '<?php  
+                                                            $pecah_jam_tanggal_mulai=explode(" ",$row['waktu_mulai']); 
+                                                            $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
+                                                            $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
+                                                            $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
+                                                            $tahun_mulai = $pisah_tanggal_mulai[0];
+                                                            $bulan_mulai = $pisah_tanggal_mulai[1];
+                                                            $hari_mulai = $pisah_tanggal_mulai[2];
+                                                            echo $tahun_mulai;
+                                            ?>',
+                                                '<?php  
+                                                            $pecah_jam_tanggal_selesai=explode(" ",$row['waktu_selesai']); 
+                                                            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+                                                            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+                                                            $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
+                                                            $tahun_selesai = $pisah_tanggal_selesai[0];
+                                                            $bulan_selesai = $pisah_tanggal_selesai[1];
+                                                            $hari_selesai = $pisah_tanggal_selesai[2];
+                                                            echo $hari_selesai; 
+                                            ?>',
+                                                    '<?php  
+                                                            $pecah_jam_tanggal_selesai=explode(" ",$row['waktu_selesai']); 
+                                                            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+                                                            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+                                                            $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
+                                                            $tahun_selesai = $pisah_tanggal_selesai[0];
+                                                            $bulan_selesai = $pisah_tanggal_selesai[1];
+                                                            $hari_selesai = $pisah_tanggal_selesai[2];
+                                                            switch ($bulan_selesai) {
+                                                                case "1":
+                                                                    $namabulan_selesai= "Januari";
+                                                                    break;
+                                                                case "2":
+                                                                    $namabulan_selesai= "Februari";
+                                                                    break;
+                                                                case "3":
+                                                                    $namabulan_selesai= "Maret";
+                                                                    break;
+                                                                case "4":
+                                                                    $namabulan_selesai= "April";
+                                                                    break;
+                                                                case "5":
+                                                                    $namabulan_selesai= "Mei";
+                                                                    break;
+                                                                case "6":
+                                                                    $namabulan_selesai= "Juni";
+                                                                    break;
+                                                                case "7":
+                                                                    $namabulan_selesai= "Juli";
+                                                                    break;
+                                                                case "8":
+                                                                    $namabulan_selesai= "Agustus";
+                                                                    break;
+                                                                case "9":
+                                                                    $namabulan_selesai= "September";
+                                                                    break;
+                                                                case "10":
+                                                                    $namabulan_selesai= "Oktober";
+                                                                    break;
+                                                                case "11":
+                                                                    $namabulan_selesai= "November";
+                                                                    break;
+                                                                case "12":
+                                                                    $namabulan_selesai= "Desember";
+                                                                    break;
+                                                                default:
+                                                                    break;    
+                                                            }
+                                                            echo $namabulan_selesai;
+                                            ?>',
+                                                '<?php  
+                                                            $pecah_jam_tanggal_selesai=explode(" ",$row['waktu_selesai']); 
+                                                            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+                                                            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+                                                            $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
+                                                            $tahun_selesai = $pisah_tanggal_selesai[0];
+                                                            $bulan_selesai = $pisah_tanggal_selesai[1];
+                                                            $hari_selesai = $pisah_tanggal_selesai[2];
+                                                            echo $tahun_selesai;
+                                            ?>',
+                                                    '<?php    
+                                                            $pecah_jam_tanggal=explode(" ",$row['waktu_mulai']); 
+                                                            $pecah_tanggal = $pecah_jam_tanggal[0];
+                                                            $pecah_jam = $pecah_jam_tanggal[1];
+                                                            echo $pecah_jam;
+                                            ?>',
+                                                    '<?php    
+                                                            $pecah_jam_tanggal_selesai=explode(" ",$row['waktu_selesai']); 
+                                                            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+                                                            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+                                                            echo $pecah_jam_selesai;
+                                            ?>',                                                    
+                                                    '<?php 
+                                                            $to_time = strtotime($row['waktu_selesai']);
+                                                            $from_time = strtotime($row['waktu_mulai']);
+                                                            $durasi_pekerjaan = round(abs($to_time - $from_time) / 60);
+                                                            echo $durasi_pekerjaan;
+                                            ?>',
+                                                    '<?php  
+                                                            $pisah_tanggal_jurnal = explode("-",$row['tanggal_jurnal']);
+                                                            $tahun_jurnal = $pisah_tanggal_jurnal[0];
+                                                            $bulan_jurnal = $pisah_tanggal_jurnal[1];
+                                                            $hari_jurnal = $pisah_tanggal_jurnal[2];
+                                                            echo $hari_jurnal; 
+                                                ?>',
+                                                    '<?php  
+                                                            $pisah_tanggal_jurnal = explode("-",$row['tanggal_jurnal']);
+                                                            $tahun_jurnal = $pisah_tanggal_jurnal[0];
+                                                            $bulan_jurnal = $pisah_tanggal_jurnal[1];
+                                                            $hari_jurnal = $pisah_tanggal_jurnal[2];
+                                                            switch ($bulan_jurnal) {
+                                                                case "1":
+                                                                    $namabulan_jurnal= "Januari";
+                                                                    break;
+                                                                case "2":
+                                                                    $namabulan_jurnal= "Februari";
+                                                                    break;
+                                                                case "3":
+                                                                    $namabulan_jurnal= "Maret";
+                                                                    break;
+                                                                case "4":
+                                                                    $namabulan_jurnal= "April";
+                                                                    break;
+                                                                case "5":
+                                                                    $namabulan_jurnal= "Mei";
+                                                                    break;
+                                                                case "6":
+                                                                    $namabulan_jurnal= "Juni";
+                                                                    break;
+                                                                case "7":
+                                                                    $namabulan_jurnal= "Juli";
+                                                                    break;
+                                                                case "8":
+                                                                    $namabulan_jurnal= "Agustus";
+                                                                    break;
+                                                                case "9":
+                                                                    $namabulan_jurnal= "September";
+                                                                    break;
+                                                                case "10":
+                                                                    $namabulan_jurnal= "Oktober";
+                                                                    break;
+                                                                case "11":
+                                                                    $namabulan_jurnal= "November";
+                                                                    break;
+                                                                case "12":
+                                                                    $namabulan_jurnal= "Desember";
+                                                                    break;
+                                                                default:
+                                                                    break;    
+                                                            }
+                                                            echo $namabulan_jurnal;
+                                            ?>',
+                                                '<?php  
+                                                            $pisah_tanggal_jurnal = explode("-",$row['tanggal_jurnal']);
+                                                            $tahun_jurnal = $pisah_tanggal_jurnal[0];
+                                                            $bulan_jurnal = $pisah_tanggal_jurnal[1];
+                                                            $hari_jurnal = $pisah_tanggal_jurnal[2];
+                                                            echo $tahun_jurnal;
+                                            ?>'
+                                                                           
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             )">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a href="#">Detail</a></button>
+            <!--<a href="detail.php?menu=lihat&id_jurnal=<?php//echo $row['id_jurnal']?>">Detail</a>-->
             </li>
-        <?php     
+        <?php 
+            }
         }
-     
 		?></ul>
 <?php
-	}*/
-        //pembuka php cadangan
+	}
 }
+
+?>*/
