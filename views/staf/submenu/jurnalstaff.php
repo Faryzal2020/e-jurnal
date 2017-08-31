@@ -5,8 +5,8 @@
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="repBtn" title="melihat draft jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="repbtnLabel" style="pointer-events: none;">Harian</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="repContent">
-				                        <a onclick="selectReport('Harian')" href="#" title="klik untuk melihat draft jurnal berdasarkan harian"><span class="glyphicon glyphicon-chevron-right"></span> Harian</a>
-				                        <a onclick="selectReport('Periode')" href="#" title="klik untuk melihat draft jurnal berdasarkan mingguan"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
+				                        <a onclick="selectReport('Harian')" href="#" title="melihat jurnal berdasarkan tanggal"><span class="glyphicon glyphicon-chevron-right"></span> Harian</a>
+				                        <a onclick="selectReport('Periode')" href="#" title="melihat jurnal dari tanggal A sampai tanggal B"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
 				                    </div>
 				                </div>
 								<div class="LJSfilter" style="display: none">
