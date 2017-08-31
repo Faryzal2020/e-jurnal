@@ -50,7 +50,7 @@
 		.tab { display: none; width: 100%; }
 		.tab.active { display: block; }
 		.content{ flex: 1; }
-		.tabN{ display: block; font-weight: 500; font-size: 1.2em; padding: 60px; padding-top: 40px; }
+		.tabN{ display: block; font-weight: 500; font-size: 1.2em; padding: 40px 30px; }
 
 		input[type=submit] { border: 0 none; padding: 5px 15px; background: #ffbb47; cursor: pointer; box-shadow:3px 3px 0 rgba(0,0,0,.5); }
 		input[type=submit]:hover {background-color: #e2a53d; box-shadow: 0 0 0;}
@@ -94,8 +94,9 @@
 		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus{ 
 			color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
-		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
-		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
+		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+		.gantiActDJ { padding: 4px; font-size: 0.9em; font-weight: normal; display: block; width: 80px; padding-bottom: 0px; }
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
 		.pilihanJurnal { padding-left: 30px; margin-top: -16px; display: block;}
@@ -117,7 +118,7 @@
 		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 7px;}
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 12px; }
-		.LJSpilihBulan { margin-right: 3px; }
+		.LJSpilihPeriode { margin-right: 3px; }
 		.DJSpilihBulan { margin-right: 2.5px; }
 		.LJSfilter, .DJSfilter { margin-left: 30px; padding-top: 8px;}
 		.LJSfilter div, .DJSfilter div { display: inline-block; }
