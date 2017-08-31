@@ -10,9 +10,8 @@
 					                <div class="dropdownCat">
 					                    <button class="dropbtn" id="filBtn"><span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 					                    <div class="dropdownCat-content" id="filContent">
-				                        	<a onclick="JAfilter('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
-					                        <a onclick="JAfilter('Mingguan')" href="#">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-					                        <a onclick="JAfilter('Bulanan')" href="#">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        	<a onclick="JAfilter('Harian')" href="#"><span class="glyphicon glyphicon-chevron-right"></span> Harian</a>
+					                        <a onclick="JAfilter('Periode')" href="#"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
 					                    </div>
 					                </div>
 									<div class="LJAfilter" style="display: none">
@@ -21,43 +20,9 @@
 										</div>
 									</div>
 					                <div class="LJAfilter">
-										<div class="LJApilihMinggu">
-											<input type="text" id="LJApilihMinggu" class="w163 h30" value="<?php echo date("Y-W");?>" />
-										</div>
-									</div>
-									<div class="LJAfilter" style="display: none;">
-										<div class="LJApilihTahun">
-											<select id="LJApilihTahun" class="h30">
-												<?php
-													$lsjTahunA = date("Y") - 10;
-													$lsjTahunB = date("Y");
-													for($i=$lsjTahunA; $i < $lsjTahunB; $i++){
-												?>
-												<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-												<?php
-													}
-												?>
-												<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-											</select>
-										</div>
-										<div class="LJApilihBulan">
-											<select id="LJApilihBulan" class="h30">
-												<?php
-													$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-													for($i=1;$i<=12;$i++){
-														$x = str_pad($i,2,0, STR_PAD_LEFT);
-														if($x == date("m")){
-													?>
-												<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
-													<?php
-														} else {
-													?>
-												<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
-													<?php
-														}
-													}
-													?>
-											</select>
+										<div class="LJApilihPeriode">
+											<input type="date" id="LJApilihAwal" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
+											<input type="date" id="LJApilihAkhir" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">

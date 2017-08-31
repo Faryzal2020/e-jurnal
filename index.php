@@ -351,19 +351,39 @@
             function selectActivity(id, nama, durasi, cat){
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                var tabel = document.getElementById("tableSJ");
-               var vt = document.forms['FormSJ']['volumeType'];
                for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
-               modal.style.display = "block";
-               namaAct.innerHTML = nama;
-               durasiAct.innerHTML = durasi;
-               namaCat.innerHTML = cat;
-               idInput.value = id;
-               if(cat == "kehadiran"){
-                 tabel.rows[2].style.display = "none";
-                 tabel.rows[4].style.display = "none";
-                 tabel.rows[5].style.display = "none";
-                 tabel.rows[9].style.display = "none";
-                 vt = "-";
+                document.getElementById("jamMulai").type = "text";
+                document.getElementById("jamMulai").value = "00:00";
+                document.getElementById("jamSelesai").type = "text";
+                document.getElementById("jamSelesai").value = "23:59";
+                document.getElementById("iconJamMulai").style.display = "";
+                document.getElementById("iconJamSelesai").style.display = "";
+                document.getElementById("tglMulai").type = "date";
+                document.getElementById("tglSelesai").type = "date";
+                document.getElementById("tanggal").style.width = "";
+                document.getElementById("jam").style.width = "35px";
+                modal.style.display = "block";
+                namaAct.innerHTML = nama;
+                durasiAct.innerHTML = durasi;
+                namaCat.innerHTML = cat;
+                idInput.value = id;
+                if(cat == "kehadiran"){
+                  tabel.rows[2].style.display = "none";
+                  tabel.rows[4].style.display = "none";
+                  tabel.rows[5].style.display = "none";
+                  tabel.rows[9].style.display = "none";
+                  document.getElementById("volumeType").value = "-";
+
+                  document.getElementById("jamMulai").type = "hidden";
+                  document.getElementById("jamMulai").value = "00:00";
+                  document.getElementById("jamSelesai").type = "hidden";
+                  document.getElementById("jamSelesai").value = "23:59";
+                  document.getElementById("iconJamMulai").style.display = "none";
+                  document.getElementById("iconJamSelesai").style.display = "none";
+               } else {
+                  document.getElementById("tglMulai").type = "hidden";
+                  document.getElementById("tglSelesai").type = "hidden";
+                  document.getElementById("tanggal").style.width = "1px";
                }
             }
              
@@ -668,23 +688,16 @@
                label = document.getElementById("repbtnLabel");
                if (repBtn){
                  var harian = document.getElementsByClassName("LJSfilter")[0];
-                 var mingguan = document.getElementsByClassName("LJSfilter")[1];
-                 var bulanan = document.getElementsByClassName("LJSfilter")[2];
+                 var periode = document.getElementsByClassName("LJSfilter")[1];
                  document.getElementById("repContent").classList.toggle("show");
                  label.innerHTML = rep;
 
-                 if (mingguan){
+                 if (harian){
                    if( rep == 'Harian'){
                       harian.style.display = "inline-block";
-                      mingguan.style.display = "none";
-                      bulanan.style.display = "none";
-                   } else if( rep == 'Mingguan'){
-                      mingguan.style.display = "inline-block";
-                      bulanan.style.display = "none";
-                      harian.style.display = "none";
+                      periode.style.display = "none";
                    } else {
-                      bulanan.style.display = "inline-block";
-                      mingguan.style.display = "none";
+                      periode.style.display = "inline-block";
                       harian.style.display = "none";
                    }
                     document.getElementById("LJSfilterType").value = rep;
@@ -756,11 +769,6 @@
                   data: data,               
                   success: function(response){                    
                       $("#tabelDJstaffContainer").html(response);
-                      if(document.getElementById("noData")){
-                        document.getElementById("kirimBtn").classList.add("disable");
-                      } else {
-                        document.getElementById("kirimBtn").classList.remove("disable");
-                      }
                   }
                 });
               } else {
@@ -783,13 +791,43 @@
                     document.getElementById("edjsVolume").selectedIndex = row.cells[4].innerHTML-1;
                     document.getElementById("edjsVolumeType").value = row.cells[5].innerHTML;
                     document.getElementById("edjsKeterangan").value = row.cells[9].innerHTML;
-                    var mulai = row.cells[6].innerHTML.split(" ");
-                    var selesai = row.cells[7].innerHTML.split(" ");
+                    var mulai = row.cells[11].innerHTML.split(" ");
+                    var selesai = row.cells[12].innerHTML.split(" ");
                     document.getElementById("edjsTglMulai").value = mulai[0];
-                    document.getElementById("edjsJamMulai").value = mulai[1];
+                    document.getElementById("edjsJamMulai").value = mulai[1].replace(/:\d\d([ ap]|$)/,'$1');
                     document.getElementById("edjsTglSelesai").value = selesai[0];
-                    document.getElementById("edjsJamSelesai").value = selesai[1];
-                    document.getElementById("edjsActType").value = row.cells[2].innerHTML;
+                    document.getElementById("edjsJamSelesai").value = selesai[1].replace(/:\d\d([ ap]|$)/,'$1');
+                    document.getElementById("edjsActType").value = row.cells[2].innerHTML.toLowerCase();
+
+                    document.getElementById("edjsJamMulai").type = "text";
+                    document.getElementById("edjsJamSelesai").type = "text";
+                    document.getElementById("edjsiconJM").style.display = "";
+                    document.getElementById("edjsiconJS").style.display = "";
+                    document.getElementById("edjsTglMulai").type = "date";
+                    document.getElementById("edjsTglSelesai").type = "date";
+                    document.getElementById("edjsTanggal").style.width = "";
+                    document.getElementById("edjsJam").style.width = "35px";
+                    var tabelEDJS = document.getElementById("tableEDJS");
+                    cat = row.cells[3].innerHTML;
+                    if(cat == "kehadiran"){
+                      tabelEDJS.rows[3].style.display = "none";
+                      tabelEDJS.rows[5].style.display = "none";
+                      tabelEDJS.rows[6].style.display = "none";
+                      tabelEDJS.rows[10].style.display = "none";
+
+                      document.getElementById("edjsJamMulai").type = "hidden";
+                      document.getElementById("edjsJamSelesai").type = "hidden";
+                      document.getElementById("edjsiconJM").style.display = "none";
+                      document.getElementById("edjsiconJS").style.display = "none";
+                    } else {
+                      tabelEDJS.rows[3].style.display = "";
+                      tabelEDJS.rows[5].style.display = "";
+                      tabelEDJS.rows[6].style.display = "";
+                      tabelEDJS.rows[10].style.display = "";
+                      document.getElementById("edjsTglMulai").type = "hidden";
+                      document.getElementById("edjsTglSelesai").type = "hidden";
+                      document.getElementById("edjsTanggal").style.width = "1px";
+                    }
                   }
                }
             }
@@ -1171,8 +1209,7 @@
                label = document.getElementById("PJAbtnLabel");
                if(btn){
                  var harian = document.getElementsByClassName("LJAfilter")[0];
-                 var mingguan = document.getElementsByClassName("LJAfilter")[1];
-                 var bulanan = document.getElementsByClassName("LJAfilter")[2];
+                 var periode = document.getElementsByClassName("LJAfilter")[1];
                  document.getElementById("filContent").classList.toggle("show");
                  label.innerHTML = fil;
 
@@ -1180,15 +1217,9 @@
                    } else {
                    if( fil == 'Harian'){
                       harian.style.display = "inline-block";
-                      bulanan.style.display = "none";
-                      mingguan.style.display = "none";
-                   } else if( fil == 'Mingguan'){
-                      mingguan.style.display = "inline-block";
-                      bulanan.style.display = "none";
-                      harian.style.display = "none";
+                      periode.style.display = "none";
                    } else {
-                      bulanan.style.display = "inline-block";
-                      mingguan.style.display = "none";
+                      periode.style.display = "inline-block";
                       harian.style.display = "none";
                    }
                     document.getElementById("LJAfilterType").value = fil;
@@ -1209,17 +1240,11 @@
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
                 }
               } else if ( filType == 'Mingguan'){
-                var tahunMinggu = document.getElementById("LJApilihMinggu").value;
-                var split = tahunMinggu.split("-");
-                var tahun = split[0];
-                var minggu = split[1];
-                if ( tahunMinggu != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
+                var awal = document.getElementById("LJApilihAwal").value;
+                var akhir = document.getElementById("LJApilihAkhir").value;
+                if ( awal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
                 }
-              } else {
-                var tahun = document.getElementById("LJApilihTahun").value;
-                var bulan = document.getElementById("LJApilihBulan").value;
-                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
               }
 
               if ( data != 'kosong'){
@@ -1283,18 +1308,12 @@
                 if ( tanggal != ""){
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
                 }
-              } else if ( filType == 'Mingguan'){
-                var tahunMinggu = document.getElementById("LJSpilihMinggu").value;
-                var split = tahunMinggu.split("-");
-                var tahun = split[0];
-                var minggu = split[1];
-                if ( tahunMinggu != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
-                }
               } else {
-                var tahun = document.getElementById("LJSpilihTahun").value;
-                var bulan = document.getElementById("LJSpilihBulan").value;
-                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
+                var awal = document.getElementById("LJSpilihAwal").value;
+                var akhir = document.getElementById("LJSpilihAkhir").value;
+                if ( awal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
+                }
               }
 
               if ( data != 'kosong'){
@@ -1454,9 +1473,9 @@
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
-           JAfilter('Bulanan');
+           JAfilter('Harian');
            selectDJS('Bulanan');
-           selectReport('Bulanan');
+           selectReport('Harian');
            searchAcc();
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){

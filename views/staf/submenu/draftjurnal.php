@@ -58,10 +58,6 @@
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat draft jurnal"></span></a>
-								<div class="kirimBtnWrapper">
-
-									<a class="kirimBtn disable" id="kirimBtn" title="klik untuk mengirim jurnal&#013;jurnal yang dikirim tidak bisa diubah kembali">Submit Jurnal</a>
-								</div>
 							</div>
 						</div>
 			            <div id="tabelDJstaffContainer">
@@ -71,14 +67,14 @@
 			                    <span class="close DJSclose">&times;</span>
 			                    <div id="tCModalLabel">Edit draft jurnal</div>
 			                    <form name="FormDJS" id="FormDJS" method="post" action="">
-			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS">
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS" id="tableEDJS">
 			                                <tr><input type="hidden" name="EDJSidJ" id="EDJSidJ" value=""/></tr>
 			                                <tr><input type="hidden" name="EDJSidAct" id="EDJSidAct" value=""/></tr>
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas">Ganti</a></td>
+			                                    <td style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -116,11 +112,11 @@
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td style="width: 120px">
-			                                    	<div class="input-group clockpicker">
+			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="edjsJam" style="width: 120px">
+			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
-													    <span class="input-group-addon">
+													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>
@@ -132,9 +128,9 @@
 			                                    <td>:</td>
 			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
-			                                    	<div class="input-group clockpicker">
+			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30"  title="masukkan jam selesai aktivitas pada jurnal anda">
-													    <span class="input-group-addon">
+													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>
