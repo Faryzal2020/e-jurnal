@@ -16,7 +16,7 @@
 								</div>
 								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihPeriode">
-										<input id="LJSpilihAwal" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="pilih minggu"/>
+										<input id="LJSpilihAwal" class="w163" type="date" value="<?php echo date("Y-m-d", strtotime("-1 month", strtotime(date("Y-m-d"))));?>" title="pilih minggu"/>
 										<input id="LJSpilihAkhir" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="pilih minggu"/>
 									</div>
 								</div>

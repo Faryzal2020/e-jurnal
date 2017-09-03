@@ -11,7 +11,7 @@ if( $tipeFilter == 'Harian'){
 	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.waktu_selesai)='$tahun' AND month(j.waktu_selesai)='$bulan' AND day(j.waktu_selesai)='$hari' AND j.status_jurnal = 'kirim'";
 } else {
     $awal = $_GET['awal'];
-    $minggu = $_GET['minggu'];
+    $akhir = $_GET['akhir'];
     $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.waktu_selesai > '$awal' AND j.waktu_selesai < '$akhir' AND j.status_jurnal = 'kirim'";
 }
 $result = mysqli_query($db, $LJSsql);

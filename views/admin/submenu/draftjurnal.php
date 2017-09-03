@@ -7,12 +7,12 @@
 				                    <div class="dropdownCat-content" id="djsContent">
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat draft jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat draft jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat draft jurnal berdasarkan bulanan">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat draft jurnal berdasarkan bulanan">Bulan Ini <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
+										<input id="DJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 									</div>
 								</div>
 								<div class="DJSfilter" style="display: none">
@@ -58,8 +58,19 @@
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat draft jurnal"></span></a>
-								<div class="kirimBtnWrapper">
-									<a class="kirimBtn disable" id="kirimBtn" onclick="submitDraftS()" title="klik untuk mengirim jurnal&#013;jurnal yang dikirim tidak bisa diubah kembali">Submit Jurnal</a>
+								<div class="submitDateWrapper">
+									<label>Jurnal akan dikirim pada tanggal:</label>
+									<label class="tglKirimJurnal" id="tglKirimJurnal">
+										<?php
+											$time = strtotime(date('d-m-Y'));
+											if(date('j') <= '5'){
+												$submitDate = date('\5 F Y', $time);
+											} else {
+												$submitDate = date('\5 F Y', strtotime("+1 month", $time));
+											}
+											echo $submitDate;
+										?>
+									</label>
 								</div>
 							</div>
 						</div>

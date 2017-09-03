@@ -20,8 +20,8 @@
 										</div>
 									</div>
 					                <div class="LJAfilter">
-										<div class="LJApilihPeriode">
-											<input type="date" id="LJApilihAwal" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
+										<div class="LJApilihPeriode" style="margin: 7px;">
+											<input type="date" id="LJApilihAwal" class="w163 h30" value="<?php echo date("Y-m-d", strtotime("-1 month", strtotime(date("Y-m-d"))));?>" />
 											<input type="date" id="LJApilihAkhir" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
 										</div>
 									</div>
