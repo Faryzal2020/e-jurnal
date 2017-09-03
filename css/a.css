@@ -137,4 +137,6 @@
 		.TAbtn, .TAact { padding: 13px; display: block;}
 		.TAbtn span, .TAact span{ display: block; margin: auto; }
 
+		.KalHariLibur { overflow: hidden; }
+
 		*:not(.date_popup_wrap) { transition: all .1s ease}

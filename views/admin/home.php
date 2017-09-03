@@ -21,9 +21,9 @@
 
 									  		if(!empty($row['foto'])){
 										  ?>
-                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("<?php echo "images/".$row['foto'];?>")'></a>
+                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("<?php echo "images/".$row['foto'];?>"); background-size: cover; background-position: center;'></a>
 									  <?php }else{ ?>
-                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("images/empty.jpg")'>
+                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("images/empty.jpg"); background-size: cover; background-position: center;'>
 									  		<img  src="images/empty.jpg"></a>
 									  <?php } ?></div></td>
 						</tr>
