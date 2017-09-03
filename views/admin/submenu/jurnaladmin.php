@@ -3,12 +3,12 @@
 						<div class="tCheader">
 							<div class="tchbox">
 								<div class="pilihanJurnal">
-				                    <a class="pjBtn" id="pjBtn1" onclick="selectJA('Pribadi')" href="#">Jurnal Saya</a>
-				                    <a class="pjBtn" id="pjBtn2" onclick="selectJA('Pegawai')" href="#">Jurnal Pegawai</a>
+				                    <a class="pjBtn" id="pjBtn1" title="Klik untuk melihat jurnal anda" onclick="selectJA('Pribadi')" href="#">Jurnal Saya</a>
+				                    <a class="pjBtn" id="pjBtn2" title="Klik untuk melihat jurnal pegawai anda" onclick="selectJA('Pegawai')" href="#">Jurnal Pegawai</a>
 				                </div>
 				                <div class="PJAfilter" id="PJAfilter">
 					                <div class="dropdownCat">
-					                    <button class="dropbtn" id="filBtn"><span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+					                    <button class="dropbtn" title="Pilih metode untuk melihat jurnal berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " id="filBtn"><span id="PJAbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 					                    <div class="dropdownCat-content" id="filContent">
 				                        	<a onclick="JAfilter('Harian')" href="#"><span class="glyphicon glyphicon-chevron-right"></span> Harian</a>
 					                        <a onclick="JAfilter('Periode')" href="#"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
@@ -21,8 +21,10 @@
 									</div>
 					                <div class="LJAfilter">
 										<div class="LJApilihPeriode">
-											<input type="date" id="LJApilihAwal" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
-											<input type="date" id="LJApilihAkhir" class="w163 h30" value="<?php echo date("Y-m-d");?>" />
+                                            Dari:
+											<input type="date" id="LJApilihAwal" class="w163 h30" title="Masukkan tanggal awal periode yang ingin anda lihat" value="<?php echo date("Y-m-d");?>" />
+                                            Hingga:
+											<input type="date" id="LJApilihAkhir" class="w163 h30" title="Masukkan tanggal akhir periode yang ingin anda lihat" value="<?php echo date("Y-m-d");?>" />
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">
@@ -59,7 +61,7 @@
 									<td style="text-align: center;"><?php echo $JAbagian ?></td>
 									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center; width: 80px;">
-										<a class="selectActbtn" onclick="lihatJurnal(
+										<a class="selectActbtn" title="Klik untuk melihat detail jurnal" onclick="lihatJurnal(
 											'<?php echo $JAnip; ?>',
 											'<?php echo $JAnama; ?>'
 										)">Lihat Jurnal</a>
@@ -75,7 +77,7 @@
 			                        <div id="tCModalLabel">Daftar jurnal milik: <label id="labelPemilikJurnal"></label></div>
 			                        <div class="headerLJ">
 			                        	<div class="dropdownCat">
-						                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
+						                    <button class="dropbtn" title="Pilih metode untuk melihat jurnal berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 						                    <div class="dropdownCat-content" id="repContent">
 				                        		<a onclick="selectReport('Harian')" href="#" title="melihat jurnal berdasarkan tanggal"><span class="glyphicon glyphicon-chevron-right"></span> Harian</a>
 				                        		<a onclick="selectReport('Periode')" href="#" title="melihat jurnal dari tanggal A sampai tanggal B"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
@@ -88,13 +90,15 @@
 										</div>
 										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihPeriode">
-												<input id="LJSpilihAwal" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="pilih minggu"/>
-												<input id="LJSpilihAkhir" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="pilih minggu"/>
+                                                Dari:
+												<input id="LJSpilihAwal" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal awal periode yang ingin anda lihat"/>
+                                                Hingga:
+												<input id="LJSpilihAkhir" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal akhir periode yang ingin anda lihat"/>
 											</div>
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk selesai meihat jurnal"></span></a>
+										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk  meihat jurnal pegawai"></span></a>
 			                        </div>
 			                        <div id="tabelLJstaffContainer">
 			                        </div>

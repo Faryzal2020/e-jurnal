@@ -26,8 +26,8 @@
                 <div class="bot_panel">
                     <div class="form">
                         <form action="validasi.php" method="POST" id="login">
-                            <input type="text" name="nip" placeholder="NIP" />
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="text" name="nip" placeholder="NIP" title="Masukkan NIP Lama Anda" />
+                            <input type="password" name="password" placeholder="Password" title="Masukkan Password Lama Anda" />
                             <input type="submit" name="validasi" value="Login" />
                         </form>
                     </div>

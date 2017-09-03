@@ -90,8 +90,8 @@
 		.fit-width { width: fit-content; }
 		.tableType { width: 80%; }
 		.tableSJ td, .tableEA td, .tableEDJS td {padding: 5px;}
-		.close, .tutupLJ, .EAclose, .TAclose, .Actclose, EActclose   { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
-		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus{ 
+		.close, .tutupLJ, .EAclose, .TAclose, .Actclose, .EActclose , .Kalclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus, .Kalclose:hover, .Kalclose:focus{ 
 			color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }

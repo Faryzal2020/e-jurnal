@@ -3,12 +3,12 @@
 						<div class="tCheader">
 							<div class="tchbox relative">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="djsBtn" title="melihat draft jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
 
-				                        <a onclick="selectDJS('Harian')" href="#" title="melihat draft jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat draft jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat draft jurnal berdasarkan bulanan">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat jurnal berdasarkan bulanan">Bulanan <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
-								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat draft jurnal"></span></a>
+								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 							</div>
 						</div>
 			            <div id="tabelDJstaffContainer">
@@ -65,7 +65,7 @@
 			            <div id="modalDJS" class="tCmodal">
 			                <div class="tCmodal-content">
 			                    <span class="close DJSclose">&times;</span>
-			                    <div id="tCModalLabel">Edit draft jurnal</div>
+			                    <div id="tCModalLabel">Edit jurnal</div>
 			                    <form name="FormDJS" id="FormDJS" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS" id="tableEDJS">
 			                                <tr><input type="hidden" name="EDJSidJ" id="EDJSidJ" value=""/></tr>

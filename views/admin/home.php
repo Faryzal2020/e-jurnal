@@ -45,16 +45,16 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda yang telah dikirim&#013;-Jurnal pegawai yang telah dikirim" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda &#013;-Jurnal pegawai anda" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Input Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal yang belum dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Edit Jurnal</a></li>
+				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal yang masih bisa diedit dan dihapus" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Edit Jurnal</a></li>
 			</ul>
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal anda dan jurnal pegawai yang sudah dikirim berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan" ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Print Jurnal</a></li>
+				<li class="menu-item" title="klik untuk mencetak jurnal anda dan pegawai anda berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Print Jurnal</a></li>
 			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
