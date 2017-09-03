@@ -14,7 +14,6 @@
 					<table class="userpaneltable" border="0">
 						<tr>
 							<td class="foto"><div class="userphoto">
-                                <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto'>
 									  <?php 
 									  	  	$query = "SELECT * FROM user WHERE nip='".$_SESSION['nip']."'";
 									  		$q = mysqli_query($db,$query);
@@ -22,8 +21,9 @@
 
 									  		if(!empty($row['foto'])){
 										  ?>
-									  		<img  src=<?php echo "images/".$row['foto'];?>></a>
+                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("<?php echo "images/".$row['foto'];?>"); background-size: cover; background-position: center;'></a>
 									  <?php }else{ ?>
+                                            <a class="tampil-foto" onclick ="ubah_foto()" title='Klik untuk upload/ubah foto' style='background-image: url("images/empty.jpg"); background-size: cover; background-position: center;'>
 									  		<img  src="images/empty.jpg"></a>
 									  <?php } ?></div></td>
 						</tr>
@@ -53,6 +53,9 @@
 			<ul>
 				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
+			<ul>
+				<li class="menu-item" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-edit"></span><a href="#">Hari Libur</a></li>
+			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="Di menu profile anda dapat melihat data&#013;anda dan mengubah password." ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
 			</ul>
@@ -71,6 +74,11 @@
 			<div class="tab">
 				<div class="tabN">
 					<?php require_once "views/adminWeb/submenu/accountList.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/adminWeb/submenu/harilibur.php";?>
 				</div>
 			</div>
 			<div class="tab">

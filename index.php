@@ -101,6 +101,7 @@
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+   <link rel="stylesheet" type="text/css" href="css/bootstrap-year-calendar.min.css">
    <link rel="stylesheet" type="text/css" href="css/profile.css"><link rel="stylesheet" type="text/css" href="css/pure.css">
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <link rel="stylesheet" type="text/css" href="css/a.css">
@@ -116,6 +117,7 @@
    <script type="text/javascript" src="js/html2canvas/html2canvas.min.js"></script>
    <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
+   <script type="text/javascript" src="js/bootstrap-year-calendar.min.js"></script>
     
    </head>
    <body class="background">
@@ -248,14 +250,15 @@
             
             
             window.onclick = function(event){
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal){
+                var detail_select2 = document.getElementById('detail_select');
+                var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
                     if(foto_select){
                       foto_select.style.display = "none";
                     }
-                    
                     if (detail_select){
                       detail_select.style.display = "none";
                     }
@@ -277,10 +280,21 @@
                     if(modalEact){
                       modalEact.style.display = "none";
                     }
-                    if(modalKal){
-                      modalKal.style.display = "none";
-                    }
                     document.getElementsByTagName("body")[0].style.overflow = "";
+                    console.log(event.target);
+                    if(modalKal){
+                      if(!detail_select2 || detail_select2.style.display != "block"){
+                        modalKal.style.display = "none";
+                        console.log("TEST");
+                      } else {
+                        detail_select2.style.display = "none";
+                        document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                      }
+                    } else {
+                      if (detail_select2){
+                        detail_select2.style.display = "none";
+                      }
+                    }
                     if(modalDJS){
                       if(modalDJS2.style.display != "block"){
                         modalDJS.style.display = "none";
@@ -1446,20 +1460,21 @@
             }
              
             function lihatKalender(niep,namapeg){
-                document.getElementById("ModalKal").style.display = "block";
-                $.ajax({    //create an ajax request to load_page.php
-                  type: "GET",
-                  url: "ajax/getcalender.php",             
-                  dataType: "html",   //expect html to be returned
-                  data: { 'niep': niep,'namapeg':namapeg},               
-                  success: function(response){                    
-                      $("#calendar_div").html(response);
-                      console.log(namapeg);
-                  }
-                });
-              }
+              document.getElementById("ModalKal").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "ajax/getcalender.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'niep': niep,'namapeg':namapeg},               
+                success: function(response){                    
+                    $("#calendar_div").html(response);
+                    console.log(namapeg);
+                }
+              });
+            }
              
-             function eventFire(el, etype){
+            function eventFire(el, etype){
               if(el){
                 if (el.fireEvent) {
                   el.fireEvent('on' + etype);
@@ -1470,12 +1485,15 @@
                 }
               }
             }
+
+            
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
            JAfilter('Harian');
            selectDJS('Bulanan');
            selectReport('Harian');
+           selectTYPE('staff');
            searchAcc();
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){
@@ -1516,6 +1534,62 @@
            $("#FormDJS").submit(function(e) {
               e.preventDefault();
            });
+
+           function HLedit(e){
+
+           }
+           function HLdelete(e){
+
+           }
+           $('#KalHariLibur').calendar({
+              enableContextMenu: true,
+              enableRangeSelection: true,
+              contextMenuItems:[
+                {
+                  text: 'Update',
+                  click: HLedit
+                },
+                {
+                  text: 'Delete',
+                  click: HLdelete
+                }
+              ],
+              selectRange: function(e){
+                HLedit({ startDate: e.startDate, endDate: e.endDate });
+              },
+              mouseOnDay: function(e) {
+                if(e.events.length > 0) {
+                  var content = '';
+                      
+                  for(var i in e.events) {
+                    content += '<div class="event-tooltip-content">'
+                      + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                      + '<div class="event-location">' + e.events[i].location + '</div>'
+                      + '</div>';
+                  }
+                  
+                  $(e.element).popover({ 
+                    trigger: 'manual',
+                    container: 'body',
+                    html:true,
+                    content: content
+                  });
+                      
+                  $(e.element).popover('show');
+                }
+              },
+              mouseOutDay: function(e) {
+                if(e.events.length > 0) {
+                  $(e.element).popover('hide');
+                }
+              },
+              dayContextMenu: function(e) {
+                $(e.element).popover('hide');
+              }
+           });
+           $('#save-event').click(function() {
+              saveEvent();
+           }); 
          });
          
          </script>
