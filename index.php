@@ -1536,57 +1536,89 @@
            });
 
            function HLedit(e){
-
+              console.log("test");
            }
            function HLdelete(e){
 
            }
-           $('#KalHariLibur').calendar({
-              enableContextMenu: true,
-              enableRangeSelection: true,
-              contextMenuItems:[
-                {
-                  text: 'Update',
-                  click: HLedit
-                },
-                {
-                  text: 'Delete',
-                  click: HLdelete
-                }
-              ],
-              selectRange: function(e){
-                HLedit({ startDate: e.startDate, endDate: e.endDate });
-              },
-              mouseOnDay: function(e) {
-                if(e.events.length > 0) {
-                  var content = '';
-                      
-                  for(var i in e.events) {
-                    content += '<div class="event-tooltip-content">'
-                      + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
-                      + '<div class="event-location">' + e.events[i].location + '</div>'
-                      + '</div>';
-                  }
-                  
-                  $(e.element).popover({ 
-                    trigger: 'manual',
-                    container: 'body',
-                    html:true,
-                    content: content
+
+           var currentYear = new Date().getFullYear();
+           var HLdata = new Array();
+            $.ajax({
+              url:"ajax/getHL.php",
+              type:"POST",
+              dataType:"html",
+              success:function(a){
+                var input = JSON.parse(a);
+                var data = new Array();
+                var i = 0;
+                while (i<input.length){
+                  data.push({
+                    id: input[i]['id'],
+                    name: input[i]['name'],
+                    location: input[i]['location'],
+                    startDate: new Date(input[i]['startDate'] * 1000),
+                    endDate: new Date(input[i]['endDate'] * 1000)
                   });
-                      
-                  $(e.element).popover('show');
+                  i++;
                 }
-              },
-              mouseOutDay: function(e) {
-                if(e.events.length > 0) {
-                  $(e.element).popover('hide');
-                }
-              },
-              dayContextMenu: function(e) {
-                $(e.element).popover('hide');
+
+                console.log(data);
+                loadKalHL(data);
               }
-           });
+            });
+
+           function loadKalHL(HLdata){
+             console.log(HLdata);
+             console.log(HLdata2);
+             $('#KalHariLibur').calendar({
+                enableContextMenu: true,
+                enableRangeSelection: true,
+                contextMenuItems:[
+                  {
+                    text: 'Update',
+                    click: HLedit
+                  },
+                  {
+                    text: 'Delete',
+                    click: HLdelete
+                  }
+                ],
+                selectRange: function(e){
+                  HLedit({ startDate: e.startDate, endDate: e.endDate });
+                },
+                mouseOnDay: function(e) {
+                  if(e.events.length > 0) {
+                    var content = '';
+                        
+                    for(var i in e.events) {
+                      content += '<div class="event-tooltip-content">'
+                        + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                        + '<div class="event-location">' + e.events[i].location + '</div>'
+                        + '</div>';
+                    }
+                    
+                    $(e.element).popover({ 
+                      trigger: 'manual',
+                      container: 'body',
+                      html:true,
+                      content: content
+                    });
+                        
+                    $(e.element).popover('show');
+                  }
+                },
+                mouseOutDay: function(e) {
+                  if(e.events.length > 0) {
+                    $(e.element).popover('hide');
+                  }
+                },
+                dayContextMenu: function(e) {
+                  $(e.element).popover('hide');
+                },
+                dataSource: HLdata
+             });
+           }
            $('#save-event').click(function() {
               saveEvent();
            }); 

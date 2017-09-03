@@ -54,7 +54,7 @@
 				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-edit"></span><a href="#">Hari Libur</a></li>
+				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-edit"></span><a href="#">Hari Libur</a></li>
 			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="Di menu profile anda dapat melihat data&#013;anda dan mengubah password." ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
