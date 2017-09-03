@@ -45,7 +45,7 @@
 									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center;     width: 80px;">
 										<button class="tombol_detail"  title="klik untuk melihat detail jurnal anda"
-                    onclick="lihatKalender('<?php echo $JAnip ?>')">Detail</button>
+                    onclick="lihatKalender('<?php echo $JAnip ?>','<?php echo $JAnama ?>')">Detail</button>
 									</td>
 								</tr>
 								<?php
@@ -100,7 +100,7 @@
 									<td><?php echo $JAjabatan ?></td>
 									<td style="text-align: center; width: 80px;">
 										<button class="tombol_detail" title="klik untuk melihat detail jurnal"
-                    onclick="lihatKalender('<?php echo $JAnip ?>')">Detail</button>
+                    onclick="lihatKalender('<?php echo $JAnip ?>','<?php echo $JAnama ?>')">Detail</button>
 									</td>
 								</tr>
 								<?php
