@@ -10,8 +10,8 @@ echo "<table border='1' class='staff_tabledata' cellpadding='50' width= '100%'>
 <tr>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pekerjaan</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
@@ -29,14 +29,14 @@ while($data = mysqli_fetch_row($detail))
     echo "<td align=center style='width:4%;'>$data[0]</td>";
     echo "<td align=center style='padding: 10px; max-width: 410px; width: 25%;'>$data[7]</td>";
     echo "<td align=center style='width:130px;'>$data[9]</td>";
-    if ($data[4] == "kehadiran"){
+    if ($data[9] == "kehadiran"){
         
         echo "<td align=center  style='width:7.6%%;'>-</td>";
         echo "<td align=center style='width:7.6%%;'>-</td>";
         echo "<td align=center>-</td>";
         echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>-</td>";
         
-        $pecah_jam_tanggal_selesai=explode(" ",$data['3']); 
+        $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
         $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
         $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
@@ -85,7 +85,7 @@ while($data = mysqli_fetch_row($detail))
         }
         $waktuselesai=$hari_selesai."-".$bulan_selesai."-".$tahun_selesai;
         
-        $pecah_jam_tanggal_mulai=explode(" ",$data['4']); 
+        $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
         $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
         $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
         $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
