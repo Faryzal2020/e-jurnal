@@ -64,31 +64,54 @@ function getCalender($niep,$namapeg,$year = '',$month = '')
                         $db = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
+                        $liburNum = 0;
+                        $kalenderlibur = "SELECT hl.id,hl.keterangan FROM `hari_libur` as hl WHERE '".$currentDate."' >= hl.start_date AND '".$currentDate."' <= hl.end_date";
 						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE tanggal_simpan = '".$currentDate."' AND nip='".$dapatniep."'";
 						$result = mysqli_query($db, $kalendersql);
-						$eventNum = $result->num_rows;
+                        $resultlibur = mysqli_query($db, $kalenderlibur);
+						$liburNum = $resultlibur->num_rows;
+                        $eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
-							echo '<li date="'.$currentDate.'" class="grey date_cell">';
-						}elseif($eventNum > 0){
+							echo '<li date="'.$currentDate.'" class="green date_cell">';
+						}elseif($liburNum >0){ echo '<li date="'.$currentDate.'" class="red date_cell">';
+                        }elseif($eventNum > 0){
 							echo '<li date="'.$currentDate.'" class="light_sky date_cell">';
 						}else{
 							echo '<li date="'.$currentDate.'" class="date_cell">';
 						}
+                       
 						//Date cell
 						echo '<span>';
 						echo $dayCount;
 						echo '</span>';
-						if($eventNum > 0){
-						//Hover event popup
-						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
-						echo '<div class="date_window">';
-						echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-                        echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
-                        echo '</div></div>';
-						
-						echo '</li>';
+                        if($liburNum > 0){
+                            while( $dat = $resultlibur->fetch_assoc() ){
+
+                            //Hover event popup
+                            echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
+                            echo '<div class="date_window">';
+                            echo '<div class="popup_event"> libur '. $dat['keterangan'].'</div>';
+                            if($eventNum > 0){
+                                echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
+                                echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';    
+                            }
+
+                            echo '</div></div>';
+                            }
+                        } else {
+                            if($eventNum > 0){
+                            //Hover event popup
+                            echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
+                            echo '<div class="date_window">';
+                            echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
+                            echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
+                            echo '</div></div>';
+
+                            echo '</li>';
+                            }
                         }
+						
 						$dayCount++;
 			?>
 			<?php }else{ ?>
