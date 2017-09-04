@@ -481,6 +481,26 @@ INSERT INTO `aktivitas` (`id_aktivitas`, `id_kategori`, `nama_aktivitas`, `duras
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hari_libur`
+--
+
+CREATE TABLE `hari_libur` (
+  `id` int(11) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hari_libur`
+--
+
+INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
+(1, 'idul fitri', '2017-09-11', '2017-09-15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jurnal`
 --
 
@@ -600,6 +620,12 @@ ALTER TABLE `aktivitas`
   ADD PRIMARY KEY (`id_aktivitas`);
 
 --
+-- Indexes for table `hari_libur`
+--
+ALTER TABLE `hari_libur`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jurnal`
 --
 ALTER TABLE `jurnal`
@@ -626,6 +652,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `aktivitas`
   MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=459;
+--
+-- AUTO_INCREMENT for table `hari_libur`
+--
+ALTER TABLE `hari_libur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
