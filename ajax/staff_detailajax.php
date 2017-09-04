@@ -3,22 +3,27 @@ include("../config.php");
 session_start();
 $staff_tanggal = $_GET['staff_tanggal_tanggal'];
                                                 
-$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND jurnal.tanggal_simpan = '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
+$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$staff_tanggal' AND date(waktu_mulai) <= '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
 $detail = mysqli_query($db, $xeSQL);
 
 echo "<table border='1' class='staff_tabledata' cellpadding='50' width= '100%'>
+<caption class='btn-toolbar'>
+    <button id='csvBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
+    <button id='xlsBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
+    <button id='pdfBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
+</caption>
 <tr>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pekerjaan</b></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pengerjaan</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Mulai</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Lama Kerja</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Input Jurnal</b></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
 </tr>";
 
@@ -29,7 +34,7 @@ while($data = mysqli_fetch_row($detail))
     echo "<td align=center style='width:4%;'>$data[0]</td>";
     echo "<td align=center style='padding: 10px; max-width: 410px; width: 25%;'>$data[7]</td>";
     echo "<td align=center style='width:130px;'>$data[9]</td>";
-    if ($data[9] == "kehadiran"){
+    if ($data[9] == "izin harian"){
         
         echo "<td align=center  style='width:7.6%%;'>-</td>";
         echo "<td align=center style='width:7.6%%;'>-</td>";
@@ -133,9 +138,18 @@ while($data = mysqli_fetch_row($detail))
                 break;    
         }
         $waktumulai=$hari_mulai."-".$namabulan_mulai."-".$tahun_mulai;
-        echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
+        $date1 = $data[3];
+        $date2 = $data[4];
+
+        $diff = abs(strtotime($date2) - strtotime($date1));
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+        $lamacuti = $days + 1;
+       echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
         echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
-        echo "<td align=center style='width: 7.6%'>-</td>";
+        echo "<td align=center style='width: 7.6%'>$lamacuti Hari</td>";
         
     }else{
         
@@ -159,7 +173,10 @@ while($data = mysqli_fetch_row($detail))
         $durasi_pekerjaan = round(abs($to_time - $from_time) / 60);
         echo "<td align=center style='width: 7.6%'>$durasi_pekerjaan Menit</td>";
     }
-    $pisah_tanggal_jurnal = explode("-",$data[5]);
+    $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
+    $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+    $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+    $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
     $tahun_jurnal = $pisah_tanggal_jurnal[0];
     $bulan_jurnal = $pisah_tanggal_jurnal[1];
     $hari_jurnal = $pisah_tanggal_jurnal[2];

@@ -62,7 +62,7 @@ function getCalender($year = '',$month = '')
 						$eventNum = 0;
                         $liburNum = 0;
                         $kalenderlibur = "SELECT hl.id,hl.keterangan FROM `hari_libur` as hl WHERE '".$currentDate."' >= hl.start_date AND '".$currentDate."' <= hl.end_date";
-						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE tanggal_simpan = '".$currentDate."' AND nip='".$_SESSION['nip']."'";
+						$kalendersql = "SELECT id_jurnal FROM jurnal WHERE date(waktu_selesai) >= '".$currentDate."' AND date(waktu_mulai) <= '".$currentDate."' AND nip='".$_SESSION['nip']."'";
 						$result = mysqli_query($db, $kalendersql);
                         $resultlibur = mysqli_query($db, $kalenderlibur);
                         $liburNum = $resultlibur->num_rows;
