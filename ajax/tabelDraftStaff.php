@@ -20,7 +20,7 @@ if( $tipeFilter == 'Harian'){
 }
 $result = mysqli_query($db, $LJSsql);
 
-echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20'>";
+echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='width: -webkit-fill-available;'>";
 echo "
     <tr>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>ID Jurnal</b></th>

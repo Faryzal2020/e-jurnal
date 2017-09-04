@@ -25,6 +25,7 @@
 											<input type="date" id="LJApilihAwal" class="w163 h30" title="Masukkan tanggal awal periode yang ingin anda lihat" value="<?php echo date("Y-m-d");?>" />
                                             Hingga:
 											<input type="date" id="LJApilihAkhir" class="w163 h30" title="Masukkan tanggal akhir periode yang ingin anda lihat" value="<?php echo date("Y-m-d");?>" />
+
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value="">

@@ -138,5 +138,7 @@
 		.TAbtn span, .TAact span{ display: block; margin: auto; }
 
 		.KalHariLibur { overflow: hidden; }
+		.submitDateWrapper { display: block; margin: 10px 30px; margin-top: 0px; font-size: 0.8em; position: absolute; right: 70px;}
+		.submitDateWrapper label { display: block; font-weight: normal; margin-bottom: 0px;}
+		.tglKirimJurnal { font-weight: bold !important; }
 
-		*:not(.date_popup_wrap) { transition: all .1s ease}

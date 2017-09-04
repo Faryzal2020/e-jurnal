@@ -10,6 +10,13 @@
    $nip = $_SESSION['nip'];
 
    if (isset($_SESSION['nip'])){
+      $today = date("Y-m-d");
+      if(date('d') == '5' && date('D') != 'Mon'){
+        $id = $_POST["id"];
+        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'kirim'";
+        mysqli_query($db,$sql);
+      }
+
       $nip = $_SESSION['nip'];
       $nipb = $_SESSION['nipb'];
       $level = $_SESSION['level'];
@@ -727,19 +734,26 @@
                  var mingguan = document.getElementsByClassName("DJSfilter")[1];
                  var bulanan = document.getElementsByClassName("DJSfilter")[2];
                  document.getElementById("djsContent").classList.remove("show");
-                 label.innerHTML = t;
+                 if(t == "Bulanan"){
+                    label.innerHTML = "Bulan Ini" 
+                 } else {
+                    label.innerHTML = t;
+                 }
 
                  if (mingguan){
                    if( t == 'Harian'){
+                      document.getElementById("DJSbtn").style.display = "";
                       harian.style.display = "inline-block";
                       bulanan.style.display = "none";
                       mingguan.style.display = "none";
                    } else if( t == 'Mingguan'){
+                      document.getElementById("DJSbtn").style.display = "";
                       mingguan.style.display = "inline-block";
                       bulanan.style.display = "none";
                       harian.style.display = "none";
                    } else {
-                      bulanan.style.display = "inline-block";
+                      document.getElementById("DJSbtn").style.display = "none";
+                      eventFire(document.getElementById("DJSbtn"), 'click');
                       mingguan.style.display = "none";
                       harian.style.display = "none";
                    }
@@ -1158,13 +1172,7 @@
                       }
                           }
                   });
-                  
-                    
-               
-              
             }
-
-
 
             function selectJA(type){
               var btn1 = document.getElementById("pjBtn1");
@@ -1197,25 +1205,28 @@
               var tombol1 = document.getElementById("tombol1");
               var tombol2 = document.getElementById("tombol2");
                 //alert(type)
-              if ( type == "sendiri"){
-                if (!tombol1.classList.contains("active")){
-                  var tabelADMIN = document.getElementById("JAtabelADMIN");
-                  var tabelSTAFF = document.getElementById("JAtabelSTAFF");
-                  tabelADMIN.style.display = "block";
-                  tabelSTAFF.style.display = "none";
-                  tombol1.classList.add("active");
-                  tombol2.classList.remove("active");
-                }
-              } else {
-                if (!tombol2.classList.contains("active")){
-                  var tabelADMIN = document.getElementById("JAtabelADMIN");
-                  var tabelSTAFF = document.getElementById("JAtabelSTAFF");
-                  tabelSTAFF.style.display = "block";
-                  tabelADMIN.style.display = "none";
-                  tombol2.classList.add("active");
-                  tombol1.classList.remove("active");
+              if(tombol1){
+                if ( type == "sendiri"){
+                  if (!tombol1.classList.contains("active")){
+                    var tabelADMIN = document.getElementById("JAtabelADMIN");
+                    var tabelSTAFF = document.getElementById("JAtabelSTAFF");
+                    tabelADMIN.style.display = "block";
+                    tabelSTAFF.style.display = "none";
+                    tombol1.classList.add("active");
+                    tombol2.classList.remove("active");
+                  }
+                } else {
+                  if (!tombol2.classList.contains("active")){
+                    var tabelADMIN = document.getElementById("JAtabelADMIN");
+                    var tabelSTAFF = document.getElementById("JAtabelSTAFF");
+                    tabelSTAFF.style.display = "block";
+                    tabelADMIN.style.display = "none";
+                    tombol2.classList.add("active");
+                    tombol1.classList.remove("active");
+                  }
                 }
               }
+              
             }
 
             function JAfilter(fil) {
@@ -1253,7 +1264,7 @@
                 if ( tanggal != ""){
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
                 }
-              } else if ( filType == 'Mingguan'){
+              } else {
                 var awal = document.getElementById("LJApilihAwal").value;
                 var akhir = document.getElementById("LJApilihAkhir").value;
                 if ( awal != ""){
@@ -1490,9 +1501,9 @@
          </script>
          <script type="text/javascript">
          $(document).ready(function(){
-           JAfilter('Harian');
+           JAfilter('Periode');
            selectDJS('Bulanan');
-           selectReport('Harian');
+           selectReport('Periode');
            selectTYPE('staff');
            searchAcc();
            eventFire(document.getElementById("DJSbtn"), 'click');
@@ -1536,57 +1547,88 @@
            });
 
            function HLedit(e){
-
+              console.log("test");
            }
            function HLdelete(e){
 
            }
-           $('#KalHariLibur').calendar({
-              enableContextMenu: true,
-              enableRangeSelection: true,
-              contextMenuItems:[
-                {
-                  text: 'Update',
-                  click: HLedit
-                },
-                {
-                  text: 'Delete',
-                  click: HLdelete
-                }
-              ],
-              selectRange: function(e){
-                HLedit({ startDate: e.startDate, endDate: e.endDate });
-              },
-              mouseOnDay: function(e) {
-                if(e.events.length > 0) {
-                  var content = '';
-                      
-                  for(var i in e.events) {
-                    content += '<div class="event-tooltip-content">'
-                      + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
-                      + '<div class="event-location">' + e.events[i].location + '</div>'
-                      + '</div>';
-                  }
-                  
-                  $(e.element).popover({ 
-                    trigger: 'manual',
-                    container: 'body',
-                    html:true,
-                    content: content
+
+           var currentYear = new Date().getFullYear();
+           var HLdata = new Array();
+            $.ajax({
+              url:"ajax/getHL.php",
+              type:"POST",
+              dataType:"html",
+              success:function(a){
+                var input = JSON.parse(a);
+                var data = new Array();
+                var i = 0;
+                while (i<input.length){
+                  data.push({
+                    id: input[i]['id'],
+                    name: input[i]['name'],
+                    location: input[i]['location'],
+                    startDate: new Date(input[i]['startDate'] * 1000),
+                    endDate: new Date(input[i]['endDate'] * 1000)
                   });
-                      
-                  $(e.element).popover('show');
+                  i++;
                 }
-              },
-              mouseOutDay: function(e) {
-                if(e.events.length > 0) {
-                  $(e.element).popover('hide');
-                }
-              },
-              dayContextMenu: function(e) {
-                $(e.element).popover('hide');
+
+                console.log(data);
+                loadKalHL(data);
               }
-           });
+            });
+
+           function loadKalHL(HLdata){
+             console.log(HLdata);
+             $('#KalHariLibur').calendar({
+                enableContextMenu: true,
+                enableRangeSelection: true,
+                contextMenuItems:[
+                  {
+                    text: 'Update',
+                    click: HLedit
+                  },
+                  {
+                    text: 'Delete',
+                    click: HLdelete
+                  }
+                ],
+                selectRange: function(e){
+                  HLedit({ startDate: e.startDate, endDate: e.endDate });
+                },
+                mouseOnDay: function(e) {
+                  if(e.events.length > 0) {
+                    var content = '';
+                        
+                    for(var i in e.events) {
+                      content += '<div class="event-tooltip-content">'
+                        + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                        + '<div class="event-location">' + e.events[i].location + '</div>'
+                        + '</div>';
+                    }
+                    
+                    $(e.element).popover({ 
+                      trigger: 'manual',
+                      container: 'body',
+                      html:true,
+                      content: content
+                    });
+                        
+                    $(e.element).popover('show');
+                  }
+                },
+                mouseOutDay: function(e) {
+                  if(e.events.length > 0) {
+                    $(e.element).popover('hide');
+                  }
+                },
+                dayContextMenu: function(e) {
+                  $(e.element).popover('hide');
+                },
+                dataSource: HLdata
+             });
+           }
            $('#save-event').click(function() {
               saveEvent();
            }); 
