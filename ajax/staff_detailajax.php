@@ -83,7 +83,7 @@ while($data = mysqli_fetch_row($detail))
             default:
                 break;    
         }
-        $waktuselesai=$hari_selesai."-".$bulan_selesai."-".$tahun_selesai;
+        $waktuselesai=$hari_selesai."-".$namabulan_selesai."-".$tahun_selesai;
         
         $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
         $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
@@ -132,7 +132,7 @@ while($data = mysqli_fetch_row($detail))
             default:
                 break;    
         }
-        $waktumulai=$hari_mulai."-".$bulan_mulai."-".$tahun_mulai;
+        $waktumulai=$hari_mulai."-".$namabulan_mulai."-".$tahun_mulai;
         echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
         echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
         echo "<td align=center style='width: 7.6%'>-</td>";
