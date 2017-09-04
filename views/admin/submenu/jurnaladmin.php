@@ -28,7 +28,7 @@
 
 										</div>
 									</div>
-									<input id="LJAfilterType" type="hidden" value="">
+									<input id="LJAfilterType" type="hidden" value=""/>
 									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
 								</div>
 							</div>
