@@ -6,9 +6,9 @@
 				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
 
-				                        <a onclick="selectDJS('Harian')" href="#" title="melihat draft jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat draft jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat draft jurnal berdasarkan bulanan">Bulan Ini <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat jurnal berdasarkan bulanan">Bulan Ini <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">

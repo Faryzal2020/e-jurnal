@@ -157,7 +157,7 @@
 			                                	</td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()" title="klik untuk menyimpan jurnal anda dalam draft">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="tcmSubmit" class="SJbtnSubmit" onclick="validateSJ()" title="klik untuk menyimpan jurnal anda">Submit</a></td>
 			                                </tr>
 			                            </table>
 			                        </form>
