@@ -435,6 +435,7 @@
                   document.getElementById("iconJamMulai").style.display = "none";
                   document.getElementById("iconJamSelesai").style.display = "none";
                } else {
+                  document.getElementById("volumeType").value = "";
                   document.getElementById("tglMulai").type = "hidden";
                   document.getElementById("tglSelesai").type = "hidden";
                   document.getElementById("tanggal").style.width = "1px";

@@ -113,7 +113,7 @@
 			                                <tr>
 			                                	<td><label>Jenis Volume</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 260px" type="text" name="volumeType" placeholder="Contoh: Buku, Lembar, dll"  title="masukan jenis output yang dikerjakan"></td>
+			                                    <td colspan="3"><input style="width: 260px" type="text" name="volumeType" id="volumeType" value="" placeholder="Contoh: Buku, Lembar, dll"  title="masukan jenis output yang dikerjakan"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Keterangan</label></td>
@@ -123,7 +123,7 @@
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="jam" style="width: 120px">
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamMulai" id="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
@@ -137,7 +137,7 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglSelesai" id="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="date" name="tglSelesai" id="tglSelesai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
@@ -154,6 +154,7 @@
 			                                    <td colspan="3"><select name="actType" title="masukkan jenis aktivitas yang anda kerjakan">
 			                                			<option value="umum">Umum</option>
 			                                			<option value="skp">SKP</option>
+			                                			<option value="tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
 			                                <tr>
