@@ -496,7 +496,14 @@ CREATE TABLE `hari_libur` (
 --
 
 INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
-(1, 'idul fitri', '2017-09-11', '2017-09-15');
+(2, 'test', '2017-09-18', '2017-09-20'),
+(3, 'sdawdafaadasdasdawd', '2017-10-17', '2017-10-18'),
+(4, 'test2', '2017-09-09', '2017-09-09'),
+(5, 'testssss', '2017-09-18', '2017-09-18'),
+(6, 'asdasd', '2017-10-16', '2017-10-20'),
+(7, 'asdasdasdasdasd', '2017-09-13', '2017-09-13'),
+(9, 'test3', '2017-06-26', '2017-07-05'),
+(10, 'zxczxc', '2017-09-05', '2017-09-08');
 
 -- --------------------------------------------------------
 
@@ -656,7 +663,7 @@ ALTER TABLE `aktivitas`
 -- AUTO_INCREMENT for table `hari_libur`
 --
 ALTER TABLE `hari_libur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --

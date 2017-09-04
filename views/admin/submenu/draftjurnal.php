@@ -8,7 +8,7 @@
 
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat jurnal berdasarkan bulanan">Bulan Ini <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat semua jurnal yang belum dikirim">Semua Jurnal <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
