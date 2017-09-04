@@ -2,7 +2,7 @@
 					<div class="detail_tCWrapper">
 						<div class="detail_tCheader">
 							<div class="detail_tchbox">
-								<div class="detail_pilihanJurnal">
+								<div class="detail_pilihanJurnal" style="display: none;>
 				                    <a class="pjkBtn" id="tombol1" onclick="selectTYPE('sendiri')" href="#" title="klik untuk melihat jurnal anda">Jurnal Saya</a>
 				                    <a class="pjkBtn" id="tombol2" onclick="selectTYPE('staff')" href="#" title="klik untuk melihat jurnal pegawai anda">Jurnal Pegawai</a>
 				                </div>

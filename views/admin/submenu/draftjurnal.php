@@ -8,7 +8,7 @@
 
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan">Mingguan <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat jurnal berdasarkan bulanan">Bulan Ini <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat semua jurnal yang belum dikirim">Semua Jurnal <span class="glyphicon glyphicon-chevron-right"></span></a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
@@ -18,8 +18,7 @@
 								</div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihMinggu">
-
-										<input id="DJSpilihMinggu" class="w163" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
+										<input id="DJSpilihMinggu" class="w163 h30" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
 									</div>
 								</div>
 				                <div class="DJSfilter" style="display: none">
@@ -64,12 +63,7 @@
 									<label>Jurnal akan dikirim pada tanggal:</label>
 									<label class="tglKirimJurnal" id="tglKirimJurnal">
 										<?php
-											$time = strtotime(date('d-m-Y'));
-											if(date('j') <= '5'){
-												$submitDate = date('\5 F Y', $time);
-											} else {
-												$submitDate = date('\5 F Y', strtotime("+1 month", $time));
-											}
+											$submitDate = date('d F Y', $_SESSION['tglsubmit']);
 											echo $submitDate;
 										?>
 									</label>

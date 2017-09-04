@@ -123,11 +123,11 @@
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglMulai" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td style="width: 120px">
+			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="jam" style="width: 120px">
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
-													    <span class="input-group-addon">
+													    <input type="text" class="form-control" name="jamMulai" id="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <span class="input-group-addon" id="iconJamMulai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>
@@ -137,11 +137,11 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="date" name="tglSelesai" id="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
-													    <span class="input-group-addon">
+													    <input type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <span class="input-group-addon" id="iconJamSelesai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>

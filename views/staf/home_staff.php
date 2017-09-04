@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn" title=""><a class="logout" title="klik untuk log-out account" href="logout.php" >Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" title=""><a class="logout" title="klik untuk log-out account" href="logout.php" style="text-decoration: none;">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -105,7 +105,7 @@
                                 <tr>
                                     <td style="width:20px;"></td>
                                     <td colspan=2></td>
-                                    <td><button type="submit" name="savefoto" class="btn left blue">Upload</button></td>
+                                    <td style="width: 20%"><button type="submit" name="savefoto" class="btnGantiFoto">Upload</button></td>
                                 </tr>
                             </table>
                         </form>

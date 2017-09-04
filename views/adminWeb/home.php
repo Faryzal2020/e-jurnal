@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn" ><a class="logout" title="Log out session" href="logout.php" >Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" ><a class="logout" title="Log out session" href="logout.php" style="text-decoration: none;">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -45,7 +45,7 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="Di menu kalender ini anda dapat melihat&#013;semua jurnal milik semua pegawai&#013;dengan tampilan kalender." ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
+				<li class="menu-item" title="Di menu kalender ini anda dapat melihat&#013;semua jurnal milik semua pegawai&#013;dengan tampilan kalender." ><span class="glyphicon glyphicon-calendar"></span><a href="#">Jurnal Pegawai</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
@@ -105,7 +105,7 @@
                                 <tr>
                                     <td style="width:20px;"></td>
                                     <td colspan=2></td>
-                                    <td><button type="submit" name="savefoto" class="btn left blue">Upload</button></td>
+                                    <td style="width: 20%"><button type="submit" name="savefoto" class="btnGantiFoto">Upload</button></td>
                                 </tr>
                             </table>
                         </form>

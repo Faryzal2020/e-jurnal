@@ -7,15 +7,48 @@
        header('Location: ' . $url, true, $permanent ? 301 : 302);
        exit();
    }
+
+   function getTglSubmit()
+   {
+      include("config.php");
+      if(date('d') >= '5'){
+        $date1 = date('Y-m-\5');
+        $tglsubmit = strtotime('+1 month', strtotime($date1));
+      } else {
+        $tglsubmit = strtotime(date('Y-m-\5'));
+      }
+      
+
+      $HLsql = "SELECT * FROM hari_libur ORDER BY end_date";
+      $HLresult = mysqli_query($db,$HLsql);
+      while($data = mysqli_fetch_row($HLresult)){
+        $start = strtotime($data[2]);
+        $end = strtotime($data[3]);
+        //echo '<script>console.log(new Date('.$end.'*1000))</script>';
+        //echo '<script>console.log(new Date('.$tglsubmit.'*1000))</script>';
+        //echo '<script>console.log(\'===============\')</script>';
+        if($tglsubmit >= $start && $tglsubmit <= $end){
+          $tglsubmit = strtotime('+1 day', $end);
+          //echo '<script>console.log(new Date('.$tglsubmit.'*1000))</script>';
+        }
+      }
+      //$test = date("Ymd", $tglsubmit);
+      //echo '<script>console.log('.$test.')</script>';
+      $_SESSION['tglsubmit'] = $tglsubmit;
+      return date("Y-m-d", $tglsubmit);
+
+   }
    $nip = $_SESSION['nip'];
 
    if (isset($_SESSION['nip'])){
-      $today = date("Y-m-d");
-      if(date('d') == '5' && date('D') != 'Mon'){
-        $id = $_POST["id"];
+
+      $today = date('Y-m-d');
+      if($today == getTglSubmit() && date('D') != 'Mon'){
         $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'kirim'";
         mysqli_query($db,$sql);
       }
+
+      //echo '<script>alert(new Date('.$_SESSION['tglsubmit'].'*1000))</script>';
 
       $nip = $_SESSION['nip'];
       $nipb = $_SESSION['nipb'];
@@ -735,7 +768,7 @@
                  var bulanan = document.getElementsByClassName("DJSfilter")[2];
                  document.getElementById("djsContent").classList.remove("show");
                  if(t == "Bulanan"){
-                    label.innerHTML = "Bulan Ini" 
+                    label.innerHTML = "Semua Jurnal" 
                  } else {
                     label.innerHTML = t;
                  }
@@ -1506,6 +1539,7 @@
            selectReport('Periode');
            selectTYPE('staff');
            searchAcc();
+           getHLdata();
            eventFire(document.getElementById("DJSbtn"), 'click');
            if(document.getElementById("LJSbtn")){
               eventFire(document.getElementById("LJSbtn"), 'click');
@@ -1546,15 +1580,51 @@
               e.preventDefault();
            });
 
-           function HLedit(e){
-              console.log("test");
+           function HLedit(event){
+            var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate()+1)).slice(-2);
+            var endDate = event.endDate.getFullYear() + '-' + ('0' + (event.endDate.getMonth()+1)).slice(-2) + '-' + ('0' + event.endDate.getDate()).slice(-2);
+            $('#event-modal input[name="event-index"]').val(event ? event.id : '');
+            $('#event-modal input[name="event-name"]').val(event ? event.name : '');
+            $('#event-modal input[name="event-start-date"]').val(event ? startDate : '');
+            $('#event-modal input[name="event-end-date"]').val(event ? endDate : '');
+            $('#event-modal').modal();
            }
-           function HLdelete(e){
-
+           function HLdelete(event){
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "ajax/deleteHL.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'id': event.id, 'name': event.name },               
+                success: function(response){
+                    alert(response);
+                    getHLdata();
+                }
+              });
            }
 
-           var currentYear = new Date().getFullYear();
-           var HLdata = new Array();
+           function saveEvent() {
+              var event = {
+                  id: $('#event-modal input[name="event-index"]').val(),
+                  name: $('#event-modal input[name="event-name"]').val(),
+                  startDate: $('#event-modal input[name="event-start-date"]').val(),
+                  endDate: $('#event-modal input[name="event-end-date"]').val()
+              }
+
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "ajax/updateHL.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'id': event.id,'name': event.name,'startDate': event.startDate,'endDate': event.endDate },               
+                success: function(response){
+                    alert(response);
+                    getHLdata();
+                }
+              });
+
+              $('#event-modal').modal('hide');
+           }
+
+           function getHLdata(){
             $.ajax({
               url:"ajax/getHL.php",
               type:"POST",
@@ -1564,11 +1634,13 @@
                 var data = new Array();
                 var i = 0;
                 while (i<input.length){
+                  var start = new Date(input[i]['startDate'] * 1000);
+                  start.setDate(start.getDate()-1);
                   data.push({
                     id: input[i]['id'],
                     name: input[i]['name'],
                     location: input[i]['location'],
-                    startDate: new Date(input[i]['startDate'] * 1000),
+                    startDate: start,
                     endDate: new Date(input[i]['endDate'] * 1000)
                   });
                   i++;
@@ -1578,6 +1650,7 @@
                 loadKalHL(data);
               }
             });
+          }
 
            function loadKalHL(HLdata){
              console.log(HLdata);

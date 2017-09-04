@@ -67,7 +67,7 @@
 		.dropbtn:hover, .kirimBtn:hover { background-color: #ECECEC; border: 1px solid #2C383B; color: #2C383B; text-decoration: none; }
 		.dropbtn:active, .kirimBtn:active { box-shadow: 0 0 0; }
 		.dropdownCat {position: relative; display: inline; margin-left: 30px;}
-		.dropdownCat-content { margin-left: 5px; display: none; position: absolute; min-width: 160px; max-width: 170px; z-index: 2; background-color: white;}
+		.dropdownCat-content { margin-left: 5px; display: none; position: absolute; min-width: 180px; max-width: 190px; z-index: 2; background-color: white;}
 		.dropdownCat-content a {color: black; padding: 12px 16px; display: block; text-decoration: none; border: 1px solid #ccc;}
 		.dropdownCat-content a:hover {background-color:#ccc;}
 		.dropdownCat:hover .dropdown-content {display:block; background-color: #ECECEC; font-size: 0.8em;}
@@ -94,8 +94,8 @@
 		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus, .Kalclose:hover, .Kalclose:focus{ 
 			color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
-		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
-		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
+		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ, .btnGantiFoto { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
+		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover, .btnGantiFoto:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
 		.gantiActDJ { padding: 4px; font-size: 0.9em; font-weight: normal; display: block; width: 80px; padding-bottom: 0px; }
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
@@ -107,7 +107,7 @@
 		.pjkBtn { display: inline-block; }
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
-		.LJAbtn, .TAbtn , .TAact { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn, .TAbtn , .TAact, { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover, .TAbtn:hover, .TAact:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active, .TAbtn:active, .TAact:active { box-shadow: 0 0 0; }
 		.LJApilihMinggu, .LJApilihHari { padding-top: 7px; margin-left: 20px; margin-right: 10px; }
