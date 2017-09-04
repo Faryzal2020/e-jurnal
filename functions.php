@@ -74,7 +74,7 @@ function getCalender($niep,$namapeg,$year = '',$month = '')
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
 							echo '<li date="'.$currentDate.'" class="green date_cell">';
-						}elseif($liburNum >0){ echo '<li date="'.$currentDate.'" class="red date_cell">';
+						}elseif($liburNum >0){ echo '<li date="'.$currentDate.'" class="red date_cell">'; 
                         }elseif($eventNum > 0){
 							echo '<li date="'.$currentDate.'" class="light_sky date_cell">';
 						}else{
@@ -94,7 +94,7 @@ function getCalender($niep,$namapeg,$year = '',$month = '')
                             echo '<div class="popup_event"> libur '. $dat['keterangan'].'</div>';
                             if($eventNum > 0){
                                 echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-                                echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';    
+                                echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal pegawai yang tersedia">Lihat</a>':'';    
                             }
 
                             echo '</div></div>';
@@ -105,7 +105,7 @@ function getCalender($niep,$namapeg,$year = '',$month = '')
                             echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
                             echo '<div class="date_window">';
                             echo '<div class="popup_event">Jurnal ('.$eventNum.')</div>';
-                            echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal yang tersedia">Lihat</a>':'';
+                            echo ($eventNum > 0)?'<a href="javascript:;" onclick="detail_selectActivity(\''.$currentDate.'\',\''.$dapatniep.'\',\''.$namapeg.'\');"title="klik untuk melihat jurnal pegawai yang tersedia">Lihat</a>':'';
                             echo '</div></div>';
 
                             echo '</li>';
