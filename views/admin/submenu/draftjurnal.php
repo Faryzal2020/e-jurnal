@@ -3,7 +3,7 @@
 						<div class="tCheader">
 							<div class="tchbox relative">
 								<div class="dropdownCat">
-				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; bulanan"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
+				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; semua jurnal"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
 
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
