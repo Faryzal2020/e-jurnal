@@ -31,16 +31,16 @@ $totalDurasiTabel = 0;
 while($data = mysqli_fetch_row($detail))
 {   
     
-        echo "<tr>";
-    echo "<td align=center style='width:4%;'>$data[0]</td>";
-    echo "<td align=center style='padding: 10px; max-width: 410px; width: 25%;'>$data[7]</td>";
-    echo "<td align=center style='width:130px;'>$data[9]</td>";
+    echo "<tr>";
+    echo "<td align=center style=''>$data[0]</td>";
+    echo "<td align=center style='min-width: 250px'>$data[7]</td>";
+    echo "<td align=center style=''>$data[9]</td>";
     if ($data[9] == "izin harian"){
         
-        echo "<td align=center  style='width:7.6%%;'>-</td>";
-        echo "<td align=center style='width:7.6%%;'>-</td>";
+        echo "<td align=center style=''>-</td>";
+        echo "<td align=center style=''>-</td>";
         echo "<td align=center>-</td>";
-        echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>-</td>";
+        echo "<td align=center style=''>-</td>";
         
         $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -89,7 +89,7 @@ while($data = mysqli_fetch_row($detail))
             default:
                 break;    
         }
-        $waktuselesai=$hari_selesai."-".$namabulan_selesai."-".$tahun_selesai;
+        $waktuselesai=$hari_selesai." ".$namabulan_selesai." ".$tahun_selesai;
         
         $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
         $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
@@ -148,16 +148,16 @@ while($data = mysqli_fetch_row($detail))
         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
         $lamacuti = $days + 1;
-       echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
-        echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
-        echo "<td align=center style='width: 7.6%'>$lamacuti Hari</td>";
-        echo "<td align=center  style='width:10%;'>-</td>";
+       echo "<td align=center style=''>$waktumulai</td>";
+        echo "<td align=center style=''>$waktuselesai</td>";
+        echo "<td align=center style=''>$lamacuti Hari</td>";
+        echo "<td align=center  style=''>-</td>";
     }else{
         
-        echo "<td align=center  style='width:7.6%%;'>$data[6]</td>";
-        echo "<td align=center style='width:7.6%%;'>$data[10] Menit</td>";
+        echo "<td align=center  style=''>$data[6]</td>";
+        echo "<td align=center style=''>$data[10] Menit</td>";
         echo "<td align=center>$data[1]</td>";
-        echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
+        echo "<td align=center style=''>$data[2]</td>";
         $dateMulai = $data[3];
         $tanggal_mulai = date("d-m-Y", strtotime($dateMulai));
         $jam_mulai = date("H:i", strtotime($dateMulai));
@@ -166,8 +166,8 @@ while($data = mysqli_fetch_row($detail))
         $tanggal_selesai = date("d-m-Y", strtotime($dateSelesai));
         $jam_selesai = date("H:i", strtotime($dateSelesai));
 
-        echo "<td align=center style='min-width: 100px;'>$jam_mulai</td>";
-        echo "<td align=center style='min-width: 100px;'>$jam_selesai</td>";
+        echo "<td align=center style=''>$jam_mulai</td>";
+        echo "<td align=center style=''>$jam_selesai</td>";
         
         $to_time = strtotime($dateSelesai);
         $from_time = strtotime($dateMulai);
@@ -187,7 +187,7 @@ while($data = mysqli_fetch_row($detail))
         }
         $durasiKerjaMenit = $durasiKerja / 60;
         $totalDurasiTabel += $durasiKerjaMenit;
-        echo "<td align=center style='width: 7.6%'>$durasiKerjaMenit Menit</td>";
+        echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
     
     $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
     $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -237,9 +237,10 @@ while($data = mysqli_fetch_row($detail))
             break;    
     }
     $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
-    echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
-    }   
-    echo "<td align=center style='width: 15%; min-width: 150px;'>$data[11]</td>";
+    echo "<td align=center style=''>$tanggal_jurnal</td>";
+    }
+    echo "<td align=center style=''>$data[13]</td>";
+    echo "<td align=center style='min-width: 150px'>$data[11]</td>";
     echo "</tr>";
 }
 echo "<tr><td colspan='12' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $totalDurasiTabel Menit</td></tr>";
