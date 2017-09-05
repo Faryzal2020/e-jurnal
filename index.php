@@ -451,25 +451,26 @@
                 url: "ajax/detailajax.php",             
                 dataType: "html",   //expect html to be returned
                 data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip},               
-                success: function(response){
-                    console.log(response);                    
+                success: function(response){                 
                     $("#tabledata").html(response);
                     var nip_nip = nip;
-                    if(document.getElementById(nip_nip)){
+                    console.log(nip);
+                    console.log(nip_nip);
+                    if(document.getElementById("tabledata")){
                         var csv = document.getElementById("csvBtn_admin");
                         var xls = document.getElementById("xlsBtn_admin");
                         var pdf = document.getElementById("pdfBtn_admin");
                         csv.addEventListener('click', function(e){
                           $('#tabledata').tableExport({
                             type:'csv',
-                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
+                            fileName: 'Jurnal-'+nip+"-"+tanggal_tanggal,
                             escape:'false'
                           });
                         });
                         xls.addEventListener('click', function(e){
                           $('#tabledata').tableExport({
                             type:'xls',
-                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
+                            fileName: 'Jurnal-'+nip+"-"+tanggal_tanggal,
                             escape:'false'
                           });
                         });
@@ -479,7 +480,7 @@
                             jspdf: {
                               orientation: 'l'
                             },
-                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
+                            fileName: 'Jurnal-'+nip+"-"+tanggal_tanggal,
                             escape:'false'
                           });
                         });
