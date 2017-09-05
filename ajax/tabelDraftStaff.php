@@ -23,7 +23,7 @@ if( $tipeFilter == 'Harian'){
 }
 $result = mysqli_query($db, $LJSsql);
 
-echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 80%;'>";
+echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
 echo "
     <tr>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
@@ -52,7 +52,7 @@ if(mysqli_num_rows($result) > 0){
         $actType = $data[6];
         echo "<tr>";
         echo "<td align=center style=''>$idJurnal</td>";
-        echo "<td align=center style=''>$data[7]</td>";
+        echo "<td align=center style='min-width: 172px;'>$data[7]</td>";
         echo "<td align=center style=''>$kategori</td>";
         if ($kategori == "izin harian"){
             
