@@ -500,9 +500,8 @@ INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
 (3, 'sdawdafaadasdasdawd', '2017-10-17', '2017-10-18'),
 (4, 'test2', '2017-09-09', '2017-09-09'),
 (5, 'testssss', '2017-09-18', '2017-09-18'),
-(6, 'asdasd', '2017-10-16', '2017-10-20'),
+(6, 'asdasd', '2017-10-16', '2017-10-23'),
 (7, 'asdasdasdasdasd', '2017-09-13', '2017-09-13'),
-(9, 'test3', '2017-06-26', '2017-07-05'),
 (10, 'zxczxc', '2017-09-05', '2017-09-08');
 
 -- --------------------------------------------------------
@@ -552,7 +551,8 @@ INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_outpu
 (20, 206, '180002997', 1, 'Laporan', '2017-08-22 10:00:00', '2017-08-22 10:30:00', '2017-08-22', '0000-00-00', 'simpan', 'skp', ''),
 (21, 302, '180005067', 2, 'Laporan', '2017-08-04 08:30:00', '2017-08-04 12:30:00', '2017-08-04', '0000-00-00', 'simpan', 'umum', ''),
 (22, 140, '180004854', 1, 'Laporan', '2017-08-22 09:00:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'skp', ''),
-(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'tambahan', 'test');
+(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'simpan', 'tambahan', 'test'),
+(24, 447, '180004854', 1, '-', '2017-09-04 00:00:00', '2017-09-05 23:59:00', '2017-09-04', '0000-00-00', 'simpan', 'umum', 'demam');
 
 -- --------------------------------------------------------
 
@@ -574,7 +574,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (2, 'operasional'),
 (3, 'administrasi'),
 (4, 'pelayanan'),
-(5, 'kehadiran');
+(5, 'izin harian');
 
 -- --------------------------------------------------------
 
@@ -602,18 +602,18 @@ INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `jabatan`, `password`, 
 ('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 'Kepala Subbagian Pembinaan dan Kesejahteraan Pegawai', '180002997', '2', 'pembinaan dan kesejahteraan pegawai', '180002997.jpg'),
 ('180003445', '196306271986031003', 'Purwanto', 'Kepala Subbagian Pengembangan Kompetensi Pegawai', '180003445', '2', 'pengembangan kompetensi pegawai', '180003445.JPG'),
 ('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180003512', '4', '', '180003512.jpg'),
-('180003782', '19700205 199303 1004', 'Hasim Mukti', 'Arsiparis Mahir', '180003782', '1', 'tata usaha kepegawaian', ''),
+('180003782', '19700205 199303 1004', 'Hasim Mukti', 'Arsiparis Mahir', '180003782', '1', 'tata usaha kepegawaian', '180003782.jpg'),
 ('180004373', '19701111 199703 2001', 'Susi Susanti, S.H.', 'Kepala Bagian Kepegawaian', '180004373', '3', '', '180004373.JPG'),
 ('180004854', '198401192005012001', 'Amelia Irna Mayarni Sitohang, S.E.', 'Analis Sumber Daya Manusia Aparatur', '180004854', '1', 'pembinaan dan kesejahteraan pegawai', '180004854.jpg'),
 ('180004895', '197903292005011001', 'Firman Setiana, S.AP.', 'Analis Jabatan ', '180004895', '1', 'pengembangan kompetensi pegawai', '180004895.JPG'),
-('180005067', '197110192006042001', 'Catherine Tulus Olivia, S.E., M.E.', 'Kepala Subbagian Tata Usaha Kepegawaian', '180005067', '2', 'tata usaha kepegawaian', ''),
+('180005067', '197110192006042001', 'Catherine Tulus Olivia, S.E., M.E.', 'Kepala Subbagian Tata Usaha Kepegawaian', '180005067', '2', 'tata usaha kepegawaian', '180005067.jpg'),
 ('180005163', '196509282007012026', 'Endah Takariyanti', 'Pengadministrasi Umum', '180005163', '1', 'pembinaan dan kesejahteraan pegawai', '180005163.jpg'),
 ('180005172', '197407052007011006', 'Ade Wahyudin', 'Pengolah Data', '180005172', '1', 'pembinaan dan kesejahteraan pegawai', '180005172.jpg'),
-('180005548', '198410062010121002', 'Oktaviano Yohannes Pantow, S.E.', 'Analis Kinerja', '180005548', '1', 'tata usaha kepegawaian', ''),
-('180005605', '198904032014022001', 'Irene Astika Dewi, S.I.Kom.', 'Pengelola Naskah', '180005605', '1', 'tata usaha kepegawaian', ''),
-('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 'Analis Sumber Daya Manusia Aparatur', '180005606', '1', 'tata usaha kepegawaian', ''),
+('180005548', '198410062010121002', 'Oktaviano Yohannes Pantow, S.E.', 'Analis Kinerja', '180005548', '1', 'tata usaha kepegawaian', '180005548.jpg'),
+('180005605', '198904032014022001', 'Irene Astika Dewi, S.I.Kom.', 'Pengelola Naskah', '180005605', '1', 'tata usaha kepegawaian', '180005605.jpg'),
+('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 'Analis Sumber Daya Manusia Aparatur', '180005606', '1', 'tata usaha kepegawaian', '180005606.jpg'),
 ('180005736', '199209302015032001', 'Temy Pratiwi, S.H.', 'Analis Sumber Daya Manusia Aparatur', '180005736', '1', 'pengembangan kompetensi pegawai', '180005736.jpg'),
-('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 'Sekretaris Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180005781', '1', 'tata usaha kepegawaian', ''),
+('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 'Sekretaris Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180005781', '1', 'tata usaha kepegawaian', '180005781.jpg'),
 ('admin', '999', 'admin', 'admin', 'admin', '99', 'admin', 'admin.png');
 
 --
@@ -663,12 +663,12 @@ ALTER TABLE `aktivitas`
 -- AUTO_INCREMENT for table `hari_libur`
 --
 ALTER TABLE `hari_libur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
