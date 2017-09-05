@@ -45,15 +45,15 @@ if(mysqli_num_rows($result) > 0){
         $kategori = $data[9];
         $actType = $data[6];
         echo "<tr>";
-        echo "<td align=center style='width:4%;'>$idJurnal</td>";
-        echo "<td align=center style='padding: 10px; max-width: 410px; width: 25%;'>$data[7]</td>";
-        echo "<td align=center style='width:130px;'>$kategori</td>";
+        echo "<td align=center style=''>$idJurnal</td>";
+        echo "<td align=center style=''>$data[7]</td>";
+        echo "<td align=center style=''>$kategori</td>";
         if ($kategori == "izin harian"){
             
-            echo "<td align=center style='width:7.6%%;'>-</td>";
-            echo "<td align=center style='width:7.6%%;'>-</td>";
+            echo "<td align=center style=''>-</td>";
+            echo "<td align=center style=''>-</td>";
             echo "<td align=center>-</td>";
-            echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>-</td>";
+            echo "<td align=center style=''>-</td>";
             
             $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
             $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -167,25 +167,39 @@ if(mysqli_num_rows($result) > 0){
             
         }else{
             
-            echo "<td align=center  style=''>$actType</td>";
+            echo "<td align=center style=''>$actType</td>";
             echo "<td align=center style=''>$durasi Menit</td>";
             echo "<td align=center>$data[1]</td>";
             echo "<td align=center style=''>$data[2]</td>";
-            $pecah_jam_tanggal=explode(" ",$data[3]); 
-            $pecah_tanggal = $pecah_jam_tanggal[0];
-            $pecah_jam_mulai = $pecah_jam_tanggal[1];
+            $dateMulai = $data[3];
+            $tanggal_mulai = date("d-m-Y", strtotime($dateMulai));
+            $jam_mulai = date("H:i", strtotime($dateMulai));
 
-            $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
-            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
-            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+            $dateSelesai = $data[4];
+            $tanggal_selesai = date("d-m-Y", strtotime($dateSelesai));
+            $jam_selesai = date("H:i", strtotime($dateSelesai));
 
-            echo "<td align=center style='min-width: 100px;'>$pecah_jam_mulai</td>";
-            echo "<td align=center style='min-width: 100px;'>$pecah_jam_selesai</td>";
+            echo "<td align=center style=''>$jam_mulai</td>";
+            echo "<td align=center style=''>$jam_selesai</td>";
             
-            $to_time = strtotime($data[4]);
-            $from_time = strtotime($data[3]);
-            $durasi_pekerjaan = round(abs($to_time - $from_time) / 60);
-            echo "<td align=center style='width: 7.6%'>$durasi_pekerjaan Menit</td>";
+            $to_time = strtotime($dateSelesai);
+            $from_time = strtotime($dateMulai);
+            $total_durasi = $to_time - $from_time;
+            if( (int)date("w", strtotime($dateMulai)) == 5 ){ // IF HARI JUMAT
+                if( $from_time < strtotime($tanggal_mulai . " 11:30:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                    $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("11:30:00"));
+                } else {
+                    $durasiKerja = $total_durasi;
+                }
+            } else {
+                if( $from_time < strtotime($tanggal_mulai . " 12:00:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                    $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("12:00:00"));
+                } else {
+                    $durasiKerja = $total_durasi;
+                }
+            }
+            $durasiKerjaMenit = $durasiKerja / 60;
+            echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
         }
         $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -235,8 +249,8 @@ if(mysqli_num_rows($result) > 0){
                 break;    
         }
         $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
-        echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
-        echo "<td align=center style='width: 15%; min-width: 150px;'>$data[10]</td>";
+        echo "<td align=center style='min-width: 100px'>$tanggal_jurnal</td>";
+        echo "<td align=center style='min-width: 150px'>$data[10]</td>";
     
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">

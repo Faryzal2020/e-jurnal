@@ -13,7 +13,7 @@
 				                                    echo "";
 				                                } else {
 				                        ?>
-				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
 				                        <?php
 				                                }
 				                            }

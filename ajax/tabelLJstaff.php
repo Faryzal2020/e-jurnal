@@ -252,7 +252,7 @@ if(mysqli_num_rows($result) > 0){
                 break;    
         }
         $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
-        echo "<td align=center  style='min-width: 90px;'>$tanggal_jurnal</td>";
+        echo "<td align=center style='min-width: 90px;'>$tanggal_jurnal</td>";
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
         echo "</tr>";

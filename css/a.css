@@ -116,7 +116,7 @@
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
 		.tabelLJ { table-layout: auto; width: 100%; }
-		.tabelLJ td { padding: 5px; }
+		.tabelLJ td, .tabelDJ td { padding: 5px; }
 		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 7px;}
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 12px; }
