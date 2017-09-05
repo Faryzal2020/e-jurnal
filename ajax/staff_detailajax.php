@@ -3,10 +3,10 @@ include("../config.php");
 session_start();
 $staff_tanggal = $_GET['staff_tanggal_tanggal'];
                                                 
-$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$staff_tanggal' AND date(waktu_mulai) <= '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
+$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim, jurnal.status_jurnal FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$staff_tanggal' AND date(waktu_mulai) <= '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
 $detail = mysqli_query($db, $xeSQL);
 
-echo "<table border='1' class='staff_tabledata' cellpadding='50' width= '100%'>
+echo "<table border='1' class='staff_tabledata' id='staff_tabledata' cellpadding='50' width= '100%'>
 <caption class='btn-toolbar'>
     <button id='csvBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
     <button id='xlsBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
@@ -24,6 +24,7 @@ echo "<table border='1' class='staff_tabledata' cellpadding='50' width= '100%'>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
 </tr>";
 
@@ -243,6 +244,6 @@ while($data = mysqli_fetch_row($detail))
     echo "<td align=center style='min-width: 150px'>$data[11]</td>";
     echo "</tr>";
 }
-echo "<tr><td colspan='12' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $totalDurasiTabel Menit</td></tr>";
+echo "<tr><td colspan='13' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $totalDurasiTabel Menit</td></tr>";
 echo "</table>";
 ?>

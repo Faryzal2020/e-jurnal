@@ -8,7 +8,7 @@ $deSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.w
 $detail = mysqli_query($db, $deSQL);
 
 
-echo "<table border='1' class='tabledata' cellpadding='50' width= '100%'>
+echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width='100%'>
 <caption class='btn-toolbar'>
     <button id='csvBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
     <button id='xlsBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>

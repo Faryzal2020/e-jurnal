@@ -143,4 +143,5 @@
 		.submitDateWrapper { display: block; margin: 10px 30px; margin-top: 0px; font-size: 0.8em; position: absolute; right: 70px;}
 		.submitDateWrapper label { display: block; font-weight: normal; margin-bottom: 0px;}
 		.tglKirimJurnal { font-weight: bold !important; }
+		.staff_tabledata td { padding: 5px; }
 

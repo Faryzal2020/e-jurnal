@@ -442,7 +442,7 @@
                }
             }
              
-            function detail_selectActivity(tanggal_tanggal,nip_nip,namapegawai){
+            function detail_selectActivity(tanggal_tanggal,nip,namapegawai){
                 document.getElementById("detail_select").style.display = "block";
                 document.getElementById("jurnal_nama").innerHTML = namapegawai;
                 document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -450,34 +450,36 @@
                 type: "GET",
                 url: "ajax/detailajax.php",             
                 dataType: "html",   //expect html to be returned
-                data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip_nip},               
-                success: function(response){                    
+                data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip},               
+                success: function(response){
+                    console.log(response);                    
                     $("#tabledata").html(response);
+                    var nip_nip = nip;
                     if(document.getElementById(nip_nip)){
                         var csv = document.getElementById("csvBtn_admin");
                         var xls = document.getElementById("xlsBtn_admin");
                         var pdf = document.getElementById("pdfBtn_admin");
                         csv.addEventListener('click', function(e){
-                          $('#tabelLJajax').tableExport({
+                          $('#tabledata').tableExport({
                             type:'csv',
-                            fileName: 'Jurnal'+filType+'-'+nip,
+                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
                             escape:'false'
                           });
                         });
                         xls.addEventListener('click', function(e){
-                          $('#tabelLJajax').tableExport({
+                          $('#tabledata').tableExport({
                             type:'xls',
-                            fileName: 'Jurnal'+filType+'-'+nip,
+                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
                             escape:'false'
                           });
                         });
                         pdf.addEventListener('click', function(e){
-                          $('#tabelLJajax').tableExport({
+                          $('#tabledata').tableExport({
                             type:'pdf',
                             jspdf: {
                               orientation: 'l'
                             },
-                            fileName: 'Jurnal'+filType+'-'+nip,
+                            fileName: 'Jurnal-'+nip+tanggal_tanggal,
                             escape:'false'
                           });
                         });
@@ -487,6 +489,7 @@
             }
             function staff_detail_selectActivity( staff_tanggal_tanggal){
                 document.getElementById("staff_detail_select").style.display = "block";
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 //document.getElementById("jurnal_nama").innerHTML = nama;
                 $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
@@ -494,8 +497,37 @@
                 dataType: "html",   //expect html to be returned
                 data: { staff_tanggal_tanggal:staff_tanggal_tanggal},               
                 success: function(response){   
-                    $("#staff_tabledata").html(response); 
+                    $("#staff_tabledata").html(response);
+                    if(document.getElementById("staff_tabledata")){
+                        var csv = document.getElementById("csvBtn_staff");
+                        var xls = document.getElementById("xlsBtn_staff");
+                        var pdf = document.getElementById("pdfBtn_staff");
+                        csv.addEventListener('click', function(e){
+                          $('#staff_tabledata').tableExport({
+                            type:'csv',
+                            fileName: 'Jurnal-'+staff_tanggal_tanggal,
+                            escape:'false'
+                          });
+                        });
+                        xls.addEventListener('click', function(e){
+                          $('#staff_tabledata').tableExport({
+                            type:'xls',
+                            fileName: 'Jurnal-'+staff_tanggal_tanggal,
+                            escape:'false'
+                          });
+                        });
+                        pdf.addEventListener('click', function(e){
+                          $('#staff_tabledata').tableExport({
+                            type:'pdf',
+                            jspdf: {
+                              orientation: 'l'
+                            },
+                            fileName: 'Jurnal-'+staff_tanggal_tanggal,
+                            escape:'false'
+                          });
+                        });
                     }
+                }
               });  
             }
              
