@@ -879,17 +879,11 @@
                     document.getElementById("EDJSidAct").value = idAct;
                     document.getElementById("edjsNamaAct").innerHTML = row.cells[1].innerHTML;
                     document.getElementById("edjsDurasi").innerHTML = dur;
-                    document.getElementById("edjsNamaCat").innerHTML = row.cells[3].innerHTML;
-                    document.getElementById("edjsVolume").selectedIndex = row.cells[4].innerHTML-1;
-                    document.getElementById("edjsVolumeType").value = row.cells[5].innerHTML;
-                    document.getElementById("edjsKeterangan").value = row.cells[9].innerHTML;
-                    var mulai = row.cells[11].innerHTML.split(" ");
-                    var selesai = row.cells[12].innerHTML.split(" ");
-                    document.getElementById("edjsTglMulai").value = mulai[0];
-                    document.getElementById("edjsJamMulai").value = mulai[1].replace(/:\d\d([ ap]|$)/,'$1');
-                    document.getElementById("edjsTglSelesai").value = selesai[0];
-                    document.getElementById("edjsJamSelesai").value = selesai[1].replace(/:\d\d([ ap]|$)/,'$1');
-                    document.getElementById("edjsActType").value = row.cells[2].innerHTML.toLowerCase();
+                    document.getElementById("edjsNamaCat").innerHTML = row.cells[2].innerHTML;
+                    document.getElementById("edjsVolume").selectedIndex = row.cells[3].innerHTML-1;
+                    document.getElementById("edjsVolumeType").value = row.cells[6].innerHTML;
+                    document.getElementById("edjsKeterangan").value = row.cells[11].innerHTML;
+                    document.getElementById("edjsActType").value = row.cells[3].innerHTML.toLowerCase();
 
                     document.getElementById("edjsJamMulai").type = "text";
                     document.getElementById("edjsJamSelesai").type = "text";
@@ -900,13 +894,15 @@
                     document.getElementById("edjsTanggal").style.width = "";
                     document.getElementById("edjsJam").style.width = "35px";
                     var tabelEDJS = document.getElementById("tableEDJS");
-                    cat = row.cells[3].innerHTML;
+                    cat = row.cells[2].innerHTML;
                     if(cat == "kehadiran"){
                       tabelEDJS.rows[3].style.display = "none";
                       tabelEDJS.rows[5].style.display = "none";
                       tabelEDJS.rows[6].style.display = "none";
                       tabelEDJS.rows[10].style.display = "none";
 
+                      document.getElementById("edjsTglMulai").value = row.cells[7].innerHTML;
+                      document.getElementById("edjsTglSelesai").value = row.cells[8].innerHTML;
                       document.getElementById("edjsJamMulai").type = "hidden";
                       document.getElementById("edjsJamSelesai").type = "hidden";
                       document.getElementById("edjsiconJM").style.display = "none";
@@ -916,6 +912,8 @@
                       tabelEDJS.rows[5].style.display = "";
                       tabelEDJS.rows[6].style.display = "";
                       tabelEDJS.rows[10].style.display = "";
+                      document.getElementById("edjsJamMulai").value = row.cells[7].innerHTML;
+                      document.getElementById("edjsJamSelesai").value = row.cells[8].innerHTML;
                       document.getElementById("edjsTglMulai").type = "hidden";
                       document.getElementById("edjsTglSelesai").type = "hidden";
                       document.getElementById("edjsTanggal").style.width = "1px";

@@ -77,14 +77,14 @@
 			                    <span class="close DJSclose">&times;</span>
 			                    <div id="tCModalLabel">Edit jurnal</div>
 			                    <form name="FormDJS" id="FormDJS" method="post" action="">
-			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS">
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS" id="tableEDJS">
 			                                <tr><input type="hidden" name="EDJSidJ" id="EDJSidJ" value=""/></tr>
 			                                <tr><input type="hidden" name="EDJSidAct" id="EDJSidAct" value=""/></tr>
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti :&#013;&#183; aktivitas&#013;&#183; standar waktu &#013;&#183; kategori">Ganti</a></td>
+			                                    <td style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti :&#013;&#183; aktivitas&#013;&#183; standar waktu &#013;&#183; kategori">Ganti</a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -122,11 +122,11 @@
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td style="width: 120px">
-			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30"  title="masukkan jam mulai pada aktivitas jurnal anda">
-													    <span class="input-group-addon">
+			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="edjsJam" style="width: 120px">
+			                                    	<div class="input-group clockpicker" style="width: 100px">
+													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>
@@ -136,11 +136,11 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value=""  title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
-			                                    	<div class="input-group clockpicker">
+			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
-													    <span class="input-group-addon">
+													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
 													</div>
@@ -180,7 +180,7 @@
 						                                    echo "";
 						                                } else {
 						                        ?>
-						                        <a onclick="selectCat2('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
+						                        <a onclick="selectCat2('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
 						                        <?php
 						                                }
 						                            }

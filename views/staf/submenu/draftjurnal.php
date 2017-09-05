@@ -139,7 +139,7 @@
 			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30"  title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -180,7 +180,7 @@
 						                                    echo "";
 						                                } else {
 						                        ?>
-						                        <a onclick="selectCat2('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
+						                        <a onclick="selectCat2('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
 						                        <?php
 						                                }
 						                            }
