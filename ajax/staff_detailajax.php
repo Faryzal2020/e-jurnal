@@ -151,7 +151,7 @@ while($data = mysqli_fetch_row($detail))
        echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
         echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
         echo "<td align=center style='width: 7.6%'>$lamacuti Hari</td>";
-        
+        echo "<td align=center  style='width:10%;'>-</td>";
     }else{
         
         echo "<td align=center  style='width:7.6%%;'>$data[6]</td>";
@@ -188,7 +188,7 @@ while($data = mysqli_fetch_row($detail))
         $durasiKerjaMenit = $durasiKerja / 60;
         $totalDurasiTabel += $durasiKerjaMenit;
         echo "<td align=center style='width: 7.6%'>$durasiKerjaMenit Menit</td>";
-    }
+    
     $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
     $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
     $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
@@ -238,10 +238,10 @@ while($data = mysqli_fetch_row($detail))
     }
     $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
     echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
-    
+    }   
     echo "<td align=center style='width: 15%; min-width: 150px;'>$data[11]</td>";
     echo "</tr>";
 }
-echo "<tr><td colspan='12' style='text-align: end; padding: 10px 56px;'>Total waktu kerja: $totalDurasiTabel</td></tr>";
+echo "<tr><td colspan='12' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $totalDurasiTabel Menit</td></tr>";
 echo "</table>";
 ?>

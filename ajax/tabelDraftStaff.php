@@ -161,16 +161,16 @@ if(mysqli_num_rows($result) > 0){
             $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
             $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
             $lamacuti = $days + 1;
-            echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
-            echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
-            echo "<td align=center style='width: 7.6%'>$lamacuti Hari</td>";
+            echo "<td align=center style=''>$waktumulai</td>";
+            echo "<td align=center style=''>$waktuselesai</td>";
+            echo "<td align=center style=''>$lamacuti Hari</td>";
             
         }else{
             
-            echo "<td align=center  style='width:7.6%%;'>$actType</td>";
-            echo "<td align=center style='width:7.6%%;'>$durasi Menit</td>";
+            echo "<td align=center  style=''>$actType</td>";
+            echo "<td align=center style=''>$durasi Menit</td>";
             echo "<td align=center>$data[1]</td>";
-            echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px;'>$data[2]</td>";
+            echo "<td align=center style=''>$data[2]</td>";
             $pecah_jam_tanggal=explode(" ",$data[3]); 
             $pecah_tanggal = $pecah_jam_tanggal[0];
             $pecah_jam_mulai = $pecah_jam_tanggal[1];
@@ -234,11 +234,9 @@ if(mysqli_num_rows($result) > 0){
             default:
                 break;    
         }
-    $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
-    echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
-    
-    echo "<td align=center style='width: 15%; min-width: 150px;'>$data[10]</td>";
-    
+        $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
+        echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
+        echo "<td align=center style='width: 15%; min-width: 150px;'>$data[10]</td>";
     
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
@@ -250,7 +248,7 @@ if(mysqli_num_rows($result) > 0){
     }
 } else {
     echo "<tr>";
-    echo "<td id='noData' align=center colspan='11'>Tidak ada data</td>";
+    echo "<td id='noData' align=center colspan='13'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";
