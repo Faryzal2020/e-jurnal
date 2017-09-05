@@ -415,7 +415,7 @@
                 document.getElementById("tglMulai").type = "date";
                 document.getElementById("tglSelesai").type = "date";
                 document.getElementById("tanggal").style.width = "";
-                document.getElementById("jam").style.width = "35px";
+                document.getElementById("jam").style.width = "36px";
                 modal.style.display = "block";
                 namaAct.innerHTML = nama;
                 durasiAct.innerHTML = durasi;
@@ -787,6 +787,7 @@
                       harian.style.display = "none";
                    } else {
                       document.getElementById("DJSbtn").style.display = "none";
+                      document.getElementById("DJSfilterType").value = t;
                       eventFire(document.getElementById("DJSbtn"), 'click');
                       mingguan.style.display = "none";
                       harian.style.display = "none";
