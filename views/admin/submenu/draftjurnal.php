@@ -84,7 +84,7 @@
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti :&#013;&#183; aktivitas&#013;&#183; standar waktu &#013;&#183; kategori">Ganti</a></td>
+			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti :&#013;&#183; aktivitas&#013;&#183; standar waktu &#013;&#183; kategori">Ganti</a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -121,11 +121,11 @@
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
-			                                    <td>:</td>
+			                                    <td style="width: 1px;">:</td>
 			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="edjsJam" style="width: 120px">
+			                                    <td id="edjsJam" style="width: 36px">
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -139,7 +139,7 @@
 			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>

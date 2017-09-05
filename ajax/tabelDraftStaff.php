@@ -8,7 +8,12 @@ if( $tipeFilter == 'Harian'){
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
     $hari = $_GET['hari'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND month(j.tanggal_simpan)='$bulan' AND day(j.tanggal_simpan)='$hari' AND j.status_jurnal = 'simpan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi 
+        FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas 
+        LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' 
+        AND year(j.waktu_mulai)<='$tahun' AND month(j.waktu_mulai)<='$bulan' AND day(j.waktu_mulai)<='$hari' 
+        AND year(j.waktu_selesai)>='$tahun' AND month(j.waktu_selesai)>='$bulan' AND day(j.waktu_selesai)>='$hari' 
+        AND j.status_jurnal = 'simpan'";
 } else if( $tipeFilter == 'Mingguan'){
     $tahun = $_GET['tahun'];
     $minggu = $_GET['minggu'];
@@ -55,106 +60,10 @@ if(mysqli_num_rows($result) > 0){
             echo "<td align=center style=''>-</td>";
             echo "<td align=center>-</td>";
             echo "<td align=center style=''>-</td>";
-            
-            $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
-            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
-            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
-            $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
-            $tahun_selesai = $pisah_tanggal_selesai[0];
-            $bulan_selesai = $pisah_tanggal_selesai[1];
-            $hari_selesai = $pisah_tanggal_selesai[2];
-            switch ($bulan_selesai) {
-                case "1":
-                    $namabulan_selesai= "Januari";
-                    break;
-                case "2":
-                    $namabulan_selesai= "Februari";
-                    break;
-                case "3":
-                    $namabulan_selesai= "Maret";
-                    break;
-                case "4":
-                    $namabulan_selesai= "April";
-                    break;
-                case "5":
-                    $namabulan_selesai= "Mei";
-                    break;
-                case "6":
-                    $namabulan_selesai= "Juni";
-                    break;
-                case "7":
-                    $namabulan_selesai= "Juli";
-                    break;
-                case "8":
-                    $namabulan_selesai= "Agustus";
-                    break;
-                case "9":
-                    $namabulan_selesai= "September";
-                    break;
-                case "10":
-                    $namabulan_selesai= "Oktober";
-                    break;
-                case "11":
-                    $namabulan_selesai= "November";
-                    break;
-                case "12":
-                    $namabulan_selesai= "Desember";
-                    break;
-                default:
-                    break;    
-            }
-            $waktuselesai=$hari_selesai."-".$namabulan_selesai."-".$tahun_selesai;
-            
-            $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
-            $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
-            $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
-            $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
-            $tahun_mulai = $pisah_tanggal_mulai[0];
-            $bulan_mulai = $pisah_tanggal_mulai[1];
-            $hari_mulai = $pisah_tanggal_mulai[2];
-            switch ($bulan_mulai) {
-                case "1":
-                    $namabulan_mulai= "Januari";
-                    break;
-                case "2":
-                    $namabulan_mulai= "Februari";
-                    break;
-                case "3":
-                    $namabulan_mulai= "Maret";
-                    break;
-                case "4":
-                    $namabulan_mulai= "April";
-                    break;
-                case "5":
-                    $namabulan_mulai= "Mei";
-                    break;
-                case "6":
-                    $namabulan_mulai= "Juni";
-                    break;
-                case "7":
-                    $namabulan_mulai= "Juli";
-                    break;
-                case "8":
-                    $namabulan_mulai= "Agustus";
-                    break;
-                case "9":
-                    $namabulan_mulai= "September";
-                    break;
-                case "10":
-                    $namabulan_mulai= "Oktober";
-                    break;
-                case "11":
-                    $namabulan_mulai= "November";
-                    break;
-                case "12":
-                    $namabulan_mulai= "Desember";
-                    break;
-                default:
-                    break;    
-            }
-            $waktumulai=$hari_mulai."-".$namabulan_mulai."-".$tahun_mulai;
             $date1 = $data[3];
             $date2 = $data[4];
+            $waktumulai= date("d-m-Y", strtotime($date1));
+            $waktuselesai= date("d-m-Y", strtotime($date2));
 
             $diff = abs(strtotime($date2) - strtotime($date1));
 
@@ -162,8 +71,8 @@ if(mysqli_num_rows($result) > 0){
             $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
             $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
             $lamacuti = $days + 1;
-            echo "<td align=center style=''>$waktumulai</td>";
-            echo "<td align=center style=''>$waktuselesai</td>";
+            echo "<td align=center style='min-width: 100px'>$waktumulai</td>";
+            echo "<td align=center style='min-width: 100px'>$waktuselesai</td>";
             echo "<td align=center style=''>$lamacuti Hari</td>";
             
         }else{
@@ -202,7 +111,7 @@ if(mysqli_num_rows($result) > 0){
             $durasiKerjaMenit = $durasiKerja / 60;
             echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
         }
-        $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
+        $pecah_jam_tanggal_selesai=explode(" ",$data[3]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
         $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
         $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
@@ -249,8 +158,8 @@ if(mysqli_num_rows($result) > 0){
             default:
                 break;    
         }
-        $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
-        echo "<td align=center style='min-width: 100px'>$tanggal_jurnal</td>";
+        $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
+        echo "<td align=center style='min-width: 115px'>$tanggal_jurnal</td>";
         echo "<td align=center style='min-width: 150px'>$data[10]</td>";
     
         echo "<td align=center style=\"font-size: 0.8em;\">
@@ -259,7 +168,7 @@ if(mysqli_num_rows($result) > 0){
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a>
             </td>";
-        $tglMulai = date("m-d-Y", strtotime($data[4]));
+        $tglMulai = date("Y-m-d", strtotime($data[4]));
         echo "<td align=center style='display: none;'>$tglMulai</td>";
         echo "</tr>";
     }

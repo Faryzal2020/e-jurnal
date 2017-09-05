@@ -7,7 +7,7 @@
 				                    <div class="dropdownCat-content" id="djsContent">
 
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian"><span class="glyphicon glyphicon-chevron-right"></span> Harian </a>
-				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan"><span class="glyphicon glyphicon-chevron-right"> Mingguan </span></a>
+				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan"><span class="glyphicon glyphicon-chevron-right"></span> Mingguan</a>
 				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat semua jurnal yang belum dikirim"><span class="glyphicon glyphicon-chevron-right"></span> Semua Jurnal </a>
 				                    </div>
 				                </div>
@@ -84,7 +84,7 @@
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
+			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -121,11 +121,11 @@
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
-			                                    <td>:</td>
+			                                    <td style="width: 1px;">:</td>
 			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="edjsJam" style="width: 120px">
+			                                    <td id="edjsJam" style="width: 36px">
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -139,7 +139,7 @@
 			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -176,7 +176,7 @@
 						                        <?php
 						                            $i=0;
 						                            while ($cat = mysqli_fetch_array($Catquery2)) {
-						                                if($cat[$i]==null || $cat['nama_kategori'] == "kehadiran"){
+						                                if($cat[$i]==null || $cat['nama_kategori'] == "izin harian"){
 						                                    echo "";
 						                                } else {
 						                        ?>
@@ -204,7 +204,7 @@
 										<tr>
 											<th style="width: 60px">No</th>
 											<th>Nama Aktivitas</th>
-											<th style="width: 150px">Standar Waktu Pengerjaan</th>
+											<th id="DJSheaderStandarWaktu" style="width: 150px">Standar Waktu Pengerjaan</th>
 											<th style="width: 130px">Kategori</th>
 											<th style="width: 80px"></th>
 										</tr>

@@ -17,7 +17,8 @@
 								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihPeriode">
                                         Dari:
-										<input id="LJSpilihAwal" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal awal periode yang ingin anda lihat"/>
+										<input id="LJSpilihAwal" class="w163" type="date" value="<?php 
+										echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>" title="Masukkan tanggal awal periode yang ingin anda lihat"/>
                                         Hingga:
 										<input id="LJSpilihAkhir" class="w163" type="date" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal akhir periode yang ingin anda lihat"/>
 

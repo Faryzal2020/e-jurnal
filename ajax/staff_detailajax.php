@@ -138,7 +138,7 @@ while($data = mysqli_fetch_row($detail))
             default:
                 break;    
         }
-        $waktumulai=$hari_mulai."-".$namabulan_mulai."-".$tahun_mulai;
+        $waktumulai=$hari_mulai." ".$namabulan_mulai." ".$tahun_mulai;
         $date1 = $data[3];
         $date2 = $data[4];
 
@@ -236,7 +236,7 @@ while($data = mysqli_fetch_row($detail))
         default:
             break;    
     }
-    $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
+    $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
     echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
     }   
     echo "<td align=center style='width: 15%; min-width: 150px;'>$data[11]</td>";
