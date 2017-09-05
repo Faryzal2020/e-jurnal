@@ -454,7 +454,36 @@
                 dataType: "html",   //expect html to be returned
                 data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip_nip},               
                 success: function(response){                    
-                    $("#tabledata").html(response); 
+                    $("#tabledata").html(response);
+                    if(document.getElementById(nip_nip)){
+                        var csv = document.getElementById("csvBtn_admin");
+                        var xls = document.getElementById("xlsBtn_admin");
+                        var pdf = document.getElementById("pdfBtn_admin");
+                        csv.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'csv',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        xls.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'xls',
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                        pdf.addEventListener('click', function(e){
+                          $('#tabelLJajax').tableExport({
+                            type:'pdf',
+                            jspdf: {
+                              orientation: 'l'
+                            },
+                            fileName: 'Jurnal'+filType+'-'+nip,
+                            escape:'false'
+                          });
+                        });
+                      }
                     }
               });  
             }

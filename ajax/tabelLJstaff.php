@@ -13,7 +13,7 @@ if( $tipeFilter == 'Harian'){
 } else {
 	$awal = $_GET['awal'];
 	$akhir = $_GET['akhir'];
-    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.waktu_selesai > '$awal' AND j.waktu_selesai < '$akhir' ";
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.waktu_selesai >= '$awal' AND j.waktu_selesai <= '$akhir' ";
 }
 $result = mysqli_query($db, $LJSsql);
 
@@ -187,10 +187,10 @@ if(mysqli_num_rows($result) > 0){
         $durasi_pekerjaan = round(abs($to_time - $from_time) / 60);
         echo "<td align=center style='width: 7.6%'>$durasi_pekerjaan Menit</td>";
     }
-    $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
-    $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
-    $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
-    $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
+    $pecah_jam_tanggal_jurnal=explode(" ",$data[4]); 
+    $pecah_tanggal_jurnal = $pecah_jam_tanggal_jurnal[0];
+    $pecah_jam_jurnal = $pecah_jam_tanggal_jurnal[1];
+    $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_jurnal);
     $tahun_jurnal = $pisah_tanggal_jurnal[0];
     $bulan_jurnal = $pisah_tanggal_jurnal[1];
     $hari_jurnal = $pisah_tanggal_jurnal[2];

@@ -164,6 +164,8 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='min-width: 100px;'>$waktumulai</td>";
         echo "<td align=center style='min-width: 100px;'>$waktuselesai</td>";
         echo "<td align=center style='width: 7.6%'>$lamacuti Hari</td>";
+        echo "<td align=center style='width: 7.6%'>-</td>";
+        
         
     }else{
         
@@ -186,7 +188,7 @@ if(mysqli_num_rows($result) > 0){
         $from_time = strtotime($data[3]);
         $durasi_pekerjaan = round(abs($to_time - $from_time) / 60);
         echo "<td align=center style='width: 7.6%'>$durasi_pekerjaan Menit</td>";
-    }
+   
     $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
     $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
     $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
@@ -234,10 +236,10 @@ if(mysqli_num_rows($result) > 0){
         default:
             break;    
     }
-    $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
-    echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
-    
-    echo "<td align=center style='width: 15%; min-width: 150px;'>$data[10]</td>";
+        $tanggal_jurnal =$hari_jurnal."-".$namabulan_jurnal."-".$tahun_jurnal;
+        echo "<td align=center  style='width:10%;'>$tanggal_jurnal</td>";
+     }
+        echo "<td align=center style='width: 15%; min-width: 150px;'>$data[10]</td>";
     
     
         echo "<td align=center style=\"font-size: 0.8em;\">
@@ -250,7 +252,7 @@ if(mysqli_num_rows($result) > 0){
     }
 } else {
     echo "<tr>";
-    echo "<td id='noData' align=center colspan='11'>Tidak ada data</td>";
+    echo "<td id='noData' align=center colspan='13'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";
