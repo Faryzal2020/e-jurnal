@@ -103,7 +103,7 @@ if(mysqli_num_rows($result) > 0){
                 default:
                     break;    
             }
-            $waktuselesai=$hari_selesai."-".$namabulan_selesai."-".$tahun_selesai;
+            $waktuselesai=$hari_selesai." ".$namabulan_selesai." ".$tahun_selesai;
             
             $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
             $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];

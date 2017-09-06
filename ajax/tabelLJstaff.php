@@ -104,7 +104,7 @@ if(mysqli_num_rows($result) > 0){
                 default:
                     break;    
             }
-            $waktuselesai=$hari_selesai."-".$namabulan_selesai."-".$tahun_selesai;
+            $waktuselesai=$hari_selesai." ".$namabulan_selesai." ".$tahun_selesai;
             
             $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
             $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
@@ -166,7 +166,7 @@ if(mysqli_num_rows($result) > 0){
             echo "<td align=center style=''>$waktumulai</td>";
             echo "<td align=center style=''>$waktuselesai</td>";
             echo "<td align=center style=''>$lamacuti Hari</td>";
-            
+            echo "<td align=center style=''>-</td>";
         }else{
             
             echo "<td align=center  style=''>$data[6]</td>";
@@ -203,56 +203,57 @@ if(mysqli_num_rows($result) > 0){
             $durasiKerjaMenit = $durasiKerja / 60;
             $totalDurasiTabel += $durasiKerjaMenit;
             echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
-        }
-        $pecah_jam_tanggal_selesai=explode(" ",$data[3]); 
-        $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
-        $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
-        $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
-        $tahun_jurnal = $pisah_tanggal_jurnal[0];
-        $bulan_jurnal = $pisah_tanggal_jurnal[1];
-        $hari_jurnal = $pisah_tanggal_jurnal[2];
-        switch ($bulan_jurnal) {
-            case "1":
-                $namabulan_jurnal= "Januari";
-                break;
-            case "2":
-                $namabulan_jurnal= "Februari";
-                break;
-            case "3":
-                $namabulan_jurnal= "Maret";
-                break;
-            case "4":
-                $namabulan_jurnal= "April";
-                break;
-            case "5":
-                $namabulan_jurnal= "Mei";
-                break;
-            case "6":
-                $namabulan_jurnal= "Juni";
-                break;
-            case "7":
-                $namabulan_jurnal= "Juli";
-                break;
-            case "8":
-                $namabulan_jurnal= "Agustus";
-                break;
-            case "9":
-                $namabulan_jurnal= "September";
-                break;
-            case "10":
-                $namabulan_jurnal= "Oktober";
-                break;
-            case "11":
-                $namabulan_jurnal= "November";
-                break;
-            case "12":
-                $namabulan_jurnal= "Desember";
-                break;
-            default:
-                break;    
-        }
-        $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
-        echo "<td align=center style='min-width: 90px;'>$tanggal_jurnal</td>";
+
+            $pecah_jam_tanggal_selesai=explode(" ",$data[3]); 
+            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+            $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
+            $tahun_jurnal = $pisah_tanggal_jurnal[0];
+            $bulan_jurnal = $pisah_tanggal_jurnal[1];
+            $hari_jurnal = $pisah_tanggal_jurnal[2];
+            switch ($bulan_jurnal) {
+                case "1":
+                    $namabulan_jurnal= "Januari";
+                    break;
+                case "2":
+                    $namabulan_jurnal= "Februari";
+                    break;
+                case "3":
+                    $namabulan_jurnal= "Maret";
+                    break;
+                case "4":
+                    $namabulan_jurnal= "April";
+                    break;
+                case "5":
+                    $namabulan_jurnal= "Mei";
+                    break;
+                case "6":
+                    $namabulan_jurnal= "Juni";
+                    break;
+                case "7":
+                    $namabulan_jurnal= "Juli";
+                    break;
+                case "8":
+                    $namabulan_jurnal= "Agustus";
+                    break;
+                case "9":
+                    $namabulan_jurnal= "September";
+                    break;
+                case "10":
+                    $namabulan_jurnal= "Oktober";
+                    break;
+                case "11":
+                    $namabulan_jurnal= "November";
+                    break;
+                case "12":
+                    $namabulan_jurnal= "Desember";
+                    break;
+                default:
+                    break;    
+                }
+            $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
+            echo "<td align=center style='min-width: 90px;'>$tanggal_jurnal</td>";
+            }    
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
         echo "</tr>";
