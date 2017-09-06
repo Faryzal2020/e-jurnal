@@ -13,13 +13,13 @@ if( $tipeFilter == 'Harian'){
         LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' 
         AND year(j.waktu_mulai)<='$tahun' AND month(j.waktu_mulai)<='$bulan' AND day(j.waktu_mulai)<='$hari' 
         AND year(j.waktu_selesai)>='$tahun' AND month(j.waktu_selesai)>='$bulan' AND day(j.waktu_selesai)>='$hari' 
-        AND j.status_jurnal = 'simpan'";
+        AND j.status_jurnal = 'draft'";
 } else if( $tipeFilter == 'Mingguan'){
     $tahun = $_GET['tahun'];
     $minggu = $_GET['minggu'];
     $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'simpan'";
 } else {
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'simpan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft'";
 }
 $result = mysqli_query($db, $LJSsql);
 

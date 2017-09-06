@@ -4,7 +4,7 @@ include("../config.php");
 $nip_beda = $_GET['nip_nip'];
 $tanggal_beda = $_GET['tanggal_tanggal'];
                                                 
-$deSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim,  jurnal.status_jurnal FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$tanggal_beda' AND date(waktu_mulai) <= '$tanggal_beda' AND jurnal.nip = '$nip_beda'";
+$deSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim,  jurnal.status_jurnal,user.nama_pegawai FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$tanggal_beda' AND date(waktu_mulai) <= '$tanggal_beda' AND jurnal.nip = '$nip_beda'";
 $detail = mysqli_query($db, $deSQL);
 
 
@@ -14,6 +14,7 @@ echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width=
     <button id='xlsBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
     <button id='pdfBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
 </caption>
+<tr>Jurnal Milik : </tr>
 <tr>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
@@ -34,7 +35,7 @@ while($data = mysqli_fetch_row($detail))
 {   
     
     
-   
+    echo "<tr>$data[14]</tr>";
     echo "<tr>";
     echo "<td align=center style=''>$data[0]</td>";
     echo "<td align=center style='min-width: 250px'>$data[7]</td>";
