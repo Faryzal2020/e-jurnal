@@ -97,7 +97,7 @@
             $acttype = $_POST['actType'];
             $ket = $_POST['keterangan'];
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `status_jurnal`, `jenis_aktivitas`, `keterangan`)  
-                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','simpan','$acttype','$ket')";
+                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','draft','$acttype','$ket')";
             mysqli_query($db,$SJsql);
          } else if( !empty($_POST['password_baru'])){
               $nip = $_SESSION['nip'];
