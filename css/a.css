@@ -107,15 +107,16 @@
 		.pjkBtn { display: inline-block; }
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
+		.LJAfilter { padding-left: 25px; }
 		.LJAbtn, .TAbtn , .TAact { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover, .TAbtn:hover, .TAact:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active, .TAbtn:active, .TAact:active { box-shadow: 0 0 0; }
-		.LJApilihHari { padding-top: 0px; margin-left: -8px; margin-right: 10px; }
-		.LJApilihPeriode { padding-right: 17px; }
+		.LJApilihHari { padding-top: 7px; margin-left: -8px; margin-right: 10px; }
+		.LJApilihPeriode { padding-right: 17px; padding-top: 6px;}
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
 		#tableContainer { display: block; margin: auto; width: 99%; }
 		.tabelLJ { table-layout: auto; width: 100%; }
-		.tableLJ th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
+		.tabelLJ td, .tabelDJ td { padding: 5px; }
 		.LJApilihBulan, .LJApilihTahun { display: inline-block; padding-top: 7px;}
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 12px; }
@@ -142,4 +143,5 @@
 		.submitDateWrapper { display: block; margin: 10px 30px; margin-top: 0px; font-size: 0.8em; position: absolute; right: 70px;}
 		.submitDateWrapper label { display: block; font-weight: normal; margin-bottom: 0px;}
 		.tglKirimJurnal { font-weight: bold !important; }
+		.staff_tabledata td { padding: 5px; }
 

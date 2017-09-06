@@ -45,13 +45,13 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda &#013;-Jurnal pegawai anda" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Kalender</a></li>
-			</ul>
-    		<ul>
 				<li class="menu-item" title="klik untuk membuat jurnal" ><span class="glyphicon glyphicon-file"></span><a href="#">Input Jurnal</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="klik untuk melihat :&#013;-Jurnal yang masih bisa diedit dan dihapus" ><span class="glyphicon glyphicon-list-alt"></span><a href="#">Edit Jurnal</a></li>
+			</ul>
+    		<ul>
+				<li class="menu-item" title="klik untuk melihat :&#013;-jurnal anda &#013;-Jurnal pegawai anda" ><span class="glyphicon glyphicon-calendar"></span><a href="#">Lihat Jurnal</a></li>
 			</ul>
     		<ul>
 				<li class="menu-item" title="klik untuk mencetak jurnal anda dan pegawai anda berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Print Jurnal</a></li>
@@ -63,17 +63,17 @@
 		<div class="content">
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/admin/submenu/detail_admin.php";?>
-				</div>
-			</div>
-			<div class="tab">
-				<div class="tabN">
 					<?php require_once "views/admin/submenu/submit.php";?>
 				</div>
 			</div>
 			<div class="tab">
 				<div class="tabN">
 					<?php require_once "views/admin/submenu/draftjurnal.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/admin/submenu/detail_admin.php";?>
 				</div>
 			</div>
 			<div class="tab">

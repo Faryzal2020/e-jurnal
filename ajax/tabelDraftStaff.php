@@ -8,7 +8,12 @@ if( $tipeFilter == 'Harian'){
 	$tahun = $_GET['tahun'];
 	$bulan = $_GET['bulan'];
     $hari = $_GET['hari'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND month(j.tanggal_simpan)='$bulan' AND day(j.tanggal_simpan)='$hari' AND j.status_jurnal = 'simpan'";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi 
+        FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas 
+        LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' 
+        AND year(j.waktu_mulai)<='$tahun' AND month(j.waktu_mulai)<='$bulan' AND day(j.waktu_mulai)<='$hari' 
+        AND year(j.waktu_selesai)>='$tahun' AND month(j.waktu_selesai)>='$bulan' AND day(j.waktu_selesai)>='$hari' 
+        AND j.status_jurnal = 'simpan'";
 } else if( $tipeFilter == 'Mingguan'){
     $tahun = $_GET['tahun'];
     $minggu = $_GET['minggu'];
@@ -18,20 +23,23 @@ if( $tipeFilter == 'Harian'){
 }
 $result = mysqli_query($db, $LJSsql);
 
-echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='width: -webkit-fill-available;'>";
+echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
 echo "
     <tr>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>ID Jurnal</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Nama Aktivitas</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Jenis Aktivitas</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Kategori</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Volume</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Jenis Output</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Waktu Mulai</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em;'><b>Waktu Selesai</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Tanggal Input Jurnal</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Keterangan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pengerjaan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Mulai</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:60px'><b>Edit / Delete</b></th>
+    <th align='center' style='display: none;'></th>
     </tr>";
 
 if(mysqli_num_rows($result) > 0){
@@ -42,49 +50,131 @@ if(mysqli_num_rows($result) > 0){
         $durasi = $data[12];
         $kategori = $data[9];
         $actType = $data[6];
-        if($actType == "skp"){
-            $actType = "SKP";
-        } else if($actType == "umum"){
-            $actType = "Umum";
-        } else {
-            $actType = "Tambahan";
-        }
-        $fullTgl1 = $data[3];
-        $fullTgl2 = $data[4];
-        $tanggal1 = date_create($fullTgl1);
-        $tanggal2 = date_create($fullTgl2);
-        if($kategori == "kehadiran"){
-            $waktuMulai = date_format($tanggal1, 'd-m-Y');
-            $waktuSelesai = date_format($tanggal2, 'd-m-Y');
-        } else {
-            $waktuMulai = date_format($tanggal1, 'H:i');
-            $waktuSelesai = date_format($tanggal2, 'H:i');
-        }
-        //echo "<input type=hidden class='DJSidJurnal' value='$idJurnal' />";
         echo "<tr>";
-        echo "<td align=center>$idJurnal</td>";
-        echo "<td align=center style='padding: 10px; max-width: 410px; min-width: 140px; font-size:0.82em;'>$data[7]</td>";
-        echo "<td align=center style='font-size: 0.8em;'>$actType</td>";
-        echo "<td align=center style='width:130px; font-size: 0.8em;'>$kategori</td>";
-        echo "<td align=center style='font-size: 0.8em;'>$data[1]</td>";
-        echo "<td align=center style='width: 140px; padding-top: 5px; padding-bottom: 5px; font-size: 0.8em;'>$data[2]</td>";
-        echo "<td align=center style='width: 140px; font-size: 0.8em;'>$waktuMulai</td>";
-        echo "<td align=center style='width: 140px; font-size: 0.8em;'>$waktuSelesai</td>";
-        echo "<td align=center style='width: 140px; font-size: 0.8em;'>$data[5]</td>";
-        echo "<td align=center style='width: 18%; font-size: 0.8em;'>$data[10]</td>";
+        echo "<td align=center style=''>$idJurnal</td>";
+        echo "<td align=center style='min-width: 172px;'>$data[7]</td>";
+        echo "<td align=center style=''>$kategori</td>";
+        if ($kategori == "izin harian"){
+            
+            echo "<td align=center style=''>-</td>";
+            echo "<td align=center style=''>-</td>";
+            echo "<td align=center>-</td>";
+            echo "<td align=center style=''>-</td>";
+            $date1 = $data[3];
+            $date2 = $data[4];
+            $waktumulai= date("d-m-Y", strtotime($date1));
+            $waktuselesai= date("d-m-Y", strtotime($date2));
+
+            $diff = abs(strtotime($date2) - strtotime($date1));
+
+            $years = floor($diff / (365*60*60*24));
+            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+            $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+            $lamacuti = $days + 1;
+            echo "<td align=center style='min-width: 100px'>$waktumulai</td>";
+            echo "<td align=center style='min-width: 100px'>$waktuselesai</td>";
+            echo "<td align=center style=''>$lamacuti Hari</td>";
+            
+        }else{
+            
+            echo "<td align=center style=''>$actType</td>";
+            echo "<td align=center style=''>$durasi Menit</td>";
+            echo "<td align=center>$data[1]</td>";
+            echo "<td align=center style=''>$data[2]</td>";
+            $dateMulai = $data[3];
+            $tanggal_mulai = date("d-m-Y", strtotime($dateMulai));
+            $jam_mulai = date("H:i", strtotime($dateMulai));
+
+            $dateSelesai = $data[4];
+            $tanggal_selesai = date("d-m-Y", strtotime($dateSelesai));
+            $jam_selesai = date("H:i", strtotime($dateSelesai));
+
+            echo "<td align=center style=''>$jam_mulai</td>";
+            echo "<td align=center style=''>$jam_selesai</td>";
+            
+            $to_time = strtotime($dateSelesai);
+            $from_time = strtotime($dateMulai);
+            $total_durasi = $to_time - $from_time;
+            if( (int)date("w", strtotime($dateMulai)) == 5 ){ // IF HARI JUMAT
+                if( $from_time < strtotime($tanggal_mulai . " 11:30:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                    $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("11:30:00"));
+                } else {
+                    $durasiKerja = $total_durasi;
+                }
+            } else {
+                if( $from_time < strtotime($tanggal_mulai . " 12:00:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                    $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("12:00:00"));
+                } else {
+                    $durasiKerja = $total_durasi;
+                }
+            }
+            $durasiKerjaMenit = $durasiKerja / 60;
+            echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
+        }
+        $pecah_jam_tanggal_selesai=explode(" ",$data[3]); 
+        $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+        $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+        $pisah_tanggal_jurnal = explode("-",$pecah_tanggal_selesai);
+        $tahun_jurnal = $pisah_tanggal_jurnal[0];
+        $bulan_jurnal = $pisah_tanggal_jurnal[1];
+        $hari_jurnal = $pisah_tanggal_jurnal[2];
+        switch ($bulan_jurnal) {
+            case "1":
+                $namabulan_jurnal= "Januari";
+                break;
+            case "2":
+                $namabulan_jurnal= "Februari";
+                break;
+            case "3":
+                $namabulan_jurnal= "Maret";
+                break;
+            case "4":
+                $namabulan_jurnal= "April";
+                break;
+            case "5":
+                $namabulan_jurnal= "Mei";
+                break;
+            case "6":
+                $namabulan_jurnal= "Juni";
+                break;
+            case "7":
+                $namabulan_jurnal= "Juli";
+                break;
+            case "8":
+                $namabulan_jurnal= "Agustus";
+                break;
+            case "9":
+                $namabulan_jurnal= "September";
+                break;
+            case "10":
+                $namabulan_jurnal= "Oktober";
+                break;
+            case "11":
+                $namabulan_jurnal= "November";
+                break;
+            case "12":
+                $namabulan_jurnal= "Desember";
+                break;
+            default:
+                break;    
+        }
+        $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
+        echo "<td align=center style='min-width: 115px'>$tanggal_jurnal</td>";
+        echo "<td align=center style='min-width: 150px'>$data[10]</td>";
+    
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a>
             </td>";
-        echo "<td style='display: none;'>$fullTgl1</td>";
-        echo "<td style='display: none;'>$fullTgl2</td>";
+        $tglMulai = date("Y-m-d", strtotime($data[4]));
+        echo "<td align=center style='display: none;'>$tglMulai</td>";
         echo "</tr>";
     }
 } else {
     echo "<tr>";
-    echo "<td id='noData' align=center colspan='11'>Tidak ada data</td>";
+    echo "<td id='noData' align=center colspan='13'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";

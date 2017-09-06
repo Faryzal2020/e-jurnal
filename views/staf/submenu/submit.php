@@ -37,7 +37,7 @@
 								<tr>
 									<th style="width: 60px">No</th>
 									<th>Nama Aktivitas</th>
-									<th style="width: 150px">Standar Waktu Pengerjaan</th>
+									<th id="headerStandarWaktu" style="width: 150px">Standar Waktu Pengerjaan</th>
 									<th style="width: 130px">Kategori</th>
 									<th style="width: 80px"></th>
 								</tr>
@@ -54,6 +54,7 @@
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
 									<td><?php echo $namaAct ?></td>
+									<?php if($namaCateg != 'izin harian'){ ?>
 									<td style="text-align: center;"><?php 
 										if ($durasi == 0) {
 											echo "-";
@@ -61,6 +62,9 @@
 											echo $durasi . " Menit";
 										}
 									?></td>
+									<?php } else { ?>
+									<td style="display: none"/>
+									<?php } ?>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
 									<td style="text-align: center; width: 80px;">
 										<a class="selectActbtn" onclick="selectActivity(
@@ -124,7 +128,7 @@
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
 			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="jam" style="width: 120px">
+			                                    <td id="jam" style="width: 38px">
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon" id="iconJamMulai">

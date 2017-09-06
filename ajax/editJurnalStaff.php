@@ -10,7 +10,12 @@
             $jamSelesai = date('G:i', strtotime($_POST['edjsJamSelesai']));
             $mulai = $_POST['edjsTglMulai'] .' '. $jamMulai . ':00';
             $selesai = $_POST['edjsTglSelesai'] .' '. $jamSelesai . ':00';
-            $acttype = $_POST['edjsActType'];
+            
+            if (isset($_POST['edjsActType'])){
+                  $acttype = $_POST['edjsActType'];
+            } else {
+                  $acttype = "umum";
+            }
             $ket = $_POST['edjsKeterangan'];
             $EDJsql = "UPDATE jurnal SET id_aktivitas = '$idAct', nip = '$nip', volume = '$vol', jenis_output = '$voltype', waktu_mulai = '$mulai', waktu_selesai = '$selesai', jenis_aktivitas = '$acttype', keterangan = '$ket' WHERE id_jurnal = '$id'";
             //echo "<script type='javascript'>alert($EDJsql);</script>";
