@@ -893,9 +893,7 @@
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
                 }
               } else {
-                var tahun = document.getElementById("DJSpilihTahun").value;
-                var bulan = document.getElementById("DJSpilihBulan").value;
-                data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan };
+                data = { 'nip': nip, 'tipeFilter': filType };
               }
               if ( data != 'kosong'){
                 $.ajax({    //create an ajax request to load_page.php

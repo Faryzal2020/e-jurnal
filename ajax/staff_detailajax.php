@@ -2,8 +2,9 @@
 include("../config.php");
 session_start();
 $staff_tanggal = $_GET['staff_tanggal_tanggal'];
+$nip = $_SESSION['nip'];
                                                 
-$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim, jurnal.status_jurnal FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$staff_tanggal' AND date(waktu_mulai) <= '$staff_tanggal' AND jurnal.nip = '".$_SESSION['nip']."'";
+$xeSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim, jurnal.status_jurnal FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$staff_tanggal' AND date(waktu_mulai) <= '$staff_tanggal' AND jurnal.nip = '$nip' ORDER BY date(waktu_mulai) DESC";
 $detail = mysqli_query($db, $xeSQL);
 
 echo "<table border='1' class='staff_tabledata' id='staff_tabledata' cellpadding='50' width= '100%'>
