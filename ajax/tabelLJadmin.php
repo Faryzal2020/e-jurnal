@@ -202,7 +202,7 @@ if(mysqli_num_rows($result) > 0){
             $durasiKerjaMenit = $durasiKerja / 60;
             $totalDurasiTabel += $durasiKerjaMenit;
             echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
-        }
+        
         $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
         $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
@@ -249,9 +249,10 @@ if(mysqli_num_rows($result) > 0){
                 break;
             default:
                 break;    
+            }
+            $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
+            echo "<td align=center style='min-width: 90px;'>$tanggal_jurnal</td>";
         }
-        $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
-        echo "<td align=center style='min-width: 90px;'>$tanggal_jurnal</td>";
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
         echo "</tr>";

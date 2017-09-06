@@ -156,9 +156,9 @@
 			                                	<td><label>Jenis Aktifitas</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><select name="actType" title="masukkan jenis aktivitas yang anda kerjakan">
-			                                			<option value="umum">Umum</option>
-			                                			<option value="skp">SKP</option>
-			                                			<option value="tambahan">Tambahan</option>
+			                                			<option value="Umum">Umum</option>
+			                                			<option value="SKP">SKP</option>
+			                                			<option value="Tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
 			                                <tr>
