@@ -15,7 +15,7 @@ echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width=
     <button id='xlsBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
     <button id='pdfBtn_admin' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
 </caption>
-<tr>Jurnal Milik : </tr>
+
 <tr>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
@@ -35,8 +35,6 @@ $totalDurasiTabel = 0;
 while($data = mysqli_fetch_row($detail))
 {   
     
-    
-    echo "<tr>$data[14]</tr>";
     echo "<tr>";
     echo "<td align=center style=''>$data[0]</td>";
     echo "<td align=center style='min-width: 250px'>$data[7]</td>";
