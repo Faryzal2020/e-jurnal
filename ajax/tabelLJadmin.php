@@ -17,7 +17,7 @@ if( $tipeFilter == 'Harian'){
 }
 $result = mysqli_query($db, $LJSsql);
 
-echo "<table border='1' class='tabelLJ' id='tabelLJajaxADM' cellpadding='20' style='font-size: 82%;'>";
+echo "<table border='1' class='tabelLJ' id='tabelLJajaxADM' cellpadding='20' style='font-size: 75%;'>";
 
 if(mysqli_num_rows($result) > 0){
      echo "<caption class='btn-toolbar'>

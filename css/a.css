@@ -38,7 +38,7 @@
         }
         
 
-		.pagebody{ background: white; overflow: auto; margin-top: 20px; display: flex; }
+		.pagebody{ background: white; overflow: hidden; margin-top: 20px; display: flex; }
 		.sidenav { background: #ECECEC; position: relative; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}
 		.sidenav ul { margin-top: 15px; margin-left: 15px; padding-left: 10px; }
 		.sidenav ul li { background:#2C383B; box-shadow:3px 3px 0 rgba(0,0,0,.5); border-radius: 3px; margin-left: 15px; margin-right: -5px; margin-bottom: 20px ; padding: 6px; padding-left: 15px;  color: #ECECEC; border: 1px solid #ECECEC; list-style-type: none; }
