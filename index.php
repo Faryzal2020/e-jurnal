@@ -43,7 +43,7 @@
    if (isset($_SESSION['nip'])){
 
       $today = date('Y-m-d');
-      if($today == getTglSubmit() && date('D') != 'Mon'){
+      if($today == getTglSubmit() && date('D') != 'Sun'){
         $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'kirim'";
         mysqli_query($db,$sql);
       }
