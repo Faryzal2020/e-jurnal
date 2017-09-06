@@ -57,14 +57,111 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style=''>$kategori</td>";
         if ($kategori == "izin harian"){
             
+               
             echo "<td align=center style=''>-</td>";
             echo "<td align=center style=''>-</td>";
             echo "<td align=center>-</td>";
             echo "<td align=center style=''>-</td>";
+            
+            $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
+            $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
+            $pecah_jam_selesai = $pecah_jam_tanggal_selesai[1];
+            $pisah_tanggal_selesai = explode("-",$pecah_tanggal_selesai);
+            $tahun_selesai = $pisah_tanggal_selesai[0];
+            $bulan_selesai = $pisah_tanggal_selesai[1];
+            $hari_selesai = $pisah_tanggal_selesai[2];
+            switch ($bulan_selesai) {
+                case "1":
+                    $namabulan_selesai= "Januari";
+                    break;
+                case "2":
+                    $namabulan_selesai= "Februari";
+                    break;
+                case "3":
+                    $namabulan_selesai= "Maret";
+                    break;
+                case "4":
+                    $namabulan_selesai= "April";
+                    break;
+                case "5":
+                    $namabulan_selesai= "Mei";
+                    break;
+                case "6":
+                    $namabulan_selesai= "Juni";
+                    break;
+                case "7":
+                    $namabulan_selesai= "Juli";
+                    break;
+                case "8":
+                    $namabulan_selesai= "Agustus";
+                    break;
+                case "9":
+                    $namabulan_selesai= "September";
+                    break;
+                case "10":
+                    $namabulan_selesai= "Oktober";
+                    break;
+                case "11":
+                    $namabulan_selesai= "November";
+                    break;
+                case "12":
+                    $namabulan_selesai= "Desember";
+                    break;
+                default:
+                    break;    
+            }
+            $waktuselesai=$hari_selesai." ".$namabulan_selesai." ".$tahun_selesai;
+            
+            $pecah_jam_tanggal_mulai=explode(" ",$data[3]); 
+            $pecah_tanggal_mulai = $pecah_jam_tanggal_mulai[0];
+            $pecah_jam_mulai = $pecah_jam_tanggal_mulai[1];
+            $pisah_tanggal_mulai = explode("-",$pecah_tanggal_mulai);
+            $tahun_mulai = $pisah_tanggal_mulai[0];
+            $bulan_mulai = $pisah_tanggal_mulai[1];
+            $hari_mulai = $pisah_tanggal_mulai[2];
+            switch ($bulan_mulai) {
+                case "1":
+                    $namabulan_mulai= "Januari";
+                    break;
+                case "2":
+                    $namabulan_mulai= "Februari";
+                    break;
+                case "3":
+                    $namabulan_mulai= "Maret";
+                    break;
+                case "4":
+                    $namabulan_mulai= "April";
+                    break;
+                case "5":
+                    $namabulan_mulai= "Mei";
+                    break;
+                case "6":
+                    $namabulan_mulai= "Juni";
+                    break;
+                case "7":
+                    $namabulan_mulai= "Juli";
+                    break;
+                case "8":
+                    $namabulan_mulai= "Agustus";
+                    break;
+                case "9":
+                    $namabulan_mulai= "September";
+                    break;
+                case "10":
+                    $namabulan_mulai= "Oktober";
+                    break;
+                case "11":
+                    $namabulan_mulai= "November";
+                    break;
+                case "12":
+                    $namabulan_mulai= "Desember";
+                    break;
+                default:
+                    break;    
+            }
+            $waktumulai=$hari_mulai." ".$namabulan_mulai." ".$tahun_mulai;
             $date1 = $data[3];
             $date2 = $data[4];
-            $waktumulai= date("d-m-Y", strtotime($date1));
-            $waktuselesai= date("d-m-Y", strtotime($date2));
 
             $diff = abs(strtotime($date2) - strtotime($date1));
 
