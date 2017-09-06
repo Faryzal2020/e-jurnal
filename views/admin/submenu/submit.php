@@ -125,7 +125,7 @@
 			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value=""  title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
-			                                    <td><label>Waktu Mulai</label></td>
+			                                    <td><label id="labelWaktuMulai">Waktu Mulai</label></td>
 			                                    <td>:</td>
 			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="jam" style="width: 38px">
@@ -139,7 +139,7 @@
 												<td style="width: 70px"></td>
 			                                </tr>
 			                                <tr>
-			                                    <td><label>Waktu Selesai</label></td>
+			                                    <td><label id="labelWaktuSelesai">Waktu Selesai</label></td>
 			                                    <td>:</td>
 			                                    <td><input type="date" name="tglSelesai" id="tglSelesai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>

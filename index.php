@@ -434,7 +434,11 @@
                   document.getElementById("jamSelesai").value = "23:59";
                   document.getElementById("iconJamMulai").style.display = "none";
                   document.getElementById("iconJamSelesai").style.display = "none";
+                  document.getElementById("labelWaktuMulai").innerHTML = "Dari tanggal";
+                  document.getElementById("labelWaktuSelesai").innerHTML = "Sampai";
                } else {
+                  document.getElementById("labelWaktuMulai").innerHTML = "Waktu Mulai";
+                  document.getElementById("labelWaktuSelesai").innerHTML = "Waktu Selesai";
                   document.getElementById("volumeType").value = "";
                   document.getElementById("tglMulai").type = "hidden";
                   document.getElementById("tglSelesai").type = "hidden";
