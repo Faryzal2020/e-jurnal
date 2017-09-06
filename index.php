@@ -48,7 +48,7 @@
 
       $today = date('Y-m-d');
       if($today == getTglSubmit()){
-        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'kirim'";
+        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'terkirim'";
         mysqli_query($db,$sql);
       }
 
