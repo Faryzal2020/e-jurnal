@@ -27,7 +27,7 @@
                     <div class="form">
                         <form action="validasi.php" method="POST" id="login">
                             <input type="text" name="nip" placeholder="NIP" title="Masukkan NIP Lama Anda" />
-                            <input type="password" name="password" placeholder="Password" title="Masukkan Password Lama Anda" />
+                            <input type="password" name="password" placeholder="Password" title="Masukkan Password Anda" />
                             <input type="submit" name="validasi" value="Login" />
                         </form>
                     </div>
