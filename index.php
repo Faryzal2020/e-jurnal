@@ -165,7 +165,15 @@
     
    </head>
    <body class="background">
-      <div class="page">
+      <div class="loadingpage" id="loadingpage">
+        <div class="LPwrapper">
+          <div class="loadingIcon">
+          </div>
+          <div class="loadingIcon2">
+          </div>
+        </div>
+      </div>
+      <div class="page" id="page">
           <input type="hidden" id="selectedTab" value="<?php echo $_SESSION['tab']; ?>"/>
           <input type="hidden" id="userNip" value="<?php echo $_SESSION['nip']; ?>"/>
          <?php
@@ -1655,6 +1663,24 @@
               e.preventDefault();
            });
 
+           function onReady(callback) {
+            var intervalID = window.setInterval(checkReady, 1000);
+
+            function checkReady() {
+              if (document.getElementsByTagName('body')[0] !== undefined) {
+                window.clearInterval(intervalID);
+                callback.call(this);
+              }
+            }
+           }
+           function show(id, value) {
+             document.getElementById(id).style.display = value ? 'block' : 'none';
+           }
+
+           onReady(function () {
+             show('loadingpage', false);
+           });
+
            function HLedit(event){
             var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate()+1)).slice(-2);
             var endDate = event.endDate.getFullYear() + '-' + ('0' + (event.endDate.getMonth()+1)).slice(-2) + '-' + ('0' + event.endDate.getDate()).slice(-2);
@@ -1723,7 +1749,7 @@
                 loadKalHL(data);
               }
             });
-          }
+           }
 
            function loadKalHL(HLdata){
              $('#KalHariLibur').calendar({

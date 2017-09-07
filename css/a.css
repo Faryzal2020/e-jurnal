@@ -144,4 +144,10 @@
 		.submitDateWrapper label { display: block; font-weight: normal; margin-bottom: 0px;}
 		.tglKirimJurnal { font-weight: bold !important; }
 		.staff_tabledata td { padding: 5px; }
+		.loadingpage { display: block; overflow: auto; position: fixed; z-index: 2; left: 0; top: 0; width: 100%; height: 100% ; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); }
+		.LPwrapper { margin: auto; width: 50px; padding-top: 50vh; position: relative; }
+		.loadingIcon2 { position: absolute; bottom: -25.4px; left: -1px; border: 12px solid rgba(0,0,0,0); border-top: 12px solid #3498db; border-radius: 50%; width: 51px; height: 51px; animation: spin .8s linear infinite; }
+		.loadingIcon { position: absolute; bottom: -25px; border: 10px solid #f3f3f3; border-radius: 50%; width: 50px; height: 50px;}
+		@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }
+}
 
