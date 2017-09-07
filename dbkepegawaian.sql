@@ -506,6 +506,244 @@ INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jabatan`
+--
+
+CREATE TABLE `jabatan` (
+  `id_jabatan` int(11) NOT NULL,
+  `nama_jabatan` varchar(150) NOT NULL,
+  `eselon` int(11) NOT NULL,
+  `atasan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
+(1, 'Kepala Biro Protokol', 2, 5000),
+(2, 'Kepala Biro Perencanaan dan Keuangan', 2, 6000),
+(3, 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 2, 7000),
+(4, 'Kepala Biro Umum', 2, 8000),
+(5, 'Kepala Bagian Acara dan Persidangan', 3, 1),
+(6, 'Kepala Bagian Notulen dan Penerbitan', 3, 1),
+(7, 'Kepala Bagian Perjalanan', 3, 1),
+(8, 'Kepala Bagian Rumah Tangga', 3, 1),
+(9, 'Kepala Subbagian Acara', 4, 5),
+(10, 'Kepala Subbagian Pelayanan Protokol', 4, 5),
+(11, 'Kepala Subbagian Persidangan', 4, 5),
+(12, 'Kepala Subbagian Notulen', 4, 6),
+(13, 'Kepala Subbagian Penerbitan Media Massa', 4, 6),
+(14, 'Kepala Subbagian Perjalanan Dinas', 4, 7),
+(15, 'Kepala Subbagian Sarana dan Prasarana Perjalanan', 4, 7),
+(16, 'Kepala Subbagian Administrasi Perjalanan', 4, 7),
+(17, 'Kepala Subbagian Istana Wakil Presiden', 4, 8),
+(18, 'Kepala Subbagian Kediaman Wakil Presiden', 4, 8),
+(19, 'Kepala Subbagian Jamuan dan Pelayanan Rapat', 4, 8),
+(20, 'Pranata Acara Kepresidenan', 5, 9),
+(21, 'Petugas Protokol Kepresidenan', 5, 9),
+(22, 'Petugas Protokol', 5, 9),
+(23, 'Pranata Acara Kepresidenan', 5, 10),
+(24, 'Petugas Protokol Kepresidenan', 5, 10),
+(25, 'Petugas Protokol', 5, 10),
+(26, 'Pengelola Naskah', 5, 11),
+(27, 'Analis Rencana Program dan Kegiatan', 5, 11),
+(28, 'Sekretaris', 5, 11),
+(29, 'Pengadministrasi Umum', 5, 11),
+(30, 'Pengelola Naskah', 5, 12),
+(31, 'Pengelola Data', 5, 12),
+(32, 'Pengelola Naskah', 5, 13),
+(33, 'Pengelola Data', 5, 13),
+(34, 'Analis Rencana Program dan Kegiatan', 5, 14),
+(35, 'Pengolah Data', 5, 14),
+(36, 'Pengadministrasi Umum', 5, 14),
+(37, 'Analis Pengelola BMN', 5, 15),
+(38, 'Analis Rencana Program dan Kegiatan', 5, 15),
+(39, 'Pengolah Data', 5, 15),
+(40, 'Pengadministrasi Umum', 5, 15),
+(41, 'Analis Rencana Program dan Kegiatan', 5, 16),
+(42, 'Pengolah Data', 5, 16),
+(43, 'Pengadministrasi Umum', 5, 16),
+(44, 'Analis Rencana Program dan Kegiatan', 5, 17),
+(45, 'Pranata Dekorasi', 5, 17),
+(46, 'Pengadministrasi Umum', 5, 17),
+(47, 'Pramusaji Kepresidenan', 5, 17),
+(48, 'Analis Rencana Program dan Kegiatan', 5, 18),
+(49, 'Pranata Jamuan', 5, 18),
+(50, 'Pengadministrasi Umum', 5, 18),
+(51, 'Pramusaji Kepresidenan', 5, 18),
+(52, 'Analis Rencana Program dan Kegiatan', 5, 19),
+(53, 'Pranata Jamuan', 5, 19),
+(54, 'Pengadministrasi Umum', 5, 19),
+(55, 'Pemeliharaan Peralatan', 5, 19),
+(56, 'Jabatan Fungsional Tertentu Penerjemah', 3, 1),
+(57, 'Kepala Bagian Perencanaan dan Evaluasi', 3, 2),
+(58, 'Kepala Bagian Perbendaharaan', 3, 2),
+(59, 'Kepala Bagian Akutansi', 3, 2),
+(60, 'Kepala Bagian Manajemen Kinerja', 3, 2),
+(61, 'Kepala Subbagian Perencanaan', 4, 57),
+(62, 'Kepala Subbagian Pemantauan dan Evaluasi', 4, 57),
+(63, 'Kepala Subbagian Verifikasi', 4, 58),
+(64, 'Kepala Subbagian Kas dan Pembayaran', 4, 58),
+(65, 'Kepala Subbagian Pengelolaan Dana Operasional dan Bantuan Wakil Presiden', 4, 58),
+(66, 'Kepala Subbagian Akutansi Keuangan', 4, 59),
+(67, 'Kepala Subbagian Barang Milik Negara', 4, 59),
+(68, 'Kepala Subbagian Perencanaan dan Perjanjian Kinerja', 4, 60),
+(69, 'Kepala Subbagian Evaluasi dan Pelaporan Kinerja', 4, 60),
+(70, 'Analis Program / Perencanaan', 5, 61),
+(71, 'Pengolah Data', 5, 61),
+(72, 'Pengadministrasi Umum', 5, 61),
+(73, 'Analis Program/Perencanaan', 5, 62),
+(74, 'Pengolah Data', 5, 62),
+(75, 'Pengadministrasi Umum', 5, 62),
+(76, 'Analis Keuangan', 5, 63),
+(77, 'Verifikator Keuangan', 5, 63),
+(78, 'Sekretaris', 5, 63),
+(79, 'Analis Data dan Informasi', 5, 64),
+(80, 'Analis Keuangan', 5, 64),
+(81, 'Pengolah Data', 5, 64),
+(82, 'Pengadministrasi Umum', 5, 64),
+(83, 'Analis Keuangan', 5, 65),
+(84, 'Pengolah Data', 5, 65),
+(85, 'Pengadministrasi Umum', 5, 65),
+(86, 'Analis Pelaporan', 5, 66),
+(87, 'Analis Rencana Program dan Kegiatan', 5, 66),
+(88, 'Pengolah Data', 5, 66),
+(89, 'Pengadministrasi Umum', 5, 66),
+(90, 'Analis Pengelola BMN', 5, 67),
+(91, 'Pengolah Data', 5, 67),
+(92, 'Pengadministrasi Umum', 5, 67),
+(93, 'Analis Kinerja', 5, 68),
+(94, 'Pengolah Data', 5, 68),
+(95, 'Pengadministrasi Umum', 5, 68),
+(96, 'Analis Kinerja', 5, 69),
+(97, 'Pengolah Data', 5, 69),
+(98, 'Pengadministrasi Umum', 5, 69),
+(99, 'Bendahara', 3, 2),
+(100, 'Kepala Bagian Tata Usaha', 3, 3),
+(101, 'Kepala Bagian Kepegawaian', 3, 3),
+(102, 'Kepala Bagian Teknologi Informasi', 3, 3),
+(103, 'Kepala Bagian Kesehatan', 3, 3),
+(104, 'Kepala Subbagian Administrasi Persuratan', 4, 100),
+(105, 'Kepala Subbagian Arsip dan Reproduksi', 4, 100),
+(106, 'Kepala Subbagian TU Kepala Sekretariat Wakil Presiden', 4, 100),
+(107, 'Kepala Subbagian TU Deputi Bidang Dukjak Ekonomi Infrastruktur dan Kemaritiman', 4, 100),
+(108, 'Kepala Subbagian TU Deputi Bidang Dukjak Pembangunan Manusia dan Pemerataan Pembangunan', 4, 100),
+(109, 'Kepala Subbagian TU Deputi Bidang Dukjak Pemerintahan', 4, 100),
+(110, 'Kepala Subbagian TU Deputi Bidang Administrasi', 4, 100),
+(111, 'Kepala Subbagian Tata Usaha Kepegawaian', 4, 101),
+(112, 'Kepala Subbagian Pengembangan Kompetensi Pegawai', 4, 101),
+(113, 'Kepala Subbagian Pembinaan dan Kesejahteraan Pegawai', 4, 101),
+(114, 'Kepala Subbagian Infrastruktur Teknologi Informasi', 4, 102),
+(115, 'Kepala Subbagian Sistem Informasi', 4, 102),
+(116, 'Kepala Subbagian Tata Usaha Pelayanan Kesehatan', 4, 103),
+(117, 'Pengelola Naskah', 5, 104),
+(118, 'Pengolah Data', 5, 104),
+(119, 'Pengadministrasi Umum', 5, 104),
+(120, 'Pengadministrasi Persuratan', 5, 104),
+(121, 'Pengelola Naskah', 5, 105),
+(122, 'Pengolah Data', 5, 105),
+(123, 'Pengadministrasi Umum', 5, 105),
+(124, 'Pengelola Naskah', 5, 106),
+(125, 'Sekretaris', 5, 106),
+(126, 'Pengadministrasi Umum', 5, 106),
+(127, 'Pengelola Naskah', 5, 107),
+(128, 'Sekretaris', 5, 107),
+(129, 'Pengadministrasi Umum', 5, 107),
+(130, 'Pengelola Naskah', 5, 108),
+(131, 'Sekretaris', 5, 108),
+(132, 'Pengadministrasi Umum', 5, 108),
+(133, 'Pengelola Naskah', 5, 109),
+(134, 'Sekretaris', 5, 109),
+(135, 'Pengadministrasi Umum', 5, 109),
+(136, 'Pengelola Naskah', 5, 110),
+(137, 'Sekretaris', 5, 110),
+(138, 'Pengadministrasi Umum', 5, 110),
+(139, 'Analis SDM Aparatur', 5, 111),
+(140, 'Analis Kinerja', 5, 111),
+(141, 'Analis Tata Laksana', 5, 111),
+(142, 'Sekretaris', 5, 111),
+(143, 'Pengadministrasi Umum', 5, 111),
+(144, 'Pengadministrasi Persuratan', 5, 111),
+(145, 'Analis SDM Aparatur', 5, 112),
+(146, 'Analis Jabatan', 5, 112),
+(147, 'Pengolah Data', 5, 112),
+(148, 'Analis SDM Aparatur', 5, 113),
+(149, 'Pengolah Data', 5, 113),
+(150, 'Pengadministrasi Umum', 5, 113),
+(151, 'Analis Sistem Jaringan', 5, 114),
+(152, 'Pengolah Data', 5, 114),
+(153, 'Pengadministrasi Umum', 5, 114),
+(154, 'Analis Sistem Informasi', 5, 115),
+(155, 'Pengolah Data', 5, 115),
+(156, 'Analis Rencana Program dan Kegiatan', 5, 116),
+(157, 'Pengolah Data', 5, 116),
+(158, 'Pengadministrasi Persuratan', 5, 116),
+(159, 'Jabatan Fungsional Tertentu Arsiparis Penyelia', 3, 3),
+(160, 'Pranata Komputer', 3, 3),
+(161, 'Pranata Komputer Pertama', 3, 3),
+(162, 'Analis Kepegawaian', 3, 3),
+(163, 'Dokter Gigi', 3, 3),
+(164, 'Dokter Umum', 3, 3),
+(165, 'Perawat Pelaksana', 3, 3),
+(166, 'Perawat Gigi Penyelia', 3, 3),
+(167, 'Kepala Bagian Perlengkapan', 3, 4),
+(168, 'Kepala Bagian Bangunan', 3, 4),
+(169, 'Kepala Bagian Kendaraan dan Ketertiban Keamanan Dalam', 3, 4),
+(170, 'Kepala Bagian Pengelolaan Perpustakaan', 3, 4),
+(171, 'Kepala Subbagian Perencanaan dan Pengadaan Perlengkapan', 4, 167),
+(172, 'Kepala Subbagian Perawatan dan Pemeliharaan Perlengkapan', 4, 167),
+(173, 'Kepala Subbagian Penataan dan Pemeliharaan Lingkungan', 4, 167),
+(174, 'Kepala Subbagian Perencanaan Bangunan', 4, 168),
+(175, 'Kepala Subbagian Perawatan, Pemeliharaan Bangunan, dan Penataan Lingkungan', 4, 168),
+(176, 'Kepala Subbagian Administrasi Kendaraan', 4, 169),
+(177, 'Kepala Subbagian Operasional Kendaraan', 4, 169),
+(178, 'Kepala Subbagian Ketertiban Keamanan Dalam', 4, 169),
+(179, 'Kepala Subbagian Administrasi dan Pengembangan Perpustakaan', 4, 170),
+(180, 'Kepala Subbagian Penyajian Bahan Pustaka', 4, 170),
+(181, 'Analis Rencana Program dan Kegiatan', 5, 171),
+(182, 'Pengolah Data', 5, 171),
+(183, 'Sekretaris', 5, 171),
+(184, 'Analis Barang dan Jasa', 5, 172),
+(185, 'Pengolah Data', 5, 172),
+(186, 'Pengadministrasi Umum', 5, 172),
+(187, 'Analis Rencana Program dan Kegiatan', 5, 173),
+(188, 'Pengolah Data', 5, 173),
+(189, 'Pengadministrasi Umum', 5, 173),
+(190, 'Analis Pengelola BMN', 5, 174),
+(191, 'Pengolah Data', 5, 174),
+(192, 'Pemeriksa Bangunan', 5, 174),
+(193, 'Pengadministrasi Umum', 5, 174),
+(194, 'Analis Bangunan Gedung', 5, 175),
+(195, 'Pengawas Bangunan', 5, 175),
+(196, 'Pemeriksa Bangunan', 5, 175),
+(197, 'Teknisi Bangunan', 5, 175),
+(198, 'Pengadministrasi Umum', 5, 175),
+(199, 'Analis Barang dan Jasa', 5, 176),
+(200, 'Teknisi Kendaraan', 5, 176),
+(201, 'Pengadministrasi Umum', 5, 176),
+(202, 'Analis Rencana Program dan Kegiatan', 5, 177),
+(203, 'Pengadministrasi Umum', 5, 177),
+(204, 'Pengemudi Kendaraan', 5, 177),
+(205, 'Pengemudi VIP', 5, 177),
+(206, 'Analis Rencana Program dan Kegiatan', 5, 178),
+(207, 'Pengadministrasi Umum', 5, 178),
+(208, 'Petugas Keamanan', 5, 178),
+(209, 'Analis Data dan Informasi', 5, 179),
+(210, 'Pengolah Bahan Pustaka', 5, 179),
+(211, 'Pengadministrasi Umum', 5, 179),
+(212, 'Analis Data dan Informasi', 5, 180),
+(213, 'Pengolah Bahan Pustaka', 5, 180),
+(214, 'Jabatan Fungsional Tertentu Pustakawan', 3, 4),
+(5000, 'Admin Biro Protokol', 0, 9000),
+(6000, 'Admin Biro Perencanaan dan Keuangan', 0, 9000),
+(7000, 'Admin Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 0, 9000),
+(8000, 'Admin Biro Umum', 0, 9000),
+(9000, 'Admin', 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jurnal`
 --
 
@@ -590,10 +828,9 @@ CREATE TABLE `user` (
   `nip` varchar(12) NOT NULL,
   `id_pegawai` varchar(20) NOT NULL,
   `nama_pegawai` varchar(80) NOT NULL,
-  `jabatan` varchar(150) NOT NULL,
+  `id_jabatan` int(11) NOT NULL,
   `password` varchar(32) NOT NULL,
   `level` varchar(50) NOT NULL,
-  `bagian` varchar(50) NOT NULL,
   `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -601,24 +838,28 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `jabatan`, `password`, `level`, `bagian`, `foto`) VALUES
-('180002527', '196206271981031001', 'Suprapto', 'Pengadministrasi Persuratan', '180002527', '1', 'tata usaha kepegawaian', '180002527.jpg'),
-('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 'Kepala Subbagian Pembinaan dan Kesejahteraan Pegawai', '180002997', '2', 'pembinaan dan kesejahteraan pegawai', '180002997.jpg'),
-('180003445', '196306271986031003', 'Purwanto', 'Kepala Subbagian Pengembangan Kompetensi Pegawai', '180003445', '2', 'pengembangan kompetensi pegawai', '180003445.JPG'),
-('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180003512', '4', '', '180003512.jpg'),
-('180003782', '19700205 199303 1004', 'Hasim Mukti', 'Arsiparis Mahir', '180003782', '1', 'tata usaha kepegawaian', '180003782.jpg'),
-('180004373', '19701111 199703 2001', 'Susi Susanti, S.H.', 'Kepala Bagian Kepegawaian', '180004373', '3', '', '180004373.JPG'),
-('180004854', '198401192005012001', 'Amelia Irna Mayarni Sitohang, S.E.', 'Analis Sumber Daya Manusia Aparatur', '180004854', '1', 'pembinaan dan kesejahteraan pegawai', '180004854.jpg'),
-('180004895', '197903292005011001', 'Firman Setiana, S.AP.', 'Analis Jabatan ', '180004895', '1', 'pengembangan kompetensi pegawai', '180004895.JPG'),
-('180005067', '197110192006042001', 'Catherine Tulus Olivia, S.E., M.E.', 'Kepala Subbagian Tata Usaha Kepegawaian', '180005067', '2', 'tata usaha kepegawaian', '180005067.jpg'),
-('180005163', '196509282007012026', 'Endah Takariyanti', 'Pengadministrasi Umum', '180005163', '1', 'pembinaan dan kesejahteraan pegawai', '180005163.jpg'),
-('180005172', '197407052007011006', 'Ade Wahyudin', 'Pengolah Data', '180005172', '1', 'pembinaan dan kesejahteraan pegawai', '180005172.jpg'),
-('180005548', '198410062010121002', 'Oktaviano Yohannes Pantow, S.E.', 'Analis Kinerja', '180005548', '1', 'tata usaha kepegawaian', '180005548.jpg'),
-('180005605', '198904032014022001', 'Irene Astika Dewi, S.I.Kom.', 'Pengelola Naskah', '180005605', '1', 'tata usaha kepegawaian', '180005605.jpg'),
-('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 'Analis Sumber Daya Manusia Aparatur', '180005606', '1', 'tata usaha kepegawaian', '180005606.jpg'),
-('180005736', '199209302015032001', 'Temy Pratiwi, S.H.', 'Analis Sumber Daya Manusia Aparatur', '180005736', '1', 'pengembangan kompetensi pegawai', '180005736.jpg'),
-('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 'Sekretaris Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', '180005781', '1', 'tata usaha kepegawaian', '180005781.jpg'),
-('admin', '999', 'admin', 'admin', 'admin', '99', 'admin', 'admin.png');
+INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `id_jabatan`, `password`, `level`, `foto`) VALUES
+('180002527', '196206271981031001', 'Suprapto', 144, '180002527', '1', '180002527.jpg'),
+('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 113, '180002997', '1', '180002997.jpg'),
+('180003445', '196306271986031003', 'Purwanto', 112, '180003445', '1', '180003445.JPG'),
+('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 3, '180003512', '1', '180003512.jpg'),
+('180003782', '19700205 199303 1004', 'Hasim Mukti', 143, '180003782', '1', '180003782.jpg'),
+('180004373', '19701111 199703 2001', 'Susi Susanti, S.H.', 101, '180004373', '1', '180004373.JPG'),
+('180004854', '198401192005012001', 'Amelia Irna Mayarni Sitohang, S.E.', 148, '180004854', '1', '180004854.jpg'),
+('180004895', '197903292005011001', 'Firman Setiana, S.AP.', 146, '180004895', '1', '180004895.JPG'),
+('180005067', '197110192006042001', 'Catherine Tulus Olivia, S.E., M.E.', 111, '180005067', '1', '180005067.jpg'),
+('180005163', '196509282007012026', 'Endah Takariyanti', 150, '180005163', '1', '180005163.jpg'),
+('180005172', '197407052007011006', 'Ade Wahyudin', 149, '180005172', '1', '180005172.jpg'),
+('180005548', '198410062010121002', 'Oktaviano Yohannes Pantow, S.E.', 139, '180005548', '1', '180005548.jpg'),
+('180005605', '198904032014022001', 'Irene Astika Dewi, S.I.Kom.', 141, '180005605', '1', '180005605.jpg'),
+('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 140, '180005606', '1', '180005606.jpg'),
+('180005736', '199209302015032001', 'Temy Pratiwi, S.H.', 145, '180005736', '1', '180005736.jpg'),
+('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 142, '180005781', '1', '180005781.jpg'),
+('admin', '999', 'admin', 9000, 'admin', '99', 'admin.png'),
+('adm_keuangan', 'keuangan_adm', 'Admin Biro Perencanaan dan Keuangan', 6000, 'keuanganadm', '98', 'admin.png'),
+('adm_protokol', 'protokol_adm', 'Admin Biro Protokol', 5000, 'protokoladm', '98', 'admin.png'),
+('adm_tutk', 'tutk_adm', 'Admin Biro Tata Usaha,Teknologi Informasi dan Kepegawaian', 7000, 'tutkadm', '98', 'admin.png'),
+('adm_umum', 'umum_adm', 'Admin Biro Umum', 8000, 'umumadm', '98', 'admin.png');
 
 --
 -- Indexes for dumped tables
@@ -635,6 +876,12 @@ ALTER TABLE `aktivitas`
 --
 ALTER TABLE `hari_libur`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  ADD PRIMARY KEY (`id_jabatan`);
 
 --
 -- Indexes for table `jurnal`
@@ -662,12 +909,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `aktivitas`
 --
 ALTER TABLE `aktivitas`
-  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=459;
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=458;
 --
 -- AUTO_INCREMENT for table `hari_libur`
 --
 ALTER TABLE `hari_libur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9001;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
