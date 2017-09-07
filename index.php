@@ -86,6 +86,9 @@
       $LJstaffsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
       $LJstaffquery = mysqli_query($db, $LJstaffsql);
 
+      $BiroSql = "SELECT * FROM jabatan WHERE eselon = 2";
+      $BiroQuery = mysqli_query($db, $BiroSql);
+
       if(count($_POST)>0) {
          if(!empty($_POST['tcm_idAct'])){
             $id = $_POST['tcm_idAct'];
@@ -360,6 +363,7 @@
                     var fil = document.getElementById("filContent");
                     var djs = document.getElementById("djsContent");
                     var pac = document.getElementById("pacContent");
+                    var ej = document.getElementById("EJContent");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
                     }
@@ -381,6 +385,11 @@
                     if (pac){
                       if ( pac.classList.contains("show")){
                           pac.classList.toggle("show");
+                      }
+                    }
+                    if (ej){
+                      if ( ej.classList.contains("show")){
+                          ej.classList.toggle("show");
                       }
                     }
                 }
@@ -881,6 +890,23 @@
                     document.getElementById("DJSfilterType").value = t;
                  }
                }
+            }
+
+            function selectBiro(b){
+               catBtn = document.getElementById("EJBtn");
+               label = document.getElementById("EJbtnLabel");
+               document.getElementById("jabSearch").value = "";
+               document.getElementById("EJContent").classList.toggle("show");
+               label.innerHTML = b;
+               $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "ajax/getListJabatan.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'nama_jabatan':b},               
+                  success: function(response){                    
+                      $("#EJTableWrapper").html(response);
+                  }
+               });
             }
 
             function lihatDJS(nip){
@@ -1654,6 +1680,9 @@
               }
               if (document.getElementById("pacContent")){
                 document.getElementById("pacContent").classList.toggle("show");
+              }
+              if (document.getElementById("EJContent")){
+                document.getElementById("EJContent").classList.toggle("show");
               }
            })
            $('.clockpicker').clockpicker({
