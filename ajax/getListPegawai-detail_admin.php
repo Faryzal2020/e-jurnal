@@ -17,7 +17,7 @@
 					"<a class=\"tombol_detail disable\" style=\"font-weight: normal; padding: 3px;\">Jurnal Kosong</a>";
 			} else {
 				echo
-					"<a class=\"tombol_detail\" title=\"lihat kalender jurnal pegawai ini\" onclick=\"lihatKalender($data[0],$data[1])\" style=\"font-weight: normal; padding: 3px;\">Lihat Jurnal</a>";
+					"<a class=\"tombol_detail\" title=\"lihat kalender jurnal pegawai ini\" onclick=\"lihatKalender('$data[0]','$data[1]')\" style=\"font-weight: normal; padding: 3px;\">Lihat Jurnal</a>";
 			}
 			echo
 					"</td>
