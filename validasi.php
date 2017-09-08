@@ -18,7 +18,7 @@
       {
          $nip = $_POST['nip'];
          $pass = $_POST['password'];
-         $sql = "SELECT * FROM user WHERE nip='$nip'";
+         $sql = "SELECT * FROM user LEFT JOIN jabatan as j ON user.id_jabatan = j.id_jabatan WHERE nip='$nip'";
          $query = mysqli_query($db,$sql);
          $row = mysqli_fetch_array($query);
          
@@ -40,9 +40,10 @@
                $_SESSION['nip'] = $nip;
                $_SESSION['level'] = $row['level'];
                $_SESSION['nama'] = $row['nama_pegawai'];
-               $_SESSION['bagian'] = $row['bagian'];
+               $_SESSION['eselon'] = $row['eselon'];
                $_SESSION['nipb'] = $row['id_pegawai'];
-               $_SESSION['jabatan'] = $row['jabatan'];
+               $_SESSION['idjabatan'] = $row['id_jabatan'];
+               $_SESSION['jabatan'] = $row['nama_jabatan'];
                $_SESSION['tab'] = 0;
             } //end else
          } //end else

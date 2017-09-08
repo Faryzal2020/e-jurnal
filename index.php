@@ -58,7 +58,8 @@
       $nipb = $_SESSION['nipb'];
       $level = $_SESSION['level'];
       $nama = $_SESSION['nama'];    
-      $bagian= $_SESSION['bagian'];
+      $eselon= $_SESSION['eselon'];
+      $idjabatan = $_SESSION['idjabatan'];
       $jabatan = $_SESSION['jabatan'];
 
       // Activity List
@@ -79,9 +80,6 @@
       // Daftar Pegawai
       $DPsql = "SELECT * FROM user WHERE user.level < '$level' ORDER BY user.nama_pegawai";
       $DPquery = mysqli_query($db,$DPsql);
-      // Daftar Pegawai Subbagian
-      $DPSsql = "SELECT * FROM user WHERE user.level < '$level' AND user.bagian = '$bagian' ORDER BY user.nama_pegawai";
-      $DPSquery = mysqli_query($db,$DPSsql);
       // Jurnal Staff
       $LJstaffsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_jurnal, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip'";
       $LJstaffquery = mysqli_query($db, $LJstaffsql);
@@ -180,10 +178,10 @@
           <input type="hidden" id="selectedTab" value="<?php echo $_SESSION['tab']; ?>"/>
           <input type="hidden" id="userNip" value="<?php echo $_SESSION['nip']; ?>"/>
          <?php
-            if ($level == '1'){
+            if ($eselon == '5'){
                 include_once "functions_staff.php";
                 include_once "views/staf/home_staff.php";
-            } else if ($level == '99') {
+            } else if ($level >= '98') {
                 include_once "functions.php";
                 include_once "views/adminWeb/home.php";
             } else {
@@ -1268,14 +1266,12 @@
               eventFire(document.getElementById("LJSbtn"), 'click');
             }
 
-            function editAccount(nip, nama, bagian, jabatan, level, password){
+            function editAccount(nip, nama, jabatan, password){
               document.getElementById("ModalEA").style.display = "block";
               document.getElementById("labelPemilikAccount").innerHTML = nip;
               document.getElementById("EAnip").value = nip;
               document.getElementById("inputNama").value = nama;
-              document.getElementById("inputBagian").value = bagian;
               document.getElementById("inputJabatan").value = jabatan;
-              document.getElementById("inputLevel").value = level;
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
@@ -1317,7 +1313,7 @@
                   });
             }
 
-            function selectJA(type){
+            function selectJA(type, jabatan){
               var btn1 = document.getElementById("pjBtn1");
               var btn2 = document.getElementById("pjBtn2");
               if ( type == "Pribadi"){
@@ -1341,10 +1337,24 @@
                   filter.style.display = "none";
                   btn2.classList.add("active");
                   btn1.classList.remove("active");
+                  JAgetListPegawai(jabatan);
                 }
               }
             }
-            function selectTYPE(type,nipnya_sendiri){
+
+            function JAgetListPegawai(j){
+              $.ajax({
+                dataType: 'html',
+                url:'ajax/getListPegawai.php',
+                method:'get',
+                data : {'idjabatan': j},
+                success:function(response){
+                  $("#JAtabelSContainer").html(response);
+                }
+              });
+            }
+
+            function selectTYPE(type,j){
               var tombol1 = document.getElementById("tombol1");
               var tombol2 = document.getElementById("tombol2");
                 //alert(type)
@@ -1366,6 +1376,15 @@
                     tabelADMIN.style.display = "none";
                     tombol2.classList.add("active");
                     tombol1.classList.remove("active");
+                    $.ajax({
+                      dataType: 'html',
+                      url:'ajax/getListPegawai-detail_admin.php',
+                      method:'post',
+                      data : { 'idjabatan': j },
+                      success:function(response){
+                        $("#JAtabelSTAFF").html(response);
+                      }
+                    });
                   }
                 }
               }
@@ -1646,10 +1665,9 @@
            JAfilter('Periode');
            selectDJS('Bulanan');
            selectReport('Periode');
-           selectTYPE('staff');
-           searchAcc();
            getHLdata();
            eventFire(document.getElementById("DJSbtn"), 'click');
+           eventFire(document.getElementById("tombol2"), 'click');
            if(document.getElementById("LJSbtn")){
               eventFire(document.getElementById("LJSbtn"), 'click');
            }

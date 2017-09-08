@@ -7,7 +7,7 @@
 				                		<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                	</div>
 									<div class="searchPegawai h30">
-					                    <input type="text" id="pegSearch" class="h30" onkeyup="searchAcc()" title="Mencari nama pegawai" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
+					                    <input type="text" id="pegSearch" class="h30" title="Mencari nama pegawai" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
 					                </div>
 						            Result: 
 						            <label id="pegCount">0</label>
@@ -18,49 +18,7 @@
 							</div>
 						</div>
 						<div class="tCbody" id="epTableWrapper">
-							<table class="epTable" id="epTable" border="1" cellpadding="20" align="center">
-								<tr>
-									<th style="min-width: 130px">NIP</th>
-									<th style="min-width: 320px">Nama Pegawai</th>
-									<th style="min-width: 220px">Bagian</th>
-									<th style="min-width: 220px">Jabatan</th>
-									<th style="min-width: 130px"></th>
-								</tr>
-								<tr style="display:none;">
-									<td colspan="5"><label id="pegTableMessage" style="font-weight:normal; margin: auto"></label></td>
-								</tr>
-								<?php
-									while($al = mysqli_fetch_array($ALLquery)) {
-										$JAnip = $al['nip'];
-										$JAnama = $al['nama_pegawai'];
-										$JAbagian= $al['bagian'];
-										$JAjabatan = $al['jabatan'];
-										$JAlevel = $al['level'];
-								?>
-								<tr>
-									<td style="text-align: center;"><?php echo $JAnip; ?></td>
-									<td><?php echo $JAnama ?></td>
-									<td style="text-align: center;"><?php echo $JAbagian ?></td>
-									<td><?php echo $JAjabatan ?></td>
-									<td style="text-align: center; width: 80px;">
-										<a onclick="lihatJurnal(
-											'<?php echo $JAnip; ?>',
-											'<?php echo $JAnama; ?>'
-										)" style="display: inline; font-size: 1.5em; padding-right: 5px;"><span class="glyphicon glyphicon-list-alt" title="Lihat jurnal"></span></a>
-										<a onclick="editAccount(
-											'<?php echo $JAnip; ?>',
-											'<?php echo $JAnama; ?>',
-											'<?php echo $JAbagian; ?>',
-											'<?php echo $JAjabatan; ?>',
-											'<?php echo $JAlevel; ?>',
-											'<?php echo $al['password']; ?>'
-										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
-									</td>
-								</tr>
-								<?php
-									}
-								?>
-							</table>
+							
 						</div>
 						<div id="ModalEA" class="tCmodal">
 			                <div class="tCmodal-content">

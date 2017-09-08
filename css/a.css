@@ -77,9 +77,9 @@
 		.kirimBtnWrapper { position: absolute; right: 69px; top: 27px; }
 		.disable { background-color: #686868; pointer-events: none; cursor: default; color: #b7b7b7; box-shadow: 0 0 0; }
 
-		.actTable, .epTable, .actListTable, .pacListTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
-		.actTable th, .epTable th, .actListTable th, .pacListTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
-		.actTable td, .epTable td, .actListTable td, .pacListTable td { height: 30px; padding: 5px; }
+		.actTable, .epTable, .actListTable, .pacListTable, .EJTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
+		.actTable th, .epTable th, .actListTable th, .pacListTable th, .EJTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
+		.actTable td, .epTable td, .actListTable td, .pacListTable td, .EJTable td { height: 30px; padding: 5px; }
 		#actSearch, #pacSearch { width: 100%; padding-left: 10px; height: 30px; }
 		.selectActbtn { background-color: #2C383B; cursor: pointer; border-radius: 2px; border: 1px solid #2C383B; text-decoration: none; color: #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); padding: 1px 5px 1px 5px;}
 		.selectActbtn:hover { text-decoration: none; color: #2C383B; background-color: #ECECEC; border: 1px solid #2C383B; }
