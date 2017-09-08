@@ -22,13 +22,15 @@
 	}
 
 	echo 
-		"<table class=\"actTable\" id=\"actTable\" border=\"1\" cellpadding=\"20\" align=\"center\">
+		"<table class=\"actTable\" id=\"JPTable\" border=\"1\" cellpadding=\"20\" align=\"center\">
+		<thead>
 		<tr>
 			<th style=''>NIP</th>
 			<th style=''>Nama Pegawai</th>
 			<th style=''>Jabatan</th>
 			<th style=''></th>
-		</tr>";
+		</tr>
+		</thead><tbody>";
 	getBawahan($_GET['idjabatan']);
-	echo "</table>";
+	echo "</tbody></table>";
 ?>

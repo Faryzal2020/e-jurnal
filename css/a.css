@@ -36,6 +36,8 @@
             height: 110px;
             overflow: auto;
         }
+
+		th.tablesort { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none; cursor: pointer;}        
         
 
 		.pagebody{ background: white; overflow: hidden; margin-top: 20px; display: flex; }

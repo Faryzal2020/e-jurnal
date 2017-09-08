@@ -163,6 +163,7 @@
    <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
    <script type="text/javascript" src="js/bootstrap-year-calendar.min.js"></script>
+   <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
     
    </head>
    <body class="background">
@@ -1350,6 +1351,7 @@
                 data : {'idjabatan': j},
                 success:function(response){
                   $("#JAtabelSContainer").html(response);
+                  $("#JPTable").tablesorter();
                 }
               });
             }
@@ -1383,6 +1385,7 @@
                       data : { 'idjabatan': j },
                       success:function(response){
                         $("#JAtabelSTAFF").html(response);
+                        $("#actTableDA").tablesorter();
                       }
                     });
                   }
@@ -1709,6 +1712,10 @@
            $("#FormDJS").submit(function(e) {
               e.preventDefault();
            });
+
+           if(document.getElementById("actTable")){
+              $("#actTable").tablesorter();
+           }
 
            function onReady(callback) {
             var intervalID = window.setInterval(checkReady, 1000);

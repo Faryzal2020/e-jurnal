@@ -29,13 +29,14 @@
 	}
 
 	echo 
-		"<table class=\"detail_actTable\" id=\"actTable\" border=\"1\" cellpadding=\"20\" align=\"center\">
+		"<table class=\"detail_actTable\" id=\"actTableDA\" border=\"1\" cellpadding=\"20\" align=\"center\">
+		<thead>
 		<tr>
 			<th style=''>NIP</th>
 			<th style=''>Nama Pegawai</th>
 			<th style=''>Jabatan</th>
 			<th style=''></th>
-		</tr>";
+		</tr></thead><tbody>";
 	getBawahan($_POST['idjabatan']);
-	echo "</table>";
+	echo "</tbody></table>";
 ?>
