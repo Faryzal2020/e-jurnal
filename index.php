@@ -140,11 +140,11 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/css.css">
    <link type="text/css" rel="stylesheet" href="css/calendarstyle.css"/>    
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="css/oswald.css">
+   <link rel="stylesheet" type="text/css" href="css/opensanss.css">
+   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
    <link rel="stylesheet" type="text/css" href="css/bootstrap-year-calendar.min.css">
    <link rel="stylesheet" type="text/css" href="css/profile.css"><link rel="stylesheet" type="text/css" href="css/pure.css">
@@ -154,7 +154,7 @@
    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
-   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript" src="js/jquery12.js"></script>
    <script type="text/javascript" src="js/FileSaver/FileSaver.min.js"></script>
    <script type="text/javascript" src="js/js-xlsx/xlsx.core.min.js"></script>
    <script type="text/javascript" src="js/jsPDF/jspdf.min.js"></script>
