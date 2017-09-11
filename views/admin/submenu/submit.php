@@ -39,7 +39,7 @@
 									<th>Nama Aktivitas</th>
 									<th id="headerStandarWaktu" style="width: 150px">Standar Waktu Pengerjaan</th>
 									<th style="width: 130px">Kategori</th>
-									<th style="width: 80px"></th>
+									<th style="width: 80px">Pilih</th>
 								</tr>
 								<tr>
 									<td colspan="5"><label id="actTableMessage" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
