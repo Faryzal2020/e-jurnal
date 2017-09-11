@@ -891,21 +891,44 @@
                }
             }
 
-            function selectBiro(b){
+            function selectEch(e){
                catBtn = document.getElementById("EJBtn");
                label = document.getElementById("EJbtnLabel");
                document.getElementById("jabSearch").value = "";
                document.getElementById("EJContent").classList.toggle("show");
-               label.innerHTML = b;
+               if(e == 5){
+                  document.getElementById("searchJabatan").style.display = "";
+               } else {
+                  document.getElementById("searchJabatan").style.display = "none";
+               }
                $.ajax({    //create an ajax request to load_page.php
-                  type: "GET",
+                  type: "POST",
                   url: "ajax/getListJabatan.php",             
                   dataType: "html",   //expect html to be returned
-                  data: { 'nama_jabatan':b},               
+                  data: { 'kat':e},               
                   success: function(response){                    
-                      $("#EJTableWrapper").html(response);
+                    $("#EJTableWrapper").html(response);
                   }
                });
+            }
+
+            function toggleChild(atasan, eselon, container){
+              console.log("toggleChild");
+              var data = { 'atasan':atasan, 'eselon':eselon };
+              if(document.getElementById(container).innerHTML == ""){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "POST",
+                  url: "ajax/getListJabatan.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: data,               
+                  success: function(response){
+                    document.getElementById(container).innerHTML = response;             
+                    //$("#"+container).html(response);
+                  }
+                });
+              } else {
+                document.getElementById(container).innerHTML = "";
+              }
             }
 
             function lihatDJS(nip){
@@ -1669,6 +1692,9 @@
            selectDJS('Bulanan');
            selectReport('Periode');
            getHLdata();
+           if(document.getElementById("EJBTableWrapper")){
+              toggleChild('n','2','EJBTableWrapper');
+           }
            eventFire(document.getElementById("DJSbtn"), 'click');
            eventFire(document.getElementById("tombol2"), 'click');
            if(document.getElementById("LJSbtn")){

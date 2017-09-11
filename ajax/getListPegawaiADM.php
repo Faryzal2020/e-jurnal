@@ -1,9 +1,14 @@
 <?php
 	session_start();
 
-	function getList($search){
+	function getList($kat){
 		include("../config.php");
-		$sql = "SELECT user.nip, user.nama_pegawai, jabatan.nama_jabatan, user.password FROM user LEFT JOIN jabatan ON jabatan.id_jabatan = user.id_jabatan WHERE user.nama_pegawai LIKE '%.$search.%' OR user.nama_pegawai LIKE '%.$search.%' ";
+
+		if($kat == 1){
+			$sql = "SELECT user.nip, user.nama_pegawai, jabatan.nama_jabatan, user.password FROM user LEFT JOIN jabatan ON jabatan.id_jabatan = user.id_jabatan WHERE user.nama_pegawai LIKE '%.$search.%' OR user.nama_pegawai LIKE '%.$search.%' ";
+		} else {
+			$sql = "SELECT user.nip, user.nama_pegawai, jabatan.nama_jabatan, user.password FROM user LEFT JOIN jabatan ON jabatan.id_jabatan = user.id_jabatan WHERE user.nama_pegawai LIKE '%.$search.%' OR user.nama_pegawai LIKE '%.$search.%' ";
+		}
 		$result = mysqli_query($db,$sql);
 		if(mysqli_num_rows($result) > 0){
 			while($data = mysqli_fetch_array($result)){
@@ -35,6 +40,6 @@
 			<th style=\"min-width: 220px\">Jabatan</th>
 			<th style=\"min-width: 130px\"></th>
 		</tr>"
-	getList($_GET['search']);
+	getList($_GET['kat']);
 	echo "</table>";
 ?>
