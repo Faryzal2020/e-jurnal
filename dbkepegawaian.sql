@@ -521,10 +521,10 @@ CREATE TABLE `jabatan` (
 --
 
 INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
-(1, 'Kepala Biro Protokol', 2, 5000),
-(2, 'Kepala Biro Perencanaan dan Keuangan', 2, 6000),
-(3, 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 2, 7000),
-(4, 'Kepala Biro Umum', 2, 8000),
+(1, 'Kepala Biro Protokol', 2, 9000),
+(2, 'Kepala Biro Perencanaan dan Keuangan', 2, 9000),
+(3, 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 2, 9000),
+(4, 'Kepala Biro Umum', 2, 9000),
 (5, 'Kepala Bagian Acara dan Persidangan', 3, 1),
 (6, 'Kepala Bagian Notulen dan Penerbitan', 3, 1),
 (7, 'Kepala Bagian Perjalanan', 3, 1),
@@ -735,10 +735,6 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
 (212, 'Analis Data dan Informasi', 5, 180),
 (213, 'Pengolah Bahan Pustaka', 5, 180),
 (214, 'Jabatan Fungsional Tertentu Pustakawan', 3, 4),
-(5000, 'Admin Biro Protokol', 0, 9000),
-(6000, 'Admin Biro Perencanaan dan Keuangan', 0, 9000),
-(7000, 'Admin Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 0, 9000),
-(8000, 'Admin Biro Umum', 0, 9000),
 (9000, 'Admin', 0, 0);
 
 -- --------------------------------------------------------
@@ -841,6 +837,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `id_jabatan`, `password`, `level`, `foto`) VALUES
 ('180002527', '196206271981031001', 'Suprapto', 144, '180002527', '1', '180002527.jpg'),
 ('180002997', '196008211982121001', 'Ridhwan Stalin, S.H.', 113, '180002997', '1', '180002997.jpg'),
+('180003229', '19500714193431022', 'Abdul Rahman', 105, 'password', '1', ''),
 ('180003445', '196306271986031003', 'Purwanto', 112, '180003445', '1', '180003445.JPG'),
 ('180003512', '19570917 198603 1001', 'Drs. M. Nizar Mahyudin', 3, '180003512', '1', '180003512.jpg'),
 ('180003782', '19700205 199303 1004', 'Hasim Mukti', 143, '180003782', '1', '180003782.jpg'),
@@ -855,11 +852,7 @@ INSERT INTO `user` (`nip`, `id_pegawai`, `nama_pegawai`, `id_jabatan`, `password
 ('180005606', '199010272014022001', 'Rahmelya Oktari, S.I.A.', 140, '180005606', '1', '180005606.jpg'),
 ('180005736', '199209302015032001', 'Temy Pratiwi, S.H.', 145, '180005736', '1', '180005736.jpg'),
 ('180005781', '198906282015032001', 'Shelly Amelia, A.Md.', 142, '180005781', '1', '180005781.jpg'),
-('admin', '999', 'admin', 9000, 'admin', '99', 'admin.png'),
-('adm_keuangan', 'keuangan_adm', 'Admin Biro Perencanaan dan Keuangan', 6000, 'keuanganadm', '98', 'admin.png'),
-('adm_protokol', 'protokol_adm', 'Admin Biro Protokol', 5000, 'protokoladm', '98', 'admin.png'),
-('adm_tutk', 'tutk_adm', 'Admin Biro Tata Usaha,Teknologi Informasi dan Kepegawaian', 7000, 'tutkadm', '98', 'admin.png'),
-('adm_umum', 'umum_adm', 'Admin Biro Umum', 8000, 'umumadm', '98', 'admin.png');
+('admin', '999', 'admin', 9000, 'admin', '99', 'admin.png');
 
 --
 -- Indexes for dumped tables

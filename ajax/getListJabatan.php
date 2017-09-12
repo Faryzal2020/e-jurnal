@@ -23,7 +23,7 @@
 			}
 			echo		"</span>
 					</td>
-					<td style='background-color: white; border: 1px solid white; width: 350px;'> <a class=\"EJBbtn pencetan\" onclick=\"editJabatan('$data[0]','$data[1]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatPegawai('$data[0]')\">Lihat Pegawai</a><a class=\"EJBbtn pencetan\" onclick=\"openTAform('$data[0]')\">Tambah Pegawai</a></td>
+					<td style='background-color: white; border: 1px solid white; width: 350px;'> <a class=\"EJBbtn pencetan\" onclick=\"editJabatan('$data[0]','$data[1]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatPegawai('$data[0]')\">Lihat Pegawai</a> <a class=\"EJBbtn pencetan\" onclick=\"openTAform('$data[0]','$data[1]')\">Tambah Pegawai</a></td>
 				 </tr>";
 			echo "<tr style='background-color: white; border: 1px solid white;'><td colspan=\"2\" id=\"$data[1]\"></td></tr>";
 		}
