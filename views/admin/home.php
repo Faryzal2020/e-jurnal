@@ -93,7 +93,7 @@
                 <div class="content_profile">
 					<div class="foto_select" id="foto_select">
                         <div class="foto_select-content">
-                            <span class="foto_tutup">&times;</span>
+                            <span class="foto_tutup close">&times;</span>
                             <form action = "upload.php" method="post" enctype="multipart/form-data">
                             <table width=100% cellpadding=4 cellspacing=1 border=0 valign=top>
                                 <tr><td><br></td></tr>

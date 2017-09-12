@@ -980,8 +980,11 @@
                });
             }
 
-            function toggleChild(atasan, eselon, container){
-              console.log("toggleChild");
+            function toggleChild(atasan, eselon, container, el){
+              if(el){
+                el.getElementsByClassName("glyphicon")[0].classList.toggle('glyphicon-plus');
+                el.getElementsByClassName("glyphicon")[0].classList.toggle('glyphicon-minus');
+              }
               var data = { 'atasan':atasan, 'eselon':eselon };
               if(document.getElementById(container).innerHTML == ""){
                 $.ajax({    //create an ajax request to load_page.php

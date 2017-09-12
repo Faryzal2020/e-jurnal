@@ -57,7 +57,7 @@
 						</div>
 						<div id="ModalEA" class="tCmodal">
 			                <div class="tCmodal-content">
-			                    <span class="EAclose">&times;</span>
+			                    <span class="EAclose close">&times;</span>
 			                    <div id="tCModalLabel">Edit account milik: <label id="labelPemilikAccount"></label></div>
 			                    <form name="FormEA" id="FormEA" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEA">

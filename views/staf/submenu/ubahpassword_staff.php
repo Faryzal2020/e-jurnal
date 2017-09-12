@@ -1,7 +1,7 @@
                 <div class="content_profile">
 					<div class="pass_select" id="pass_select">
                         <div class="pass_select-content">
-                            <span class="tutup">&times;</span>
+                            <span class="tutup close">&times;</span>
                             <div id="password_label">Ubah Password</div>
 							<div class="profile_password">
 						      <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tablepass">

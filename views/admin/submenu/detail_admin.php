@@ -56,7 +56,7 @@
 						</div>
 						<div id="ModalKal" class="tCmodal">
                             <div class="modalLJ-content">
-			                    <span class="Kalclose">&times;</span>
+			                    <span class="Kalclose close">&times;</span>
                                 <div class="w3-content" style="max-width:1600px">
                                 	<div class="w3-row w3-padding w3-border">
                                         <div class="w3-col l12 s12">
