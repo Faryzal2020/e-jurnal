@@ -183,7 +183,7 @@
             if ($eselon == '5'){
                 include_once "functions_staff.php";
                 include_once "views/staf/home_staff.php";
-            } else if ($level >= '98') {
+            } else if ($level >= '99') {
                 include_once "functions.php";
                 include_once "views/adminWeb/home.php";
             } else {
@@ -216,7 +216,7 @@
             var modalDJS2 = document.getElementById('modalDJS2');
             var foto_select = document.getElementById('foto_select');
             var foto_tutup = document.getElementsByClassName("foto_tutup")[0];
-            var modalTA = document.getElementById("ModalTA");
+            var ModalTA = document.getElementById("ModalTA");
             var closeTA = document.getElementsByClassName("TAclose")[0];
             var modalKal = document.getElementById("ModalKal");
             var closeKal = document.getElementsByClassName("Kalclose")[0];
@@ -289,7 +289,7 @@
             }
             if ( typeof closeTA != 'undefined' ){
               closeTA.onclick = function() {
-                modalTA.style.display = "none";
+                ModalTA.style.display = "none";
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
@@ -323,7 +323,7 @@
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == lihat_pegawai){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == lihat_pegawai){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -342,8 +342,8 @@
                     if(modalEA){
                       modalEA.style.display = "none";
                     }
-                    if(modalTA){
-                      modalTA.style.display = "none";
+                    if(ModalTA){
+                      ModalTA.style.display = "none";
                     }
                     if(modalact){
                       modalact.style.display = "none";
@@ -1299,24 +1299,16 @@
                var nip = document.forms["FormTA"]["nip"].value;
                var nipbaru = document.forms["FormTA"]["nipbaru"].value;
                var nama = document.forms["FormTA"]["nama"].value;
-               var bagian = document.forms["FormTA"]["bagian"].value;
-               var jabatan = document.forms["FormTA"]["jabatan"].value;
+               var jabatan = document.forms["FormTA"]["input_id_Jabatan"].value;
                var password = document.forms["FormTA"]["password"].value;
-               var level = document.forms["FormTA"]["level"].value;
                var error = 0;
                var msg;
-               if (nip == "" || nama == "" || jabatan == "" || bagian == "" || password == "" || level == ""){
+               if (nip == "" || nama == "" || jabatan == "" || password == ""){
                   msg = "Tidak boleh ada kolom yang kosong";
-                  error++;
-               } else if ( level > 99){
-                  msg = "Level tidak boleh lebih dari 99";
-                  error++;
-               } else if ( level == 99){
-                  msg = "Level tidak boleh sama dengan 99";
                   error++;
                }
 
-               data = { 'nip':nip, 'nipbaru':nipbaru, 'nama':nama, 'bagian':bagian, 'jabatan':jabatan, 'password':password, 'level':level };
+               data = { 'nip':nip, 'nipbaru':nipbaru, 'nama':nama, 'jabatan':jabatan, 'password':password};
                if ( error == 0){
                   document.getElementById("FormTA").submit();
                   $.ajax({
@@ -1761,8 +1753,10 @@
               }
             }
 
-            function openTAform(){
+            function openTAform(id_jabatan,nama_jabatan){
               document.getElementById("ModalTA").style.display = "block";
+              document.getElementById("nambah_nama_jabatan").innerHTML = nama_jabatan;
+              document.getElementById("input_id_Jabatan").value = id_jabatan;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
             }
