@@ -37,8 +37,10 @@
             overflow: auto;
         }
 
-		th.tablesort { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none; cursor: pointer;}        
-        
+		th.tablesort { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none; cursor: pointer;}
+		.treeTable span { color: #2C383B; text-decoration: none; cursor: pointer;}
+        .treeTable span:hover { text-decoration: underline; }
+        .EJBbtn { padding: 5px 10px 5px 10px; }
 
 		.pagebody{ background: white; overflow: hidden; margin-top: 20px; display: flex; }
 		.sidenav { background: #ECECEC; position: relative; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}
@@ -92,9 +94,8 @@
 		.fit-width { width: fit-content; }
 		.tableType { width: 80%; }
 		.tableSJ td, .tableEA td, .tableEDJS td {padding: 5px;}
-		.close, .tutupLJ, .EAclose, .TAclose, .Actclose, .EActclose , .Kalclose { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
-		.close:hover, .close:focus, .tutupLJ:hover, .tutupLJ:focus, .EAclose:hover, .EAclose:focus, .TAclose:hover, .TAclose:focus, .Actclose:hover, .Actclose:focus, .EActclose:hover, .EActclose:focus, .Kalclose:hover, .Kalclose:focus{ 
-			color: #333333; text-decoration: none; cursor: pointer; }
+		.closeModal { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
+		.closeModal:hover, .closeModal:focus { color: #333333; text-decoration: none; cursor: pointer; }
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ, .btnGantiFoto { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover, .btnGantiFoto:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
@@ -110,9 +111,9 @@
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
 		.LJAfilter { padding-left: 25px; }
-		.LJAbtn, .TAbtn , .TAact { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
-		.LJAbtn:hover, .TAbtn:hover, .TAact:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
-		.LJAbtn:active, .TAbtn:active, .TAact:active { box-shadow: 0 0 0; }
+		.LJAbtn, .TAbtn , .TAact, .pencetan { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn:hover, .TAbtn:hover, .TAact:hover, .pencetan:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.LJAbtn:active, .TAbtn:active, .TAact:active, .pencetan:active { box-shadow: 0 0 0; }
 		.LJApilihHari { padding-top: 7px; margin-left: -8px; margin-right: 10px; }
 		.LJApilihPeriode { padding-right: 17px; padding-top: 6px;}
 		.modalLJ-content { background-color: #FEFEFE; margin: 5% auto; padding: 20px; border: 1px solid #888; min-width: 870px; width: 90vw; }
