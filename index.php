@@ -1407,6 +1407,9 @@
               if(value == 3){
                 document.getElementsByClassName("EAjabatan")[0].style.display = "":
               }
+              if (value == 4){
+                document.getElementsByClassName("EAjabatan")[1].style.display = "":
+              }
             }
 
 
