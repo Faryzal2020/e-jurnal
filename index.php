@@ -1749,7 +1749,7 @@
               }
             }
 
-            function openTAform(){
+            function openTAform(id_jabatan){
               document.getElementById("ModalTA").style.display = "block";
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
