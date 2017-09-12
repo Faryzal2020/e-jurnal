@@ -45,13 +45,7 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="Di menu kalender ini anda dapat melihat&#013;semua jurnal milik semua pegawai&#013;dengan tampilan kalender." ><span class="glyphicon glyphicon-calendar"></span><a href="#">Jurnal Pegawai</a></li>
-			</ul>
-    		<ul>
 				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
-			</ul>
-			<ul>
-				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Account</a></li>
 			</ul>
 			<ul>
 				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Jabatan</a></li>
@@ -66,17 +60,7 @@
 		<div class="content">
 			<div class="tab">
 				<div class="tabN">
-					<?php require_once "views/adminWeb/submenu/detail_admin.php";?>
-				</div>
-			</div>
-			<div class="tab">
-				<div class="tabN">
 					<?php require_once "views/adminWeb/submenu/actList.php";?>
-				</div>
-			</div>
-			<div class="tab">
-				<div class="tabN">
-					<?php require_once "views/adminWeb/submenu/accountList.php";?>
 				</div>
 			</div>
 			<div class="tab">

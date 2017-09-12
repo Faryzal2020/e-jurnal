@@ -41,6 +41,7 @@
 		.treeTable span { color: #2C383B; text-decoration: none; cursor: pointer;}
         .treeTable span:hover { text-decoration: underline; }
         .EJBbtn { padding: 5px 10px 5px 10px; }
+        .EAjabatan { display: none; }
 
 		.pagebody{ background: white; overflow: hidden; margin-top: 20px; display: flex; }
 		.sidenav { background: #ECECEC; position: relative; flex: 0 0 250px; padding-top: 260px; min-height: 100vh;}

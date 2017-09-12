@@ -24,7 +24,7 @@ while($al = mysqli_fetch_array($detail)) {
     echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[2]</td>";
     echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[3]</td>";
     echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[4]</td>";
-    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'> <a class=\"EJBbtn pencetan\" onclick=\"editAccount('$al[0]','$al[1]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatJurnal('$al[0]','$al[1]')\">Lihat Jurnal</a></td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'> <a class=\"EJBbtn pencetan\" onclick=\"editAccount('$al[0]','$al[1]','$al[2]','$al[3]','$al[4]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatJurnal('$al[0]','$al[1]')\">Lihat Jurnal</a></td>";
     echo "</tr>";
 }
 ?>              

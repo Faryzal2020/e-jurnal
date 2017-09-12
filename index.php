@@ -1390,16 +1390,26 @@
               eventFire(document.getElementById("LJSbtn"), 'click');
             }
 
-            function editAccount(nip, nama, jabatan,kepala, password){
+            function editAccount(nip, nama, jabatan, kepala, password){
               document.getElementById("ModalEA").style.display = "block";
               document.getElementById("labelPemilikAccount").innerHTML = nip;
               document.getElementById("EAnip").value = nip;
               document.getElementById("inputNama").value = nama;
-              document.getElementById("inputJabatan").value = jabatan;
-              document.getElementById("inputKepala").value = kepala;    
+              document.getElementById("inputJabatan").value = jabatan;  
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
+
+            function EAselectEch(){
+              var select = document.getElementById("EAinputEselon");
+              var value = select.options[select.selectedIndex].value;
+              $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+              if(value == 3){
+                document.getElementsByClassName("EAjabatan")[0].style.display = "":
+              }
+            }
+
+
              function editAktivitas(id_aktivitas, nama_aktivitas, durasi, id_kategori){
               document.getElementById("ModalEact").style.display = "block";
               document.getElementById("labelaktivitas").innerHTML = nama_aktivitas;
