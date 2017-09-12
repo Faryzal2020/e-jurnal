@@ -75,7 +75,7 @@
       $Catquery3 = mysqli_query($db,$Catsql);
       $Catquery4 = mysqli_query($db,$Catsql);
       // Semua Pegawai
-      $ALLsql = "SELECT * FROM user WHERE user.level < 99 ORDER BY user.nama_pegawai";
+      $ALLsql = "SELECT user.nip,user.nama_pegawai,a.nama_jabatan as jabatan ,b.nama_jabatan as atasan,user.password FROM user,jabatan as a, jabatan as b WHERE user.level < 99 AND user.id_jabatan=a.id_jabatan AND a.atasan=b.id_jabatan ORDER BY user.nama_pegawai";
       $ALLquery = mysqli_query($db,$ALLsql);
       // Daftar Pegawai
       $DPsql = "SELECT * FROM user WHERE user.level < '$level' ORDER BY user.nama_pegawai";
@@ -1290,12 +1290,13 @@
               eventFire(document.getElementById("LJSbtn"), 'click');
             }
 
-            function editAccount(nip, nama, jabatan, password){
+            function editAccount(nip, nama, jabatan,kepala, password){
               document.getElementById("ModalEA").style.display = "block";
               document.getElementById("labelPemilikAccount").innerHTML = nip;
               document.getElementById("EAnip").value = nip;
               document.getElementById("inputNama").value = nama;
               document.getElementById("inputJabatan").value = jabatan;
+              document.getElementById("inputKepala").value = kepala;    
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
