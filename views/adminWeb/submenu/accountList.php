@@ -76,7 +76,7 @@
 			                                <tr>
 			                                	<td><label>Bagian</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputKepala" name="bagian" value="" title="Masukkan bagian dari pegawai yang ingin diubah :&#013;-Kosong&#40; &#41; untuk Kepala Biro dan Kepala Bagian&#013;-bagian :&#013;  *pembinaan dan kesejahteraan pegawai&#013;  *pengembangan kompetensi pegawai&#013;  *tata usaha kepegawaian"></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputBagian" name="bagian" value="" title="Masukkan bagian dari pegawai yang ingin diubah :&#013;-Kosong&#40; &#41; untuk Kepala Biro dan Kepala Bagian&#013;-bagian :&#013;  *pembinaan dan kesejahteraan pegawai&#013;  *pengembangan kompetensi pegawai&#013;  *tata usaha kepegawaian"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Jabatan</label></td>
