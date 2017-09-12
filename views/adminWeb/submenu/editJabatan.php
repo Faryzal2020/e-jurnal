@@ -82,8 +82,9 @@
 			                                <tr>
 			                                	<td><label>Jabatan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3" id="EAinputEselon">
-			                                    	<select onchange="EAselectEch()">
+			                                    <td colspan="3">
+			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon">
+			                                    		<option value="1">Pilih Eselon</option>
 			                                    		<option value="2">Eselon II</option>
 			                                    		<option value="3">Eselon III</option>
 			                                    		<option value="4">Eselon IV</option>
@@ -91,21 +92,29 @@
 			                                    	</select>
 			                                    </td>
 			                                </tr>
-			                                <tr>
+			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" id="EAinputBiro"></td>
+			                                    <td colspan="3" class="EAselectContainer">
+			                                    	<select onchange="EAselectEch(1)" id="EAinputBiro" name="EAinputBiro">
+			                                    		<option id="pilihBiro" value="1">Pilih Biro</option>
+			                                    	</select>
+			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" id="EAinputBagian"></td>
+			                                    <td colspan="3" class="EAselectContainer">
+			                                    	<select onchange="EAselectEch(1)" id="EAinputBagian" name="EAinputBagian">
+			                                    		<option id="pilihBagian" value="1">Pilih Bagian</option>
+			                                    	</select>
+			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" id="EAinputSubbag"></td>
+			                                    <td colspan="3" class="EAselectContainer" id="EAinputSubbag"></td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" id="EAinputStaf"></td>
+			                                    <td colspan="3" class="EAselectContainer" id="EAinputStaf"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Password</label></td>

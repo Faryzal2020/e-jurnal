@@ -1400,15 +1400,38 @@
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
 
-            function EAselectEch(){
+            function EAselectEch(i){
               var select = document.getElementById("EAinputEselon");
               var value = select.options[select.selectedIndex].value;
               $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-              if(value == 3){
-                document.getElementsByClassName("EAjabatan")[0].style.display = "";
+              if( value >= 2){
+                for(var j = 0; j <= value-2; j++){
+                  document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
+                }
               }
-              if (value == 4){
-                document.getElementsByClassName("EAjabatan")[1].style.display = "";
+              if(i == 0 && value == 2){
+                $.ajax({
+                  dataType: 'html',
+                  url:'ajax/getSelectJabatan.php',
+                  method:'POST',
+                  data : {'eselon': 2, 'atasan': 'n'},
+                  success:function(response){
+                    document.getElementById("pilihBiro").insertAdjacentHTML("afterEnd",response);
+                  }
+                });
+              } else if( i == 1 && value == 3){
+                var inputA= document.getElementById("EAinputBiro");
+                var atasan = inputA.options[inputA.selectedIndex].value;
+                $.ajax({
+                  dataType: 'html',
+                  url:'ajax/getSelectJabatan.php',
+                  method:'POST',
+                  data : {'eselon': 3, 'atasan': atasan},
+                  success:function(response){
+                    alert(response);
+                    document.getElementById("pilihBagian").insertAdjacentHTML("afterEnd",response);
+                  }
+                });
               }
             }
 
