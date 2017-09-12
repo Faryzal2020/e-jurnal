@@ -7,7 +7,7 @@
 				                		<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                	</div>
 									<div class="searchPegawai h30">
-					                    <input type="text" id="pegSearch" class="h30" title="Mencari nama pegawai" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
+					                    <input type="text" id="pegSearch" class="h30" onkeyup="searchAcc()" title="Mencari nama pegawai" placeholder="Search Nama Pegawai" style="width: 100%; padding-left: 10px;">
 					                </div>
 						            Result: 
 						            <label id="pegCount">0</label>
@@ -18,7 +18,48 @@
 							</div>
 						</div>
 						<div class="tCbody" id="epTableWrapper">
-							
+							<table class="epTable" id="epTable" border="1" cellpadding="20" align="center">
+								<tr>
+									<th style="min-width: 130px">NIP</th>
+									<th style="min-width: 320px">Nama Pegawai</th>
+									<th style="min-width: 220px">Jabatan</th>
+									<th style="min-width: 220px">Kepala</th>
+									<th style="min-width: 130px"></th>
+								</tr>
+								<tr style="display:none;">
+									<td colspan="5"><label id="pegTableMessage" style="font-weight:normal; margin: auto"></label></td>
+								</tr>
+								<?php
+									while($al = mysqli_fetch_array($ALLquery)) {
+										$JAnip = $al[0];
+										$JAnama = $al[1];
+										$JAjabatan= $al[2];
+										$JAkepala = $al[3];
+                                        $JApassword = $al[4];
+										?>
+								<tr>
+									<td style="text-align: center;"><?php echo $JAnip; ?></td>
+									<td><?php echo $JAnama ?></td>
+									<td style="text-align: center;"><?php echo $JAjabatan ?></td>
+									<td><?php echo $JAkepala ?></td>
+									<td style="text-align: center; width: 80px;">
+										<a onclick="lihatJurnal(
+											'<?php echo $JAnip; ?>',
+											'<?php echo $JAnama; ?>'
+										)" style="display: inline; font-size: 1.5em; padding-right: 5px;"><span class="glyphicon glyphicon-list-alt" title="Lihat jurnal"></span></a>
+										<a onclick="editAccount(
+											'<?php echo $JAnip; ?>',
+											'<?php echo $JAnama; ?>',
+											'<?php echo $JAjabatan; ?>',
+											'<?php echo $JAkepala; ?>',
+											'<?php echo $JApassword; ?>'
+										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
+									</td>
+								</tr>
+								<?php
+									}
+								?>
+							</table>
 						</div>
 						<div id="ModalEA" class="tCmodal">
 			                <div class="tCmodal-content">
@@ -35,7 +76,7 @@
 			                                <tr>
 			                                	<td><label>Bagian</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputBagian" name="bagian" value="" title="Masukkan bagian dari pegawai yang ingin diubah :&#013;-Kosong&#40; &#41; untuk Kepala Biro dan Kepala Bagian&#013;-bagian :&#013;  *pembinaan dan kesejahteraan pegawai&#013;  *pengembangan kompetensi pegawai&#013;  *tata usaha kepegawaian"></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputKepala" name="bagian" value="" title="Masukkan bagian dari pegawai yang ingin diubah :&#013;-Kosong&#40; &#41; untuk Kepala Biro dan Kepala Bagian&#013;-bagian :&#013;  *pembinaan dan kesejahteraan pegawai&#013;  *pengembangan kompetensi pegawai&#013;  *tata usaha kepegawaian"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Jabatan</label></td>
@@ -46,11 +87,6 @@
 			                                	<td><label>Password</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputPassword" name="password" value="" title="Password dari akun pegawai yang ingin diubah"></td>
-			                                </tr>
-			                                <tr>
-			                                	<td><label>Level</label></td>
-			                                	<td>:</td>
-			                                    <td colspan="3"><input type="text" name="level" id="inputLevel" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="Masukkan level dari pegawai yang ingin diubah :&#013;1 &#40;level untuk staff &#41;&#013;2 &#40;level untuk kepala Sub-Bagian &#41; &#013;3 &#40;level untuk Kepala Bagian &#41; &#013;4 &#40;level untuk Kepala Biro &#41;"></td>
 			                                </tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EASubmit" class="EAbtnSubmit" onclick="validateEA()" title="Simpan Perubahan">Submit</a></td>
