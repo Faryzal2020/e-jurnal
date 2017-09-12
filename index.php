@@ -147,7 +147,8 @@
    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
    <link rel="stylesheet" type="text/css" href="css/bootstrap-year-calendar.min.css">
-   <link rel="stylesheet" type="text/css" href="css/profile.css"><link rel="stylesheet" type="text/css" href="css/pure.css">
+   <link rel="stylesheet" type="text/css" href="css/profile.css">
+   <link rel="stylesheet" type="text/css" href="css/pure.css">
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <link rel="stylesheet" type="text/css" href="css/a.css">
 	
@@ -225,8 +226,8 @@
             var closeEAct = document.getElementsByClassName("EActclose")[0];
             var modalTJ = document.getElementById("ModalTJ");
             var closeTJ = document.getElementsByClassName("TJclose")[0];
-            var lihat_pegawai = document.getElementById('lihat_pegawai');
-            var tutup_lihat = document.getElementsByClassName("tutup_lihat")[0];
+            var lihat_pegawai = document.getElementById('EJBlihat_pegawai');
+            var tutup_lihat = document.getElementsByClassName("EJBtutup_lihat")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -484,17 +485,23 @@
                }
             }
             function lihatPegawai(id_jabatan){
-                document.getElementById("lihat_pegawai").style.display = "block";
+              if(document.getElementById("EJBlihat_pegawai")){
+                document.getElementById("EJBlihat_pegawai").style.display = "block";
+                console.log(document.getElementById("EJBlihat_pegawai").style);
                 document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
-                type: "POST",
-                url: "ajax/lihatpegawai.php",             
-                dataType: "html",   //expect html to be returned
-                data: { 'id_jabatan':id_jabatan },               
-                success: function(response){                 
+                  type: "POST",
+                  url: "ajax/lihatpegawai.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'id_jabatan':id_jabatan },               
+                  success: function(response){
+                    alert(response);                
                     $("#tablelihat").html(response);
-                    }
-              });  
+                  }
+                });
+              } else {
+                alert("test");
+              }
             }
             function detail_selectActivity(tanggal_tanggal,nip,namapegawai){
                 document.getElementById("detail_select").style.display = "block";

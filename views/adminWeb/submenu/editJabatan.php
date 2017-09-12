@@ -25,17 +25,16 @@
 			                    </form>
 			                </div>
 			            </div>
-                        
-                                <div class="lihat_pegawai" id="lihat_pegawai">
-                                    <div class="lihat_pegawai-content">
-                                        <span class="tutup_lihat">&times;</span>
-                                        <div id="detail_label">Detail Jurnal</div>
-                                        <div class="detail_jurnal">
-                                        </div>
-                                        <div id="tablelihat">
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="lihat_pegawai" id="EJBlihat_pegawai">
+                            <div class="lihat_pegawai-content">
+                            <span class="EJBtutup_lihat closeModal">&times;</span>
+                            <div id="detail_label">Detail Jurnal</div>
+                            <div class="detail_jurnal">
+                            </div>
+                            <div id="tablelihat">
+                            </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 	
