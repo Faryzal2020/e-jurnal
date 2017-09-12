@@ -7,38 +7,24 @@ $daiSQL = "SELECT user.nip,user.nama_pegawai,a.nama_jabatan as jabatan ,b.nama_j
 $detail = mysqli_query($db, $daiSQL);
 
 
-echo "<table border='1' class='tablelihat' id='tablelihat' cellpadding='50' width='100%'>
+echo "<table border='1' class='tablelihat' cellpadding='50' width='100%'>
 
 <tr>
-<th style=\"min-width: 130px\">NIP</th>
-<th style=\"min-width: 320px\">Nama Pegawai</th>
-<th style=\"min-width: 220px\">Jabatan</th>
-<th style=\"min-width: 220px\">Kepala</th>
-<th style=\"min-width: 130px\"></th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>NIP</th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Nama Pegawai</th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Jabatan</th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Kepala</th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Password</th>
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Opsi</th>
 </tr>";
 while($al = mysqli_fetch_array($detail)) {
-    $JAnip = $al[0];
-    $JAnama = $al[1];
-    $JAjabatan= $al[2];
-    $JAkepala = $al[3];
-    $JApassword = $al[4];
-<tr>
-    <td style="text-align: center;"><?php echo $JAnip; ?></td>
-    <td><?php echo $JAnama ?></td>
-    <td style="text-align: center;"><?php echo $JAjabatan ?></td>
-    <td><?php echo $JAkepala ?></td>
-    <td style="text-align: center; width: 80px;">
-        <a onclick="lihatJurnal(
-                    '<?php echo $JAnip; ?>',
-                    '<?php echo $JAnama; ?>'
-                    )" style="display: inline; font-size: 1.5em; padding-right: 5px;"><span class="glyphicon glyphicon-list-alt" title="Lihat jurnal"></span></a>   
-        <a onclick="editAccount(
-                    '<?php echo $JAnip; ?>',
-                    '<?php echo $JAnama; ?>',
-                    '<?php echo $JAjabatan; ?>',
-                    '<?php echo $JAkepala; ?>',
-                    '<?php echo $JApassword; ?>'
-                    )" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit account"></span></a>
-    </td>
+    echo "<tr>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[0]</td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[1]</td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[2]</td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[3]</td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'>$al[4]</td>";
+    echo "<td align='center' style='background-color: white; border: 1px solid white; width: 200px;'> <a class=\"EJBbtn pencetan\" onclick=\"editAccount('$al[0]','$al[1]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatJurnal('$al[0]','$al[1]')\">Lihat Jurnal</a></td>";
+    echo "</tr>";
 }
 ?>              
