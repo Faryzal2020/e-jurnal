@@ -494,9 +494,8 @@
                   url: "ajax/lihatpegawai.php",             
                   dataType: "html",   //expect html to be returned
                   data: { 'id_jabatan':id_jabatan },               
-                  success: function(response){
-                    alert(response);                
-                    $("#tablelihat").html(response);
+                  success: function(response){             
+                    $("#tablelihatpegawai").html(response);
                   }
                 });
               } else {
