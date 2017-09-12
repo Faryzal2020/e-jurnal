@@ -225,6 +225,8 @@
             var closeEAct = document.getElementsByClassName("EActclose")[0];
             var modalTJ = document.getElementById("ModalTJ");
             var closeTJ = document.getElementsByClassName("TJclose")[0];
+            var lihat_pegawai = document.getElementById('lihat_pegawai');
+            var tutup_lihat = document.getElementsByClassName("tutup_lihat")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -252,6 +254,12 @@
             if(typeof tutup_detail != 'undefined'){   
                 tutup_detail.onclick = function() {
                   detail_select.style.display = "none";
+                  document.getElementsByTagName("body")[0].style.overflow = "";
+                }
+            }
+            if(typeof tutup_lihat != 'undefined'){   
+                tutup_lihat.onclick = function() {
+                  lihat_pegawai.style.display = "none";
                   document.getElementsByTagName("body")[0].style.overflow = "";
                 }
             }
@@ -314,7 +322,7 @@
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == lihat_pegawai){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -344,6 +352,9 @@
                     }
                     if(modalTJ){
                       modalTJ.style.display = "none";
+                    }
+                    if(lihat_pegawai){
+                      lihat_pegawai.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalKal){
@@ -472,7 +483,19 @@
                   document.getElementById("tanggal").style.width = "1px";
                }
             }
-             
+            function lihatPegawai(id_jabatan){
+                document.getElementById("lihat_pegawai").style.display = "block";
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                $.ajax({    //create an ajax request to load_page.php
+                type: "POST",
+                url: "ajax/lihatpegawai.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'id_jabatan':id_jabatan },               
+                success: function(response){                 
+                    $("#tablelihat").html(response);
+                    }
+              });  
+            }
             function detail_selectActivity(tanggal_tanggal,nip,namapegawai){
                 document.getElementById("detail_select").style.display = "block";
                 document.getElementById("jurnal_nama").innerHTML = namapegawai;
@@ -1111,6 +1134,7 @@
                   });
               }
             }
+            
 
             function DJSgantiAct() {
               document.getElementById("modalDJS2").style.display = "block";
