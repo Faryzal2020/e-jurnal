@@ -1405,10 +1405,10 @@
               var value = select.options[select.selectedIndex].value;
               $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
               if(value == 3){
-                document.getElementsByClassName("EAjabatan")[0].style.display = "":
+                document.getElementsByClassName("EAjabatan")[0].style.display = "";
               }
               if (value == 4){
-                document.getElementsByClassName("EAjabatan")[1].style.display = "":
+                document.getElementsByClassName("EAjabatan")[1].style.display = "";
               }
             }
 
