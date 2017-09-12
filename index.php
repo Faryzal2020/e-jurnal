@@ -223,6 +223,8 @@
             var closeAct = document.getElementsByClassName("Actclose")[0];
             var modalEact = document.getElementById("ModalEact");
             var closeEAct = document.getElementsByClassName("EActclose")[0];
+            var modalTJ = document.getElementById("ModalTJ");
+            var closeTJ = document.getElementsByClassName("TJclose")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -301,12 +303,18 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+            if ( typeof closeTJ != 'undefined' ){
+              closeTJ.onclick = function() {
+                modalTJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == modalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -333,6 +341,9 @@
                     }
                     if(modalEact){
                       modalEact.style.display = "none";
+                    }
+                    if(modalTJ){
+                      modalTJ.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalKal){
@@ -616,11 +627,15 @@
              
             function searchAct() {
                var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
+
                catBtn = document.getElementById("ddcBtn");
                input = document.getElementById("actSearch");
                filter = input.value.toUpperCase();
                table = document.getElementById("actListTable");
                tr = table.getElementsByTagName("tr");
+               document.getElementById("actTableMessage").style.display = "";
+               tr[1].style.display = "";
+               document.getElementById("actCount").innerHTML = "0";
 
                if(catBtn.classList.contains("selectd")){
                   catFilter = ddcbtnLabel.innerHTML;
@@ -644,6 +659,17 @@
                         }
                      }
                   }
+                  document.getElementById("actCount").innerHTML = showCount;
+                  if( showCount <= 0 ){
+                      if( filter != '' || catFilter != ''){
+                         document.getElementById("actTableMessage").innerHTML = "No Result";
+                      } else {
+                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                      }
+                   } else {
+                      document.getElementById("actTableMessage").style.display = "none";
+                      tr[1].style.display = "none";
+                   }
                   if(catFilter == 'izin harian'){
                     document.getElementById("headerStandarWaktu").style.display = "none";
                   } else {
@@ -659,6 +685,17 @@
                         }
                      }
                   }
+                  document.getElementById("actCount").innerHTML = showCount;
+                  if( showCount <= 0 ){
+                      if( filter != '' || catFilter != ''){
+                         document.getElementById("actTableMessage").innerHTML = "No Result";
+                      } else {
+                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                      }
+                   } else {
+                      document.getElementById("actTableMessage").style.display = "none";
+                      tr[1].style.display = "none";
+                   }
                } else if( catFilter != ''){
                   for (i = 2; i < tr.length; i++) {
                      tdcat = tr[i].getElementsByTagName("td")[3];
@@ -669,23 +706,24 @@
                         }
                      }
                   }
-                  if(catFilter == 'izin harian'){
-                    document.getElementById("headerStandarWaktu").style.display = "none";
-                  } else {
-                    document.getElementById("headerStandarWaktu").style.display = "";
+                  if(document.getElementById("headerStandarWaktu")){
+                    if(catFilter == 'izin harian'){
+                      document.getElementById("headerStandarWaktu").style.display = "none";
+                    } else {
+                      document.getElementById("headerStandarWaktu").style.display = "";
+                    }
                   }
-               }
-
-               document.getElementById("actCount").innerHTML = showCount;
-               if( showCount <= 0 ){
-                  tr[1].style.display = "";
-                  if( filter != '' || catFilter != ''){
-                     document.getElementById("actTableMessage").innerHTML = "No Result";
+                  document.getElementById("actCount").innerHTML = showCount;
+                  if( showCount <= 0 ){
+                      if( filter != '' || catFilter != ''){
+                         document.getElementById("actTableMessage").innerHTML = "No Result";
+                      } else {
+                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                      }
                   } else {
-                     document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                      document.getElementById("actTableMessage").style.display = "none";
+                      tr[1].style.display = "none";
                   }
-               } else {
-                  tr[1].style.display = "none";
                }
             }
 
@@ -928,6 +966,36 @@
                 });
               } else {
                 document.getElementById(container).innerHTML = "";
+              }
+            }
+
+            function editJabatan(id,nama){
+              document.getElementById("ModalTJ").style.display = "block";
+              document.getElementById("TJidJabatan").value = id;
+              document.getElementById("TJnamaJabatan").value = nama;
+            }
+
+            function validateEJB(){
+              var id = document.forms["FormEJB"]["TJidJabatan"].value;
+              var nama = document.forms["FormEJB"]["TJnamaJabatan"].value;
+
+              if(nama != ""){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "POST",
+                  url: "ajax/editJabatan.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'id':id, 'nama':nama},               
+                  success: function(response){
+                    if(response == "y"){
+                      alert("Berhasil edit nama jabatan");
+                      location.reload();
+                    } else {
+                      alert("Gagal edit nama jabatan");
+                    }
+                  }
+                });
+              } else {
+                alert("Kolom tidak boleh kosong");
               }
             }
 
