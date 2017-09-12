@@ -487,7 +487,6 @@
             function lihatPegawai(id_jabatan){
               if(document.getElementById("EJBlihat_pegawai")){
                 document.getElementById("EJBlihat_pegawai").style.display = "block";
-                console.log(document.getElementById("EJBlihat_pegawai").style);
                 document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
                   type: "POST",
