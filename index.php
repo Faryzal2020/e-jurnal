@@ -876,7 +876,7 @@
                label = document.getElementById("ddcbtnLabel");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
-                            if(document.getElementById("actListTable")){
+                            if(document.getElementById("csvBtn_activity")){
                                 var csv = document.getElementById("csvBtn_activity");
                                 var xls = document.getElementById("xlsBtn_activity");
                                 var pdf = document.getElementById("pdfBtn_activity");
@@ -911,7 +911,7 @@
                } else {
                   cat = "Pilih Kategori";
                   catBtn.classList.toggle("selectd");
-                    if(document.getElementById("actListTable")){
+                    if(document.getElementById("csvBtn_activity")){
                                 var csv = document.getElementById("csvBtn_activity");
                                 var xls = document.getElementById("xlsBtn_activity");
                                 var pdf = document.getElementById("pdfBtn_activity");
