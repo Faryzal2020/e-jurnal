@@ -712,7 +712,7 @@
                   }
                   document.getElementById("actCount").innerHTML = showCount;
                   if( showCount <= 0 ){
-                      if( filter != '' || catFilter != ''){
+                      if( filter != '' || catFilter != '' ){
                          document.getElementById("actTableMessage").innerHTML = "No Result";
                       } else {
                          document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
@@ -740,7 +740,9 @@
                   }
                   document.getElementById("actCount").innerHTML = showCount;
                   if( showCount <= 0 ){
-                      if( filter != '' || catFilter != ''){
+                      if( catFilter == 'Pilih Kategori' && filter == ''){
+                          document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                      } else if( filter != '' || catFilter != ''){
                          document.getElementById("actTableMessage").innerHTML = "No Result";
                       } else {
                          document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
@@ -871,9 +873,49 @@
                label = document.getElementById("ddcbtnLabel");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
+                            if(document.getElementById("actListTable")){
+                                var csv = document.getElementById("csvBtn_activity");
+                                var xls = document.getElementById("xlsBtn_activity");
+                                var pdf = document.getElementById("pdfBtn_activity");
+                                csv.style.display = "";
+                                xls.style.display = "";
+                                pdf.style.display = "";
+                                csv.addEventListener('click', function(e){
+                                  $('#actListTable').tableExport({
+                                    type:'csv',
+                                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                                    escape:'false'
+                                  });
+                                });
+                                xls.addEventListener('click', function(e){
+                                  $('#actListTable').tableExport({
+                                    type:'xls',
+                                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                                    escape:'false'
+                                  });
+                                });
+                                pdf.addEventListener('click', function(e){
+                                  $('#actListTable').tableExport({
+                                    type:'pdf',
+                                    jspdf: {
+                                      orientation: 'l'
+                                    },
+                                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                                    escape:'false'
+                                  });
+                                });
+                              }
                } else {
                   cat = "Pilih Kategori";
                   catBtn.classList.toggle("selectd");
+                    if(document.getElementById("actListTable")){
+                                var csv = document.getElementById("csvBtn_activity");
+                                var xls = document.getElementById("xlsBtn_activity");
+                                var pdf = document.getElementById("pdfBtn_activity");
+                                csv.style.display = "none";
+                                xls.style.display = "none";
+                                pdf.style.display = "none";
+                              }
                }
                document.getElementById("ddcContent").classList.toggle("show");
                label.innerHTML = cat;
@@ -1824,6 +1866,7 @@
            JAfilter('Periode');
            selectDJS('Bulanan');
            selectReport('Periode');
+           selectCat('Semua');
            getHLdata();
            if(document.getElementById("EJBTableWrapper")){
               toggleChild('n','2','EJBTableWrapper');

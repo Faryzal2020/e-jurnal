@@ -35,8 +35,18 @@
 				                </div>
 							</div>
 						</div>
+                        
 						<div class="tCbody">
+                            <div style="display: none;" id="hiddentabelContainer">
+                            </div>
 							<table class="actListTable" id="actListTable" border="1" cellpadding="20" align="center">
+                                <div>
+                    <caption class='btn-toolbar'>
+                            <button id='csvBtn_activity' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to CSV</button>
+                            <button id='xlsBtn_activity' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
+                            <button id='pdfBtn_activity' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
+                        </caption>
+                    </div>
 								<tr>
 									<th style="min-width: 60px">No</th>
 									<th style="min-width: 320px">Nama Aktivitas</th>
