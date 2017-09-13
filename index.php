@@ -105,15 +105,6 @@
               $password = $_POST['password_baru'];
               $pass_update = ("UPDATE user SET password='$password' WHERE nip = '$nip'");
               mysqli_query($db,$pass_update);
-         } else if( !empty($_POST['EAnip'])){
-            $nip = $_POST['EAnip'];
-            $nama = $_POST['nama'];
-            $bagian = $_POST['bagian'];
-            $jabatan = $_POST['jabatan'];
-            $password = $_POST['password'];
-            $level = $_POST['level'];
-            $EAsql = "UPDATE user SET nama_pegawai = '$nama', bagian = '$bagian', jabatan = '$jabatan', password = '$password', level = '$level' WHERE nip = '$nip'";
-            mysqli_query($db,$EAsql);
          } else if( !empty($_POST['aktivitas'])){
             $aktivitas = $_POST['aktivitas'];
             $kategori = $_POST['kategori'];
@@ -483,15 +474,19 @@
             }
             function lihatPegawai(id_jabatan){
               if(document.getElementById("EJBlihat_pegawai")){
-                document.getElementById("EJBlihat_pegawai").style.display = "block";
-                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                 $.ajax({    //create an ajax request to load_page.php
                   type: "POST",
                   url: "ajax/lihatpegawai.php",             
                   dataType: "html",   //expect html to be returned
                   data: { 'id_jabatan':id_jabatan },               
-                  success: function(response){             
-                    $("#tablelihatpegawai").html(response);
+                  success: function(response){
+                    if(!$.trim(response)){
+                      alert("Tidak ada pegawai di jabatan ini");
+                    } else {
+                      document.getElementById("EJBlihat_pegawai").style.display = "block";
+                      document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                      $("#tablelihatpegawai").html(response);
+                    }
                   }
                 });
               } else {
@@ -1303,27 +1298,28 @@
             }
 
             function validateEA() {
+               var nip = document.forms["FormEA"]["EAnip"].value;
                var nama = document.forms["FormEA"]["nama"].value;
-               var bagian = document.forms["FormEA"]["bagian"].value;
                var jabatan = document.forms["FormEA"]["jabatan"].value;
                var password = document.forms["FormEA"]["password"].value;
-               var level = document.forms["FormEA"]["level"].value;
                var error = 0;
                var msg;
-               if (nama == "" || jabatan == "" || bagian == "" || password == "" || level == ""){
+               if (nama == "" || jabatan == "" || password == ""){
                   msg = "Tidak boleh ada kolom yang kosong";
-                  error++;
-               } else if ( level > 99){
-                  msg = "Level tidak boleh lebih dari 99";
-                  error++;
-               } else if ( level == 99){
-                  msg = "Level tidak boleh sama dengan 99";
                   error++;
                }
 
                if ( error == 0){
-                  alert("Berhasil edit account");
-                  document.getElementById("FormEA").submit();
+                  $.ajax({
+                      dataType: 'html',
+                      url:'ajax/editPegawai.php',
+                      method:'post',
+                      data : { 'nip':nip,'nama':nama,'jabatan':jabatan,'password':password },
+                      success:function(response){
+                        alert(response);
+                        location.reload();
+                      }
+                  });
                } else {
                   alert(msg);
                }
@@ -1424,17 +1420,15 @@
               document.getElementById("inputJabatan").value = jabatan;  
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+              document.getElementById("EAinputEselon").value = 1;
             }
 
             function EAselectEch(i){
               var select = document.getElementById("EAinputEselon");
               var value = select.options[select.selectedIndex].value;
               var labels = ["Biro", "Bagian", "SubBagian", "Staf"];
-              $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-              if(value >= 2){
-                for(var j = 0; j <= value-2; j++){
-                  document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
-                }
+              if( i == 1 && value >= 2){
                 for(var k = 2; k <= 5; k++){
                   var id = "EAinput-" + k;
                   var label = labels[k-2];
@@ -1446,28 +1440,40 @@
                   }
                 }
               }
+              if( i < value ){
+                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+                for( var j = 0; j < i; j++){
+                    document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
+                }
 
-              if(i>1){
+                if(i>1){
+                  var id = "EAinput-" + i;
+                  var selectJ = document.getElementById(id);
+                  var valueJ = selectJ.options[selectJ.selectedIndex].value;
+                  if(valueJ == 0){
+                    document.getElementsByClassName("EAjabatan")[i-1].style.display = "none";
+                  }
+                } else {
+                  var valueJ = "n";
+                }
+                if(valueJ != 0){
+                  $.ajax({
+                    dataType: 'html',
+                    url:'ajax/getSelectJabatan.php',
+                    method:'POST',
+                    data : {'i': i, 'value': value, 'atasan': valueJ},
+                    success:function(response){
+                      var x = i + 1;
+                      var id = "EAinput-" + x;
+                      document.getElementById(id).innerHTML = response;
+                    }
+                  });
+                }
+              } else {
                 var id = "EAinput-" + i;
                 var selectJ = document.getElementById(id);
-                var valueJ = selectJ.options[selectJ.selectedIndex].value;
-              } else {
-                var valueJ = "n";
-              }
-              if(valueJ != 1){
-                $.ajax({
-                  dataType: 'html',
-                  url:'ajax/getSelectJabatan.php',
-                  method:'POST',
-                  data : {'i': i, 'value': value, 'atasan': valueJ},
-                  success:function(response){
-                    alert(response);
-                    var x = i + 1;
-                    var id = "EAinput-" + x;
-                    alert(id);
-                    document.getElementById(id).innerHTML = response;
-                  }
-                });
+                var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
+                document.getElementById("inputJabatan").value = jabatanDipilih;
               }
             }
 

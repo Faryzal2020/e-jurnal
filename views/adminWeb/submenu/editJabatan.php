@@ -74,9 +74,9 @@
 			                    <form name="FormEA" id="FormEA" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEA">
 			                                <tr><input type="hidden" name="EAnip" id="EAnip" value=""/></tr>
-			                                <tr><input type="hidden" name="inputJabatan" id="inputJabatan" value=""/></tr>
+			                                <tr><input type="hidden" name="jabatan" id="inputJabatan" value=""/></tr>
 			                                <tr>
-			                                	<td><label>Nama</label></td>
+			                                	<td style="width: 23%; max-width: 23%;"><label>Nama</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputNama" name="nama" value="" title="Masukkan nama pegawai yang ingin diubah"></td>
 			                                </tr>
@@ -96,32 +96,32 @@
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(2)" id="EAinput-2" name="EAinput-2">
-			                                    		<option id="pilih-2" value="1">Pilih Biro</option>
+			                                    	<select onchange="EAselectEch(2)" id="EAinput-2" name="EAinput-2" style="width: 490px;">
+			                                    		<option id="pilih-2" value="0">Pilih Biro</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(3)" id="EAinput-3" name="EAinput-3">
-			                                    		<option id="pilih-3" value="1">Pilih Bagian</option>
+			                                    	<select onchange="EAselectEch(3)" id="EAinput-3" name="EAinput-3" style="width: 490px;">
+			                                    		<option id="pilih-3" value="0">Pilih Bagian</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(4)" id="EAinput-4" name="EAinput-4">
-			                                    		<option id="pilih-4" value="1">Pilih SubBagian</option>
+			                                    	<select onchange="EAselectEch(4)" id="EAinput-4" name="EAinput-4" style="width: 490px;">
+			                                    		<option id="pilih-4" value="0">Pilih SubBagian</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(5)" id="EAinput-5" name="EAinput-5">
-			                                    		<option id="pilih-5" value="1">Pilih Staf</option>
+			                                    	<select onchange="EAselectEch(5)" id="EAinput-5" name="EAinput-5" style="width: 490px;">
+			                                    		<option id="pilih-5" value="0">Pilih Staf</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
@@ -129,11 +129,6 @@
 			                                	<td><label>Password</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputPassword" name="password" value="" title="Password dari akun pegawai yang ingin diubah"></td>
-			                                </tr>
-			                                <tr>
-			                                	<td><label>Level</label></td>
-			                                	<td>:</td>
-			                                    <td colspan="3"><input type="text" name="level" id="inputLevel" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="Masukkan level dari pegawai yang ingin diubah :&#013;1 &#40;level untuk staff &#41;&#013;2 &#40;level untuk kepala Sub-Bagian &#41; &#013;3 &#40;level untuk Kepala Bagian &#41; &#013;4 &#40;level untuk Kepala Biro &#41;"></td>
 			                                </tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EASubmit" class="EAbtnSubmit" onclick="validateEA()" title="Simpan Perubahan">Submit</a></td>
