@@ -679,17 +679,7 @@
                         }
                      }
                   }
-                  document.getElementById("actCount").innerHTML = showCount;
-                  if( showCount <= 0 ){
-                      if( filter != '' || catFilter != ''){
-                         document.getElementById("actTableMessage").innerHTML = "No Result";
-                      } else {
-                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
-                      }
-                   } else {
-                      document.getElementById("actTableMessage").style.display = "none";
-                      tr[1].style.display = "none";
-                   }
+                  console.log(showCount);
                   if(catFilter == 'izin harian'){
                     document.getElementById("headerStandarWaktu").style.display = "none";
                   } else {
@@ -705,17 +695,6 @@
                         }
                      }
                   }
-                  document.getElementById("actCount").innerHTML = showCount;
-                  if( showCount <= 0 ){
-                      if( filter != '' || catFilter != '' ){
-                         document.getElementById("actTableMessage").innerHTML = "No Result";
-                      } else {
-                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
-                      }
-                   } else {
-                      document.getElementById("actTableMessage").style.display = "none";
-                      tr[1].style.display = "none";
-                   }
                } else if( catFilter != ''){
                   for (i = 2; i < tr.length; i++) {
                      tdcat = tr[i].getElementsByTagName("td")[3];
@@ -733,20 +712,26 @@
                       document.getElementById("headerStandarWaktu").style.display = "";
                     }
                   }
-                  document.getElementById("actCount").innerHTML = showCount;
-                  if( showCount <= 0 ){
-                      if( catFilter == 'Pilih Kategori' && filter == ''){
-                          document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
-                      } else if( filter != '' || catFilter != ''){
-                         document.getElementById("actTableMessage").innerHTML = "No Result";
-                      } else {
-                         document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
-                      }
-                  } else {
-                      document.getElementById("actTableMessage").style.display = "none";
-                      tr[1].style.display = "none";
-                  }
                }
+               document.getElementById("actCount").innerHTML = showCount;
+                if( showCount <= 0 ){
+                  if( catFilter == 'Pilih Kategori' && filter == ''){
+                      document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  } else if( filter != '' || catFilter != ''){
+                     document.getElementById("actTableMessage").innerHTML = "No Result";
+                  } else {
+                     document.getElementById("actTableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  }
+                  if(document.getElementById("btn-toolbar")){
+                    document.getElementById("btn-toolbar").style.display = "none";
+                  }
+                } else {
+                  if(document.getElementById("btn-toolbar")){
+                    document.getElementById("btn-toolbar").style.display = "";
+                  }
+                  document.getElementById("actTableMessage").style.display = "none";
+                  tr[1].style.display = "none";
+                }
             }
 
             function searchAct2() {
@@ -868,49 +853,9 @@
                label = document.getElementById("ddcbtnLabel");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
-                            if(document.getElementById("csvBtn_activity")){
-                                var csv = document.getElementById("csvBtn_activity");
-                                var xls = document.getElementById("xlsBtn_activity");
-                                var pdf = document.getElementById("pdfBtn_activity");
-                                csv.style.display = "";
-                                xls.style.display = "";
-                                pdf.style.display = "";
-                                csv.addEventListener('click', function(e){
-                                  $('#actListTable').tableExport({
-                                    type:'csv',
-                                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                                    escape:'false'
-                                  });
-                                });
-                                xls.addEventListener('click', function(e){
-                                  $('#actListTable').tableExport({
-                                    type:'xls',
-                                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                                    escape:'false'
-                                  });
-                                });
-                                pdf.addEventListener('click', function(e){
-                                  $('#actListTable').tableExport({
-                                    type:'pdf',
-                                    jspdf: {
-                                      orientation: 'l'
-                                    },
-                                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                                    escape:'false'
-                                  });
-                                });
-                              }
                } else {
                   cat = "Pilih Kategori";
-                  catBtn.classList.toggle("selectd");
-                    if(document.getElementById("csvBtn_activity")){
-                                var csv = document.getElementById("csvBtn_activity");
-                                var xls = document.getElementById("xlsBtn_activity");
-                                var pdf = document.getElementById("pdfBtn_activity");
-                                csv.style.display = "none";
-                                xls.style.display = "none";
-                                pdf.style.display = "none";
-                              }
+                  catBtn.classList.remove("selectd");
                }
                document.getElementById("ddcContent").classList.toggle("show");
                label.innerHTML = cat;
@@ -1871,8 +1816,38 @@
              JAfilter('Periode');
              selectDJS('Bulanan');
              selectReport('Periode');
-             selectCat('Semua');
              getHLdata();
+
+             if(document.getElementById("csvBtn_activity")){
+                var csv = document.getElementById("csvBtn_activity");
+                var xls = document.getElementById("xlsBtn_activity");
+                var pdf = document.getElementById("pdfBtn_activity");
+                csv.addEventListener('click', function(e){
+                  $('#actListTable').tableExport({
+                    type:'csv',
+                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                    escape:'false'
+                  });
+                });
+                xls.addEventListener('click', function(e){
+                  $('#actListTable').tableExport({
+                    type:'xls',
+                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                     escape:'false'
+                  });
+                });
+                pdf.addEventListener('click', function(e){
+                  $('#actListTable').tableExport({
+                    type:'pdf',
+                    jspdf: {
+                      orientation: 'l'
+                    },
+                    fileName: 'Aktivitas dengan Kategori : '+cat,
+                    escape:'false'
+                  });
+                });
+              }
+
              if(document.getElementById("EJBTableWrapper")){
                 toggleChild('n','2','EJBTableWrapper');
              }
