@@ -74,6 +74,7 @@
 			                    <form name="FormEA" id="FormEA" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEA">
 			                                <tr><input type="hidden" name="EAnip" id="EAnip" value=""/></tr>
+			                                <tr><input type="hidden" name="inputJabatan" id="inputJabatan" value=""/></tr>
 			                                <tr>
 			                                	<td><label>Nama</label></td>
 			                                	<td>:</td>
@@ -83,7 +84,7 @@
 			                                	<td><label>Jabatan</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3">
-			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon">
+			                                    	<select onchange="EAselectEch(1)" id="EAinputEselon">
 			                                    		<option value="1">Pilih Eselon</option>
 			                                    		<option value="2">Eselon II</option>
 			                                    		<option value="3">Eselon III</option>
@@ -95,26 +96,34 @@
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(1)" id="EAinputBiro" name="EAinputBiro">
-			                                    		<option id="pilihBiro" value="1">Pilih Biro</option>
+			                                    	<select onchange="EAselectEch(2)" id="EAinput-2" name="EAinput-2">
+			                                    		<option id="pilih-2" value="1">Pilih Biro</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(1)" id="EAinputBagian" name="EAinputBagian">
-			                                    		<option id="pilihBagian" value="1">Pilih Bagian</option>
+			                                    	<select onchange="EAselectEch(3)" id="EAinput-3" name="EAinput-3">
+			                                    		<option id="pilih-3" value="1">Pilih Bagian</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer" id="EAinputSubbag"></td>
+			                                    <td colspan="3" class="EAselectContainer">
+			                                    	<select onchange="EAselectEch(4)" id="EAinput-4" name="EAinput-4">
+			                                    		<option id="pilih-4" value="1">Pilih SubBagian</option>
+			                                    	</select>
+			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer" id="EAinputStaf"></td>
+			                                    <td colspan="3" class="EAselectContainer">
+			                                    	<select onchange="EAselectEch(5)" id="EAinput-5" name="EAinput-5">
+			                                    		<option id="pilih-5" value="1">Pilih Staf</option>
+			                                    	</select>
+			                                    </td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Password</label></td>

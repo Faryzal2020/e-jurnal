@@ -123,7 +123,7 @@
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td style="width: 1px;">:</td>
 			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="edjsJam" style="width: 36px">
+			                                    <td id="edjsJam" style="width: 130px">
 			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon" id="edjsiconJM">

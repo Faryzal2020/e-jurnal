@@ -128,7 +128,7 @@
 			                                    <td><label id="labelWaktuMulai">Waktu Mulai</label></td>
 			                                    <td>:</td>
 			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="jam" style="width: 38px">
+			                                    <td id="jam" style="width: 130px">
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
 													    <span class="input-group-addon" id="iconJamMulai">
