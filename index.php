@@ -1112,6 +1112,7 @@
                       alert(a);
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
+                      location.reload();
                     }
                   });
               }
