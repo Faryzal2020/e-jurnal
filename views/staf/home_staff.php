@@ -100,7 +100,7 @@
                                 <tr>
                                     <td style="width:20%;"><label>Pilih Foto</label></td>
                                     <td ></td>
-                                    <td style="width:50px;"><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 1 MB</p></td>
+                                    <td style="width:50px;"><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 5 MB</p></td>
                                 </tr>
                                 <tr>
                                     <td style="width:20px;"></td>

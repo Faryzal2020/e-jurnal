@@ -868,7 +868,7 @@
                label = document.getElementById("ddcbtnLabel");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
-                            if(document.getElementById("actListTable")){
+                            if(document.getElementById("csvBtn_activity")){
                                 var csv = document.getElementById("csvBtn_activity");
                                 var xls = document.getElementById("xlsBtn_activity");
                                 var pdf = document.getElementById("pdfBtn_activity");
@@ -903,7 +903,7 @@
                } else {
                   cat = "Pilih Kategori";
                   catBtn.classList.toggle("selectd");
-                    if(document.getElementById("actListTable")){
+                    if(document.getElementById("csvBtn_activity")){
                                 var csv = document.getElementById("csvBtn_activity");
                                 var xls = document.getElementById("xlsBtn_activity");
                                 var pdf = document.getElementById("pdfBtn_activity");
@@ -1222,6 +1222,7 @@
                       document.getElementsByTagName("body")[0].style.overflow = "";
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
+                      location.reload();
                       //alert("Berhasil submit jurnal");
                       //lihatDJS(document.getElementById("userNip").value);
                     }

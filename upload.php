@@ -20,7 +20,7 @@ if(isset($_POST['savefoto']))
 	  //echo '<script language="javascript">window.location="account_page.php?action="uploadfoto"</script>';
 
 	if(filesize($_FILES['pilihFoto']['tmp_name']) > $max_filesize)
-	  die('<script>window.alert("File yang diunggah terlalu besar, maksimal 1MB;window.location="index.php?";</script>');
+	  die('<script>window.alert("File yang diunggah terlalu besar, maksimal 5MB;window.location="index.php?";</script>');
 
 	if(!is_writable($upload_path))
 	  die('You cannot upload to the specified directory, please CHMOD it to 777.');
