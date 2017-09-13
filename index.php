@@ -1227,6 +1227,7 @@
                       document.getElementsByTagName("body")[0].style.overflow = "";
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
+                      location.reload();
                       //alert("Berhasil submit jurnal");
                       //lihatDJS(document.getElementById("userNip").value);
                     }
