@@ -266,8 +266,10 @@ if(mysqli_num_rows($result) > 0){
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a>
             </td>";
-        $tglMulai = date("Y-m-d", strtotime($data[4]));
+        $tglMulai = date("Y-m-d", strtotime($data[3]));
+        $tglSelesai = date("Y-m-d", strtotime($data[4]));
         echo "<td align=center style='display: none;'>$tglMulai</td>";
+        echo "<td align=center style='display: none;'>$tglSelesai</td>";
         echo "</tr>";
     }
 } else {

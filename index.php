@@ -479,9 +479,6 @@
                   document.getElementById("labelWaktuMulai").innerHTML = "Waktu Mulai";
                   document.getElementById("labelWaktuSelesai").innerHTML = "Waktu Selesai";
                   document.getElementById("volumeType").value = "";
-                  document.getElementById("tglMulai").type = "hidden";
-                  document.getElementById("tglSelesai").type = "hidden";
-                  document.getElementById("tanggal").style.width = "1px";
                }
             }
             function lihatPegawai(id_jabatan){
@@ -1101,10 +1098,8 @@
                       document.getElementById("edjsTglMulai").type = "date";
                       document.getElementById("edjsTglSelesai").type = "date";
                       document.getElementById("edjsTanggal").style.width = "";
-                      var m = row.cells[7].innerHTML.split("-");
-                      var s = row.cells[8].innerHTML.split("-");
-                      document.getElementById("edjsTglMulai").value = m[2]+"-"+m[1]+"-"+m[0];
-                      document.getElementById("edjsTglSelesai").value = s[2]+"-"+s[1]+"-"+s[0];
+                      document.getElementById("edjsTglMulai").value = row.cells[13].innerHTML;
+                      document.getElementById("edjsTglSelesai").value = row.cells[14].innerHTML;
                     } else {
                       tabelEDJS.rows[3].style.display = "";
                       tabelEDJS.rows[5].style.display = "";
@@ -1117,9 +1112,6 @@
                       document.getElementById("edjsJamSelesai").value = row.cells[8].innerHTML;
                       document.getElementById("edjsiconJM").style.display = "";
                       document.getElementById("edjsiconJS").style.display = "";
-                      document.getElementById("edjsTglMulai").type = "hidden";
-                      document.getElementById("edjsTglSelesai").type = "hidden";
-                      document.getElementById("edjsTanggal").style.width = "1px";
                       document.getElementById("edjsJamMulai").type = "text";
                       document.getElementById("edjsJamSelesai").type = "text";
                     }
@@ -1395,33 +1387,43 @@
             function EAselectEch(i){
               var select = document.getElementById("EAinputEselon");
               var value = select.options[select.selectedIndex].value;
+              var labels = ["Biro", "Bagian", "SubBagian", "Staf"];
               $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-              if( value >= 2){
+              if(value >= 2){
                 for(var j = 0; j <= value-2; j++){
                   document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
                 }
-              }
-              if(i == 0 && value == 2){
-                $.ajax({
-                  dataType: 'html',
-                  url:'ajax/getSelectJabatan.php',
-                  method:'POST',
-                  data : {'eselon': 2, 'atasan': 'n'},
-                  success:function(response){
-                    document.getElementById("pilihBiro").insertAdjacentHTML("afterEnd",response);
+                for(var k = 2; k <= 5; k++){
+                  var id = "EAinput-" + k;
+                  var label = labels[k-2];
+                  if(k <= value){
+                    var pilih = "pilih-" + k;
+                    document.getElementById(id).innerHTML = "<option value='" + pilih + "'>Pilih " + label + "</option>";
+                  } else {
+                    document.getElementById(id).innerHTML = "";
                   }
-                });
-              } else if( i == 1 && value == 3){
-                var inputA= document.getElementById("EAinputBiro");
-                var atasan = inputA.options[inputA.selectedIndex].value;
+                }
+              }
+
+              if(i>1){
+                var id = "EAinput-" + i;
+                var selectJ = document.getElementById(id);
+                var valueJ = selectJ.options[selectJ.selectedIndex].value;
+              } else {
+                var valueJ = "n";
+              }
+              if(valueJ != 1){
                 $.ajax({
                   dataType: 'html',
                   url:'ajax/getSelectJabatan.php',
                   method:'POST',
-                  data : {'eselon': 3, 'atasan': atasan},
+                  data : {'i': i, 'value': value, 'atasan': valueJ},
                   success:function(response){
                     alert(response);
-                    document.getElementById("pilihBagian").insertAdjacentHTML("afterEnd",response);
+                    var x = i + 1;
+                    var id = "EAinput-" + x;
+                    alert(id);
+                    document.getElementById(id).innerHTML = response;
                   }
                 });
               }
@@ -1864,7 +1866,8 @@
               }
            })
            $('.clockpicker').clockpicker({
-              autoclose: true
+              autoclose: true,
+              placement: 'top'
            });
            $("#FormDJS").submit(function(e) {
               e.preventDefault();
