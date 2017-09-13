@@ -42,9 +42,9 @@
 							<table class="actListTable" id="actListTable" border="1" cellpadding="20" align="center">
                                 <div>
 			                    	<caption class='btn-toolbar' id='btn-toolbar' style="display: none; padding-left: 10px;">
-			                            <button id='csvBtn_activity' style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/><span style="font-family: sans-serif;"> Export to CSV</span></button>
-			                            <button id='xlsBtn_activity' style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/><span style="font-family: sans-serif;"> Export to XLS</span></button>
-			                            <button id='pdfBtn_activity' style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/><span style="font-family: sans-serif;"> Export to PDF</span></button>
+			                            <button id='csvBtn_activity' onclick="printTabel('csv')" style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save' style='pointer-events: none;'/><span style="font-family: sans-serif; pointer-events: none;"> Export to CSV</span></button>
+			                            <button id='xlsBtn_activity' onclick="printTabel('xls')" style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save' style='pointer-events: none;'/><span style="font-family: sans-serif; pointer-events: none;"> Export to XLS</span></button>
+			                            <button id='pdfBtn_activity' onclick="printTabel('pdf')" style="border-radius: 5px; padding: 5px;" class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save' style='pointer-events: none;'/><span style="font-family: sans-serif; pointer-events: none;"> Export to PDF</span></button>
 			                        </caption>
 			                    </div>
 								<tr>

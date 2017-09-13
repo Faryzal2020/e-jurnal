@@ -734,6 +734,37 @@
                 }
             }
 
+            function printTabel(type){
+              var cat = ddcbtnLabel.innerHTML;
+              if(cat == "Pilih Kategori"){
+                cat == "Semua Kategori";
+              }
+              if(document.getElementById("csvBtn_activity")){
+                if(type == 'csv'){
+                  $('#actListTable').tableExport({
+                    type:'csv',
+                    fileName: 'Aktivitas dengan Kategori: '+cat,
+                    escape:'false'
+                  });
+                } else if( type == 'xls'){
+                  $('#actListTable').tableExport({
+                    type:'xls',
+                    fileName: 'Aktivitas dengan Kategori: '+cat,
+                     escape:'false'
+                  });
+                } else {
+                  $('#actListTable').tableExport({
+                    type:'pdf',
+                    jspdf: {
+                      orientation: 'l'
+                    },
+                    fileName: 'Aktivitas dengan Kategori: '+cat,
+                  escape:'false'
+                  });
+                }
+              }
+            }
+
             function searchAct2() {
                var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
                catBtn = document.getElementById("pacBtn");
@@ -1818,36 +1849,6 @@
              selectDJS('Bulanan');
              selectReport('Periode');
              getHLdata();
-
-             if(document.getElementById("csvBtn_activity")){
-                var csv = document.getElementById("csvBtn_activity");
-                var xls = document.getElementById("xlsBtn_activity");
-                var pdf = document.getElementById("pdfBtn_activity");
-                csv.addEventListener('click', function(e){
-                  $('#actListTable').tableExport({
-                    type:'csv',
-                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                    escape:'false'
-                  });
-                });
-                xls.addEventListener('click', function(e){
-                  $('#actListTable').tableExport({
-                    type:'xls',
-                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                     escape:'false'
-                  });
-                });
-                pdf.addEventListener('click', function(e){
-                  $('#actListTable').tableExport({
-                    type:'pdf',
-                    jspdf: {
-                      orientation: 'l'
-                    },
-                    fileName: 'Aktivitas dengan Kategori : '+cat,
-                    escape:'false'
-                  });
-                });
-              }
 
              if(document.getElementById("EJBTableWrapper")){
                 toggleChild('n','2','EJBTableWrapper');
