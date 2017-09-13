@@ -45,13 +45,13 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-file"></span><a href="#">Activity List</a></li>
+				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-list"></span><a href="#">Activity List</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" title="Di menu Account List ini anda dapat&#013;melihat jurnal draft dan jurnal terkirim&#013;dari tiap pegawai, menambah pegawai baru,&#013;dan mengedit profil account pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Jabatan</a></li>
+				<li class="menu-item" title="Di menu Edit Jabatan ini anda dapat&#013;mengedit nama jabatan, menambahkan&#013;akun pegawai baru, mengedit akun pegawai,&#013;dan melihat jurnal pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Jabatan</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-edit"></span><a href="#">Hari Libur</a></li>
+				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-calendar"></span><a href="#">Hari Libur</a></li>
 			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="Di menu profile anda dapat melihat data&#013;anda dan mengubah password." ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
@@ -80,32 +80,27 @@
 			</div>
 		</div>
     </div>
-
-
-                <div class="content_profile">
-					<div class="foto_select" id="foto_select">
-                        <div class="foto_select-content">
-                            <span class="foto_tutup">&times;</span>
-                            <form action = "upload.php" method="post" enctype="multipart/form-data">
-                            <table width=100% cellpadding=4 cellspacing=1 border=0 valign=top>
-                                <tr><td><br></td></tr>
-                                <tr>
-                                    <td style="width:20%;"><label>Pilih Foto</label></td>
-                                    <td ></td>
-                                    <td style="width:50px;"><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 5 MB</p></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:20px;"></td>
-                                    <td colspan=2></td>
-                                    <td style="width: 20%"><button type="submit" name="savefoto" class="btnGantiFoto">Upload</button></td>
-                                </tr>
-                            </table>
-                        </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<div class="content_profile">
+		<div class="foto_select" id="foto_select">
+            <div class="foto_select-content">
+                <span class="foto_tutup">&times;</span>
+                <form action = "upload.php" method="post" enctype="multipart/form-data">
+                    <table width=100% cellpadding=4 cellspacing=1 border=0 valign=top>\
+                        <tr>
+                        	<td style="width:20%;"><label>Pilih Foto</label></td>
+                        	<td ></td>
+                        	<td style="width:50px;"><input type="file" name="pilihFoto" id="exampleInputFile" required="required"/><p class="help-block">Ukuran Maksimal foto harus 5 MB</p></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20px;"></td>
+                            <td colspan=2></td>
+                            <td style="width: 20%"><button type="submit" name="savefoto" class="btnGantiFoto">Upload</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
 
                                       
 

@@ -1865,210 +1865,207 @@
                 }
               }
             }
-
-            
          </script>
          <script type="text/javascript">
-         $(document).ready(function(){
-           JAfilter('Periode');
-           selectDJS('Bulanan');
-           selectReport('Periode');
-           selectCat('Semua');
-           getHLdata();
-           if(document.getElementById("EJBTableWrapper")){
-              toggleChild('n','2','EJBTableWrapper');
-           }
-           eventFire(document.getElementById("DJSbtn"), 'click');
-           eventFire(document.getElementById("tombol2"), 'click');
-           if(document.getElementById("LJSbtn")){
-              eventFire(document.getElementById("LJSbtn"), 'click');
-           }
-           if(document.getElementById("LJAbtn")){
-              eventFire(document.getElementById("LJAbtn"), 'click');
-           }
+           $(document).ready(function(){
+             JAfilter('Periode');
+             selectDJS('Bulanan');
+             selectReport('Periode');
+             selectCat('Semua');
+             getHLdata();
+             if(document.getElementById("EJBTableWrapper")){
+                toggleChild('n','2','EJBTableWrapper');
+             }
+             eventFire(document.getElementById("DJSbtn"), 'click');
+             eventFire(document.getElementById("tombol2"), 'click');
+             if(document.getElementById("LJSbtn")){
+                eventFire(document.getElementById("LJSbtn"), 'click');
+             }
+             if(document.getElementById("LJAbtn")){
+                eventFire(document.getElementById("LJAbtn"), 'click');
+             }
 
-           if (document.getElementById("pjBtn1")){
-             document.getElementById("pjBtn1").classList.add("active");
-           }
-           if (document.getElementById("LJApilihMinggu")){
-            convertToWeekPicker($("#LJApilihMinggu"));
-           }
-           if (document.getElementById("DJSpilihMinggu")){
-            convertToWeekPicker($("#DJSpilihMinggu"));
-           }
-           convertToWeekPicker($("#LJSpilihMinggu"));
-           $('.dropbtn').click(function(){
-              document.getElementById("ddcContent").classList.toggle("show");
-              if (document.getElementById("repContent")){
-                document.getElementById("repContent").classList.toggle("show");
-              }
-              if (document.getElementById("filContent")){
-                document.getElementById("filContent").classList.toggle("show");
-              }
-              if (document.getElementById("djsContent")){
-                document.getElementById("djsContent").classList.toggle("show");
-              }
-              if (document.getElementById("pacContent")){
-                document.getElementById("pacContent").classList.toggle("show");
-              }
-              if (document.getElementById("EJContent")){
-                document.getElementById("EJContent").classList.toggle("show");
-              }
-           })
-           $('.clockpicker').clockpicker({
-              autoclose: true,
-              placement: 'top'
-           });
-           $("#FormDJS").submit(function(e) {
-              e.preventDefault();
-           });
-
-           if(document.getElementById("actTable")){
-              $("#actTable").tablesorter();
-           }
-
-           function onReady(callback) {
-            var intervalID = window.setInterval(checkReady, 1000);
-
-            function checkReady() {
-              if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-              }
-            }
-           }
-           function show(id, value) {
-             document.getElementById(id).style.display = value ? 'block' : 'none';
-           }
-
-           onReady(function () {
-             show('loadingpage', false);
-           });
-
-           function HLedit(event){
-            var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate()+1)).slice(-2);
-            var endDate = event.endDate.getFullYear() + '-' + ('0' + (event.endDate.getMonth()+1)).slice(-2) + '-' + ('0' + event.endDate.getDate()).slice(-2);
-            $('#event-modal input[name="event-index"]').val(event ? event.id : '');
-            $('#event-modal input[name="event-name"]').val(event ? event.name : '');
-            $('#event-modal input[name="event-start-date"]').val(event ? startDate : '');
-            $('#event-modal input[name="event-end-date"]').val(event ? endDate : '');
-            $('#event-modal').modal();
-           }
-           function HLdelete(event){
-              $.ajax({    //create an ajax request to load_page.php
-                type: "GET",
-                url: "ajax/deleteHL.php",             
-                dataType: "html",   //expect html to be returned
-                data: { 'id': event.id, 'name': event.name },               
-                success: function(response){
-                    alert(response);
-                    getHLdata();
+             if (document.getElementById("pjBtn1")){
+               document.getElementById("pjBtn1").classList.add("active");
+             }
+             if (document.getElementById("LJApilihMinggu")){
+              convertToWeekPicker($("#LJApilihMinggu"));
+             }
+             if (document.getElementById("DJSpilihMinggu")){
+              convertToWeekPicker($("#DJSpilihMinggu"));
+             }
+             convertToWeekPicker($("#LJSpilihMinggu"));
+             $('.dropbtn').click(function(){
+                document.getElementById("ddcContent").classList.toggle("show");
+                if (document.getElementById("repContent")){
+                  document.getElementById("repContent").classList.toggle("show");
                 }
-              });
-           }
-
-           function saveEvent() {
-              var event = {
-                  id: $('#event-modal input[name="event-index"]').val(),
-                  name: $('#event-modal input[name="event-name"]').val(),
-                  startDate: $('#event-modal input[name="event-start-date"]').val(),
-                  endDate: $('#event-modal input[name="event-end-date"]').val()
-              }
-
-              $.ajax({    //create an ajax request to load_page.php
-                type: "GET",
-                url: "ajax/updateHL.php",             
-                dataType: "html",   //expect html to be returned
-                data: { 'id': event.id,'name': event.name,'startDate': event.startDate,'endDate': event.endDate },               
-                success: function(response){
-                    alert(response);
-                    getHLdata();
+                if (document.getElementById("filContent")){
+                  document.getElementById("filContent").classList.toggle("show");
                 }
-              });
-
-              $('#event-modal').modal('hide');
-           }
-
-           function getHLdata(){
-            $.ajax({
-              url:"ajax/getHL.php",
-              type:"POST",
-              dataType:"html",
-              success:function(a){
-                var input = JSON.parse(a);
-                var data = new Array();
-                var i = 0;
-                while (i<input.length){
-                  var start = new Date(input[i]['startDate'] * 1000);
-                  start.setDate(start.getDate()-1);
-                  data.push({
-                    id: input[i]['id'],
-                    name: input[i]['name'],
-                    location: input[i]['location'],
-                    startDate: start,
-                    endDate: new Date(input[i]['endDate'] * 1000)
-                  });
-                  i++;
+                if (document.getElementById("djsContent")){
+                  document.getElementById("djsContent").classList.toggle("show");
                 }
-                loadKalHL(data);
-              }
-            });
-           }
-
-           function loadKalHL(HLdata){
-             $('#KalHariLibur').calendar({
-                enableContextMenu: true,
-                enableRangeSelection: true,
-                contextMenuItems:[
-                  {
-                    text: 'Update',
-                    click: HLedit
-                  },
-                  {
-                    text: 'Delete',
-                    click: HLdelete
-                  }
-                ],
-                selectRange: function(e){
-                  HLedit({ startDate: e.startDate, endDate: e.endDate });
-                },
-                mouseOnDay: function(e) {
-                  if(e.events.length > 0) {
-                    var content = '';
-                        
-                    for(var i in e.events) {
-                      content += '<div class="event-tooltip-content">'
-                        + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
-                        + '<div class="event-location">' + e.events[i].location + '</div>'
-                        + '</div>';
-                    }
-                    
-                    $(e.element).popover({ 
-                      trigger: 'manual',
-                      container: 'body',
-                      html:true,
-                      content: content
-                    });
-                        
-                    $(e.element).popover('show');
-                  }
-                },
-                mouseOutDay: function(e) {
-                  if(e.events.length > 0) {
-                    $(e.element).popover('hide');
-                  }
-                },
-                dayContextMenu: function(e) {
-                  $(e.element).popover('hide');
-                },
-                dataSource: HLdata
+                if (document.getElementById("pacContent")){
+                  document.getElementById("pacContent").classList.toggle("show");
+                }
+                if (document.getElementById("EJContent")){
+                  document.getElementById("EJContent").classList.toggle("show");
+                }
+             })
+             $('.clockpicker').clockpicker({
+                autoclose: true,
+                placement: 'top'
              });
-           }
-           $('#save-event').click(function() {
-              saveEvent();
-           }); 
-         });
-         
+             $("#FormDJS").submit(function(e) {
+                e.preventDefault();
+             });
+
+             if(document.getElementById("actTable")){
+                $("#actTable").tablesorter();
+             }
+
+             function onReady(callback) {
+              var intervalID = window.setInterval(checkReady, 1000);
+
+              function checkReady() {
+                if (document.getElementsByTagName('body')[0] !== undefined) {
+                  window.clearInterval(intervalID);
+                  callback.call(this);
+                }
+              }
+             }
+             function show(id, value) {
+               document.getElementById(id).style.display = value ? 'block' : 'none';
+             }
+
+             onReady(function () {
+               show('loadingpage', false);
+             });
+
+             function HLedit(event){
+              var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate()+1)).slice(-2);
+              var endDate = event.endDate.getFullYear() + '-' + ('0' + (event.endDate.getMonth()+1)).slice(-2) + '-' + ('0' + event.endDate.getDate()).slice(-2);
+              $('#event-modal input[name="event-index"]').val(event ? event.id : '');
+              $('#event-modal input[name="event-name"]').val(event ? event.name : '');
+              $('#event-modal input[name="event-start-date"]').val(event ? startDate : '');
+              $('#event-modal input[name="event-end-date"]').val(event ? endDate : '');
+              $('#event-modal').modal();
+             }
+             function HLdelete(event){
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "ajax/deleteHL.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'id': event.id, 'name': event.name },               
+                  success: function(response){
+                      alert(response);
+                      getHLdata();
+                  }
+                });
+             }
+
+             function saveEvent() {
+                var event = {
+                    id: $('#event-modal input[name="event-index"]').val(),
+                    name: $('#event-modal input[name="event-name"]').val(),
+                    startDate: $('#event-modal input[name="event-start-date"]').val(),
+                    endDate: $('#event-modal input[name="event-end-date"]').val()
+                }
+
+                $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "ajax/updateHL.php",             
+                  dataType: "html",   //expect html to be returned
+                  data: { 'id': event.id,'name': event.name,'startDate': event.startDate,'endDate': event.endDate },               
+                  success: function(response){
+                      alert(response);
+                      getHLdata();
+                  }
+                });
+
+                $('#event-modal').modal('hide');
+             }
+
+             function getHLdata(){
+              $.ajax({
+                url:"ajax/getHL.php",
+                type:"POST",
+                dataType:"html",
+                success:function(a){
+                  var input = JSON.parse(a);
+                  var data = new Array();
+                  var i = 0;
+                  while (i<input.length){
+                    var start = new Date(input[i]['startDate'] * 1000);
+                    start.setDate(start.getDate()-1);
+                    data.push({
+                      id: input[i]['id'],
+                      name: input[i]['name'],
+                      location: input[i]['location'],
+                      startDate: start,
+                      endDate: new Date(input[i]['endDate'] * 1000)
+                    });
+                    i++;
+                  }
+                  loadKalHL(data);
+                }
+              });
+             }
+
+             function loadKalHL(HLdata){
+               $('#KalHariLibur').calendar({
+                  enableContextMenu: true,
+                  enableRangeSelection: true,
+                  contextMenuItems:[
+                    {
+                      text: 'Update',
+                      click: HLedit
+                    },
+                    {
+                      text: 'Delete',
+                      click: HLdelete
+                    }
+                  ],
+                  selectRange: function(e){
+                    HLedit({ startDate: e.startDate, endDate: e.endDate });
+                  },
+                  mouseOnDay: function(e) {
+                    if(e.events.length > 0) {
+                      var content = '';
+                          
+                      for(var i in e.events) {
+                        content += '<div class="event-tooltip-content">'
+                          + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                          + '<div class="event-location">' + e.events[i].location + '</div>'
+                          + '</div>';
+                      }
+                      
+                      $(e.element).popover({ 
+                        trigger: 'manual',
+                        container: 'body',
+                        html:true,
+                        content: content
+                      });
+                          
+                      $(e.element).popover('show');
+                    }
+                  },
+                  mouseOutDay: function(e) {
+                    if(e.events.length > 0) {
+                      $(e.element).popover('hide');
+                    }
+                  },
+                  dayContextMenu: function(e) {
+                    $(e.element).popover('hide');
+                  },
+                  dataSource: HLdata
+               });
+             }
+             $('#save-event').click(function() {
+                saveEvent();
+             }); 
+           });
          </script>
       </div>
    </body>

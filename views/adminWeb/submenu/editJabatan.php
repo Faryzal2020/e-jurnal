@@ -1,10 +1,5 @@
 				<div class="tabContent">
 					<div class="tCWrapper">
-						<div class="tCheader">
-							<div class="tchbox">
-								
-							</div>
-						</div>
 						<div class="tCbody" id="EJBTableWrapper" style="padding-right: 45px;"></div>
 						<div id="ModalTJ" class="tCmodal">
 			                <div class="tCmodal-content">
@@ -174,8 +169,8 @@
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA()" title="Tambah Account Pegawai">Submit</a></td>
 			                                </tr>
 			                        </table>
-			                    </form>
-			                
+			                    </form> 
+			                </div>
 			            </div>
 					</div>
 				</div>

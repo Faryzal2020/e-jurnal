@@ -25,7 +25,7 @@
 														<div class="input-group input-daterange" data-provide="datepicker">
 															<input name="event-start-date" type="date" class="form-control" value="2012-04-05" style="width: 170px;">
 															<span class="input-group-addon">to</span>
-															<input name="event-end-date" type="date" class="form-control" value="2017-4-9" style="width: 160px;">
+															<input name="event-end-date" type="date" class="form-control" value="2017-04-09" style="width: 160px;">
 														</div>
 													</div>
 												</div>
