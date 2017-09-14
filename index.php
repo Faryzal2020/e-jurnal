@@ -217,6 +217,8 @@
             var closeEAct = document.getElementsByClassName("EActclose")[0];
             var modalTJ = document.getElementById("ModalTJ");
             var closeTJ = document.getElementsByClassName("TJclose")[0];
+            var modalEJ = document.getElementById("ModalEJ");
+            var closeEJ = document.getElementsByClassName("EJclose")[0];
             var lihat_pegawai = document.getElementById('EJBlihat_pegawai');
             var tutup_lihat = document.getElementsByClassName("EJBtutup_lihat")[0];
              
@@ -309,12 +311,18 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+            if ( typeof closeEJ != 'undefined' ){
+              closeEJ.onclick = function() {
+                modalEJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == lihat_pegawai){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -344,6 +352,9 @@
                     }
                     if(modalTJ){
                       modalTJ.style.display = "none";
+                    }
+                    if(modalEJ){
+                      modalEJ.style.display = "none";
                     }
                     if(lihat_pegawai){
                       lihat_pegawai.style.display = "none";
@@ -1011,9 +1022,10 @@
             }
 
             function editJabatan(id,nama){
-              document.getElementById("ModalTJ").style.display = "block";
-              document.getElementById("TJidJabatan").value = id;
-              document.getElementById("TJnamaJabatan").value = nama;
+              document.getElementById("ModalEJ").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              document.getElementById("EJidJabatan").value = id;
+              document.getElementById("EJnamaJabatan").value = nama;
             }
 
             function validateEJB(){
@@ -1278,7 +1290,7 @@
             function validateEA() {
                var nip = document.forms["FormEA"]["EAnip"].value;
                var nama = document.forms["FormEA"]["nama"].value;
-               var jabatan = document.forms["FormEA"]["jabatan"].value;
+               var jabatan = document.forms["FormEA"]["jabatanBaru"].value;
                var password = document.forms["FormEA"]["password"].value;
                var error = 0;
                var msg;
@@ -1318,7 +1330,6 @@
 
                data = { 'nip':nip, 'nipbaru':nipbaru, 'nama':nama, 'jabatan':jabatan, 'password':password};
                if ( error == 0){
-                  document.getElementById("FormTA").submit();
                   $.ajax({
                       dataType: 'html',
                       url:'ajax/cekNip.php',
@@ -1348,6 +1359,73 @@
                   alert(msg);
                }
             }
+
+            function tambahJabatan(atasan, eselon){
+              document.getElementById("ModalTJ").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              if(atasan == "n"){
+                document.getElementById("TJidAtasan").value = 9000;
+                document.getElementById("TJeselonJabatan").value = eselon;
+              } else {
+                eselon++;
+                document.getElementById("TJidAtasan").value = atasan;
+                document.getElementById("TJeselonJabatan").value = eselon;
+              }
+            }
+
+            function deleteJabatan(id, nama){
+              if(confirm("Jabatan " + nama + " akan dihapus")){
+                $.ajax({
+                  dataType: 'html',
+                  url:'ajax/deleteJabatan.php',
+                  method:'post',
+                  data : { 'id':id, 'nama':nama },
+                  success:function(a){
+                    if(a == "y"){
+                      alert("Jabatan " + nama + " berhasil dihapus");
+                      location.reload();
+                    } else if(a == "n") {
+                      alert("Jabatan " + nama + " gagal dihapus");
+                    } else {
+                      alert(a);
+                    }
+                  }
+                });
+              }
+            }
+
+            function validateTJ() {
+               var nama = document.forms["FormTJ"]["nama"].value;
+               var atasan = document.forms["FormTJ"]["TJidAtasan"].value;
+               var eselon = document.forms["FormTJ"]["TJeselonJabatan"].value;
+               var error = 0;
+               var msg;
+               if ( nama == "" || jabatan == "" || eselon == ""){
+                  msg = "Tidak boleh ada kolom yang kosong";
+                  error++;
+               }
+
+               data = { 'nama':nama, 'atasan':atasan, 'eselon':eselon};
+               if ( error == 0){
+                  $.ajax({
+                      dataType: 'html',
+                      url:'ajax/tambahJabatan.php',
+                      method:'post',
+                      data : data,
+                      success:function(a){
+                        if(a == "y"){
+                          alert("Berhasil tambah jabatan baru");
+                        } else {
+                          alert("Gagal tambah jabatan baru");
+                        }
+                        location.reload();
+                      }
+                  });
+               } else {
+                  alert(msg);
+               }
+            }
+
             function validateTA_Act(){
                  var aktivitas = document.forms['FormTA_Act']['aktivitas'].value;
                  var kategori = document.forms['FormTA_Act']['kategori'].value;
@@ -1395,7 +1473,8 @@
               document.getElementById("labelPemilikAccount").innerHTML = nip;
               document.getElementById("EAnip").value = nip;
               document.getElementById("inputNama").value = nama;
-              document.getElementById("inputJabatan").value = jabatan;  
+              document.getElementById("inputJabatan").value = jabatan; 
+              document.getElementById("inputJabatanBaru").value = jabatan; 
               document.getElementById("inputPassword").value = password;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
               $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
@@ -1407,6 +1486,7 @@
               var value = select.options[select.selectedIndex].value;
               var labels = ["Biro", "Bagian", "SubBagian", "Staf"];
               if( i == 1 && value >= 2){
+                document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
                 for(var k = 2; k <= 5; k++){
                   var id = "EAinput-" + k;
                   var label = labels[k-2];
@@ -1417,6 +1497,9 @@
                     document.getElementById(id).innerHTML = "";
                   }
                 }
+              } else {
+                document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
+                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
               }
               if( i < value ){
                 $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
@@ -1451,7 +1534,7 @@
                 var id = "EAinput-" + i;
                 var selectJ = document.getElementById(id);
                 var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
-                document.getElementById("inputJabatan").value = jabatanDipilih;
+                document.getElementById("inputJabatanBaru").value = jabatanDipilih;
               }
             }
 
@@ -1851,7 +1934,7 @@
              getHLdata();
 
              if(document.getElementById("EJBTableWrapper")){
-                toggleChild('n','2','EJBTableWrapper');
+                toggleChild('n','1','EJBTableWrapper');
              }
              eventFire(document.getElementById("DJSbtn"), 'click');
              eventFire(document.getElementById("tombol2"), 'click');

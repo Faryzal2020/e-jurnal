@@ -18,18 +18,25 @@
 			if($data[2] == 5){
 				echo "<span style=\"text-decoration: none; cursor: default;\">$data[1]";
 			} else {
-				echo "<span onclick=\"toggleChild('$data[0]','n','$data[1]', this)\">
+				echo "<span onclick=\"toggleChild('$data[0]','$data[2]','$data[1]', this)\">
 						<span class=\"glyphicon glyphicon-plus\" style=\"text-decoration: none; padding-right: 5px;\"></span>$data[1]";
 			}
 			echo		"</span>
 					</td>
-					<td style='background-color: white; border: 1px solid white; width: 350px;'> <a class=\"EJBbtn pencetan\" onclick=\"editJabatan('$data[0]','$data[1]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatPegawai('$data[0]')\">Lihat Pegawai</a> <a class=\"EJBbtn pencetan\" onclick=\"openTAform('$data[0]','$data[1]')\">Tambah Pegawai</a></td>
+					<td style='background-color: white; border: 1px solid white; width: 183px;'> 
+						<a class=\"EJBbtn pencetan glyphicon glyphicon-edit\" onclick=\"editJabatan('$data[0]','$data[1]')\" style=\"padding-top: 4px; height: 30px; margin-right: 5px;\"></a> 
+						<a class=\"EJBbtn pencetan glyphicon glyphicon-list\" onclick=\"lihatPegawai('$data[0]')\" style=\"padding-top: 4px; height: 30px; margin-right: 5px;\"></a> 
+						<a class=\"EJBbtn pencetan fa fa-user-plus\" onclick=\"openTAform('$data[0]','$data[1]')\" style=\"padding: 5px; height: 30px; margin-right: 5px;\"></a>
+						<a class=\"EJBbtn pencetan glyphicon glyphicon-trash\" onclick=\"deleteJabatan('$data[0]','$data[1]')\" style=\"padding-top: 4px; height: 30px; margin-right: 5px;\"></a></td>
 				 </tr>";
 			echo "<tr style='background-color: white; border: 1px solid white;'><td colspan=\"2\" id=\"$data[1]\"></td></tr>";
 		}
+		echo "<tr><td style=\"padding: 10px;\"><a class=\"pencetan\" onclick=\"tambahJabatan('$atasan','$eselon')\">+Tambah Jabatan</a></td></tr>";
 		echo "</table>";
 	} else {
-		echo "";
+		echo "<table class=\"treeTable\" id=\"$idTabel\" border=\"0\" cellpadding=\"20\" align=\"center\" style=\"width: -webkit-fill-available; margin-left: 45px;\">";
+		echo "<tr><td style=\"padding: 10px;\"><a class=\"pencetan\" onclick=\"tambahJabatan('$atasan','$eselon')\">+Tambah Jabatan</a></td></tr>";
+		echo "</table>";
 	}
 	
 ?>

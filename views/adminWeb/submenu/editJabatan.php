@@ -1,17 +1,17 @@
 				<div class="tabContent">
 					<div class="tCWrapper">
-						<div class="tCbody" id="EJBTableWrapper" style="padding-right: 45px;"></div>
-						<div id="ModalTJ" class="tCmodal">
+						<div class="tCbody" id="EJBTableWrapper" style="padding-right: 100px;"></div>
+						<div id="ModalEJ" class="tCmodal">
 			                <div class="tCmodal-content">
-			                    <span class="TJclose closeModal">&times;</span>
+			                    <span class="EJclose close">&times;</span>
 			                    <div id="tCModalLabel">Edit Jabatan <label id="labelAtasan"></label></div>
 			                    <form name="FormEJB" id="FormEJB" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEJB">
-			                                <tr><input type="hidden" name="TJidJabatan" id="TJidJabatan" value=""/></tr>
+			                                <tr><input type="hidden" name="EJidJabatan" id="EJidJabatan" value=""/></tr>
 			                                <tr>
 			                                	<td><label>Nama Jabatan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input style="width: 100%" type="text" id="TJnamaJabatan" name="nama" value="" title="Masukkan nama baru jabatan"></td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="EJnamaJabatan" name="nama" value="" title="Masukkan nama baru jabatan"></td>
 			                                </tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EJBSubmit" class="EJBbtnSubmit pencetan" onclick="validateEJB()">Simpan</a></td>
@@ -70,6 +70,7 @@
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEA">
 			                                <tr><input type="hidden" name="EAnip" id="EAnip" value=""/></tr>
 			                                <tr><input type="hidden" name="jabatan" id="inputJabatan" value=""/></tr>
+			                                <tr><input type="hidden" name="jabatanBaru" id="inputJabatanBaru" value=""/></tr>
 			                                <tr>
 			                                	<td style="width: 23%; max-width: 23%;"><label>Nama</label></td>
 			                                	<td>:</td>
@@ -167,6 +168,26 @@
 			                                
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA()" title="Tambah Account Pegawai">Submit</a></td>
+			                                </tr>
+			                        </table>
+			                    </form> 
+			                </div>
+			            </div>
+			            <div id="ModalTJ" class="tCmodal">
+			                <div class="tCmodal-content">
+			                    <span class="TJclose close">&times;</span>
+			                    <div id="tCModalLabel">Tambah Jabatan</div>
+			                    <form name="FormTJ" id="FormTJ" method="post" action="">
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableTJ">
+			                                <tr><input type="hidden" name="TJidAtasan" id="TJidAtasan" value=""/></tr>
+			                                <tr><input type="hidden" name="TJeselonJabatan" id="TJeselonJabatan" value=""/></tr>
+                                            <tr>
+			                                	<td><label>Nama Jabatan</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputNama" name="nama" value="" title="Nama dari jabatan yang ingin ditambah"></td>
+			                                </tr>
+			                                <tr>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTJ()" title="Tambah Jabatan">Ok</a></td>
 			                                </tr>
 			                        </table>
 			                    </form> 
