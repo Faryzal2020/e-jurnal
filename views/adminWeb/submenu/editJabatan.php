@@ -33,16 +33,16 @@
 			                        <span class="tutupLJ close">&times;</span>
 			                        <div id="tCModalLabel">Daftar jurnal milik: <label id="labelPemilikJurnal"></label></div>
 			                        <div class="headerLJ">
-			                        	<div class="dropdownCat" title="Klik untuk melihat jurnal pegawai berdasarkan :&#013;-Harian&#013;-Mingguan&#013;-Bulanan">
+			                        	<div class="dropdownCat" title="Klik untuk melihat jurnal pegawai berdasarkan :&#013;-Harian&#013;-Periode">
 						                    <button class="dropbtn" id="repBtn"><span class="glyphicon glyphicon-chevron-down"></span> <span id="repbtnLabel" style="pointer-events: none;">Mingguan</span></button>
 						                    <div class="dropdownCat-content" id="repContent">
-				                        		<a onclick="selectReport('Harian')" href="#">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
-				                        		<a onclick="selectReport('Periode')" href="#">Periode <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        		<a onclick="selectReport('Harian')" href="#" title="Pilih Harian">Harian <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        		<a onclick="selectReport('Periode')" href="#" title="Pilih Periode">Periode <span class="glyphicon glyphicon-chevron-right"></span></a>
 						                    </div>
 						                </div>
 										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihHari">
-												<input id="LJSpilihHari" class="w163" type="date" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;" title="Pilih tanggal"></div>
+												<input id="LJSpilihHari" class="w163" type="date" title="Pilih tanggal" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;" ></div>
 											</div>
 										</div>
 						                <div class="LJSfilter" style="display: none">
@@ -56,7 +56,7 @@
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk selesai meihat jurnal"></span></a>
+										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk melihat jurnal"></span></a>
 			                        </div>
 			                        <div id="tabelLJstaffContainer">
 			                        </div>
