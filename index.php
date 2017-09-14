@@ -1029,8 +1029,8 @@
             }
 
             function validateEJB(){
-              var id = document.forms["FormEJB"]["TJidJabatan"].value;
-              var nama = document.forms["FormEJB"]["TJnamaJabatan"].value;
+              var id = document.forms["FormEJB"]["EJidJabatan"].value;
+              var nama = document.forms["FormEJB"]["EJnamaJabatan"].value;
 
               if(nama != ""){
                 $.ajax({    //create an ajax request to load_page.php
