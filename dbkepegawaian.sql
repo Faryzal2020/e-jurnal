@@ -498,7 +498,6 @@ INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
 (2, 'test', '2017-09-18', '2017-09-20'),
 (3, 'sdawdafaadasdasdawd', '2017-10-17', '2017-10-18'),
 (4, 'test2', '2017-09-09', '2017-09-09'),
-(5, 'testssss', '2017-09-18', '2017-09-18'),
 (6, 'asdasd', '2017-10-16', '2017-10-23'),
 (7, 'asdasdasdasdasd', '2017-09-13', '2017-09-13'),
 (10, 'zxczxc', '2017-09-05', '2017-09-08');
@@ -521,10 +520,10 @@ CREATE TABLE `jabatan` (
 --
 
 INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
-(1, 'Kepala Biro Protokol', 2, 9000),
-(2, 'Kepala Biro Perencanaan dan Keuangan', 2, 9000),
-(3, 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 2, 9000),
-(4, 'Kepala Biro Umum', 2, 9000),
+(1, 'Kepala Biro Protokol', 2, 9001),
+(2, 'Kepala Biro Perencanaan dan Keuangan', 2, 9001),
+(3, 'Kepala Biro Tata Usaha, Teknologi Informasi dan Kepegawaian', 2, 9001),
+(4, 'Kepala Biro Umum', 2, 9001),
 (5, 'Kepala Bagian Acara dan Persidangan', 3, 1),
 (6, 'Kepala Bagian Notulen dan Penerbitan', 3, 1),
 (7, 'Kepala Bagian Perjalanan', 3, 1),
@@ -735,7 +734,11 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
 (212, 'Analis Data dan Informasi', 5, 180),
 (213, 'Pengolah Bahan Pustaka', 5, 180),
 (214, 'Jabatan Fungsional Tertentu Pustakawan', 3, 4),
-(9000, 'Admin', 0, 0);
+(9000, 'Admin', 0, 0),
+(9001, 'Deputi Administrasi', 1, 9000),
+(9002, 'Deputi Bidang Dukungan Kebijakan Pemerintahan', 1, 9000),
+(9003, 'Deputi Bidang Dukungan Kebijakan Pembangunan Manusia dan Pemerataan Pembangunan', 1, 9000),
+(9004, 'Deputi Bidang Dukungan Kebijakan Ekonomi, Infrastruktur, dan Kemaritiman', 1, 9000);
 
 -- --------------------------------------------------------
 
@@ -787,7 +790,6 @@ INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_outpu
 (23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'draft', 'Tambahan', 'test'),
 (24, 447, '180004854', 1, '-', '2017-09-04 00:00:00', '2017-09-05 23:59:00', '2017-09-04', '0000-00-00', 'draft', 'Umum', 'demam'),
 (25, 445, '180003512', 1, '-', '2017-09-06 00:00:00', '2017-09-06 23:59:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test'),
-(26, 24, '180003512', 1, 'Kegiatan', '2017-09-06 00:00:00', '2017-09-06 23:59:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'rapat test'),
 (27, 1, '180003512', 1, 'Kegiatan', '2017-09-06 06:00:00', '2017-09-06 08:00:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test'),
 (28, 1, '180003512', 1, 'Kegiatan', '2017-09-06 07:30:00', '2017-09-06 13:30:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test'),
 (29, 38, '180004854', 1, 'Laporan', '2017-09-06 10:00:00', '2017-09-06 11:00:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test');
@@ -912,7 +914,7 @@ ALTER TABLE `hari_libur`
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9001;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9005;
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
