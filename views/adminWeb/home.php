@@ -37,7 +37,7 @@
 							<td class="userid"> <?php echo $nip; ?> </td>
 						</tr>
 					</table> 
-					<div class="logoutbtn" ><a class="logout" title="Log out session" href="logout.php" style="text-decoration: none;">Logout <span class="glyphicon glyphicon-log-out"></span></a></div>
+					<div class="logoutbtn" ><a class="logout" title="Log out session" href="logout.php" style="text-decoration: none;">Logout <span class="glyphicon glyphicon-log-out" ></span></a></div>
 				</div>
 			</div>
 	    </div>
@@ -45,10 +45,10 @@
     <div class="pagebody">
     	<div class="sidenav">
     		<ul>
-				<li class="menu-item" title="Di menu activity list ini anda bisa&#013;melihat daftar activity yang ada,&#013;menambahkan activity baru dan&#013;mengedit detail activity." ><span class="glyphicon glyphicon-list"></span><a href="#">Activity List</a></li>
+				<li class="menu-item" title="Di menu Activity list ini anda bisa&#013;melihat daftar aktivitas yang ada,&#013;menambahkan aktivitas baru dan&#013;menghapus aktivitas." ><span class="glyphicon glyphicon-list"></span><a href="#">Activity List</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" title="Di menu Edit Jabatan ini anda dapat&#013;mengedit nama jabatan, menambahkan&#013;akun pegawai baru, mengedit akun pegawai,&#013;dan melihat jurnal pegawai."><span class="glyphicon glyphicon-edit"></span><a href="#">Edit Jabatan</a></li>
+				<li class="menu-item" title="Di menu Jabatan ini anda dapat&#013;mengedit,menambah, dan menghapus jabatan&#013;melakukan promosi pegawai, dan menambah pegawai baru."><span class="glyphicon glyphicon-edit"></span><a href="#">Jabatan</a></li>
 			</ul>
 			<ul>
 				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-calendar"></span><a href="#">Hari Libur</a></li>

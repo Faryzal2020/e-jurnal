@@ -25,7 +25,7 @@ if(mysqli_num_rows($detail) > 0){
 	    echo "<td align='center' style='padding:10px;'>$al[2]</td>";
 	    echo "<td align='center' style='padding:10px;'>$al[3]</td>";
 	    echo "<td align='center' style='padding:10px;'>$al[4]</td>";
-	    echo "<td align='center' style='padding:10px;'> <a class=\"EJBbtn pencetan\" onclick=\"editAccount('$al[0]','$al[1]','$al[2]','$al[3]','$al[4]')\">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatJurnal('$al[0]','$al[1]')\">Lihat Jurnal</a></td>";
+	    echo "<td align='center' style='padding:10px;'> <a class=\"EJBbtn pencetan\" onclick=\"editAccount('$al[0]','$al[1]','$al[2]','$al[3]','$al[4]')\" title=\"Edit Data Pegawai \">Edit</a> <a class=\"EJBbtn pencetan\" onclick=\"lihatJurnal('$al[0]','$al[1]')\" title=\"Lihat Semua Jurnal Pegawai\">Lihat Jurnal</a></td>";
 	    echo "</tr>";
 	}
 }
