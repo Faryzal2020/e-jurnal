@@ -80,12 +80,21 @@
 			                                	<td><label>Jabatan</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3">
-			                                    	<select onchange="EAselectEch(1)" id="EAinputEselon">
+			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon">
 			                                    		<option value="1">Pilih Eselon</option>
-			                                    		<option value="2">Eselon II</option>
-			                                    		<option value="3">Eselon III</option>
-			                                    		<option value="4">Eselon IV</option>
-			                                    		<option value="5">Staf</option>
+			                                    		<option value="2">Eselon I</option>
+			                                    		<option value="3">Eselon II</option>
+			                                    		<option value="4">Eselon III / Fungsional</option>
+			                                    		<option value="5">Eselon IV</option>
+			                                    		<option value="6">Staff</option>
+			                                    	</select>
+			                                    </td>
+			                                </tr>
+			                                <tr class="EAjabatan">
+			                                	<td colspan="2"></td>
+			                                    <td colspan="3" class="EAselectContainer">
+			                                    	<select onchange="EAselectEch(1)" id="EAinput-1" name="EAinput-1" style="width: 490px;">
+			                                    		<option id="pilih-1" value="0">Pilih Deputi</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
@@ -127,7 +136,7 @@
 			                                    <td colspan="3"><input style="width: 100%" type="text" id="inputPassword" name="password" value="" title="Password dari akun pegawai yang ingin diubah"></td>
 			                                </tr>
 			                                <tr>
-			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EASubmit" class="EAbtnSubmit" onclick="validateEA()" title="Simpan Perubahan">Submit</a></td>
+			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="EASubmit" class="EAbtnSubmit" id="EAbtnSubmit" onclick="validateEA()" title="Simpan Perubahan">Submit</a></td>
 			                                </tr>
 			                        </table>
 			                    </form>

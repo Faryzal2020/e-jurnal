@@ -1483,13 +1483,19 @@
 
             function EAselectEch(i){
               var select = document.getElementById("EAinputEselon");
-              var value = select.options[select.selectedIndex].value;
-              var labels = ["Biro", "Bagian", "SubBagian", "Staf"];
-              if( i == 1 && value >= 2){
+              var value = select.options[select.selectedIndex].value-1;
+              var labels = ["Deputi", "Biro", "Bagian", "SubBagian", "Staf"];
+              if(i < value){
+                document.getElementById("EAbtnSubmit").classList.add("disable");
+              } else {
+                document.getElementById("EAbtnSubmit").classList.remove("disable");
+              }
+              if( i == 0 && value >= 1){
                 document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
-                for(var k = 2; k <= 5; k++){
+                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+                for(var k = 1; k <= 5; k++){
                   var id = "EAinput-" + k;
-                  var label = labels[k-2];
+                  var label = labels[k-1];
                   if(k <= value){
                     var pilih = "pilih-" + k;
                     document.getElementById(id).innerHTML = "<option value='" + pilih + "'>Pilih " + label + "</option>";
@@ -1497,22 +1503,19 @@
                     document.getElementById(id).innerHTML = "";
                   }
                 }
-              } else {
-                document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
-                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
               }
               if( i < value ){
                 $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-                for( var j = 0; j < i; j++){
+                for( var j = 0; j <= i; j++){
                     document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
                 }
 
-                if(i>1){
+                if(i>0){
                   var id = "EAinput-" + i;
                   var selectJ = document.getElementById(id);
                   var valueJ = selectJ.options[selectJ.selectedIndex].value;
                   if(valueJ == 0){
-                    document.getElementsByClassName("EAjabatan")[i-1].style.display = "none";
+                    document.getElementsByClassName("EAjabatan")[i].style.display = "none";
                   }
                 } else {
                   var valueJ = "n";
@@ -1531,10 +1534,17 @@
                   });
                 }
               } else {
-                var id = "EAinput-" + i;
+                var j = i++;
+                var id = "EAinput-" + j;
                 var selectJ = document.getElementById(id);
                 var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
-                document.getElementById("inputJabatanBaru").value = jabatanDipilih;
+                alert(jabatanDipilih);
+                if( jabatanDipilih == 0){
+                  document.getElementById("EAbtnSubmit").classList.add("disable");
+                  document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
+                } else {
+                  document.getElementById("inputJabatanBaru").value = jabatanDipilih;
+                }
               }
             }
 

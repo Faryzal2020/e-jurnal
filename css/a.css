@@ -80,7 +80,6 @@
 		.actCount, .pacCount { padding: 10px; margin: auto; }
 		.relative { position: relative; }
 		.kirimBtnWrapper { position: absolute; right: 69px; top: 27px; }
-		.disable { background-color: #686868; pointer-events: none; cursor: default; color: #b7b7b7; box-shadow: 0 0 0; }
 
 		.actTable, .epTable, .actListTable, .pacListTable, .EJTable { table-layout: : auto; width: 90%; background-color: #ECECEC; }
 		.actTable th, .epTable th, .actListTable th, .pacListTable th, .EJTable th { font-size: 0.8em; background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; text-decoration: none;}
@@ -152,6 +151,7 @@
 		.LPwrapper { margin: auto; width: 50px; padding-top: 50vh; position: relative; }
 		.loadingIcon2 { position: absolute; bottom: -25.4px; left: -1px; border: 12px solid rgba(0,0,0,0); border-top: 12px solid #3498db; border-radius: 50%; width: 51px; height: 51px; animation: spin .8s linear infinite; }
 		.loadingIcon { position: absolute; bottom: -25px; border: 10px solid #f3f3f3; border-radius: 50%; width: 50px; height: 50px;}
+		.disable { background-color: #686868; pointer-events: none; cursor: default; color: #b7b7b7; box-shadow: 0 0 0; }
 		@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }
 }
 
