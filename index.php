@@ -1538,7 +1538,6 @@
                 var id = "EAinput-" + j;
                 var selectJ = document.getElementById(id);
                 var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
-                alert(jabatanDipilih);
                 if( jabatanDipilih == 0){
                   document.getElementById("EAbtnSubmit").classList.add("disable");
                   document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
