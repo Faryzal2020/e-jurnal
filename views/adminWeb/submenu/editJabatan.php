@@ -80,7 +80,7 @@
 			                                	<td><label>Jabatan</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3">
-			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon">
+			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon" title="Masukkan tingkat jabatan">
 			                                    		<option value="1">Pilih Eselon</option>
 			                                    		<option value="2">Eselon I</option>
 			                                    		<option value="3">Eselon II</option>
@@ -92,7 +92,7 @@
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer">
+			                                    <td colspan="3" class="EAselectContainer" title="Masukkan Deputi Bidang">
 			                                    	<select onchange="EAselectEch(1)" id="EAinput-1" name="EAinput-1" style="width: 490px;">
 			                                    		<option id="pilih-1" value="0">Pilih Deputi</option>
 			                                    	</select>
@@ -101,14 +101,14 @@
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
 			                                    <td colspan="3" class="EAselectContainer">
-			                                    	<select onchange="EAselectEch(2)" id="EAinput-2" name="EAinput-2" style="width: 490px;">
+			                                    	<select onchange="EAselectEch(2)" id="EAinput-2" name="EAinput-2" style="width: 490px;" title="Masukkan Biro">
 			                                    		<option id="pilih-2" value="0">Pilih Biro</option>
 			                                    	</select>
 			                                    </td>
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer">
+			                                    <td colspan="3" class="EAselectContainer" title="Masukkan Bagian">
 			                                    	<select onchange="EAselectEch(3)" id="EAinput-3" name="EAinput-3" style="width: 490px;">
 			                                    		<option id="pilih-3" value="0">Pilih Bagian</option>
 			                                    	</select>
@@ -116,7 +116,7 @@
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer">
+			                                    <td colspan="3" class="EAselectContainer" title="Masukkan Subbagian">
 			                                    	<select onchange="EAselectEch(4)" id="EAinput-4" name="EAinput-4" style="width: 490px;">
 			                                    		<option id="pilih-4" value="0">Pilih SubBagian</option>
 			                                    	</select>
@@ -124,7 +124,7 @@
 			                                </tr>
 			                                <tr class="EAjabatan">
 			                                	<td colspan="2"></td>
-			                                    <td colspan="3" class="EAselectContainer">
+			                                    <td colspan="3" class="EAselectContainer" title="Masukkan Jabatan">
 			                                    	<select onchange="EAselectEch(5)" id="EAinput-5" name="EAinput-5" style="width: 490px;">
 			                                    		<option id="pilih-5" value="0">Pilih Staf</option>
 			                                    	</select>
