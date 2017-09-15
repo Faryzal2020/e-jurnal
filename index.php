@@ -1946,7 +1946,21 @@
              elem.setAttribute('type', 'date');
 
              if(elem.type === 'text'){
+              // bagian admin
                 $('#LJApilihAwal').datepicker();
+                $('#tglMulai').datepicker();
+                $('#tglSelesai').datepicker();
+                $('#DJSpilihHari').datepicker();
+                $('#edjsTglMulai').datepicker();
+                $('#edjsTglSelesai').datepicker();
+                $('#LJApilihHari').datepicker();
+                $('#LJApilihAkhir').datepicker();
+                $('#LJSpilihHari').datepicker();
+                $('#LJSpilihAwal').datepicker();
+                $('#LJSpilihAkhir').datepicker();
+              // bagian adminweb
+                $('#HLstart').datepicker();
+                $('#HLend').datepicker();
              }
 
              if(document.getElementById("EJBTableWrapper")){

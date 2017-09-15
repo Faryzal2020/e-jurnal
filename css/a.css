@@ -111,7 +111,7 @@
 		.PJAfilter { display: flex; flex: 1; }
 		.PJAfilter .dropdownCat { display: inline-block; }
 		.LJAfilter { padding-left: 25px; }
-		.LJAbtn, .TAbtn , .TAact, .pencetan { background-color:#2C383B; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.LJAbtn, .TAbtn , .TAact, .pencetan { background-color:#2C383B; height: 31px; height: fit-content; margin-top: 6px; border-radius: 5px; padding: 2px 7px 4px 7px; cursor: pointer; border: 1px solid #ECECEC; box-shadow:2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.LJAbtn:hover, .TAbtn:hover, .TAact:hover, .pencetan:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.LJAbtn:active, .TAbtn:active, .TAact:active, .pencetan:active { box-shadow: 0 0 0; }
 		.LJApilihHari { padding-top: 7px; margin-left: -8px; margin-right: 10px; }
