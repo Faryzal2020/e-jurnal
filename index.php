@@ -146,7 +146,7 @@
    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
-   <script type="text/javascript" src="js/jquery12.js"></script>
+   <script type="text/javascript" src="js/jquery-ui.js"></script>
    <script type="text/javascript" src="js/FileSaver/FileSaver.min.js"></script>
    <script type="text/javascript" src="js/js-xlsx/xlsx.core.min.js"></script>
    <script type="text/javascript" src="js/jsPDF/jspdf.min.js"></script>
@@ -1941,6 +1941,13 @@
              selectDJS('Bulanan');
              selectReport('Periode');
              getHLdata();
+
+             var elem = document.createElement('input');
+             elem.setAttribute('type', 'date');
+
+             if(elem.type === 'text'){
+                $('#LJApilihAwal').datepicker();
+             }
 
              if(document.getElementById("EJBTableWrapper")){
                 toggleChild('n','1','EJBTableWrapper');
