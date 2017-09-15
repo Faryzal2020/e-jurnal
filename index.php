@@ -1945,23 +1945,26 @@
              var elem = document.createElement('input');
              elem.setAttribute('type', 'date');
 
-             if(elem.type === 'text'){
-              // bagian admin
-                $('#LJApilihAwal').datepicker();
-                $('#tglMulai').datepicker();
+              if(elem.type === 'text'){
                 $('#tglSelesai').datepicker();
-                $('#DJSpilihHari').datepicker();
-                $('#edjsTglMulai').datepicker();
-                $('#edjsTglSelesai').datepicker();
-                $('#LJApilihHari').datepicker();
-                $('#LJApilihAkhir').datepicker();
+                $('#tglMulai').datepicker();
                 $('#LJSpilihHari').datepicker();
                 $('#LJSpilihAwal').datepicker();
                 $('#LJSpilihAkhir').datepicker();
-              // bagian adminweb
-                $('#HLstart').datepicker();
-                $('#HLend').datepicker();
-             }
+                if( document.getElementById('HLstart')){
+                  $('#HLstart').datepicker();
+                  $('#HLend').datepicker();
+                } else {
+                  $('#DJSpilihHari').datepicker();
+                  $('#edjsTglSelesai').datepicker();
+                  $('#edjsTglMulai').datepicker();
+                  if( document.getElementById('LJApilihAwal')){
+                    $('#LJApilihAwal').datepicker();
+                    $('#LJApilihHari').datepicker();
+                    $('#LJApilihAkhir').datepicker();
+                  }
+                }
+              }
 
              if(document.getElementById("EJBTableWrapper")){
                 toggleChild('n','1','EJBTableWrapper');
