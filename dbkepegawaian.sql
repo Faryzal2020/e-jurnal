@@ -735,7 +735,7 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`, `eselon`, `atasan`) VALUES
 (213, 'Pengolah Bahan Pustaka', 5, 180),
 (214, 'Jabatan Fungsional Tertentu Pustakawan', 3, 4),
 (9000, 'Admin', 0, 0),
-(9001, 'Deputi Administrasi', 1, 9000),
+(9001, 'Deputi Bidang Administrasi', 1, 9000),
 (9002, 'Deputi Bidang Dukungan Kebijakan Pemerintahan', 1, 9000),
 (9003, 'Deputi Bidang Dukungan Kebijakan Pembangunan Manusia dan Pemerataan Pembangunan', 1, 9000),
 (9004, 'Deputi Bidang Dukungan Kebijakan Ekonomi, Infrastruktur, dan Kemaritiman', 1, 9000);
