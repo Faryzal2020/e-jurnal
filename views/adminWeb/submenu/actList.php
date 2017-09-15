@@ -30,7 +30,7 @@
 						            Result: 
 						            <label id="actCount">0</label>
                                      <div class="tambahAktivitas">
-						            	<button id="TAact" class="TAact" onclick="Actform()" title="Tambah Aktivitas Baru"><span class="glyphicon glyphicon-plus"></span></button>
+						            	<button id="TAact" class="TAact" onclick="Actform()" title="Tambah Aktivitas Baru" style="height: 50px; width: 54px;"><span class="glyphicon glyphicon-plus"></span></button>
 						            </div>
 				                </div>
 							</div>

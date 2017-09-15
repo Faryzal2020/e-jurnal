@@ -23,9 +23,9 @@
 													<label for="min-date" class="col-sm-3 control-label">Tanggal</label>
 													<div class="col-sm-8">
 														<div class="input-group input-daterange" data-provide="datepicker">
-															<input name="event-start-date" type="date" id="HLstart" class="form-control" value="2012-04-05" style="width: 170px;">
+															<input name="event-start-date" type="date" id="HLstart" class="form-control" value="2012-04-05" style="width: 170px; position: relative; z-index: 999999;">
 															<span class="input-group-addon">to</span>
-															<input name="event-end-date" type="date" id="HLend" class="form-control" value="2017-04-09" style="width: 160px;">
+															<input name="event-end-date" type="date" id="HLend" class="form-control" value="2017-04-09" style="width: 160px; position: relative; z-index: 999999;">
 														</div>
 													</div>
 												</div>

@@ -1946,22 +1946,22 @@
              elem.setAttribute('type', 'date');
 
               if(elem.type === 'text'){
-                $('#tglSelesai').datepicker();
-                $('#tglMulai').datepicker();
-                $('#LJSpilihHari').datepicker();
-                $('#LJSpilihAwal').datepicker();
-                $('#LJSpilihAkhir').datepicker();
+                $('#tglSelesai').datepicker({ dateFormat: 'yy-mm-dd' });
+                $('#tglMulai').datepicker({ dateFormat: 'yy-mm-dd' });
+                $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
+                $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
+                $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
                 if( document.getElementById('HLstart')){
-                  $('#HLstart').datepicker();
-                  $('#HLend').datepicker();
+                  $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
+                  $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
                 } else {
-                  $('#DJSpilihHari').datepicker();
-                  $('#edjsTglSelesai').datepicker();
-                  $('#edjsTglMulai').datepicker();
+                  $('#DJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
+                  $('#edjsTglSelesai').datepicker({ dateFormat: 'yy-mm-dd' });
+                  $('#edjsTglMulai').datepicker({ dateFormat: 'yy-mm-dd' });
                   if( document.getElementById('LJApilihAwal')){
-                    $('#LJApilihAwal').datepicker();
-                    $('#LJApilihHari').datepicker();
-                    $('#LJApilihAkhir').datepicker();
+                    $('#LJApilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
+                    $('#LJApilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
+                    $('#LJApilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
                   }
                 }
               }
@@ -2037,7 +2037,7 @@
              });
 
              function HLedit(event){
-              var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate()+1)).slice(-2);
+              var startDate = event.startDate.getFullYear() + '-' + ('0' + (event.startDate.getMonth()+1)).slice(-2) + '-' + ('0' + (event.startDate.getDate())).slice(-2);
               var endDate = event.endDate.getFullYear() + '-' + ('0' + (event.endDate.getMonth()+1)).slice(-2) + '-' + ('0' + event.endDate.getDate()).slice(-2);
               $('#event-modal input[name="event-index"]').val(event ? event.id : '');
               $('#event-modal input[name="event-name"]').val(event ? event.name : '');
