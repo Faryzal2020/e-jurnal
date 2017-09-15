@@ -1947,6 +1947,17 @@
 
              if(elem.type === 'text'){
                 $('#LJApilihAwal').datepicker();
+                $('#tglMulai').datepicker();
+                $('#tglSelesai').datepicker();
+                $('#DJSpilihHari').datepicker();
+                $('#edjsTanggal').datepicker();
+                $('#edjsTglSelesai').datepicker();
+                $('#LJSpilihHari').datepicker();
+                $('#LJSpilihAwal').datepicker();
+                $('#LJSpilihAkhir').datepicker();
+                $('#tanggal').datepicker();
+                $('#tglSelesai').datepicker();
+                 
              }
 
              if(document.getElementById("EJBTableWrapper")){
