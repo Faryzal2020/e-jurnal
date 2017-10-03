@@ -179,7 +179,7 @@
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglMulai" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="text" name="tglMulai" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td style="width: 120px">
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda">
@@ -193,7 +193,7 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" name="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="text" name="tglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
 													    <input type="text" class="form-control" name="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda">

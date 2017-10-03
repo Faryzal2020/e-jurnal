@@ -9,11 +9,11 @@ if( $tipeFilter == 'Harian'){
 	$bulan = $_GET['bulan'];
     $hari = $_GET['hari'];
 	$digabungi = $tahun."-".$bulan."-".$hari;
-    $LJSsql = " SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND date(waktu_selesai)>='$digabungi' AND date(waktu_mulai)<='$digabungi' ORDER BY date(waktu_mulai) DESC";
+    $LJSsql = " SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi, j.rating FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND date(waktu_selesai)>='$digabungi' AND date(waktu_mulai)<='$digabungi' ORDER BY date(waktu_mulai) DESC";
 } else {
     $awal = $_GET['awal'];
     $akhir = $_GET['akhir'];
-    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND date(j.waktu_selesai) >= '$awal' AND date(j.waktu_mulai) <= '$akhir' ORDER BY date(waktu_mulai) DESC ";
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi, j.rating FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND date(j.waktu_selesai) >= '$awal' AND date(j.waktu_mulai) <= '$akhir' ORDER BY date(waktu_mulai) DESC ";
 }
 $result = mysqli_query($db, $LJSsql);
 
@@ -40,6 +40,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status Jurnal</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
     </tr>";
     echo "<input type=hidden id='$nip' value='' />";
     $totalDurasiTabel = 0;
@@ -255,9 +256,22 @@ if(mysqli_num_rows($result) > 0){
         }
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
+        if($data[13] == 0){
+            echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
+        } else {
+            echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
+            for($i=1;$i<=5;$i++){
+                if($i <= $data[13]){
+                    echo "<span>★</span>";
+                } else {
+                    echo "<span>☆</span>";
+                }
+            }
+            echo "</div></td>";
+        }
         echo "</tr>";
     }
-    echo "<tr><td colspan='13' style='text-align: end; padding: 10px 56px;'>Total waktu kerja: $totalDurasiTabel Menit</td></tr>";
+    echo "<tr><td colspan='14' style='text-align: end; padding: 10px 56px;'>Total waktu kerja: $totalDurasiTabel Menit</td></tr>";
     echo "</table>";
 } else {
     echo "
@@ -275,9 +289,10 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Tanggal Input</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Status Jurnal</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Keterangan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
     </tr>";
     echo "<tr>";
-    echo "<td align=center colspan='13'>Tidak ada data</td>";
+    echo "<td align=center colspan='14'>Tidak ada data</td>";
     echo "</tr>";
     echo "</table>";
 }

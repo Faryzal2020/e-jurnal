@@ -13,7 +13,7 @@
 				                </div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163 h30" type="date" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
+										<input id="DJSpilihHari" class="w163 h30" type="text" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
 									</div>
 								</div>
 								<div class="DJSfilter" style="display: none">
@@ -122,12 +122,12 @@
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input type="date" name="edjsTglJurnal" id="edjsTglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td colspan="3"><input type="text" name="edjsTglJurnal" id="edjsTglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                </tr>
 			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td style="width: 1px;">:</td>
-			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="edjsTanggal"><input type="text" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="edjsJam" style="width: 36px">
 			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input readonly type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
@@ -141,7 +141,7 @@
 			                                <tr>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td><input type="text" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker" style="width: 100px">
 													    <input readonly type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">

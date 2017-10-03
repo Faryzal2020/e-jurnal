@@ -417,7 +417,6 @@
                       }
                     }
                 }
-                console.log(event);
                 if(!event.target.matches('.ratingBtn')){
                   if(document.getElementsByClassName('ratingDiv')[0]){
                     var x = document.getElementsByClassName("ratingDiv");
@@ -535,7 +534,7 @@
                 url: "ajax/detailajax.php",             
                 dataType: "html",   //expect html to be returned
                 data: { tanggal_tanggal:tanggal_tanggal,nip_nip:nip},               
-                success: function(response){                 
+                success: function(response){        
                     $("#tabledata").html(response);
                     if(document.getElementById("tabledata")){
                         var csv = document.getElementById("csvBtn_admin");
@@ -2013,7 +2012,7 @@
              var elem = document.createElement('input');
              elem.setAttribute('type', 'date');
 
-              if(elem.type === 'text'){
+              if(elem){
                 $('#tglSelesai').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#tglMulai').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#tglJurnal').datepicker({ dateFormat: 'yy-mm-dd' });

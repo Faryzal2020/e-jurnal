@@ -11,7 +11,7 @@
     		background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
     		background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
     		background: linear-gradient(to bottom right, #336699, #3399ff); /* Standard syntax (must be last) */ }
-		.page { height: 100%; max-width: 1500px; margin: auto; }
+		.page { height: 100%; max-width: 1600px; min-width: 1453px; margin: auto; }
 		.judul { margin: auto; margin-right: 200px; text-shadow: 1px 1px #00ccff; font-size: 2em; padding-top: 35px; width: 300px;}
 
 		.userpanel{ display: inline-block; z-index: 1; position: absolute; top: 0px; left: 0px; background:rgba(0,0,0,0.0); width: 250px; height: 250px; padding: 20px; }

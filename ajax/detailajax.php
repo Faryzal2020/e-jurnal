@@ -8,12 +8,20 @@ $tanggal_beda = $_GET['tanggal_tanggal'];
                                                 
 $deSQL = "SELECT  jurnal.id_jurnal, jurnal.volume, jurnal.jenis_output, jurnal.waktu_mulai, jurnal.waktu_selesai, jurnal.tanggal_simpan, jurnal.jenis_aktivitas, aktivitas.nama_aktivitas, aktivitas.id_kategori, kategori.nama_kategori,aktivitas.durasi,jurnal.keterangan,jurnal.tanggal_kirim,  jurnal.status_jurnal,user.nama_pegawai, jurnal.rating FROM jurnal,aktivitas,user,kategori WHERE jurnal.id_aktivitas=aktivitas.id_aktivitas AND aktivitas.id_kategori=kategori.id_kategori AND jurnal.nip=user.nip AND date(waktu_selesai) >= '$tanggal_beda' AND date(waktu_mulai) <= '$tanggal_beda' AND jurnal.nip = '$nip_beda'  ORDER BY date(waktu_mulai) DESC ";
 
-$sql2 = "SELECT bawahan.nip FROM user as bawahan, user as atasan, jabatan as jabA, jabatan as jabB WHERE bawahan.id_jabatan = jabB.id_jabatan AND atasan.id_jabatan = jabA.id_jabatan AND jabB.atasan = jabA.id_jabatan AND atasan.nip = '$nip'";
+function cekAtasan($nip){
+    include("../config.php");
+    $sql2 = "SELECT atasan.nip FROM user as bawahan, user as atasan, jabatan as jabA, jabatan as jabB WHERE bawahan.id_jabatan = jabB.id_jabatan AND atasan.id_jabatan = jabA.id_jabatan AND jabB.atasan = jabA.id_jabatan AND bawahan.nip = '$nip'";
+    $query = mysqli_query($db, $sql2);
+    if(mysqli_num_rows($query) > 0){
+        $data = mysqli_fetch_row($query);
+        return $data[0];
+    } else {
+        return 0;
+    }
+}
 
-$sql3 = "SELECT bawahan.nip,atasan.nip FROM user as bawahan, user as atasan, jabatan as jabA, jabatan as jabB WHERE bawahan.id_jabatan = jabB.id_jabatan AND atasan.id_jabatan = jabA.id_jabatan AND jabB.atasan = jabA.id_jabatan AND bawahan.nip = '$nip_beda' ";
+
 $detail = mysqli_query($db, $deSQL);
-$cekBawahan = mysqli_query($db, $sql2);
-$cekAtasan = mysqli_query($db, $sql3);
 
 
 echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width='100%' style='font-size:75%;'>
@@ -40,8 +48,6 @@ echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width=
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
 </tr>";
 $totalDurasiTabel = 0;
-while($databawahan = mysqli_fetch_row($cekBawahan)){
-while($dataatasan = mysqli_fetch_row($cekAtasan)){
 while($data = mysqli_fetch_row($detail))
 {   
     
@@ -259,7 +265,7 @@ while($data = mysqli_fetch_row($detail))
     echo "<td align=center style=''>$data[13]</td>";
     echo "<td align=center style='min-width: 150px'>$data[11]</td>";
     if($data[15] == 0){
-            if($dataatasan[1] == $_SESSION['nip']){
+            if(cekAtasan($nip_beda) == $_SESSION['nip']){
             $ratingid = "rating-" . $data[0];
             echo "<td align=center style='min-width: 150px'>
                 <div class='ratingDiv' id='$ratingid' style='display: none; font-size:200%'>
@@ -285,8 +291,6 @@ while($data = mysqli_fetch_row($detail))
     }
     echo "<td align=center></td>";
     echo "</tr>";
-}
-}
 }
     
 
