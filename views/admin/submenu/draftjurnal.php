@@ -120,12 +120,17 @@
 			                                    <td colspan="3"><textarea rows="3" cols="40" id="edjsKeterangan" name="edjsKeterangan" form="FormDJS" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
+			                                	<td><label>Tanggal</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input type="date" name="edjsTglJurnal" id="edjsTglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td style="width: 1px;">:</td>
 			                                    <td id="edjsTanggal"><input type="date" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="edjsJam" style="width: 130px">
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <input readonly type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -139,7 +144,7 @@
 			                                    <td><input type="date" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker" style="width: 100px">
-													    <input type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <input readonly type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -156,6 +161,7 @@
 			                                			<option value="tambahan">Tambahan</option>
 			                                	</td>
 			                                </tr>
+			                                <tr><input type="hidden" name="edjsNamaCat2" id="edjsNamaCat2" value=""/></tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="DJSSubmit" class="SJbtnSubmit" onclick="validateEDJ()"  title="klik untuk selesai mengedit">Submit</a></td>
 			                                </tr>

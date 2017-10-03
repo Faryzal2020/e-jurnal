@@ -125,12 +125,17 @@
 			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value="" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
+			                                	<td><label>Tanggal</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input type="date" name="tglJurnal" id="tglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr>
 			                                    <td><label id="labelWaktuMulai">Waktu Mulai</label></td>
 			                                    <td>:</td>
 			                                    <td id="tanggal"><input type="date" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="jam" style="width: 130px">
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda">
+													    <input readonly type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamMulai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -144,7 +149,7 @@
 			                                    <td><input type="date" name="tglSelesai" id="tglSelesai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda">
+													    <input readonly type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamSelesai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
