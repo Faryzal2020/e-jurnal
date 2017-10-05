@@ -29,7 +29,7 @@
 										</div>
 									</div>
 									<input id="LJAfilterType" type="hidden" value=""/>
-									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok"></span></a>
+									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok"></span></a>
 								</div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">
 										<input id="LJSnip" type="hidden" value="">
-										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk  meihat jurnal pegawai"></span></a>
+										<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk  meihat jurnal pegawai"></span></a>
 			                        </div>
 			                        <div id="tabelLJstaffContainer">
 			                        </div>

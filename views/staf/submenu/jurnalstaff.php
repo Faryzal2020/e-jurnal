@@ -25,7 +25,7 @@
 									</div>
 								</div>
 								<input id="LJSfilterType" type="hidden" value="">
-								<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
+								<a class="LJSbtn" id="LJSbtn" onclick="lihatJurnalStaff('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 							</div>
 						</div>
 			            <div id="tabelLJstaffContainer">
