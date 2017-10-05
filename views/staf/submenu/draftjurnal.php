@@ -84,7 +84,7 @@
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
+			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ pencetan" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas" style="padding: 4px 7px 0px 8px;"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>

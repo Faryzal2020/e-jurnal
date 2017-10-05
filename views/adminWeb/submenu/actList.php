@@ -13,7 +13,7 @@
 				                                    echo "";
 				                                } else {
 				                        ?>
-				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?> <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a onclick="selectCat('<?php echo $cat['nama_kategori'] ?>')" href="#"><?php echo $cat['nama_kategori']; ?></a>
 				                        <?php
 				                                }
 				                            }
@@ -69,6 +69,7 @@
 								<tr style="display: none">
 									<td style="text-align: center;"><?php echo $idAct; ?></td>
 									<td><?php echo $namaAct ?></td>
+									<?php if($namaCateg != "izin harian"){ ?>
 									<td style="text-align: center;"><?php 
 										if ($durasi == 0) {
 											echo "-";
@@ -76,6 +77,9 @@
 											echo $durasi . " Menit";
 										}
 									?></td>
+									<?php } else { ?>
+									<td style="display: none"/>
+									<?php } ?>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
                                     <td style="text-align: center; width: 80px;">
 										<a onclick="editAktivitas(
@@ -94,7 +98,7 @@
 							</table>
                             <div id="ModalEact" class="tCmodal">
                             <div class="tCmodal-content">
-			                    <span class="EActclose">&times;</span>
+			                    <span class="EActclose close">&times;</span>
 			                    <div id="tCModalLabel">Edit Aktivitas : <label id="labelaktivitas"></label></div>
 			                    <form name="FormTA_EAct" id="FormTA_EAct" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableTA">
@@ -221,7 +225,7 @@
 			                </div>
                              <div id="ModalAct" class="tCmodal">
 			                <div class="tCmodal-content">
-			                    <span class="Actclose">&times;</span>
+			                    <span class="Actclose close">&times;</span>
 			                    <div id="tCModalLabel">Tambah Aktivitas</div>
 			                    <form name="FormTA_Act" id="FormTA_Act" method="post" action="">
 			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableTA">
@@ -234,7 +238,7 @@
 			                                    <td><label>Kategori</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="3"><select name="kategori"  title="masukkan kategori dari aktivitas">
-                                                <option value="">Pilih Aktivitas</option>
+                                                <option value="">Pilih Kategori</option>
 			                                    <?php 
                                                 while ($que = mysqli_fetch_array($Catquery3))
                                                 {

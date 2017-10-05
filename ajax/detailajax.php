@@ -44,9 +44,13 @@ echo "<table border='1' class='tabledata' id='tabledata' cellpadding='50' width=
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
 <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
-</tr>";
+<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>";
+if($nip == $nip_beda){
+    echo "</tr>";
+} else {
+    echo "<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
+    </tr>";
+}
 $totalDurasiTabel = 0;
 while($data = mysqli_fetch_row($detail))
 {   
@@ -264,30 +268,32 @@ while($data = mysqli_fetch_row($detail))
     }
     echo "<td align=center style=''>$data[13]</td>";
     echo "<td align=center style='min-width: 150px'>$data[11]</td>";
-    if($data[15] == 0){
-            if(cekAtasan($nip_beda) == $_SESSION['nip']){
-            $ratingid = "rating-" . $data[0];
-            echo "<td align=center style='min-width: 150px'>
-                <div class='ratingDiv' id='$ratingid' style='display: none; font-size:200%'>
-                <span onclick=\"giveRating('$data[0]','5','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
-                <span onclick=\"giveRating('$data[0]','4','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
-                <span onclick=\"giveRating('$data[0]','3','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
-                <span onclick=\"giveRating('$data[0]','2','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
-                <span onclick=\"giveRating('$data[0]','1','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
-                </div><button class='ratingBtn' onclick=\"selectRating('$data[0]',this)\">Beri Rating</button></td>";
-        } else {
-            echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
-        }
-    } else {
-        echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
-        for($i=1;$i<=5;$i++){
-            if($i <= $data[15]){
-                echo "<span>★</span>";
+    if($nip != $nip_beda){
+        if($data[15] == 0){
+                if(cekAtasan($nip_beda) == $_SESSION['nip']){
+                $ratingid = "rating-" . $data[0];
+                echo "<td align=center style='min-width: 150px'>
+                    <div class='ratingDiv' id='$ratingid' style='display: none; font-size:200%'>
+                    <span onclick=\"giveRating('$data[0]','5','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
+                    <span onclick=\"giveRating('$data[0]','4','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
+                    <span onclick=\"giveRating('$data[0]','3','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
+                    <span onclick=\"giveRating('$data[0]','2','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
+                    <span onclick=\"giveRating('$data[0]','1','$tanggal_beda','$nip_beda','$data[14]')\">☆</span>
+                    </div><button class='ratingBtn' onclick=\"selectRating('$data[0]',this)\">Beri Rating</button></td>";
             } else {
-                echo "<span>☆</span>";
+                echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
             }
+        } else {
+            echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
+            for($i=1;$i<=5;$i++){
+                if($i <= $data[15]){
+                    echo "<span>★</span>";
+                } else {
+                    echo "<span>☆</span>";
+                }
+            }
+            echo "</div></td>";
         }
-        echo "</div></td>";
     }
     echo "<td align=center></td>";
     echo "</tr>";

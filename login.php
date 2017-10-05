@@ -16,6 +16,7 @@
 <body>
     <div id="logo">
         <img src="logoS.png" height="110" alt=""/>
+        <span style="display: block; color: #895700; font-weight: bold; font-family: monospace; font-size:  2em; padding-top: 6px; ">E-Jurnal</span>
     </div>
     <div id="main-panel">
         <div class="content">

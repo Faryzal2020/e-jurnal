@@ -99,7 +99,7 @@
 		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ, .btnGantiFoto { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover, .btnGantiFoto:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
-		.gantiActDJ { padding: 4px; font-size: 0.9em; font-weight: normal; display: block; width: 80px; padding-bottom: 0px; }
+		.gantiActDJ { padding: 4px 7px 0px 8px; font-size: 0.9em; font-weight: normal; display: block; width: 85px; padding-bottom: 0px; }
 
 		.headerLJ { height: 60px; background-color: #ECECEC; margin-bottom: 20px; padding-top: 7px;}
 		.pilihanJurnal { padding-left: 30px; margin-top: -16px; display: block;}

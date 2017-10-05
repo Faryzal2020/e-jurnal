@@ -466,8 +466,6 @@
                 document.getElementById("jamSelesai").value = "23:59";
                 document.getElementById("iconJamMulai").style.display = "";
                 document.getElementById("iconJamSelesai").style.display = "";
-                document.getElementById("tglMulai").type = "date";
-                document.getElementById("tglSelesai").type = "date";
                 document.getElementById("tanggal").style.width = "";
                 modal.style.display = "block";
                 namaAct.innerHTML = nama;
@@ -1142,8 +1140,6 @@
                       document.getElementById("edjsJamSelesai").type = "hidden";
                       document.getElementById("edjsiconJM").style.display = "none";
                       document.getElementById("edjsiconJS").style.display = "none";
-                      document.getElementById("edjsTglMulai").type = "date";
-                      document.getElementById("edjsTglSelesai").type = "date";
                       document.getElementById("edjsTanggal").style.width = "";
                       document.getElementById("edjsTglMulai").value = row.cells[13].innerHTML;
                       document.getElementById("edjsTglSelesai").value = row.cells[14].innerHTML;
@@ -1989,6 +1985,22 @@
                 }
               });
             }
+
+            function giveRatingPrint(idJurnal, rating, idPeg){
+              console.log("give rating "+rating);
+              $.ajax({    //create an ajax request to load_page.php
+                type: "POST",
+                url: "ajax/giveRating.php",             
+                dataType: "html",   //expect html to be returned
+                data: { 'rating': rating,'id':idJurnal},               
+                success: function(response){                    
+                  if(response == 'y'){
+                    alert("Berhasil memberikan rating");
+                    lihatJurnalStaff(idPeg);
+                  }
+                }
+              });
+            }
              
             function eventFire(el, etype){
               if(el){
@@ -2011,11 +2023,10 @@
 
              var elem = document.createElement('input');
              elem.setAttribute('type', 'date');
-
               if(elem){
-                $('#tglSelesai').datepicker({ dateFormat: 'yy-mm-dd' });
-                $('#tglMulai').datepicker({ dateFormat: 'yy-mm-dd' });
-                $('#tglJurnal').datepicker({ dateFormat: 'yy-mm-dd' });
+                $('#tglSelesai').datepicker({ dateFormat: 'yy-mm-dd', minDate: "-1m" });
+                $('#tglMulai').datepicker({ dateFormat: 'yy-mm-dd', minDate: "-1m" });
+                $('#tglJurnal').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
                 $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
@@ -2024,9 +2035,9 @@
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
                 } else {
                   $('#DJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
-                  $('#edjsTglSelesai').datepicker({ dateFormat: 'yy-mm-dd' });
-                  $('#edjsTglMulai').datepicker({ dateFormat: 'yy-mm-dd' });
-                  $('#edjsTglJurnal').datepicker({ dateFormat: 'yy-mm-dd' });
+                  $('#edjsTglSelesai').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
+                  $('#edjsTglMulai').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
+                  $('#edjsTglJurnal').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
                   if( document.getElementById('LJApilihAwal')){
                     $('#LJApilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                     $('#LJApilihHari').datepicker({ dateFormat: 'yy-mm-dd' });

@@ -84,7 +84,7 @@
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
 			                                    <td colspan="2"><label id="edjsNamaAct"></label></td>
-			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ" onclick="DJSgantiAct()" title="klik untuk mengganti :&#013;&#183; aktivitas&#013;&#183; standar waktu &#013;&#183; kategori">Ganti</a></td>
+			                                    <td id="btnGantiAct" style="width: 1%;"><a class="gantiActDJ pencetan" onclick="DJSgantiAct()" title="klik untuk mengganti aktivitas" style="padding: 4px 7px 0px 8px;"><span class="glyphicon glyphicon-edit" style="pointer-events: none; display: inline-block;"></span> <label style="display: inline-block;">Ganti</label></a></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Standar Waktu</label></td>
@@ -182,7 +182,7 @@
 						                        <?php
 						                            $i=0;
 						                            while ($cat = mysqli_fetch_array($Catquery2)) {
-						                                if($cat[$i]==null || $cat['nama_kategori'] == "kehadiran"){
+						                                if($cat[$i]==null || $cat['nama_kategori'] == "izin harian"){
 						                                    echo "";
 						                                } else {
 						                        ?>

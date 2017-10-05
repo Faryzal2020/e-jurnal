@@ -1,6 +1,8 @@
 <?php
 include("../config.php");
+session_start();
 
+$nipUser = $_SESSION['nip'];
 $nip = $_GET['nip'];
 $tipeFilter = $_GET['tipeFilter'];
 $LJSsql = "";
@@ -15,6 +17,19 @@ if( $tipeFilter == 'Harian'){
 	$akhir = $_GET['akhir'];
     $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_kirim, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan, j.status_jurnal, a.durasi, j.rating FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND date(j.waktu_selesai) >= '$awal' AND date(j.waktu_mulai) <= '$akhir' ORDER BY date(waktu_mulai) DESC";
 }
+
+function cekAtasan($nip){
+    include("../config.php");
+    $sql2 = "SELECT atasan.nip FROM user as bawahan, user as atasan, jabatan as jabA, jabatan as jabB WHERE bawahan.id_jabatan = jabB.id_jabatan AND atasan.id_jabatan = jabA.id_jabatan AND jabB.atasan = jabA.id_jabatan AND bawahan.nip = '$nip'";
+    $query = mysqli_query($db, $sql2);
+    if(mysqli_num_rows($query) > 0){
+        $data = mysqli_fetch_row($query);
+        return $data[0];
+    } else {
+        return 0;
+    }
+}
+
 $result = mysqli_query($db, $LJSsql);
 
 echo "<table border='1' class='tabelLJ' id='tabelLJajax' cellpadding='20' style='font-size: 75%;'>";
@@ -257,18 +272,32 @@ if(mysqli_num_rows($result) > 0){
             }    
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
-        if($data[13] == 0){
-            echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
-        } else {
-            echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
-            for($i=1;$i<=5;$i++){
-                if($i <= $data[13]){
-                    echo "<span>★</span>";
+        if($nip != $nipUser){
+            if($data[13] == 0){
+                    if(cekAtasan($nip) == $_SESSION['nip']){
+                    $ratingid = "rating-" . $data[0];
+                    echo "<td align=center style='min-width: 150px'>
+                        <div class='ratingDiv' id='$ratingid' style='display: none; font-size:200%'>
+                        <span onclick=\"giveRatingPrint('$data[0]','5','$nip')\">☆</span>
+                        <span onclick=\"giveRatingPrint('$data[0]','4','$nip')\">☆</span>
+                        <span onclick=\"giveRatingPrint('$data[0]','3','$nip')\">☆</span>
+                        <span onclick=\"giveRatingPrint('$data[0]','2','$nip')\">☆</span>
+                        <span onclick=\"giveRatingPrint('$data[0]','1','$nip')\">☆</span>
+                        </div><button class='ratingBtn' onclick=\"selectRating('$data[0]',this)\">Beri Rating</button></td>";
                 } else {
-                    echo "<span>☆</span>";
+                    echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
                 }
+            } else {
+                echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
+                for($i=1;$i<=5;$i++){
+                    if($i <= $data[13]){
+                        echo "<span>★</span>";
+                    } else {
+                        echo "<span>☆</span>";
+                    }
+                }
+                echo "</div></td>";
             }
-            echo "</div></td>";
         }
         echo "</tr>";
     }
