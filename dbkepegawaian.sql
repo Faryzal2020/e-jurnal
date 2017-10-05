@@ -11,7 +11,7 @@
 CREATE TABLE `aktivitas` (
   `id_aktivitas` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
-  `nama_aktivitas` varchar(100) NOT NULL,
+  `nama_aktivitas` varchar(2000) NOT NULL,
   `durasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -485,7 +485,7 @@ INSERT INTO `aktivitas` (`id_aktivitas`, `id_kategori`, `nama_aktivitas`, `duras
 
 CREATE TABLE `hari_libur` (
   `id` int(11) NOT NULL,
-  `keterangan` varchar(100) NOT NULL,
+  `keterangan` varchar(1000) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -498,9 +498,10 @@ INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
 (2, 'test', '2017-09-18', '2017-09-20'),
 (3, 'sdawdafaadasdasdawd', '2017-10-17', '2017-10-18'),
 (4, 'test2', '2017-09-09', '2017-09-09'),
-(6, 'asdasd', '2017-10-16', '2017-10-23'),
+(6, 'gaada apa apa', '2017-10-15', '2017-10-23'),
 (7, 'asdasdasdasdasd', '2017-09-13', '2017-09-13'),
-(10, 'zxczxc', '2017-09-05', '2017-09-08');
+(10, 'zxczxc', '2017-09-05', '2017-09-08'),
+(11, 'nama libur', '2017-03-21', '2017-03-22');
 
 -- --------------------------------------------------------
 
@@ -510,7 +511,7 @@ INSERT INTO `hari_libur` (`id`, `keterangan`, `start_date`, `end_date`) VALUES
 
 CREATE TABLE `jabatan` (
   `id_jabatan` int(11) NOT NULL,
-  `nama_jabatan` varchar(150) NOT NULL,
+  `nama_jabatan` varchar(1000) NOT NULL,
   `eselon` int(11) NOT NULL,
   `atasan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -751,48 +752,51 @@ CREATE TABLE `jurnal` (
   `id_aktivitas` int(11) NOT NULL,
   `nip` varchar(12) NOT NULL,
   `volume` int(11) NOT NULL,
-  `jenis_output` varchar(50) NOT NULL,
+  `jenis_output` varchar(500) NOT NULL,
   `waktu_mulai` datetime NOT NULL,
   `waktu_selesai` datetime NOT NULL,
   `tanggal_simpan` date NOT NULL,
   `tanggal_kirim` date NOT NULL,
   `status_jurnal` varchar(15) NOT NULL,
   `jenis_aktivitas` varchar(10) NOT NULL,
-  `keterangan` varchar(200) NOT NULL
+  `keterangan` varchar(2000) NOT NULL,
+  `rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jurnal`
 --
 
-INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `tanggal_kirim`, `status_jurnal`, `jenis_aktivitas`, `keterangan`) VALUES
-(1, 1, '180003512', 1, 'Kegiatan', '2017-06-18 13:00:00', '2017-06-18 15:15:00', '2017-06-18', '0000-00-00', 'draft', 'SKP', ''),
-(2, 118, '180004373', 3, 'laporan per 1x survey', '2017-07-24 11:00:00', '2017-07-24 16:00:00', '2017-07-24', '2017-08-19', 'terkirim', 'SKP', ''),
-(3, 335, '180005067', 5, 'laporan', '2016-08-08 10:00:00', '2016-08-08 13:47:00', '2016-08-08', '0000-00-00', 'draft', 'Umum', ''),
-(4, 320, '180002527', 10, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', '2017-08-12', 'terkirim', 'Umum', ''),
-(6, 319, '180002527', 8, 'Lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', '0000-00-00', 'draft', 'Umum', ''),
-(7, 126, '180002527', 1, 'Kegiatan', '2017-08-01 08:20:00', '2017-08-01 12:00:00', '2017-08-01', '2017-08-18', 'terkirim', 'SKP', ''),
-(8, 402, '180002997', 1, 'Kegiatan', '2017-08-07 07:30:00', '2017-08-07 09:45:00', '2017-08-07', '0000-00-00', 'draft', 'SKP', ''),
-(9, 211, '180004854', 3, 'Laporan', '2017-08-07 07:50:00', '2017-08-07 15:00:00', '2017-08-01', '0000-00-00', 'draft', 'SKP', ''),
-(10, 358, '180004854', 1, 'Kegiatan', '2017-08-03 08:00:00', '2017-08-03 10:30:00', '2017-08-03', '2017-08-12', 'terkirim', 'Umum', ''),
-(11, 353, '180003445', 3, 'Surat', '2017-07-26 10:00:00', '2017-07-26 10:37:00', '2017-07-26', '2017-07-31', 'terkirim', 'Umum', ''),
-(12, 83, '180004895', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', '0000-00-00', 'draft', 'SKP', ''),
-(13, 149, '180004895', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', '0000-00-00', 'draft', 'SKP', ''),
-(14, 264, '180002527', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', '0000-00-00', 'draft', 'Umum', ''),
-(15, 36, '180004854', 1, 'Laporan', '2017-08-10 09:30:00', '2017-08-10 11:00:00', '2017-09-11', '0000-00-00', 'draft', 'Umum', ''),
-(16, 1, '180004854', 1, 'Laporan', '2017-08-15 07:30:00', '2017-08-15 11:30:00', '2017-08-15', '2017-08-18', 'terkirim', 'SKP', ''),
-(17, 121, '180003512', 2, 'Laporan', '2017-08-18 08:30:00', '2017-08-18 10:00:00', '2017-08-18', '2017-08-21', 'terkirim', 'SKP', ''),
-(18, 56, '180003512', 1, 'Kegiatan', '2017-08-21 09:00:00', '2017-08-21 11:00:00', '2017-08-21', '2017-08-24', 'terkirim', 'SKP', ''),
-(19, 161, '180003512', 3, 'Laporan', '2017-08-18 10:00:00', '2017-08-18 12:00:00', '2017-08-21', '2017-08-25', 'terkirim', 'Umum', ''),
-(20, 206, '180002997', 1, 'Laporan', '2017-08-22 10:00:00', '2017-08-22 10:30:00', '2017-08-22', '0000-00-00', 'draft', 'SKP', ''),
-(21, 302, '180005067', 2, 'Laporan', '2017-08-04 08:30:00', '2017-08-04 12:30:00', '2017-08-04', '0000-00-00', 'draft', 'Umum', ''),
-(22, 140, '180004854', 1, 'Laporan', '2017-08-22 09:00:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'draft', 'SKP', ''),
-(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'draft', 'Tambahan', 'test'),
-(24, 447, '180004854', 1, '-', '2017-09-04 00:00:00', '2017-09-05 23:59:00', '2017-09-04', '0000-00-00', 'draft', 'Umum', 'demam'),
-(25, 445, '180003512', 1, '-', '2017-09-06 00:00:00', '2017-09-06 23:59:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test'),
-(27, 1, '180003512', 1, 'Kegiatan', '2017-09-06 06:00:00', '2017-09-06 08:00:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test'),
-(28, 1, '180003512', 1, 'Kegiatan', '2017-09-06 07:30:00', '2017-09-06 13:30:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test'),
-(29, 38, '180004854', 1, 'Laporan', '2017-09-06 10:00:00', '2017-09-06 11:00:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test');
+INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `tanggal_kirim`, `status_jurnal`, `jenis_aktivitas`, `keterangan`, `rating`) VALUES
+(1, 1, '180003512', 1, 'Kegiatan', '2017-06-18 13:00:00', '2017-06-18 15:15:00', '2017-06-18', '0000-00-00', 'draft', 'SKP', '', 0),
+(2, 118, '180004373', 3, 'laporan per 1x survey', '2017-07-24 11:00:00', '2017-07-24 16:00:00', '2017-07-24', '2017-08-19', 'terkirim', 'SKP', '', 4),
+(3, 335, '180005067', 5, 'laporan', '2016-08-08 10:00:00', '2016-08-08 13:47:00', '2016-08-08', '0000-00-00', 'draft', 'Umum', '', 0),
+(4, 320, '180002527', 10, 'lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', '2017-08-12', 'terkirim', 'Umum', '', 0),
+(6, 319, '180002527', 8, 'Lembar', '2017-08-08 09:00:00', '2017-08-08 16:00:00', '2017-08-08', '0000-00-00', 'draft', 'Umum', '', 0),
+(7, 126, '180002527', 1, 'Kegiatan', '2017-08-01 08:20:00', '2017-08-01 12:00:00', '2017-08-01', '2017-08-18', 'terkirim', 'SKP', '', 0),
+(8, 402, '180002997', 1, 'Kegiatan', '2017-08-07 07:30:00', '2017-08-07 09:45:00', '2017-08-07', '0000-00-00', 'draft', 'SKP', '', 0),
+(9, 211, '180004854', 3, 'Laporan', '2017-08-07 07:50:00', '2017-08-07 15:00:00', '2017-08-01', '0000-00-00', 'draft', 'SKP', '', 0),
+(10, 358, '180004854', 1, 'Kegiatan', '2017-08-03 08:00:00', '2017-08-03 10:30:00', '2017-08-03', '2017-08-12', 'terkirim', 'Umum', '', 0),
+(11, 353, '180003445', 3, 'Surat', '2017-07-26 10:00:00', '2017-07-26 10:37:00', '2017-07-26', '2017-07-31', 'terkirim', 'Umum', '', 0),
+(12, 83, '180004895', 1, 'Kegiatan', '2017-08-04 10:01:00', '2017-08-04 12:00:00', '2017-08-04', '0000-00-00', 'draft', 'SKP', '', 0),
+(13, 149, '180004895', 1, 'Kegiatan', '2017-08-09 11:00:00', '2017-08-09 13:00:00', '2017-08-09', '0000-00-00', 'draft', 'SKP', '', 0),
+(14, 264, '180002527', 1, 'Kegiatan', '2017-08-04 07:00:00', '2017-08-04 15:00:00', '2017-08-04', '0000-00-00', 'draft', 'Umum', '', 0),
+(15, 36, '180004854', 1, 'Laporan', '2017-08-10 09:30:00', '2017-08-10 11:00:00', '2017-09-11', '0000-00-00', 'draft', 'Umum', '', 0),
+(16, 1, '180004854', 1, 'Laporan', '2017-08-15 07:30:00', '2017-08-15 11:30:00', '2017-08-15', '2017-08-18', 'terkirim', 'SKP', '', 0),
+(17, 121, '180003512', 2, 'Laporan', '2017-08-18 08:30:00', '2017-08-18 10:00:00', '2017-08-18', '2017-08-21', 'terkirim', 'SKP', '', 0),
+(18, 56, '180003512', 1, 'Kegiatan', '2017-08-21 09:00:00', '2017-08-21 11:00:00', '2017-08-21', '2017-08-24', 'terkirim', 'SKP', '', 0),
+(19, 161, '180003512', 3, 'Laporan', '2017-08-18 10:00:00', '2017-08-18 12:00:00', '2017-08-21', '2017-08-25', 'terkirim', 'Umum', '', 0),
+(20, 206, '180002997', 1, 'Laporan', '2017-08-22 10:00:00', '2017-08-22 10:30:00', '2017-08-22', '0000-00-00', 'draft', 'SKP', '', 0),
+(21, 302, '180005067', 2, 'Laporan', '2017-08-04 08:30:00', '2017-08-04 12:30:00', '2017-08-04', '0000-00-00', 'draft', 'Umum', '', 0),
+(22, 140, '180004854', 1, 'Laporan', '2017-08-22 09:00:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'draft', 'SKP', '', 0),
+(23, 56, '180004854', 1, 'sop', '2017-08-22 07:30:00', '2017-08-22 09:30:00', '2017-08-22', '0000-00-00', 'draft', 'Tambahan', 'test', 0),
+(24, 447, '180004854', 1, '-', '2017-09-04 00:00:00', '2017-09-05 23:59:00', '2017-09-04', '0000-00-00', 'draft', 'Umum', 'demam', 0),
+(25, 445, '180003512', 1, '-', '2017-09-06 00:00:00', '2017-09-06 23:59:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test', 0),
+(27, 1, '180003512', 1, 'Kegiatan', '2017-09-06 06:00:00', '2017-09-06 08:00:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test', 0),
+(28, 1, '180003512', 1, 'Kegiatan', '2017-09-06 07:30:00', '2017-09-06 13:30:00', '2017-09-06', '0000-00-00', 'draft', 'SKP', 'test', 0),
+(29, 38, '180004854', 1, 'Laporan', '2017-09-06 10:00:00', '2017-09-06 11:00:00', '2017-09-06', '0000-00-00', 'draft', 'Umum', 'test', 0),
+(31, 24, '180004854', 1, 'kegiatan', '2017-09-20 08:00:00', '2017-09-20 08:05:00', '2017-09-20', '0000-00-00', 'draft', 'Umum', 'rapat', 3),
+(32, 1, '180004854', 1, 'kegiatan', '2016-02-12 08:00:00', '2016-02-12 08:30:00', '2017-09-20', '0000-00-00', 'draft', 'Umum', 'monitor', 0);
 
 -- --------------------------------------------------------
 
@@ -802,7 +806,7 @@ INSERT INTO `jurnal` (`id_jurnal`, `id_aktivitas`, `nip`, `volume`, `jenis_outpu
 
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
-  `nama_kategori` varchar(50) NOT NULL
+  `nama_kategori` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -825,9 +829,9 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 CREATE TABLE `user` (
   `nip` varchar(12) NOT NULL,
   `id_pegawai` varchar(20) NOT NULL,
-  `nama_pegawai` varchar(80) NOT NULL,
+  `nama_pegawai` varchar(150) NOT NULL,
   `id_jabatan` int(11) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `level` varchar(50) NOT NULL,
   `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -909,7 +913,7 @@ ALTER TABLE `aktivitas`
 -- AUTO_INCREMENT for table `hari_libur`
 --
 ALTER TABLE `hari_libur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `jabatan`
 --
@@ -919,7 +923,7 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
