@@ -128,8 +128,8 @@
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td style="width: 1px;">:</td>
 			                                    <td id="edjsTanggal"><input readonly style="background-color: white;" type="text" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
-			                                    <td id="edjsJam" style="width: 36px">
-			                                    	<div class="input-group clockpicker" style="width: 100px">
+			                                    <td id="edjsJam" style="width: 46px">
+			                                    	<div class="input-group clockpicker" style="width: 110px">
 													    <input readonly type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
@@ -143,7 +143,7 @@
 			                                    <td>:</td>
 			                                    <td><input readonly style="background-color: white;" type="text" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
-			                                    	<div class="input-group clockpicker" style="width: 100px">
+			                                    	<div class="input-group clockpicker" style="width: 110px">
 													    <input readonly type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>

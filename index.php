@@ -494,7 +494,7 @@
                   document.getElementById("labelWaktuSelesai").innerHTML = "Sampai";
                } else {
                   document.getElementById("tanggal").style.width = "3px";
-                  document.getElementById("jam").style.width = "37px";
+                  document.getElementById("jam").style.width = "47px";
                   document.getElementById("tglMulai").style.display = "none";
                   document.getElementById("tglSelesai").style.display = "none";
                   document.getElementById("labelWaktuMulai").innerHTML = "Waktu Mulai";
