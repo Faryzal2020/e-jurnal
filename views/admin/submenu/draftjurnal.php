@@ -58,7 +58,7 @@
 								</div>
 								<input id="DJSfilterType" type="hidden" value="">
 
-								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
+								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 								<div class="submitDateWrapper">
 									<label>Jurnal akan dikirim pada tanggal:</label>
 									<label class="tglKirimJurnal" id="tglKirimJurnal">
