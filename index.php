@@ -1382,6 +1382,7 @@
                               } else {
                                 alert("Gagal menambahkan account baru");
                               }
+                              location.reload();
                             }
                           });
                         } else {
