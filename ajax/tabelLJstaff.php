@@ -54,8 +54,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status Jurnal</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>";
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>";
     if($nip != $nipUser){
         echo "<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>";
     }

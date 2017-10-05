@@ -954,6 +954,7 @@
                    }
                     document.getElementById("LJSfilterType").value = rep;
                  }
+                 eventFire(document.getElementById("LJSbtn"), 'click');
                }
             }
 
@@ -1719,6 +1720,7 @@
                    }
                     document.getElementById("LJAfilterType").value = fil;
                  }
+                 eventFire(document.getElementById("LJAbtn"), 'click');
                }
             }
 
