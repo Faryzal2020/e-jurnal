@@ -9,13 +9,8 @@
             $jamMulai = date('G:i', strtotime($_POST['edjsJamMulai']));
             $jamSelesai = date('G:i', strtotime($_POST['edjsJamSelesai']));
             $cat = $_POST['edjsNamaCat2'];
-            if( $cat != "izin harian"){
-                  $tglmulai = $_POST['edjsTglJurnal'];
-                  $tglselesai = $_POST['edjsTglJurnal'];
-            } else {
-                  $tglmulai = $_POST['edjsTglMulai'];
-                  $tglselesai = $_POST['edjsTglSelesai'];
-            }
+            $tglmulai = $_POST['edjsTglMulai'];
+            $tglselesai = $_POST['edjsTglSelesai'];
             $mulai = $tglmulai .' '. $jamMulai . ':00';
             $selesai = $tglselesai .' '. $jamSelesai . ':00';
             

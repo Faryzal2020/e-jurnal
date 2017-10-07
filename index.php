@@ -11,13 +11,7 @@
    function getTglSubmit()
    {
       include("config.php");
-      if(date('d') >= '5'){
-        $date1 = date('Y-m-\5');
-        $tglsubmit = strtotime('+1 month', strtotime($date1));
-      } else {
-        $tglsubmit = strtotime(date('Y-m-\5'));
-      }
-      
+      $tglsubmit = strtotime(date('Y-m-\5'));
 
       $HLsql = "SELECT * FROM hari_libur ORDER BY end_date";
       $HLresult = mysqli_query($db,$HLsql);
@@ -37,18 +31,23 @@
         }
       }
       //$test = date("Ymd", $tglsubmit);
-      //echo '<script>console.log('.$test.')</script>';
+      //echo '<script>console.log("'.$test.'")</script>';
       $_SESSION['tglsubmit'] = $tglsubmit;
       return date("Y-m-d", $tglsubmit);
-
    }
    $nip = $_SESSION['nip'];
 
    if (isset($_SESSION['nip'])){
 
       $today = date('Y-m-d');
-      if($today == getTglSubmit()){
-        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'terkirim'";
+      $month = date('m');
+      $month2 = date('m')-1;
+      $tglSubmit = getTglSubmit();
+      if($today >= $tglSubmit){
+        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'terkirim' WHERE month(tanggal_simpan) < '$month' AND validasi = 1";
+        mysqli_query($db,$sql);
+      } else {
+        $sql = "UPDATE jurnal SET tanggal_kirim = '$today', status_jurnal = 'terkirim' WHERE month(tanggal_simpan) < '$month2' AND validasi = 1";
         mysqli_query($db,$sql);
       }
 
@@ -155,6 +154,8 @@
    <script type="text/javascript" src="js/tableExport.min.js"></script>
    <script type="text/javascript" src="js/weekPicker.js"></script>
    <script type="text/javascript" src="js/bootstrap-year-calendar.min.js"></script>
+   <script type="text/javascript" src="js/moment.js"></script>
+   <script type="text/javascript" src="js/combodate.js"></script>
    <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
     
    </head>
@@ -460,13 +461,6 @@
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                var tabel = document.getElementById("tableSJ");
                for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
-                document.getElementById("jamMulai").type = "text";
-                document.getElementById("jamMulai").value = "00:00";
-                document.getElementById("jamSelesai").type = "text";
-                document.getElementById("jamSelesai").value = "23:59";
-                document.getElementById("iconJamMulai").style.display = "";
-                document.getElementById("iconJamSelesai").style.display = "";
-                document.getElementById("tanggal").style.width = "";
                 modal.style.display = "block";
                 namaAct.innerHTML = nama;
                 durasiAct.innerHTML = durasi;
@@ -479,26 +473,26 @@
                   tabel.rows[7].style.display = "none";
                   tabel.rows[10].style.display = "none";
                   document.getElementById("volumeType").value = "-";
-                  document.getElementById("tglMulai").style.display = "";
-                  document.getElementById("tglSelesai").style.display = "";
-
-
-                  document.getElementById("jam").style.width = "130px";
-                  document.getElementById("jamMulai").type = "hidden";
+                  document.getElementById("tanggal").style.width = "190px";
+                  //document.getElementById("tglMulai").style.display = "";
+                  //document.getElementById("tglSelesai").style.display = "";
                   document.getElementById("jamMulai").value = "00:00";
-                  document.getElementById("jamSelesai").type = "hidden";
                   document.getElementById("jamSelesai").value = "23:59";
                   document.getElementById("iconJamMulai").style.display = "none";
                   document.getElementById("iconJamSelesai").style.display = "none";
-                  document.getElementById("labelWaktuMulai").innerHTML = "Dari tanggal";
-                  document.getElementById("labelWaktuSelesai").innerHTML = "Sampai";
+                  document.getElementById("waktuMulai").style.display = "none";
+                  document.getElementById("waktuSelesai").style.display = "none";
+                  document.getElementById("tanggalMulai").style.display = "";
+                  document.getElementById("tanggalSelesai").style.display = "";
                } else {
+                  document.getElementById("tanggalMulai").style.display = "none";
+                  document.getElementById("tanggalSelesai").style.display = "none";
+                  document.getElementById("iconJamMulai").style.display = "";
+                  document.getElementById("iconJamSelesai").style.display = "";
                   document.getElementById("tanggal").style.width = "3px";
-                  document.getElementById("jam").style.width = "47px";
-                  document.getElementById("tglMulai").style.display = "none";
-                  document.getElementById("tglSelesai").style.display = "none";
-                  document.getElementById("labelWaktuMulai").innerHTML = "Waktu Mulai";
-                  document.getElementById("labelWaktuSelesai").innerHTML = "Waktu Selesai";
+                  document.getElementById("jam").style.width = "88px";
+                  //document.getElementById("tglMulai").style.display = "none";
+                  //document.getElementById("tglSelesai").style.display = "none";
                   document.getElementById("volumeType").value = "";
                }
             }
@@ -963,7 +957,7 @@
                label = document.getElementById("djsbtnLabel");
                if (btn){
                  var harian = document.getElementsByClassName("DJSfilter")[0];
-                 var mingguan = document.getElementsByClassName("DJSfilter")[1];
+                 var periode = document.getElementsByClassName("DJSfilter")[1];
                  var bulanan = document.getElementsByClassName("DJSfilter")[2];
                  document.getElementById("djsContent").classList.remove("show");
                  if(t == "Bulanan"){
@@ -972,22 +966,22 @@
                     label.innerHTML = t;
                  }
 
-                 if (mingguan){
+                 if (periode){
                    if( t == 'Harian'){
                       document.getElementById("DJSbtn").style.display = "";
                       harian.style.display = "inline-block";
                       bulanan.style.display = "none";
-                      mingguan.style.display = "none";
-                   } else if( t == 'Mingguan'){
+                      periode.style.display = "none";
+                   } else if( t == 'Periode'){
                       document.getElementById("DJSbtn").style.display = "";
-                      mingguan.style.display = "inline-block";
+                      periode.style.display = "inline-block";
                       bulanan.style.display = "none";
                       harian.style.display = "none";
                    } else {
                       document.getElementById("DJSbtn").style.display = "none";
                       document.getElementById("DJSfilterType").value = t;
                       eventFire(document.getElementById("DJSbtn"), 'click');
-                      mingguan.style.display = "none";
+                      periode.style.display = "none";
                       harian.style.display = "none";
                    }
                     document.getElementById("DJSfilterType").value = t;
@@ -1082,13 +1076,13 @@
                 if ( tanggal != ""){
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
                 }
-              } else if ( filType == 'Mingguan'){
-                var tahunMinggu = document.getElementById("DJSpilihMinggu").value;
-                var split = tahunMinggu.split("-");
-                var tahun = split[0];
-                var minggu = split[1];
-                if ( tahunMinggu != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'minggu': minggu };
+              } else if ( filType == 'Periode'){
+                var awal = document.getElementById("DJSpilihAwal").value;
+                var akhir = document.getElementById("DJSpilihAkhir").value;
+                if ( awal != ""){
+                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
+                  console.log(awal)
+                  console.log(akhir)
                 }
               } else {
                 data = { 'nip': nip, 'tipeFilter': filType };
@@ -1132,35 +1126,34 @@
                       tabelEDJS.rows[5].style.display = "none";
                       tabelEDJS.rows[6].style.display = "none";
                       tabelEDJS.rows[8].style.display = "none";
-                      tabelEDJS.rows[11].style.display = "none";
+                      tabelEDJS.rows[13].style.display = "none";
                       document.getElementById("edjsTanggal").width = "";
                       document.getElementById("edjsTglMulai").style.display = "";
                       document.getElementById("edjsTglSelesai").style.display = "";
                       document.getElementById("btnGantiAct").style.display = "none";
-                      document.getElementById("edjsJamMulai").type = "hidden";
-                      document.getElementById("edjsJamSelesai").type = "hidden";
-                      document.getElementById("edjsiconJM").style.display = "none";
-                      document.getElementById("edjsiconJS").style.display = "none";
                       document.getElementById("edjsTanggal").style.width = "";
                       document.getElementById("edjsTglMulai").value = row.cells[13].innerHTML;
                       document.getElementById("edjsTglSelesai").value = row.cells[14].innerHTML;
+                      document.getElementById("edtanggalMulai").style.display = "";
+                      document.getElementById("edtanggalSelesai").style.display = "";
+                      document.getElementById("edwaktuMulai").style.display = "none";
+                      document.getElementById("edwaktuSelesai").style.display = "none";
                     } else {
                       tabelEDJS.rows[3].style.display = "";
                       tabelEDJS.rows[5].style.display = "";
                       tabelEDJS.rows[6].style.display = "";
                       tabelEDJS.rows[8].style.display = "";
-                      tabelEDJS.rows[11].style.display = "";
+                      tabelEDJS.rows[13].style.display = "";
+                      document.getElementById("edtanggalMulai").style.display = "none";
+                      document.getElementById("edtanggalSelesai").style.display = "none";
+                      document.getElementById("edwaktuMulai").style.display = "";
+                      document.getElementById("edwaktuSelesai").style.display = "";
                       document.getElementById("edjsTanggal").width = "1px";
-                      document.getElementById("edjsTglMulai").style.display = "none";
-                      document.getElementById("edjsTglSelesai").style.display = "none";
-                      document.getElementById("edjsTglJurnal").value = row.cells[13].innerHTML;
+                      var tgl = new Date(row.cells[13].innerHTML);
+                      document.getElementById("edjsTglJurnal").selectedIndex = tgl.getDay();
                       document.getElementById("btnGantiAct").style.display = "";
                       document.getElementById("edjsJamMulai").value = row.cells[7].innerHTML;
                       document.getElementById("edjsJamSelesai").value = row.cells[8].innerHTML;
-                      document.getElementById("edjsiconJM").style.display = "";
-                      document.getElementById("edjsiconJS").style.display = "";
-                      document.getElementById("edjsJamMulai").type = "text";
-                      document.getElementById("edjsJamSelesai").type = "text";
                     }
                   }
                }
@@ -1177,7 +1170,6 @@
                       alert(a);
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
-                      location.reload();
                     }
                   });
               }
@@ -1197,11 +1189,14 @@
             }
 
             function validateEDJ() {
+               var tgl = new Date();
                var cat = document.getElementById("edjsNamaCat").innerHTML;
                document.getElementById("edjsNamaCat2").value = cat;
                if( cat != "izin harian"){
-                 var tglMulai = document.forms["FormDJS"]["edjsTglJurnal"].value;
-                 var tglSelesai = document.forms["FormDJS"]["edjsTglJurnal"].value;
+                 var tglMulai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormDJS"]["edjsTglJurnal"].value;
+                 var tglSelesai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormDJS"]["edjsTglJurnal"].value;
+                 document.forms["FormDJS"]["edjsTglMulai"].value = tglMulai;
+                 document.forms["FormDJS"]["edjsTglSelesai"].value = tglSelesai;
                } else {
                  var tglMulai = document.forms["FormDJS"]["edjsTglMulai"].value;
                  var tglSelesai = document.forms["FormDJS"]["edjsTglSelesai"].value;
@@ -1240,7 +1235,6 @@
                       document.getElementsByTagName("body")[0].style.overflow = "";
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
-                      location.reload();
                       //alert("Berhasil submit jurnal");
                       //lihatDJS(document.getElementById("userNip").value);
                     }
@@ -1283,10 +1277,13 @@
             }
 
             function validateSJ() {
+               var tgl = new Date();
                var cat = document.getElementById("tcmNamaCat").innerHTML;
                if(cat != "izin harian"){
-                 var tglMulai = document.forms["FormSJ"]["tglJurnal"].value;
-                 var tglSelesai = document.forms["FormSJ"]["tglJurnal"].value;
+                 var tglMulai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormSJ"]["tglJurnal"].value;
+                 var tglSelesai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormSJ"]["tglJurnal"].value;
+                 document.forms["FormSJ"]["tglMulai"].value = tglMulai;
+                 document.forms["FormSJ"]["tglSelesai"].value = tglSelesai;
                } else {
                  var tglMulai = document.forms["FormSJ"]["tglMulai"].value;
                  var tglSelesai = document.forms["FormSJ"]["tglSelesai"].value;
@@ -1314,7 +1311,7 @@
                }
 
                if ( error == 0){
-                  alert("Berhasil submit jurnal");
+                  alert("Jurnal berhasil disimpan");
                   document.getElementById("FormSJ").submit();
                } else {
                   alert(msg);
@@ -2024,12 +2021,13 @@
              selectReport('Periode');
              getHLdata();
 
+             var tanggal = new Date();
+
              var elem = document.createElement('input');
              elem.setAttribute('type', 'date');
               if(elem){
-                $('#tglSelesai').datepicker({ dateFormat: 'yy-mm-dd', minDate: "-1m" });
-                $('#tglMulai').datepicker({ dateFormat: 'yy-mm-dd', minDate: "-1m" });
-                $('#tglJurnal').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
+                $('#tglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                $('#tglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
@@ -2037,10 +2035,11 @@
                   $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
                 } else {
-                  $('#DJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
-                  $('#edjsTglSelesai').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
-                  $('#edjsTglMulai').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
-                  $('#edjsTglJurnal').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date, minDate: '-2m' });
+                  $('#DJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#DJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#DJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   if( document.getElementById('LJApilihAwal')){
                     $('#LJApilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                     $('#LJApilihHari').datepicker({ dateFormat: 'yy-mm-dd' });

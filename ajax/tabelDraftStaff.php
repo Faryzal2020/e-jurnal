@@ -14,12 +14,12 @@ if( $tipeFilter == 'Harian'){
         AND year(j.waktu_mulai)<='$tahun' AND month(j.waktu_mulai)<='$bulan' AND day(j.waktu_mulai)<='$hari' 
         AND year(j.waktu_selesai)>='$tahun' AND month(j.waktu_selesai)>='$bulan' AND day(j.waktu_selesai)>='$hari' 
         AND j.status_jurnal = 'draft' ORDER BY date(waktu_mulai) DESC";
-} else if( $tipeFilter == 'Mingguan'){
-    $tahun = $_GET['tahun'];
-    $minggu = $_GET['minggu'];
-    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND year(j.tanggal_simpan)='$tahun' AND week(j.tanggal_simpan)='$minggu' AND j.status_jurnal = 'draft'  ORDER BY date(waktu_mulai) DESC";
+} else if( $tipeFilter == 'Periode'){
+    $awal = $_GET['awal'];
+    $akhir = date('Y-m-d',strtotime('+1 day', strtotime($_GET['akhir'])));
+    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.waktu_mulai >= '$awal' AND j.waktu_selesai <= '$akhir' AND j.status_jurnal = 'draft'  ORDER BY date(waktu_mulai) ASC";
 } else {
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' ORDER BY date(waktu_mulai) DESC";
+	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' ORDER BY date(waktu_mulai) ASC";
 
 }
 $result = mysqli_query($db, $LJSsql);
@@ -27,6 +27,7 @@ $result = mysqli_query($db, $LJSsql);
 echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
 echo "
     <tr>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tgl</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
@@ -37,21 +38,38 @@ echo "
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Mulai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
-    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:60px'><b>Edit / Delete</b></th>
     <th align='center' style='display: none;'></th>
     </tr>";
 
 if(mysqli_num_rows($result) > 0){
-    while($data = mysqli_fetch_row($result))
-    {   
+    $maxCount = date('t');
+    $counter = 0;
+    while($data = mysqli_fetch_array($result))
+    {
+        $tgl = date('j', strtotime($data[3]));
+        while($counter <= $maxCount){
+            $counter++;
+            if($counter != $tgl){
+                echo "<tr>
+                    <td align=center>$counter</td>
+                    <td colspan='12' align=center style='height:45px;'>Tidak ada Jurnal</td>
+                    </tr>";
+            } else {
+                $counter--;
+                break;
+            }
+        }
         $idJurnal = $data[0];
         $idAct = $data[11];
         $durasi = $data[12];
         $kategori = $data[9];
         $actType = $data[6];
         echo "<tr>";
+        echo "<td align=center>";
+        echo $counter+1;
+        echo "</td>";
         echo "<td align=center style=''>$idJurnal</td>";
         echo "<td align=center style='min-width: 172px;'>$data[7]</td>";
         echo "<td align=center style=''>$kategori</td>";
@@ -257,8 +275,7 @@ if(mysqli_num_rows($result) > 0){
                 break;    
         }
         $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
-        echo "<td align=center style='min-width: 115px'>$tanggal_jurnal</td>";
-        echo "<td align=center style='min-width: 150px'>$data[10]</td>";
+        echo "<td align=center style='min-width: 150px; max-width: 230px; word-wrap: break-word;'>$data[10]</td>";
     
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
@@ -271,6 +288,14 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='display: none;'>$tglMulai</td>";
         echo "<td align=center style='display: none;'>$tglSelesai</td>";
         echo "</tr>";
+    }
+    $counter++;
+    while($counter < $maxCount){
+        $counter++;
+        echo "<tr>
+                    <td>$counter</td>
+                    <td colspan='12' align=center style='height:45px;'>Tidak ada Jurnal</td>
+                    </tr>";
     }
 } else {
     echo "<tr>";

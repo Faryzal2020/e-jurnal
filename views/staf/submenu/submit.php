@@ -127,15 +127,29 @@
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input readonly style="background-color: white;" type="text" name="tglJurnal" id="tglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td colspan="3"><select name="tglJurnal" title="Tanggal anda mengerjakan aktivitas ini">
+			                                    <?php
+			                                    	for ($n = 1; $n <= date('t',strtotime('today')); $n++){
+			                                    		if(date('j') == $n){?>
+			                                    		<option selected value="<?php echo $n; ?>"><?php echo $n; ?></option>
+			                                    <?php } else { ?>
+			                                    		<option value="<?php echo $n; ?>"><?php echo $n; ?></option>
+			                                    <?php }
+			                                    	}
+			                                    ?>
+			                                    </select> <?php echo date('F Y') ?></td>
 			                                </tr>
-			                                <tr>
-			                                    <td><label id="labelWaktuMulai">Waktu Mulai</label></td>
-			                                    <td>:</td>
-			                                    <td id="tanggal"><input readonly style="background-color: white;" type="text" name="tglMulai" id="tglMulai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                <tr id=tanggalMulai>
+			                                	<td><label>Dari tanggal</label></td>
+			                                    <td style="width: 1px;">:</td>
+			                                    <td id="tanggal"><input type="hidden" name="tglMulai" id="tglMulai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr id=waktuMulai>
+			                                    <td><label>Waktu Mulai</label></td>
+			                                    <td style="width: 1px;">:</td>
 			                                    <td id="jam" style="width: 130px">
 			                                    	<div class="input-group clockpicker">
-													    <input readonly type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
+													    <input readonly type="text" class="form-control" name="jamMulai" id="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamMulai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -143,13 +157,17 @@
 												</td>
 												<td style="width: 70px"></td>
 			                                </tr>
-			                                <tr>
-			                                    <td><label id="labelWaktuSelesai">Waktu Selesai</label></td>
+			                                <tr id=tanggalSelesai>
+			                                	<td><label>Sampai</label></td>
 			                                    <td>:</td>
-			                                    <td><input readonly style="background-color: white;" type="text" name="tglSelesai" id="tglSelesai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td id="tanggal2"><input type="hidden" name="tglSelesai" id="tglSelesai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr id=waktuSelesai>
+			                                    <td><label>Waktu Selesai</label></td>
+			                                    <td>:</td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input readonly type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
+													    <input readonly type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamSelesai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>

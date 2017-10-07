@@ -55,7 +55,7 @@
 		.tab { display: none; width: 100%; }
 		.tab.active { display: block; }
 		.content{ flex: 1; }
-		.tabN{ display: block; font-weight: 500; font-size: 1.2em; padding: 40px 30px; }
+		.tabN{ display: block; font-weight: 500; font-size: 1.2em; padding: 20px 30px; }
 
 		input[type=submit] { border: 0 none; padding: 5px 15px; background: #ffbb47; cursor: pointer; box-shadow:3px 3px 0 rgba(0,0,0,.5); }
 		input[type=submit]:hover {background-color: #e2a53d; box-shadow: 0 0 0;}

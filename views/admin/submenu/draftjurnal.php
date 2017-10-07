@@ -5,20 +5,22 @@
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; semua jurnal"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">
-
 				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian"><span class="glyphicon glyphicon-chevron-right"></span> Harian </a>
-				                        <a onclick="selectDJS('Mingguan')" href="#" title="melihat jurnal berdasarkan mingguan"><span class="glyphicon glyphicon-chevron-right"></span> Mingguan </a>
+				                        <a onclick="selectDJS('Periode')" href="#" title="melihat jurnal berdasarkan rentang waktu yang ditentukan"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
 				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat semua jurnal yang belum dikirim"><span class="glyphicon glyphicon-chevron-right"></span> Semua Jurnal </a>
 				                    </div>
 				                </div>
 								<div class="DJSfilter" style="display: none">
 									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163 h30" type="text" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
+										<input id="DJSpilihHari" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
 									</div>
 								</div>
 								<div class="DJSfilter" style="display: none">
-									<div class="DJSpilihMinggu">
-										<input id="DJSpilihMinggu" class="w163 h30" type="text" value="<?php echo date('Y-W');?>" title="pilih minggu"/>
+									<div class="DJSpilihPeriode">
+										Dari:
+										<input id="DJSpilihAwal" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>"/>
+										Sampai:
+										<input id="DJSpilihAkhir" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>"/>
 									</div>
 								</div>
 				                <div class="DJSfilter" style="display: none">
@@ -59,15 +61,6 @@
 								<input id="DJSfilterType" type="hidden" value="">
 
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
-								<div class="submitDateWrapper">
-									<label>Jurnal akan dikirim pada tanggal:</label>
-									<label class="tglKirimJurnal" id="tglKirimJurnal">
-										<?php
-											$submitDate = date('d F Y', $_SESSION['tglsubmit']);
-											echo $submitDate;
-										?>
-									</label>
-								</div>
 							</div>
 						</div>
 			            <div id="tabelDJstaffContainer">
@@ -122,15 +115,26 @@
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input readonly style="background-color: white;" type="text" name="edjsTglJurnal" id="edjsTglJurnal" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td colspan="3"><select name="edjsTglJurnal" id="edjsTglJurnal" title="Tanggal anda mengerjakan aktivitas ini">
+			                                    <?php
+			                                    	for ($n = 1; $n <= date('t',strtotime('today')); $n++){ ?>
+			                                    		<option value="<?php echo $n; ?>"><?php echo $n; ?></option>
+			                                    <?php 
+			                                    	}
+			                                    ?>
+			                                    </select> <?php echo date('F Y') ?></td>
 			                                </tr>
-			                                <tr>
+			                                <tr id=edtanggalMulai>
+			                                	<td><label>Dari tanggal</label></td>
+			                                    <td>:</td>
+			                                    <td id="edjsTanggal"><input type="hidden" name="edjsTglMulai" id="edjsTglMulai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr id=edwaktuMulai>
 			                                    <td><label>Waktu Mulai</label></td>
 			                                    <td style="width: 1px;">:</td>
-			                                    <td id="edjsTanggal"><input readonly style="background-color: white;" type="text" id="edjsTglMulai" name="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                    <td id="edjsJam" style="width: 130px">
-			                                    	<div class="input-group clockpicker" style="width: 110px">
-													    <input readonly type="text" class="form-control" id="edjsJamMulai" name="edjsJamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
+			                                    	<div class="input-group clockpicker">
+													    <input readonly type="text" class="form-control" name="edjsJamMulai" id="edjsJamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJM">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -138,13 +142,17 @@
 												</td>
 												<td style="width: 70px"></td>
 			                                </tr>
-			                                <tr>
+			                                <tr id=edtanggalSelesai>
+			                                	<td><label>Sampai</label></td>
+			                                    <td>:</td>
+			                                    <td id="tanggal2"><input type="hidden" name="edjsTglSelesai" id="edjsTglSelesai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                </tr>
+			                                <tr id=edwaktuSelesai>
 			                                    <td><label>Waktu Selesai</label></td>
 			                                    <td>:</td>
-			                                    <td><input readonly style="background-color: white;" type="text" id="edjsTglSelesai" name="edjsTglSelesai" value="" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
 			                                    <td>
-			                                    	<div class="input-group clockpicker" style="width: 110px">
-													    <input readonly type="text" class="form-control" id="edjsJamSelesai" name="edjsJamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
+			                                    	<div class="input-group clockpicker">
+													    <input readonly type="text" class="form-control" name="edjsJamSelesai" id="edjsJamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="edjsiconJS">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
