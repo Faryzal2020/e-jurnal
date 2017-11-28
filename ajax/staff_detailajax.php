@@ -13,36 +13,31 @@ echo "<table border='1' class='staff_tabledata' id='staff_tabledata' cellpadding
     <button id='xlsBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to XLS</button>
     <button id='pdfBtn_staff' class='btn-default' style='padding:7px; margin-left: 5px; border-radius: 5px;'><span class='glyphicon glyphicon-floppy-save'/> Export to PDF</button>
 </caption>
-<tr>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pengerjaan</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Mulai</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status</b></th>
-<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
+<tr>    
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tanggal Kegiatan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Mulai</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Waktu Selesai</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Realisasi</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>ID Jurnal</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Nama Aktivitas</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Kategori</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Aktivitas</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Standar Waktu Pengerjaan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Status Jurnal</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
 </tr>";
 
-$totalDurasiTabel = 0;
+$totalDurasiTabel = 0;                      
 while($data = mysqli_fetch_row($detail))
 {   
     
     echo "<tr>";
-    echo "<td align=center style=''>$data[0]</td>";
-    echo "<td align=center style='min-width: 250px'>$data[7]</td>";
-    echo "<td align=center style=''>$data[9]</td>";
+    
     if ($data[9] == "izin harian"){
         
-        echo "<td align=center style=''>-</td>";
-        echo "<td align=center style=''>-</td>";
-        echo "<td align=center>-</td>";
-        echo "<td align=center style=''>-</td>";
+        
         
         $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
         $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -150,47 +145,20 @@ while($data = mysqli_fetch_row($detail))
         $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
         $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
         $lamacuti = $days + 1;
-       echo "<td align=center style=''>$waktumulai</td>";
+
+        echo "<td align=center  style=''>$waktumulai</td>";
+        echo "<td align=center style=''>$waktumulai</td>";
         echo "<td align=center style=''>$waktuselesai</td>";
         echo "<td align=center style=''>$lamacuti Hari</td>";
-        echo "<td align=center  style=''>-</td>";
+        echo "<td align=center style='min-width: 250px'>$data[7]</td>";
+        echo "<td align=center style=''>$data[9]</td>";
+        echo "<td align=center style=''>$data[0]</td>";
+        echo "<td align=center style=''>-</td>";
+        echo "<td align=center style=''>-</td>";
+        echo "<td align=center>-</td>";
+        echo "<td align=center style=''>-</td>";
     }else{
-        
-        echo "<td align=center  style=''>$data[6]</td>";
-        echo "<td align=center style=''>$data[10] Menit</td>";
-        echo "<td align=center>$data[1]</td>";
-        echo "<td align=center style=''>$data[2]</td>";
-        $dateMulai = $data[3];
-        $tanggal_mulai = date("d-m-Y", strtotime($dateMulai));
-        $jam_mulai = date("H:i", strtotime($dateMulai));
-
-        $dateSelesai = $data[4];
-        $tanggal_selesai = date("d-m-Y", strtotime($dateSelesai));
-        $jam_selesai = date("H:i", strtotime($dateSelesai));
-
-        echo "<td align=center style=''>$jam_mulai</td>";
-        echo "<td align=center style=''>$jam_selesai</td>";
-        
-        $to_time = strtotime($dateSelesai);
-        $from_time = strtotime($dateMulai);
-        $total_durasi = $to_time - $from_time;
-        if( (int)date("w", strtotime($dateMulai)) == 5 ){ // IF HARI JUMAT
-            if( $from_time < strtotime($tanggal_mulai . " 11:30:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
-                $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("11:30:00"));
-            } else {
-                $durasiKerja = $total_durasi;
-            }
-        } else {
-            if( $from_time < strtotime($tanggal_mulai . " 12:00:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
-                $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("12:00:00"));
-            } else {
-                $durasiKerja = $total_durasi;
-            }
-        }
-        $durasiKerjaMenit = $durasiKerja / 60;
-        $totalDurasiTabel += $durasiKerjaMenit;
-        
-        echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
+       
     
     $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
     $pecah_tanggal_selesai = $pecah_jam_tanggal_selesai[0];
@@ -241,6 +209,45 @@ while($data = mysqli_fetch_row($detail))
     }
     $tanggal_jurnal =$hari_jurnal." ".$namabulan_jurnal." ".$tahun_jurnal;
     echo "<td align=center style=''>$tanggal_jurnal</td>";
+        $dateMulai = $data[3];
+        $tanggal_mulai = date("d-m-Y", strtotime($dateMulai));
+        $jam_mulai = date("H:i", strtotime($dateMulai));
+
+        $dateSelesai = $data[4];
+        $tanggal_selesai = date("d-m-Y", strtotime($dateSelesai));
+        $jam_selesai = date("H:i", strtotime($dateSelesai));
+
+        echo "<td align=center style=''>$jam_mulai</td>";
+        echo "<td align=center style=''>$jam_selesai</td>";
+        
+        $to_time = strtotime($dateSelesai);
+        $from_time = strtotime($dateMulai);
+        $total_durasi = $to_time - $from_time;
+        if( (int)date("w", strtotime($dateMulai)) == 5 ){ // IF HARI JUMAT
+            if( $from_time < strtotime($tanggal_mulai . " 11:30:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("11:30:00"));
+            } else {
+                $durasiKerja = $total_durasi;
+            }
+        } else {
+            if( $from_time < strtotime($tanggal_mulai . " 12:00:00") && $to_time > strtotime($tanggal_mulai . " 13:00:00") ){
+                $durasiKerja = $total_durasi - (strtotime("13:00:00") - strtotime("12:00:00"));
+            } else {
+                $durasiKerja = $total_durasi;
+            }
+        }
+        $durasiKerjaMenit = $durasiKerja / 60;
+        $totalDurasiTabel += $durasiKerjaMenit;
+        
+        echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
+    
+        echo "<td align=center style='min-width: 250px'>$data[7]</td>";
+        echo "<td align=center style=''>$data[9]</td>";
+        echo "<td align=center style=''>$data[0]</td>";
+        echo "<td align=center  style=''>$data[6]</td>";
+        echo "<td align=center style=''>$data[10] Menit</td>";
+        echo "<td align=center>$data[1]</td>";
+        echo "<td align=center style=''>$data[2]</td>";
     }
     echo "<td align=center style=''>$data[13]</td>";
     echo "<td align=center style='min-width: 150px'>$data[11]</td>";

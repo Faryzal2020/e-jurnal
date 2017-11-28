@@ -11,17 +11,15 @@
 				                </div>
 								<div class="LJSfilter" style="display: none">
 									<div class="LJSpilihHari">
-										<input id="LJSpilihHari" class="w163" type="text" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
+										<input id="LJSpilihHari" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
 									</div>
 								</div>
 								<div class="LJSfilter" style="display: none">
-									<div class="LJSpilihPeriode">
-                                        Dari:
-										<input id="LJSpilihAwal" class="w163" type="text" value="<?php 
-										echo date('Y-m-d', strtotime("-3 month", strtotime(date('Y-m-d'))));?>" title="Masukkan tanggal awal periode yang ingin anda lihat"/>
-                                        Hingga:
-										<input id="LJSpilihAkhir" class="w163" type="text" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal akhir periode yang ingin anda lihat"/>
-
+									<div class="LJApilihPeriode">
+										Dari:
+											<input id="LJSpilihAwal" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>"/>
+										Sampai:
+											<input id="LJSpilihAkhir" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>"/>
 									</div>
 								</div>
 								<input id="LJSfilterType" type="hidden" value="">
