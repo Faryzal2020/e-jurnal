@@ -14,20 +14,22 @@
 					                        <a onclick="JAfilter('Periode')" href="#"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
 					                    </div>
 					                </div>
+					            
 									<div class="LJAfilter" style="display: none">
 										<div class="LJApilihHari">
-											<input id="LJApilihHari" class="w163 h30" type="text" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
+											<input id="LJApilihHari" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
 										</div>
+									
 									</div>
 					                <div class="LJAfilter">
 										<div class="LJApilihPeriode">
-                                            Dari:
-											<input type="text" id="LJApilihAwal" class="w163 h30" title="Masukkan tanggal awal periode yang ingin anda lihat" value="<?php echo date("Y-m-d", strtotime("-1 month", strtotime(date('Y-m-d'))));?>" />
-                                            Hingga:
-											<input type="text" id="LJApilihAkhir" class="w163 h30" title="Masukkan tanggal akhir periode yang ingin anda lihat" value="<?php echo date("Y-m-d");?>" />
-
+										Dari:
+										<input id="LJApilihAwal" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>"/>
+										Sampai:
+										<input id="LJApilihAkhir" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>"/>
 										</div>
 									</div>
+
 									<input id="LJAfilterType" type="hidden" value=""/>
 									<a class="LJAbtn" id="LJAbtn" onclick="lihatJurnalAdmin('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok"></span></a>
 								</div>
@@ -52,15 +54,15 @@
 						                </div>
 										<div class="LJSfilter" style="display: none">
 											<div class="LJSpilihHari">
-												<input id="LJSpilihHari" class="w163 h30" type="text" value="<?php echo date('Y-m-d');?>"/><div class="fa fa-calendar showCalendar" aria-hidden="true" style="cursor:pointer;margin-left: 10px;margin-top: 3px;"></div>
+												<input id="LJSpilihHari" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
 											</div>
 										</div>
 										<div class="LJSfilter" style="display: none">
-											<div class="LJSpilihPeriode">
-                                                Dari:
-												<input id="LJSpilihAwal" class="w163" type="text" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>" title="Masukkan tanggal awal periode yang ingin anda lihat"/>
-                                                Hingga:
-												<input id="LJSpilihAkhir" class="w163" type="text" value="<?php echo date('Y-m-d');?>" title="Masukkan tanggal akhir periode yang ingin anda lihat"/>
+											<div class="LJApilihPeriode">
+												Dari:
+												<input id="LJSpilihAwal" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>"/>
+												Sampai:
+												<input id="LJSpilihAkhir" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>"/>
 											</div>
 										</div>
 										<input id="LJSfilterType" type="hidden" value="">

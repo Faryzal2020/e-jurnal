@@ -2038,6 +2038,12 @@
                   $('#DJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#DJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#DJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJApilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJApilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJApilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#edjsTglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#edjsTglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   if( document.getElementById('LJApilihAwal')){
