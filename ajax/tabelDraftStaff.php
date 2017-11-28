@@ -49,17 +49,23 @@ if(mysqli_num_rows($result) > 0){
     while($data = mysqli_fetch_array($result))
     {
         $tgl = date('j', strtotime($data[3]));
-        while($counter <= $maxCount){
+        $jurnalExists = 0;
+        while($counter+1 <= $maxCount){
             $counter++;
             if($counter != $tgl){
                 echo "<tr>
                     <td align=center>$counter</td>
                     <td colspan='12' align=center style='height:45px;'>Tidak ada Jurnal</td>
                     </tr>";
+
             } else {
-                $counter--;
+                $jurnalExists = 1;
+                //$counter--;
                 break;
             }
+        }
+        if($jurnalExists == 0){
+            break;
         }
         $idJurnal = $data[0];
         $idAct = $data[11];
@@ -68,7 +74,7 @@ if(mysqli_num_rows($result) > 0){
         $actType = $data[6];
         echo "<tr>";
         echo "<td align=center>";
-        echo $counter+1;
+        echo $counter;
         echo "</td>";
         echo "<td align=center style=''>$idJurnal</td>";
         echo "<td align=center style='min-width: 172px;'>$data[7]</td>";
