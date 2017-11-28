@@ -275,8 +275,21 @@ if(mysqli_num_rows($result) > 0){
             }    
         echo "<td align=center style=''>$data[11]</td>";
         echo "<td align=center style='min-width: 190px;'>$data[10]</td>";
+        $bulanJurnal = date('j', strtotime("+3 months", strtotime($data[3])));
         if($nip != $nipUser){
             if($data[13] == 0){
+                if(date('j') == $bulanJurnal){
+                    mysqli_query($db,"UPDATE jurnal SET rating = '3' WHERE id_jurnal = '$data[0]'");
+                    echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
+                    for($i=1;$i<=5;$i++){
+                        if($i <= 3){
+                            echo "<span>★</span>";
+                        } else {
+                            echo "<span>☆</span>";
+                        }
+                    }
+                    echo "</div></td>";
+                } else {
                     if(cekAtasan($nip) == $_SESSION['nip']){
                     $ratingid = "rating-" . $data[0];
                     echo "<td align=center style='min-width: 150px'>
@@ -287,8 +300,9 @@ if(mysqli_num_rows($result) > 0){
                         <span onclick=\"giveRatingPrint('$data[0]','2','$nip')\">☆</span>
                         <span onclick=\"giveRatingPrint('$data[0]','1','$nip')\">☆</span>
                         </div><button class='ratingBtn' onclick=\"selectRating('$data[0]',this)\">Beri Rating</button></td>";
-                } else {
-                    echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
+                    } else {
+                        echo "<td align=center style='min-width: 150px'>Belum Diberikan Rating </td>";
+                    }
                 }
             } else {
                 echo "<td align=center style='min-width: 150px'><div style='font-size:180%'>";
