@@ -214,6 +214,7 @@ while($data = mysqli_fetch_row($detail))
         }
         $durasiKerjaMenit = $durasiKerja / 60;
         $totalDurasiTabel += $durasiKerjaMenit;
+        $jamtotal = floor($totalDurasiTabel / 60).' Jam '.($totalDurasiTabel -   floor($totalDurasiTabel / 60) * 60);
         echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
     
     $pecah_jam_tanggal_selesai=explode(" ",$data[4]); 
@@ -300,6 +301,6 @@ while($data = mysqli_fetch_row($detail))
 }
     
 
-echo "<tr><td colspan='14' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $totalDurasiTabel Menit</td></tr>";
+echo "<tr><td colspan='14' style='text-align: end; padding: 10px 56px;'>Total waktu kerja Per-Hari: $jamtotal Menit/ $totalDurasiTabel Menit</td></tr>";
 echo "</table>";
 ?>

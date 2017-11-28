@@ -220,6 +220,7 @@ if(mysqli_num_rows($result) > 0){
             }
             $durasiKerjaMenit = $durasiKerja / 60;
             $totalDurasiTabel += $durasiKerjaMenit;
+            $jamtotal = floor($totalDurasiTabel / 60).' Jam '.($totalDurasiTabel -   floor($totalDurasiTabel / 60) * 60);
             echo "<td align=center style=''>$durasiKerjaMenit Menit</td>";
 
             $pecah_jam_tanggal_selesai=explode(" ",$data[3]); 
@@ -303,7 +304,7 @@ if(mysqli_num_rows($result) > 0){
         }
         echo "</tr>";
     }
-    echo "<tr><td colspan='14' style='text-align: end; padding: 10px 56px;'>Total waktu kerja: $totalDurasiTabel Menit</td></tr>";
+    echo "<tr><td colspan='14' style='text-align: end; padding: 10px 56px;'>Total waktu kerja: $jamtotal Menit/ $totalDurasiTabel Menit</td></tr>";
     echo "</table>";
 } else {
     echo "
