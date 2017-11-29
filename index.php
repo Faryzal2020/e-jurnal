@@ -75,7 +75,7 @@
       $Catquery4 = mysqli_query($db,$Catsql);
       $Catquery5 = mysqli_query($db,$Catsql);
       
-      $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori FROM ajuan_aktivitas,kategori WHERE nip_pengaju=$nip AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
+      $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori FROM ajuan_aktivitas,kategori WHERE nip_pengaju=180003512 AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
       $daftarajuan = mysqli_query($db,$Sqlajuan);
       // Semua Pegawai
       $ALLsql = "SELECT user.nip,user.nama_pegawai,a.nama_jabatan as jabatan ,b.nama_jabatan as atasan,user.password FROM user,jabatan as a, jabatan as b WHERE user.level < 99 AND user.id_jabatan=a.id_jabatan AND a.atasan=b.id_jabatan ORDER BY user.nama_pegawai";
@@ -922,26 +922,17 @@
                      }
                   }
                }
-
                document.getElementById("actCountajuan").innerHTML = showCount;
-                if( showCount <= 0 ){
-                  if( catFilter == 'Pilih Kategori' && filter == ''){
-                      document.getElementById("actTableMessageajuan").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
-                  } else if( filter != '' || catFilter != ''){
+               if( showCount <= 0 ){
+                  tr[1].style.display = "";
+                  if( filter != '' || catFilter != ''){
                      document.getElementById("actTableMessageajuan").innerHTML = "No Result";
                   } else {
                      document.getElementById("actTableMessageajuan").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
                   }
-                  if(document.getElementById("btn-toolbarajuan")){
-                    document.getElementById("btn-toolbarajuan").style.display = "none";
-                  }
-                } else {
-                  if(document.getElementById("btn-toolbarajuan")){
-                    document.getElementById("btn-toolbarajuan").style.display = "";
-                  }
-                  document.getElementById("actTableMessageajuan").style.display = "none";
+               } else {
                   tr[1].style.display = "none";
-                }
+               }
             }
 
             function searchAcc() {
