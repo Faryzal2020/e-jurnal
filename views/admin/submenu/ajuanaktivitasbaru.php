@@ -25,7 +25,7 @@
 										<div class="searchIconWrapperAct">
 				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                		</div>
-					                    <input type="text" id="ajuSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;"  title="mencari aktivitas yang ingin anda input">
+					                    <input type="text" id="ajuSearch" onkeyup="searchAct3()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;"  title="mencari aktivitas yang ingin anda input">
 					                </div>
 						            Result: 
 						            <label id="actCountajuan">0</label>
@@ -52,22 +52,24 @@
 									<th style="min-width: 320px">Nama Aktivitas</th>
 									<th id="headerStandarWaktuajuan" style="min-width: 220px">Standar Waktu Pengerjaan</th>
 									<th style="min-width: 220px">Kategori</th>
+									<th style="min-width: 220px">Tanggal Pengajuan</th>
 									<th style="min-width: 130px"></th>
 								</tr>
 								<tr>
-									<td colspan="5"><label id="actTableMessageajuan" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
+									<td colspan="6"><label id="actTableMessageajuan" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
 								</tr>
 								<?php
 									while($ajuan = mysqli_fetch_array($daftarajuan)) {
 										$idajuan = $ajuan['id_ajuan'];
 										$namaAct = $ajuan['nama_aktivitas'];
 										$durasi = $ajuan['durasi'];
+										$tanggal_ajuan = $ajuan['tanggal_ajuan'];
 										$namaCateg = $ajuan['nama_kategori'];
                                         $idCateg = $ajuan['id_kategori'];
                                         
 								?>
 								<tr style="display: none">
-									<td style="text-align: center;"><?php echo $idAct; ?></td>
+									<td style="text-align: center;"><?php echo $idajuan; ?></td>
 									<td><?php echo $namaAct ?></td>
 									<?php if($namaCateg != "izin harian"){ ?>
 									<td style="text-align: center;"><?php 
@@ -81,6 +83,7 @@
 									<td style="display: none"/>
 									<?php } ?>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
+									<td style="text-align: center;"><?php echo $tanggal_ajuan ?></td>
                                     <td style="text-align: center; width: 80px;">
 										<a onclick="editAktivitas(
 											'<?php echo $idajuan; ?>',
