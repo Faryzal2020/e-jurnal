@@ -1016,17 +1016,17 @@
                searchAct2();
             }
             function selectCat3(cat) {
-               catBtn = document.getElementById("ddcBtn");
-               label = document.getElementById("ddcbtnLabel");
+               catBtn = document.getElementById("ajuBtn");
+               label = document.getElementById("ajubtnLabel");
                if(cat != 'Semua'){
                   catBtn.classList.add("selectd");
                } else {
                   cat = "Pilih Kategori";
                   catBtn.classList.remove("selectd");
                }
-               document.getElementById("ddcContent").classList.toggle("show");
+               document.getElementById("ajuContent").classList.toggle("show");
                label.innerHTML = cat;
-               searchAct();
+               searchAct3();
             }
 
 
@@ -2183,7 +2183,6 @@
                 if (document.getElementById("repContent")){
                   document.getElementById("repContent").classList.toggle("show");
                 }
-                document.getElementById("ajuContent").classList.toggle("show");
                 if (document.getElementById("ajuContent")){
                   document.getElementById("ajuContent").classList.toggle("show");
                 }
