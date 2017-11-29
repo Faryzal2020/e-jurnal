@@ -56,9 +56,19 @@
     		<ul>
 				<li class="menu-item" title="klik untuk mencetak jurnal anda dan pegawai anda berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Print Jurnal</a></li>
 			</ul>
+			<?php
+				if ($eselon == 2 || $eselon == 1){
+			?>
+			<ul>
+				<li class="menu-item" title="klik untuk mengajukan aktivitas baru kedalam sistem"><span class="glyphicon glyphicon-edit"></span><a href="#">Ajukan Aktivitas Baru</a></li>
+			</ul>
+			<?php
+				}
+			?>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="klik untuk :&#013;-Melihat profil&#013;-Mengubah password" ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
 			</ul>
+			
         </div> 
 		<div class="content">
 			<div class="tab">
@@ -81,11 +91,23 @@
 					<?php require_once "views/admin/submenu/jurnaladmin.php";?>
 				</div>
 			</div>
+			<?php
+				if ($eselon == 2 || $eselon == 1){
+			?>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/admin/submenu/ajuanaktivitasbaru.php";?>
+				</div>
+			</div>
+			<?php
+				}
+			?>
 			<div class="tab">
 				<div class="tabN">
 					<?php require_once "views/admin/submenu/profil.php";?>
 				</div>
 			</div>
+			
 		</div>
     </div>
 

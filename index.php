@@ -73,6 +73,10 @@
       $Catquery2 = mysqli_query($db,$Catsql);
       $Catquery3 = mysqli_query($db,$Catsql);
       $Catquery4 = mysqli_query($db,$Catsql);
+      $Catquery5 = mysqli_query($db,$Catsql);
+      
+      $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori FROM ajuan_aktivitas,kategori WHERE nip_pengaju=$nip AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
+      $daftarajuan = mysqli_query($db,$Sqlajuan);
       // Semua Pegawai
       $ALLsql = "SELECT user.nip,user.nama_pegawai,a.nama_jabatan as jabatan ,b.nama_jabatan as atasan,user.password FROM user,jabatan as a, jabatan as b WHERE user.level < 99 AND user.id_jabatan=a.id_jabatan AND a.atasan=b.id_jabatan ORDER BY user.nama_pegawai";
       $ALLquery = mysqli_query($db,$ALLsql);
@@ -385,6 +389,7 @@
                 }else if (!event.target.matches('.dropbtn')){
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
+                    var aju = document.getElementById("ajuContent");
                     var fil = document.getElementById("filContent");
                     var djs = document.getElementById("djsContent");
                     var pac = document.getElementById("pacContent");
@@ -415,6 +420,12 @@
                     if (ej){
                       if ( ej.classList.contains("show")){
                           ej.classList.toggle("show");
+                      }
+                    }
+
+                    if (aju){
+                      if ( aju.classList.contains("show")){
+                          aju.classList.toggle("show");
                       }
                     }
                 }
@@ -855,6 +866,83 @@
                   tr[1].style.display = "none";
                }
             }
+            function searchAct3() {
+               var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
+               catBtn = document.getElementById("ajuBtn");
+               input = document.getElementById("ajuSearch");
+               filter = input.value.toUpperCase();
+               table = document.getElementById("ajuListTable");
+               tr = table.getElementsByTagName("tr");
+
+               if(catBtn.classList.contains("selectd")){
+                  catFilter = document.getElementById("ajubtnLabel").innerHTML;
+               } else {
+                  catFilter = '';
+               }
+               for (i = 2; i < tr.length; i++){
+                  td = tr[i].getElementsByTagName("td")[1];
+                  if(td){
+                     tr[i].style.display = "none";
+                  }
+               }
+               if(filter != '' && catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     tdcat = tr[i].getElementsByTagName("td")[3];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1 && tdcat.innerHTML.indexOf(catFilter) > -1){
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+                  if(catFilter == 'izin harian'){
+                    document.getElementById("headerStandarWaktuajuan").style.display = "none";
+                  } else {
+                    document.getElementById("headerStandarWaktuajuan").style.display = "";
+                  }
+               } else if(filter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+               } else if( catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     tdcat = tr[i].getElementsByTagName("td")[3];
+                     if(tdcat){
+                        if(tdcat.innerHTML.indexOf(catFilter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+               }
+
+               document.getElementById("actCountajuan").innerHTML = showCount;
+                if( showCount <= 0 ){
+                  if( catFilter == 'Pilih Kategori' && filter == ''){
+                      document.getElementById("actTableMessageajuan").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  } else if( filter != '' || catFilter != ''){
+                     document.getElementById("actTableMessageajuan").innerHTML = "No Result";
+                  } else {
+                     document.getElementById("actTableMessageajuan").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  }
+                  if(document.getElementById("btn-toolbarajuan")){
+                    document.getElementById("btn-toolbarajuan").style.display = "none";
+                  }
+                } else {
+                  if(document.getElementById("btn-toolbarajuan")){
+                    document.getElementById("btn-toolbarajuan").style.display = "";
+                  }
+                  document.getElementById("actTableMessageajuan").style.display = "none";
+                  tr[1].style.display = "none";
+                }
+            }
 
             function searchAcc() {
                var input, filter, sbFilter, ssbBtn, table, tr, td, i, showCount = 0;
@@ -927,6 +1015,20 @@
                label.innerHTML = cat;
                searchAct2();
             }
+            function selectCat3(cat) {
+               catBtn = document.getElementById("ddcBtn");
+               label = document.getElementById("ddcbtnLabel");
+               if(cat != 'Semua'){
+                  catBtn.classList.add("selectd");
+               } else {
+                  cat = "Pilih Kategori";
+                  catBtn.classList.remove("selectd");
+               }
+               document.getElementById("ddcContent").classList.toggle("show");
+               label.innerHTML = cat;
+               searchAct();
+            }
+
 
             
             function selectReport(rep) {
@@ -2080,6 +2182,10 @@
                 document.getElementById("ddcContent").classList.toggle("show");
                 if (document.getElementById("repContent")){
                   document.getElementById("repContent").classList.toggle("show");
+                }
+                document.getElementById("ajuContent").classList.toggle("show");
+                if (document.getElementById("ajuContent")){
+                  document.getElementById("ajuContent").classList.toggle("show");
                 }
                 if (document.getElementById("filContent")){
                   document.getElementById("filContent").classList.toggle("show");
