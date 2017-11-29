@@ -25,7 +25,7 @@
 										<div class="searchIconWrapperAct">
 				                			<span id="iconSearchPeg" class="glyphicon glyphicon-search"></span>
 				                		</div>
-					                    <input type="text" id="ajuSearch" onkeyup="searchAct()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;"  title="mencari aktivitas yang ingin anda input">
+					                    <input type="text" id="ajuSearch" onkeyup="searchAct3()" placeholder="Search Aktivitas" style="width: 100%; padding-left: 10px;"  title="mencari aktivitas yang ingin anda input">
 					                </div>
 						            Result: 
 						            <label id="actCountajuan">0</label>
