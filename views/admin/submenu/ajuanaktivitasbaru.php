@@ -60,14 +60,15 @@
 									<td colspan="7"><label id="actTableMessageajuan" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
 								</tr>
 								<?php
-									while($ajuan = mysqli_fetch_array($daftarajuan)) {
-										$idajuan = $ajuan['id_ajuan'];
-										$namaAct = $ajuan['nama_aktivitas'];
-										$durasi = $ajuan['durasi'];
-										$tanggal_diajukan = $ajuan['tanggal_ajuan'];
-										$namaCateg = $ajuan['nama_kategori'];
-                                        $idCateg = $ajuan['id_kategori'];
-                                        $status_ajuan = $ajuan['status_ajuan'];
+									if($daftarajuan = mysqli_query($db,$Sqlajuan)){
+										while($ajuan = mysqli_fetch_array($daftarajuan)) {
+											$idajuan = $ajuan['id_ajuan'];
+											$namaAct = $ajuan['nama_aktivitas'];
+											$durasi = $ajuan['durasi'];
+											$tanggal_diajukan = $ajuan['tanggal_ajuan'];
+											$namaCateg = $ajuan['nama_kategori'];
+	                                        $idCateg = $ajuan['id_kategori'];
+	                                        $status_ajuan = $ajuan['status_ajuan'];
 								?>
 								<tr style="display: none">
 									<td style="text-align: center;" hidden=""><?php echo $idajuan; ?></td>
@@ -143,6 +144,7 @@
 									</td>
 								</tr>
 								<?php
+										}
 									}
 								?>
 							</table>

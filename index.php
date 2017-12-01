@@ -78,7 +78,7 @@
       $Catquery7 = mysqli_query($db,$Catsql);
       //melihat aktivitas yang diajukan pegawai yang bersangkutan
       $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori,status_ajuan FROM ajuan_aktivitas,kategori WHERE nip_pengaju=180003512 AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
-      $daftarajuan = mysqli_query($db,$Sqlajuan);
+      
       //melihat semua aktivitas yang diajukan
       $Sqlajuanadmin = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, user.nama_pegawai, tanggal_ajuan,kategori.nama_kategori,status_ajuan FROM ajuan_aktivitas,kategori,user WHERE kategori.id_kategori=ajuan_aktivitas.id_kategori AND user.nip=ajuan_aktivitas.nip_pengaju";
       $daftarajuanadmin = mysqli_query($db,$Sqlajuanadmin);
@@ -435,6 +435,7 @@
                     var ddc = document.getElementById("ddcContent");
                     var rep = document.getElementById("repContent");
                     var aju = document.getElementById("ajuContent");
+                    var vj = document.getElementById("vjContent");
                     var fil = document.getElementById("filContent");
                     var djs = document.getElementById("djsContent");
                     var pac = document.getElementById("pacContent");
@@ -467,7 +468,11 @@
                           ej.classList.toggle("show");
                       }
                     }
-
+                    if (vj){
+                      if ( vj.classList.contains("show")){
+                          vj.classList.toggle("show");
+                      }
+                    }
                     if (aju){
                       if ( aju.classList.contains("show")){
                           aju.classList.toggle("show");
@@ -1449,7 +1454,6 @@
                }
 
                if ( error == 0){
-                  alert(tglMulai + " " + jamMulai + " " + jamSelesai);
                   $.ajax({
                     dataType: 'html',
                     url:'ajax/cekkonflikjurnal.php',
@@ -1674,6 +1678,39 @@
                                 alert("Aktivitas yang diajukan telah Diubah");
                         }
               }
+
+            function selectVJ(type, text){
+              var date = new Date();
+              var nip = document.getElementById("userNip").innerHTML;
+              document.getElementById("vjbtnLabel").innerHTML = text;
+              document.getElementById("VJpilihHari").style.display = "none";
+              document.getElementById("VJbtn").style.display = "none";
+              if(type == "today"){
+                loadTabelVJ('today', date.getDate());
+              } else if(type == "bulan"){
+                loadTabelVJ('month', date.getMonth());
+              } else {
+                document.getElementById("VJpilihHari").style.display = "block";
+                document.getElementById("VJbtn").style.display = "block";
+              }
+            }
+
+            function loadTabelVJ(type, date){
+              if(type == 'day'){
+                var date = document.getElementById("VJselectDay").value;
+              } else if(type == 'today'){
+                type = 'day';
+              }
+              $.ajax({
+                dataType: 'html',
+                url:'ajax/getTabelVJ.php',
+                method:'POST',
+                data : {'type':type,'date':date},
+                success:function(response){
+                  document.getElementById("tabelVJContainer").innerHTML = response;
+                }
+              });
+            }
 
             function lihatJurnal(nip, nama) {
               document.getElementById("modalLJ").style.display = "block";
@@ -2268,6 +2305,7 @@
              JAfilter('Periode');
              selectDJS('Bulanan');
              selectReport('Periode');
+             selectVJ('today', 'Hari ini');
              getHLdata();
 
              var tanggal = new Date();
@@ -2329,6 +2367,9 @@
                 document.getElementById("ddcContent").classList.toggle("show");
                 if (document.getElementById("repContent")){
                   document.getElementById("repContent").classList.toggle("show");
+                }
+                if (document.getElementById("vjContent")){
+                  document.getElementById("vjContent").classList.toggle("show");
                 }
                 if (document.getElementById("ajuContent")){
                   document.getElementById("ajuContent").classList.toggle("show");

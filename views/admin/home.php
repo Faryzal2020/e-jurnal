@@ -56,6 +56,9 @@
     		<ul>
 				<li class="menu-item" title="klik untuk mencetak jurnal anda dan pegawai anda berdasarkan :&#013;-Harian &#91;perhari&#93;&#013;-Periode &#91;perjenjang waktu yang dipilih&#93; " ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Print Jurnal</a></li>
 			</ul>
+			<ul>
+				<li class="menu-item" title="validasi jurnal milik bawahan anda" ><span class="glyphicon glyphicon-list-alt"></span><a href="#" >Validasi Jurnal</a></li>
+			</ul>
 			<?php
 				if ($eselon == 2 || $eselon == 1){
 			?>
@@ -89,6 +92,11 @@
 			<div class="tab">
 				<div class="tabN">
 					<?php require_once "views/admin/submenu/jurnaladmin.php";?>
+				</div>
+			</div>
+			<div class="tab">
+				<div class="tabN">
+					<?php require_once "views/admin/submenu/validasijurnal.php";?>
 				</div>
 			</div>
 			<?php
