@@ -104,7 +104,7 @@
             $selesai = $_POST['tglSelesai'] .' '. $_POST['jamSelesai'] . ':00';
             $tgljurnal = date("Y-m-d");
             $acttype = $_POST['actType'];
-            $ket = $_POST['keterangan'];
+            $ket = $_POST['SJketerangan'];
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `status_jurnal`, `jenis_aktivitas`, `keterangan`)  
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','draft','$acttype','$ket')";
             mysqli_query($db,$SJsql);
@@ -1208,7 +1208,8 @@
 
             function lihatDJS(nip){
               var bulan = document.getElementById("DJSpilihBulan").value;
-              data = { 'nip': nip, 'bulan': bulan };
+              var tahun = document.getElementById("DJSpilihTahun").value;
+              data = { 'nip': nip, 'bulan': bulan, 'tahun': tahun };
               $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
                 url: "ajax/tabelDraftStaff.php",             
@@ -1270,8 +1271,7 @@
                         document.getElementById("edwaktuMulai").style.display = "";
                         document.getElementById("edwaktuSelesai").style.display = "";
                         document.getElementById("edjsTanggal").width = "1px";
-                        var tgl = row.cells[0].innerHTML;
-                        document.getElementById("edjsTglJurnal").selectedIndex = tgl-1;
+                        $(document.getElementById("edjsTglJurnal")).combodate('setValue', row.cells[11].innerHTML);
                         document.getElementById("btnGantiAct").style.display = "";
                         document.getElementById("edjsJamMulai").value = row.cells[1].innerHTML;
                         document.getElementById("edjsJamSelesai").value = row.cells[2].innerHTML;
@@ -1313,10 +1313,11 @@
             function validateEDJ() {
                var tgl = new Date();
                var cat = document.getElementById("edjsNamaCat").innerHTML;
+               var idj = document.getElementById("EDJSidJ").value;
                document.getElementById("edjsNamaCat2").value = cat;
                if( cat != "izin harian"){
-                 var tglMulai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormDJS"]["edjsTglJurnal"].value;
-                 var tglSelesai = tgl.getFullYear() + "-" + (tgl.getMonth()+1) + "-" + document.forms["FormDJS"]["edjsTglJurnal"].value;
+                 var tglMulai = document.forms["FormDJS"]["edjsTglJurnal"].value;
+                 var tglSelesai = document.forms["FormDJS"]["edjsTglJurnal"].value;
                  document.forms["FormDJS"]["edjsTglMulai"].value = tglMulai;
                  document.forms["FormDJS"]["edjsTglSelesai"].value = tglSelesai;
                } else {
@@ -1345,8 +1346,28 @@
                   }
                }
                if ( error == 0){
-                  //document.getElementById("FormDJS").submit();
                   $.ajax({
+                    dataType: 'html',
+                    url:'ajax/cekkonflikjurnal.php',
+                    async: false,
+                    method:'post',
+                    data : {'edit':'true','idjurnal':idj,'cat':cat,'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai,'tglSelesai':tglSelesai},
+                    success:function(response){
+                      if(response == 'y'){
+                        submitEDJ();
+                      } else {
+                        alert("Sudah ada jurnal yang disimpan pada waktu yang dipilih, "+response);
+                      }
+                    }
+                  });
+                  
+               } else {
+                  alert(msg);
+               }
+            }
+
+            function submitEDJ(){
+              $.ajax({
                     dataType: 'html',
                     url:'ajax/editJurnalStaff.php',
                     method:'post',
@@ -1357,13 +1378,8 @@
                       document.getElementsByTagName("body")[0].style.overflow = "";
                       document.getElementById("tabelDJstaffContainer").innerHTML = "";
                       eventFire(document.getElementById("DJSbtn"), 'click');
-                      //alert("Berhasil submit jurnal");
-                      //lihatDJS(document.getElementById("userNip").value);
                     }
-                  });
-               } else {
-                  alert(msg);
-               }
+              });
             }
 
             function submitDraftS(){
@@ -1413,7 +1429,7 @@
                var volumetype = document.forms["FormSJ"]["volumeType"].value;
                var jamMulai = document.forms["FormSJ"]["jamMulai"].value;
                var jamSelesai = document.forms["FormSJ"]["jamSelesai"].value;
-               var keterangan = document.forms["FormSJ"]["keterangan"].value;
+               var keterangan = document.forms["FormSJ"]["SJketerangan"].value;
                var error = 0;
                var msg;
                if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
@@ -1438,7 +1454,7 @@
                     url:'ajax/cekkonflikjurnal.php',
                     async: false,
                     method:'post',
-                    data : { 'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai},
+                    data : {'cat':cat,'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai},
                     success:function(response){
                       if(response == 'y'){
                         alert("Jurnal berhasil disimpan");
@@ -2310,6 +2326,7 @@
                   $('#LJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglJurnal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#edjsTglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#edjsTglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   if( document.getElementById('LJApilihAwal')){

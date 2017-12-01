@@ -3,7 +3,8 @@ include("../config.php");
 
 $nip = $_GET['nip'];
 $bulan = $_GET['bulan'];
-$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' AND month(j.waktu_mulai) = '$bulan' ORDER BY date(waktu_mulai) ASC";
+$tahun = $_GET['tahun'];
+$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' AND month(j.waktu_mulai) = '$bulan' AND year(j.waktu_mulai) = '$tahun' ORDER BY date(waktu_mulai) ASC";
 $result = mysqli_query($db, $LJSsql);
 
 echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
