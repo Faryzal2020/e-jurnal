@@ -74,9 +74,14 @@
       $Catquery3 = mysqli_query($db,$Catsql);
       $Catquery4 = mysqli_query($db,$Catsql);
       $Catquery5 = mysqli_query($db,$Catsql);
-      
-      $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori FROM ajuan_aktivitas,kategori WHERE nip_pengaju=180003512 AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
+      $Catquery6 = mysqli_query($db,$Catsql);
+      $Catquery7 = mysqli_query($db,$Catsql);
+      //melihat aktivitas yang diajukan pegawai yang bersangkutan
+      $Sqlajuan = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, nip_pengaju, tanggal_ajuan,kategori.nama_kategori,status_ajuan FROM ajuan_aktivitas,kategori WHERE nip_pengaju=180003512 AND kategori.id_kategori=ajuan_aktivitas.id_kategori";
       $daftarajuan = mysqli_query($db,$Sqlajuan);
+      //melihat semua aktivitas yang diajukan
+      $Sqlajuanadmin = "SELECT id_ajuan, ajuan_aktivitas.id_kategori, nama_aktivitas, durasi, user.nama_pegawai, tanggal_ajuan,kategori.nama_kategori,status_ajuan FROM ajuan_aktivitas,kategori,user WHERE kategori.id_kategori=ajuan_aktivitas.id_kategori AND user.nip=ajuan_aktivitas.nip_pengaju";
+      $daftarajuanadmin = mysqli_query($db,$Sqlajuanadmin);
       // Semua Pegawai
       $ALLsql = "SELECT user.nip,user.nama_pegawai,a.nama_jabatan as jabatan ,b.nama_jabatan as atasan,user.password FROM user,jabatan as a, jabatan as b WHERE user.level < 99 AND user.id_jabatan=a.id_jabatan AND a.atasan=b.id_jabatan ORDER BY user.nama_pegawai";
       $ALLquery = mysqli_query($db,$ALLsql);
@@ -121,6 +126,23 @@
             $durasi = $_POST['inputdurasi'];
             $updateact = "update aktivitas SET id_kategori='$kategori', nama_aktivitas='$aktivitas' , durasi='$durasi' WHERE id_aktivitas ='$idaktivitas'" ;
             mysqli_query($db,$updateact);
+         } else if( !empty($_POST['aktivitas_ajuan'])){
+            $aktivitas = $_POST['aktivitas_ajuan'];
+            $kategori = $_POST['kategori_ajuan'];
+            $durasi = $_POST['durasi_ajuan'];
+            $status_ajuan = $_POST['status_ajuan'];
+            $tanggal_ajuan = $_POST['tanggal_ajuan'];
+            $nip=$nip;
+            $insertajuan = "INSERT INTO ajuan_aktivitas(id_kategori, nama_aktivitas, durasi,nip_pengaju,tanggal_ajuan,status_ajuan) VALUES ('$kategori','$aktivitas','$durasi','$nip','$tanggal_ajuan','$status_ajuan')";
+            mysqli_query($db,$insertajuan);
+         } else if( !empty($_POST['id_ajuan'])){
+            $aktivitas = $_POST['inputaktivitasajuan'];
+            $idajuan = $_POST['id_ajuan'];
+            $kategori = $_POST['input_idkategoriajuan'];
+            $durasi = $_POST['inputdurasiajuan'];
+            $status_ajuan = $_POST['status_ajuan'];
+            $updateajuan = "update ajuan_aktivitas SET id_kategori='$kategori', nama_aktivitas='$aktivitas' , durasi='$durasi',status_ajuan='$status_ajuan' WHERE id_ajuan ='$idajuan'" ;
+            mysqli_query($db,$updateajuan);
          }
         Redirect('index.php');
         }
@@ -216,10 +238,14 @@
             var closeTA = document.getElementsByClassName("TAclose")[0];
             var modalKal = document.getElementById("ModalKal");
             var closeKal = document.getElementsByClassName("Kalclose")[0];
+            var modalactajuan = document.getElementById("ModalActajuan");
+            var closeActajuan = document.getElementsByClassName("Actcloseajuan")[0];
             var modalact = document.getElementById("ModalAct");
             var closeAct = document.getElementsByClassName("Actclose")[0];
             var modalEact = document.getElementById("ModalEact");
             var closeEAct = document.getElementsByClassName("EActclose")[0];
+            var modalEactajuan = document.getElementById("ModalEactajuan");
+            var closeEActajuan = document.getElementsByClassName("EActcloseajuan")[0];
             var modalTJ = document.getElementById("ModalTJ");
             var closeTJ = document.getElementsByClassName("TJclose")[0];
             var modalEJ = document.getElementById("ModalEJ");
@@ -304,9 +330,22 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+
+            if ( typeof closeActajuan != 'undefined' ){
+              closeActajuan.onclick = function() {
+                modalactajuan.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             if ( typeof closeEAct != 'undefined' ){
               closeEAct.onclick = function() {
                 modalEact.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
+            if ( typeof closeEActajuan != 'undefined' ){
+              closeEActajuan.onclick = function() {
+                modalEactajuan.style.display = "none";
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
@@ -327,7 +366,7 @@
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalEact || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalactajuan || event.target == modalEact || event.target == modalEactajuan || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -352,8 +391,14 @@
                     if(modalact){
                       modalact.style.display = "none";
                     }
+                    if(modalactajuan){
+                      modalactajuan.style.display = "none";
+                    }
                     if(modalEact){
                       modalEact.style.display = "none";
+                    }
+                    if(modalEactajuan){
+                      modalEactajuan.style.display = "none";
                     }
                     if(modalTJ){
                       modalTJ.style.display = "none";
@@ -1555,11 +1600,39 @@
                  var aktivitas = document.forms['FormTA_Act']['aktivitas'].value;
                  var kategori = document.forms['FormTA_Act']['kategori'].value;
                  var durasi = document.forms['FormTA_Act']['durasi'].value;
-                 if (aktivitas == "" || kategori == "" || durasi=="")                 {
+                 if (kategori==5)
+                 {
+                    var durasinya = 0;
+                 }else{
+                    var durasinya = null;
+                 } 
+                 console.log(aktivitas+kategori+durasinya);
+                 if (aktivitas == "" || kategori == "" || durasinya==null)                 {
                      alert("Semua kolom harus diisi");
                  } else {
                                 document.getElementById("FormTA_Act").submit();
                                 alert("Aktivitas Baru telah Ditambahkan");
+                        }
+              }
+
+            function validateTA_ActAjuan(){
+                 var aktivitas = document.forms['FormTA_Actajuan']['aktivitas_ajuan'].value;
+                 var kategori = document.forms['FormTA_Actajuan']['kategori_ajuan'].value;
+                 var durasi = document.forms['FormTA_Actajuan']['durasi_ajuan'].value;
+                 var tanggal_ajuan = document.forms['FormTA_Actajuan']['tanggal_ajuan'].value;
+                 var status_ajuan = document.forms['FormTA_Actajuan']['status_ajuan'].value;
+                 if (kategori==5)
+                 {
+                    var durasinya = 0;
+                 }else{
+                    var durasinya = null;
+                 } 
+                 console.log(aktivitas+kategori+durasinya);
+                 if (aktivitas == "" || kategori == "" || durasinya==null)                 {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                                document.getElementById("FormTA_Actajuan").submit();
+                                alert("Aktivitas Baru telah Diajukan");
                         }
               }
             function validateTA_EAct(){
@@ -1572,6 +1645,19 @@
                  } else {
                                 document.getElementById("FormTA_EAct").submit();
                                 alert("Aktivitas telah Diubah");
+                        }
+              }
+            function validateTA_EActajuan(){
+                 var id_ajuan = document.forms['FormTA_EActajuan']['id_ajuan'].value;
+                 var aktivitas = document.forms['FormTA_EActajuan']['inputaktivitasajuan'].value;
+                 var kategori = document.forms['FormTA_EActajuan']['input_idkategoriajuan'].value;
+                 var durasi = document.forms['FormTA_EActajuan']['inputdurasiajuan'].value;
+                 var status_ajuan = document.forms['FormTA_Actajuan']['status_ajuan'].value;
+                 if (id_ajuan == "" || aktivitas == "" || kategori == "" || durasi=="")                 {
+                     alert("Semua kolom harus diisi");
+                 } else {
+                                document.getElementById("FormTA_EActajuan").submit();
+                                alert("Aktivitas yang diajukan telah Diubah");
                         }
               }
 
@@ -1673,7 +1759,7 @@
             }
 
 
-             function editAktivitas(id_aktivitas, nama_aktivitas, durasi, id_kategori){
+            function editAktivitas(id_aktivitas, nama_aktivitas, durasi, id_kategori){
               document.getElementById("ModalEact").style.display = "block";
               document.getElementById("labelaktivitas").innerHTML = nama_aktivitas;
               document.getElementById("id_aktivitas").value = id_aktivitas;
@@ -1682,7 +1768,28 @@
               document.getElementById("input_idkategori").value = id_kategori;
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
             }
-             function deleteAktivitas(id_aktivitas){
+            function editAktivitasajuan(id_ajuan, nama_aktivitas, durasi, id_kategori){
+              console.log(id_ajuan + nama_aktivitas + durasi + id_kategori );
+              document.getElementById("ModalEactajuan").style.display = "block";
+              document.getElementById("labelaktivitasajuan").innerHTML = nama_aktivitas;
+              document.getElementById("id_ajuan").value = id_ajuan;
+              document.getElementById("inputaktivitasajuan").value = nama_aktivitas;
+              document.getElementById("inputdurasiajuan").value = durasi;
+              document.getElementById("input_idkategoriajuan").value = id_kategori;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+            }
+            function editAktivitasajuanadmin(id_ajuan, nama_aktivitas, durasi, id_kategori,status_ajuan){
+              console.log(id_ajuan + nama_aktivitas + durasi + id_kategori + status_ajuan);
+              document.getElementById("ModalEactajuan").style.display = "block";
+              document.getElementById("labelaktivitasajuan").innerHTML = nama_aktivitas;
+              document.getElementById("id_ajuan").value = id_ajuan;
+              document.getElementById("inputaktivitasajuan").value = nama_aktivitas;
+              document.getElementById("inputdurasiajuan").value = durasi;
+              document.getElementById("input_idkategoriajuan").value = id_kategori;
+              document.getElementById("status").value = status_ajuan;
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+            }
+            function deleteAktivitas(id_aktivitas){
                data = { 'id_aktivitas':id_aktivitas };
                   alert("Menghapus Aktivitas");
                   var jurnalExists = true;
@@ -1711,6 +1818,35 @@
                   });
             }
 
+            function deleteAktivitasajuan(id_ajuan){
+               data = { 'id_ajuan':id_ajuan };
+               console.log(data);
+                  $.ajax({
+                          dataType: 'html',
+                          url:'ajax/hapusajuan.php',
+                          method:'post',
+                          data : data,
+                          success:function(){
+                          alert("Berhasil menghapus ajuan aktivitas yang dipilih");
+                          location.reload();
+                                    }
+                  });
+            }
+
+            function aktivitasoke(id_ajuan,nama_aktivitas,durasi,id_kategori){
+               data = { 'id_ajuan':id_ajuan,'nama_aktivitas':nama_aktivitas,'durasi':durasi,'id_kategori':id_kategori, };
+               console.log(data);
+                  $.ajax({
+                          dataType: 'html',
+                          url:'ajax/ajuaninputdb.php',
+                          method:'post',
+                          data : data,
+                          success:function(){
+                          alert("Berhasil memasukkan aktivitas ajuan ke database");
+                          location.reload();
+                                    }
+                  });
+            }
             function selectJA(type, jabatan){
               var btn1 = document.getElementById("pjBtn1");
               var btn2 = document.getElementById("pjBtn2");
@@ -2031,6 +2167,12 @@
             }
             function Actform(){
               document.getElementById("ModalAct").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+
+            }
+
+            function Actformajuan(){
+              document.getElementById("ModalActajuan").style.display = "block";
               document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
             }

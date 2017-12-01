@@ -50,7 +50,7 @@
 								<tr>
 									<th style="min-width: 60px">No</th>
 									<th style="min-width: 320px">Nama Aktivitas</th>
-									<th id="headerStandarWaktu" style="min-width: 220px">Standar Waktu Pengerjaan</th>
+									<th style="min-width: 220px">Standar Waktu Pengerjaan</th>
 									<th style="min-width: 220px">Kategori</th>
 									<th style="min-width: 130px"></th>
 								</tr>
@@ -78,8 +78,8 @@
 										}
 									?></td>
 									<?php } else { ?>
-									<td style="display: none"/>
-									<?php } ?>
+									<td style="text-align: center;">
+									<?php echo "-"; } ?>
 									<td style="text-align: center;"><?php echo $namaCateg ?></td>
                                     <td style="text-align: center; width: 80px;">
 										<a onclick="editAktivitas(

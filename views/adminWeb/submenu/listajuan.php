@@ -29,9 +29,9 @@
 					                </div>
 						            Result: 
 						            <label id="actCountajuan">0</label>
-                                     <div class="tambahAktivitas">
+                                     <!--<div class="tambahAktivitas">
 						            	<button id="TAact" class="TAact" onclick="Actformajuan()" title="Tambah Aktivitas Baru" style="height: 50px; width: 54px;"><span class="glyphicon glyphicon-plus"></span></button>
-						            </div>
+						            </div>-->
 				                </div>
 							</div>
 						</div>
@@ -49,10 +49,11 @@
 			                    </div>
 								<tr>
 									
-									<th style="min-width: 320px">Nama Aktivitas</th>
-									<th id="headerStandarWaktuajuan" style="min-width: 100px">Standar Waktu Pengerjaan</th>
-									<th style="min-width: 220px">Kategori</th>
+									<th style="min-width: 250px">Nama Aktivitas</th>
+									<th style="min-width: 100px">Standar Waktu Pengerjaan</th>
+									<th style="min-width: 120px">Kategori</th>
 									<th style="min-width: 220px">Tanggal Pengajuan</th>
+									<th style="min-width: 220px">Pemilik</th>
 									<th style="min-width: 220px">Message</th>
 									<th style="min-width: 130px"></th>
 								</tr>
@@ -60,9 +61,10 @@
 									<td colspan="7"><label id="actTableMessageajuan" style="font-weight:normal; margin: auto">Mulai pencarian dengan mengetik pada kolom search atau pilih kategori</label></td>
 								</tr>
 								<?php
-									while($ajuan = mysqli_fetch_array($daftarajuan)) {
+									while($ajuan = mysqli_fetch_array($daftarajuanadmin)) {
 										$idajuan = $ajuan['id_ajuan'];
 										$namaAct = $ajuan['nama_aktivitas'];
+										$pemilik = $ajuan['nama_pegawai'];
 										$durasi = $ajuan['durasi'];
 										$tanggal_diajukan = $ajuan['tanggal_ajuan'];
 										$namaCateg = $ajuan['nama_kategori'];
@@ -130,16 +132,24 @@
 									            }
 									            $tanggal_ajuan =$hari_ajuan." ".$namabulan_ajuan." ".$tahun_ajuan;?>
 									<td style="text-align: center;"><?php echo $tanggal_ajuan ?></td>
+									<td style="text-align: center;"><?php echo $pemilik ?></td>
 									<td style="text-align: center;"><?php echo $status_ajuan ?></td>
                                     <td style="text-align: center; width: 80px;">
-										<a onclick="editAktivitasajuan(
+										<a onclick="editAktivitasajuanadmin(
+											'<?php echo $idajuan; ?>',
+											'<?php echo $namaAct; ?>',
+											'<?php echo $durasi; ?>',
+											'<?php echo $idCateg; ?>',
+											'<?php echo $status_ajuan; ?>'
+										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit Aktivitas"></span></a>
+										<a class="deleteDJBtn" onclick="deleteAktivitasajuan('<?php echo $idajuan; ?>')" style="display: inline; font-size: 1.5em;">
+                    					   <span class="glyphicon glyphicon-trash" title="Hapus Aktivitas"></span></a>
+                    					<a onclick="aktivitasoke(
 											'<?php echo $idajuan; ?>',
 											'<?php echo $namaAct; ?>',
 											'<?php echo $durasi; ?>',
 											'<?php echo $idCateg; ?>'
-										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-edit" title="Edit Aktivitas"></span></a>
-										<a class="deleteDJBtn" onclick="deleteAktivitasajuan('<?php echo $idajuan; ?>')" style="display: inline; font-size: 1.5em;">
-                    					   <span class="glyphicon glyphicon-trash" title="Hapus Aktivitas"></span></a>
+										)" style="display: inline; font-size: 1.5em;"><span class="glyphicon glyphicon-ok" title="Masukkan Aktivitas ke dalam Database"></span></a>
 									</td>
 								</tr>
 								<?php
@@ -174,13 +184,27 @@
 			                                    </select> </td>
 			                                </tr>
 			                                <tr>
-			                                	<td><label>Waktu Efektif</label></td>
+			                                	<td><label>Standar Waktu Pengerjaan</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasiajuan" name="inputdurasiajuan" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
 			                                </tr>
 			                                <tr>
-			                                	<input style="width: 70%" type="hidden" name="status_ajuan" value="belum dikonfirmasi"  >
-			                                	<input type="hidden" name="tanggal_ajuan" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" >
+			                                	<td><label>Message</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><select name="status_ajuan"  title="masukkan kategori dari aktivitas">
+                                                	<option value="Belum dikonfirmasi">Belum dikonfirmasi</option>
+			                                    	<option value="Akan segera dimasukkan ke Database">Akan segera dimasukkan ke Database</option>
+			                                    	<option value="Aktivitas Sudah Ada">Aktivitas Sudah Ada</option>
+			                                    	<option value="Perlu Revisi di Nama Aktivitas">Perlu Revisi di Nama Aktivitas</option>
+			                                    	<option value="Perlu Revisi di Kategori">Perlu Revisi di Kategori</option>
+			                                    	<option value="Perlu Revisi di Standar Waktu Pengerjaan">Perlu Revisi di Standar Waktu Pengerjaan</option>
+			                                    	<option value="Perlu Revisi di Nama Aktivitas dan Kategori">Perlu Revisi di Nama Aktivitas dan Kategori</option>
+			                                    	<option value="Perlu Revisi di Nama Aktivitas dan Standar Waktu Pengerjaan">Perlu Revisi di Nama Aktivitas dan Standar Waktu Pengerjaan</option>
+			                                    	<option value="Perlu Revisi di Kategori dan Standar Waktu Pengerjaan">Perlu Revisi di Kategori dan Standar Waktu Pengerjaan</option>
+			                                    	<option value="Perlu Revisi di Nama Aktivitas,Kategori, dan Standar Waktu Pengerjaan">Perlu Revisi di Nama Aktivitas, Kategori, dan Standar Waktu Pengerjaan</option>
+			                                    	
+			                                    	
+			                                    </select> </td>
 			                                </tr>
 			                                <tr>
 			                                    <td colspan="5" align="right" style="height: 40px; padding: 10px; padding-top: 20px"><a name="TASubmit" class="TAbtnSubmit" onclick="validateTA_EActajuan()" title="Simpan Perubahan">Submit</a></td>
@@ -304,7 +328,7 @@
 			                                    </select> </td>
 			                                </tr>
 			                                <tr>
-			                                	<td><label>Waktu Efektif</label></td>
+			                                	<td><label>Standar Waktu Pengerjaan</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input style="width: 70%" type="text" id="inputdurasi" name="durasi_ajuan" value=""  title="masukkan durasi waktu efektif dari aktivitas yang dibuat"> Menit</td>
 			                                </tr>
