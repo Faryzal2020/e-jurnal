@@ -1,7 +1,7 @@
 				<div class="tabContent">
 					<div class="tCWrapper">
-						<div class="tCheader">
-							<div class="tchbox relative">
+						<div class="tCheader" style="margin-bottom: -86px;">
+							<div class="tchbox relative" style="display: none;">
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; semua jurnal"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="djsContent">

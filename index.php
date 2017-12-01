@@ -1449,8 +1449,22 @@
                }
 
                if ( error == 0){
-                  alert("Jurnal berhasil disimpan");
-                  document.getElementById("FormSJ").submit();
+                  alert(tglMulai + " " + jamMulai + " " + jamSelesai);
+                  $.ajax({
+                    dataType: 'html',
+                    url:'ajax/cekkonflikjurnal.php',
+                    async: false,
+                    method:'post',
+                    data : { 'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai},
+                    success:function(response){
+                      if(response == 'y'){
+                        alert("Jurnal berhasil disimpan");
+                        document.getElementById("FormSJ").submit();
+                      } else {
+                        alert("Sudah ada jurnal yang disimpan pada waktu yang dipilih, "+response);
+                      }
+                    }
+                  });
                } else {
                   alert(msg);
                }
