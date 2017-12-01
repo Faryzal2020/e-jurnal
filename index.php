@@ -252,6 +252,10 @@
             var closeEJ = document.getElementsByClassName("EJclose")[0];
             var lihat_pegawai = document.getElementById('EJBlihat_pegawai');
             var tutup_lihat = document.getElementsByClassName("EJBtutup_lihat")[0];
+            var modalVJ = document.getElementById("modalVJ");
+            var closeVJ = document.getElementsByClassName("VJclose")[0];
+            var modalEVJ = document.getElementById("modalEVJ");
+            var closeEVJ = document.getElementsByClassName("EVJclose")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -361,12 +365,24 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+            if ( typeof closeVJ != 'undefined' ){
+              closeVJ.onclick = function() {
+                modalVJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
+            if ( typeof closeEVJ != 'undefined' ){
+              closeEVJ.onclick = function() {
+                modalEVJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalactajuan || event.target == modalEact || event.target == modalEactajuan || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalactajuan || event.target == modalEact || event.target == modalEactajuan || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai || event.target == modalVJ || event.target == modalEVJ){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -408,6 +424,12 @@
                     }
                     if(lihat_pegawai){
                       lihat_pegawai.style.display = "none";
+                    }
+                    if(modalVJ){
+                      modalVJ.style.display = "none";
+                    }
+                    if(modalEVJ){
+                      modalEVJ.style.display = "none";
                     }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalKal){
@@ -1683,7 +1705,7 @@
               if(type == "today"){
                 loadTabelVJ('today', date.getDate());
               } else if(type == "bulan"){
-                loadTabelVJ('month', date.getMonth());
+                loadTabelVJ('month', date.getMonth()+1);
               } else {
                 document.getElementById("VJpilihHari").style.display = "block";
                 document.getElementById("VJbtn").style.display = "block";
@@ -2282,6 +2304,54 @@
                 }
               });
             }
+
+            function bukaModalValidasi(type,data){
+              document.getElementById("modalEVJ").style.display = "block";
+              document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              if(type == 'edit'){
+                document.getElementById("EVJidJ").value = data;
+                document.getElementById("EVJeditBtn").style.display = "block";
+                document.getElementById("EVJpesan").readOnly = false;
+                document.getElementById("EVJpesan").innerHTML = ""
+                document.getElementById("VJModalLabel").innerHTML = "Ganti status validasi jurnal";
+              } else if(type == 'lihat'){
+                document.getElementById("VJModalLabel").innerHTML = "Lihat pesan validasi jurnal";
+                document.getElementById("EVJpesan").innerHTML = data;
+                document.getElementById("EVJpesan").readOnly = true;
+                document.getElementById("EVJeditBtn").style.display = "none";
+              }
+              
+            }
+
+            function gantiValidasi(type){
+              var idJurnal = document.getElementById("EVJidJ").value;
+              var pesan = "";
+              pesan = document.getElementById("EVJpesan").value;
+              if(type == "no" && pesan == ""){
+                alert("Kolom pesan tidak boleh kosong, saran: masukkan alasan mengapa anda ingin mengubah validasi jurnal ini.")
+              } else {
+                $.ajax({
+                  type: "POST",
+                  url: "ajax/gantiValidasi.php",             
+                  dataType: "html",
+                  data: {'type':type,'pesan':pesan,'id':idJurnal},               
+                  success: function(response){                    
+                    if(response == 'y'){
+                      alert("Berhasil mengganti status validasi");
+                      var filter = document.getElementById("vjbtnLabel").innerHTML;
+                      if(filter == ' Hari ini'){
+                        selectVJ('today',filter);
+                      } else if(filter == ' Bulan ini'){
+                        selectVJ('bulan',filter);
+                      } else {
+                        eventFire(document.getElementById("VJbtn"), 'click');
+                      }
+                    }
+                  }
+                });
+              }
+              
+            }
              
             function eventFire(el, etype){
               if(el){
@@ -2300,7 +2370,9 @@
              JAfilter('Periode');
              selectDJS('Bulanan');
              selectReport('Periode');
-             selectVJ('today', 'Hari ini');
+             if(document.getElementById("vjbtnLabel")){
+              selectVJ('today', 'Hari ini');
+             }
              getHLdata();
 
              var tanggal = new Date();
@@ -2317,12 +2389,11 @@
                   $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
                 } else {
-                  $('#DJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#DJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#DJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#LJApilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#LJApilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#LJApilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  if(document.getElementById("LJApilihHari")){
+                    $('#LJApilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                    $('#LJApilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                    $('#LJApilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  }
                   $('#LJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});

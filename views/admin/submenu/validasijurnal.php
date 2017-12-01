@@ -12,7 +12,7 @@
 				                </div>
 								<div class="vjFilter">
 									<div id="VJpilihHari" style="display: none;">
-										<select class="w163 h30" id="VJselectDay">
+										<select id="VJselectDay">
 											<?php
 			                                   	for ($n = 1; $n <= date('t',strtotime('today')); $n++){ ?>
 			                                   		<option value="<?php echo $n; ?>"><?php echo $n; ?></option>
@@ -22,7 +22,7 @@
 										</select> <?php echo date('F Y') ?>
 									</div>
 								</div>
-								<a class="VJbtn" id="VJbtn" onclick="loadTabelVJ('day')" style="height: 30px; display: none;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
+								<a class="VJbtn2" id="VJbtn" onclick="loadTabelVJ('day')" style="height: 30px; display: none;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 							</div>
 						</div>
 			            <div id="tabelVJContainer">
@@ -32,9 +32,9 @@
 			                    <span class="close VJclose">&times;</span>
 			                    <div id="tCModalLabel">Edit jurnal</div>
 			                    <form name="FormVJ" id="FormVJ" method="post" action="">
-			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableEDJS" id="tableEDJS">
-			                                <tr><input type="hidden" name="EDJSidJ" id="EDJSidJ" value=""/></tr>
-			                                <tr><input type="hidden" name="EDJSidAct" id="EDJSidAct" value=""/></tr>
+			                        <table border="0" cellpadding="8" cellspacing="0" width="650" align="center" class="tableVJ" id="tableVJ">
+			                                <tr><input type="hidden" name="VJidJ" id="VJidJ" value=""/></tr>
+			                                <tr><input type="hidden" name="VJidAct" id="VJidAct" value=""/></tr>
 			                                <tr>
 			                                    <td style="width: 220px"><label>Aktivitas yang dipilih</label></td>
 			                                    <td>:</td>
@@ -98,6 +98,25 @@
 			                                    <td colspan="3" id="vjActType"></td>
 			                                </tr>
 			                                <tr><input type="hidden" name="edjsNamaCat2" id="edjsNamaCat2" value=""/></tr>
+			                        </table>
+			                    </form>
+			                </div>
+			            </div>
+			            <div id="modalEVJ" class="tCmodal">
+			                <div class="tCmodal-content" style="width: 540px;">
+			                    <span class="close EVJclose">&times;</span>
+			                    <div id="VJModalLabel">Ganti status validasi jurnal</div>
+			                    <form name="FormEVJ" id="FormEVJ" method="post" action="">
+			                        <table border="0" cellpadding="8" cellspacing="0" align="center" class="tableEVJ" id="tableEVJ">
+			                                <tr><input type="hidden" name="EVJidJ" id="EVJidJ" value=""/></tr>
+			                                <tr>
+			                                	<td>Pesan:</td>
+			                                </tr>
+			                                <tr>
+			                                	<td><textarea id="EVJpesan" name="EVJpesan" form="FormEVJ" rows="3" cols="40"></textarea></td>
+			                                </tr>
+			                                <tr><td>
+			                                <button type="button" id="EVJeditBtn" class="VJbtn" onclick="gantiValidasi('no')" style="float: right; display: none;">OK</button>
 			                        </table>
 			                    </form>
 			                </div>

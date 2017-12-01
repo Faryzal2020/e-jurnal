@@ -3,7 +3,7 @@
 						<div class="tCheader" style="">
 							<div class="tchbox relative" style="">
 								<div class="DJSpilihBulan">
-									<label>Pilih Bulan: </label>
+									<label>Pilih Bulan dan Tahun: </label>
 									<select id="DJSpilihBulan" class="h30" title="pilih bulan">
 										<?php
 											$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
@@ -20,6 +20,13 @@
 												}
 											}
 											?>
+									</select>
+									<select id="DJSpilihTahun" class="h30" title="pilih tahun">
+										<?php $thisyear = Date("Y");?>
+											<option value="<?php echo $thisyear; ?>" selected><?php echo $thisyear; ?></option>
+										<?php for($i=$thisyear-1;$i>=$thisyear-5;$i--){ ?>
+											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+											<?php } ?>
 									</select>
 								</div>
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
@@ -77,19 +84,12 @@
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><select name="edjsTglJurnal" id="edjsTglJurnal" title="Tanggal anda mengerjakan aktivitas ini">
-			                                    <?php
-			                                    	for ($n = 1; $n <= date('t',strtotime('today')); $n++){ ?>
-			                                    		<option value="<?php echo $n; ?>"><?php echo $n; ?></option>
-			                                    <?php 
-			                                    	}
-			                                    ?>
-			                                    </select> <?php echo date('F Y') ?></td>
+			                                    <td colspan="3"><input type="hidden" name="edjsTglJurnal" id="edjsTglJurnal" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                </tr>
 			                                <tr id=edtanggalMulai>
 			                                	<td><label>Dari tanggal</label></td>
 			                                    <td>:</td>
-			                                    <td id="edjsTanggal"><input type="hidden" name="edjsTglMulai" id="edjsTglMulai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>"  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="edjsTanggal"><input type="hidden" name="edjsTglMulai" id="edjsTglMulai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
 			                                </tr>
 			                                <tr id=edwaktuMulai>
 			                                    <td><label>Waktu Mulai</label></td>

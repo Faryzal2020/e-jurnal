@@ -96,7 +96,7 @@
 		.tableSJ td, .tableEA td, .tableEDJS td {padding: 5px;}
 		.closeModal { color: #777777; float: right; font-size: 1.2em; font-weight: bold; }
 		.closeModal:hover, .closeModal:focus { color: #333333; text-decoration: none; cursor: pointer; }
-		#tCModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
+		#tCModalLabel, #VJModalLabel { text-align: center; font-size: 1.2em; font-weight: bold; border-bottom: 2px solid #ddd; padding: 5px; margin-bottom: 10px;}
 		.SJbtnSubmit, .EAbtnSubmit, .TAbtnSubmit, .gantiActDJ, .btnGantiFoto { background-color:#2C383B; align-items:center; border:1px solid #2C383B; color:#ECECEC; font-weight:bold; padding:7px; border-radius: 5px; cursor: pointer; }
 		.SJbtnSubmit:hover, .EAbtnSubmit:hover, .TAbtnSubmit:hover, .gantiActDJ:hover, .btnGantiFoto:hover { background-color: #ECECEC; color: #2C383B; border-color: #A8BABE; text-decoration: none; }
 		.gantiActDJ { padding: 4px 7px 0px 8px; font-size: 0.9em; font-weight: normal; display: block; width: 85px; padding-bottom: 0px; }
@@ -153,10 +153,15 @@
 		.loadingIcon { position: absolute; bottom: -25px; border: 10px solid #f3f3f3; border-radius: 50%; width: 50px; height: 50px;}
 		.disable { background-color: #686868; pointer-events: none; cursor: default; color: #b7b7b7; box-shadow: 0 0 0; }
 
-		#tabelVJContainer table { margin: auto; }
+		#tabelVJContainer table { margin: auto; min-width: 90%; }
 		#tabelVJContainer td, #tabelVJContainer th { padding: 5px; }
-		#tabelVJContainer th { background-color: #2C383B; color: #ECECEC; text-align: center; height: 40px; text-decoration: none; }  
-
+		#tabelVJContainer th { background-color: #2C383B; color: #ECECEC; text-align: center; height: 40px; text-decoration: none; }
+		.validasiOK { text-align: center; background-color: lightgreen; }
+		.validasiOK button, .validasiNO button { display: block; margin: auto; }
+		.validasiNO { text-align: center; background-color: orangered; }
+		.VJbtn { padding: 5px 12px; margin-top: 19px; font-size: 0.9em; background-color: #2C383B; border-radius: 5px; cursor: pointer; border: 1px solid #ECECEC; box-shadow: 2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
+		.VJbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
+		.VJbtn:active { box-shadow: 0 0 0; }
 		.ratingDiv {unicode-bidi: bidi-override;direction: rtl; }
 		.ratingDiv > span {display: inline-block;position: relative;width: 0.8em; }
 		.ratingDiv > span:hover:before,

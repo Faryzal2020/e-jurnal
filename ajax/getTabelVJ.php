@@ -9,9 +9,9 @@
 		while($data = mysqli_fetch_array($result)){
 			$nipPegawai = $data[0];
 			if($dateType == 'day'){
-				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND DAY(j.waktu_mulai) = '$date'";
+				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND DAY(j.waktu_mulai) = '$date'";
 			} elseif($dateType == 'month'){
-				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND MONTH(j.waktu_mulai) = '$date'";
+				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND MONTH(j.waktu_mulai) = '$date'";
 			}
 
 			if($result2 = mysqli_query($db,$sql2)){
@@ -33,9 +33,13 @@
 							<td>$data2[6]</td>
 							<td>$mulai</td>
 							<td>$selesai</td>
-							<td>$data2[7]</td>
-						</tr>
-						";
+							<td>$data2[7]</td>";
+						if($data2[9] == '1'){
+							echo "<td class='validasiOK'><span>OK</span><button onclick=\"bukaModalValidasi('edit','$data2[0]')\">Ganti</button></td>";
+						} else {
+							echo "<td class='validasiNO'><span>NO</span><button onclick=\"bukaModalValidasi('lihat','$data2[9]')\">Lihat Pesan</button></td>";
+						}
+						echo "</tr>";
 					}
 				}
 			}
