@@ -1245,22 +1245,22 @@
                document.getElementById("modalDJS").style.display = "block";
                var table = document.getElementById("tabelDJajax");
                for(var i=1; i<table.rows.length; i++){
-                  if(table.rows[i].cells[1].innerHTML == idJ){
+                  if(table.rows[i].cells[4].innerHTML == idJ){
                     var row = table.rows[i];
                     document.getElementById("EDJSidJ").value = idJ;
                     document.getElementById("EDJSidAct").value = idAct;
-                    document.getElementById("edjsNamaAct").innerHTML = row.cells[2].innerHTML;
+                    document.getElementById("edjsNamaAct").innerHTML = row.cells[5].innerHTML;
                     document.getElementById("edjsDurasi").innerHTML = dur;
-                    document.getElementById("edjsNamaCat").innerHTML = row.cells[3].innerHTML;
-                    document.getElementById("edjsVolume").selectedIndex = row.cells[6].innerHTML-1;
-                    document.getElementById("edjsVolumeType").value = row.cells[7].innerHTML;
+                    document.getElementById("edjsNamaCat").innerHTML = row.cells[6].innerHTML;
+                    document.getElementById("edjsVolume").selectedIndex = row.cells[9].innerHTML-1;
+                    document.getElementById("edjsVolumeType").value = row.cells[10].innerHTML;
                     document.getElementById("edjsKeterangan").value = row.cells[11].innerHTML;
-                    document.getElementById("edjsActType").value = row.cells[4].innerHTML.toLowerCase();
+                    document.getElementById("edjsActType").value = row.cells[7].innerHTML.toLowerCase();
 
                     var tabelEDJS = document.getElementById("tableEDJS");
-                    cat = row.cells[3].innerHTML;
+                    cat = row.cells[6].innerHTML;
                     if(cat == "izin harian"){
-                      tabelEDJS.rows[3].style.display = "none";
+                      tabelEDJS.rows[7].style.display = "none";
                       tabelEDJS.rows[5].style.display = "none";
                       tabelEDJS.rows[6].style.display = "none";
                       tabelEDJS.rows[8].style.display = "none";
@@ -1270,8 +1270,8 @@
                       document.getElementById("edjsTglSelesai").style.display = "";
                       document.getElementById("btnGantiAct").style.display = "none";
                       document.getElementById("edjsTanggal").style.width = "";
-                      document.getElementById("edjsTglMulai").value = row.cells[13].innerHTML;
-                      document.getElementById("edjsTglSelesai").value = row.cells[14].innerHTML;
+                      document.getElementById("edjsTglMulai").value = row.cells[1].innerHTML;
+                      document.getElementById("edjsTglSelesai").value = row.cells[2].innerHTML;
                       document.getElementById("edtanggalMulai").style.display = "";
                       document.getElementById("edtanggalSelesai").style.display = "";
                       document.getElementById("edwaktuMulai").style.display = "none";
@@ -1290,9 +1290,10 @@
                       var tgl = row.cells[0].innerHTML;
                       document.getElementById("edjsTglJurnal").selectedIndex = tgl-1;
                       document.getElementById("btnGantiAct").style.display = "";
-                      document.getElementById("edjsJamMulai").value = row.cells[8].innerHTML;
-                      document.getElementById("edjsJamSelesai").value = row.cells[9].innerHTML;
+                      document.getElementById("edjsJamMulai").value = row.cells[1].innerHTML;
+                      document.getElementById("edjsJamSelesai").value = row.cells[2].innerHTML;
                     }
+
                   }
                }
             }
