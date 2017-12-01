@@ -124,7 +124,7 @@
 		.LJApilihTahun { margin-left: 20px; }
 		.LJApilihBulan { margin-right: 12px; }
 		.LJSpilihPeriode { margin-right: 3px; }
-		.DJSpilihBulan { margin-right: 2.5px; }
+		.DJSpilihBulan { margin-right: 2.5px; margin-top: 7px; margin-left: 32px;}
 		.LJSfilter, .DJSfilter { margin-left: 30px; padding-top: 8px;}
 		.LJSfilter div, .DJSfilter div { display: inline-block; }
 		.w163 { width: 150px; }

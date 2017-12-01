@@ -2,26 +2,8 @@
 include("../config.php");
 
 $nip = $_GET['nip'];
-$tipeFilter = $_GET['tipeFilter'];
-$LJSsql = "";
-if( $tipeFilter == 'Harian'){
-	$tahun = $_GET['tahun'];
-	$bulan = $_GET['bulan'];
-    $hari = $_GET['hari'];
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi 
-        FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas 
-        LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' 
-        AND year(j.waktu_mulai)<='$tahun' AND month(j.waktu_mulai)<='$bulan' AND day(j.waktu_mulai)<='$hari' 
-        AND year(j.waktu_selesai)>='$tahun' AND month(j.waktu_selesai)>='$bulan' AND day(j.waktu_selesai)>='$hari' 
-        AND j.status_jurnal = 'draft' ORDER BY date(waktu_mulai) DESC";
-} else if( $tipeFilter == 'Periode'){
-    $awal = $_GET['awal'];
-    $akhir = date('Y-m-d',strtotime('+1 day', strtotime($_GET['akhir'])));
-    $LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.waktu_mulai >= '$awal' AND j.waktu_selesai <= '$akhir' AND j.status_jurnal = 'draft'  ORDER BY date(waktu_mulai) ASC";
-} else {
-	$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' ORDER BY date(waktu_mulai) ASC";
-
-}
+$bulan = $_GET['bulan'];
+$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' AND month(j.waktu_mulai) = '$bulan' ORDER BY date(waktu_mulai) ASC";
 $result = mysqli_query($db, $LJSsql);
 
 echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
@@ -237,13 +219,11 @@ if(mysqli_num_rows($result) > 0){
             echo "<td align=center style=''>$durasi Menit</td>";
             echo "<td align=center>$data[1]</td>";
             echo "<td align=center style=''>$data[2]</td>";
-            $tglMulai = date("Y-m-d", strtotime($data[3]));
-            $tglSelesai = date("Y-m-d", strtotime($data[4]));
-            echo "<td align=center style='display: none;'>$tglMulai</td>";
-            echo "<td align=center style='display: none;'>$tglSelesai</td>";
-
-            
         }
+        $tglMulai = date("Y-m-d", strtotime($data[3]));
+        $tglSelesai = date("Y-m-d", strtotime($data[4]));
+        echo "<td align=center style='display: none;'>$tglMulai</td>";
+        echo "<td align=center style='display: none;'>$tglSelesai</td>";
         echo "<td align=center style='min-width: 150px; max-width: 230px; word-wrap: break-word;'>$data[10]</td>";
     
         echo "<td align=center style=\"font-size: 0.8em;\">

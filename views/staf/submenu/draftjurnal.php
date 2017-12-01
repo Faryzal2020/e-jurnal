@@ -1,65 +1,27 @@
 				<div class="tabContent">
 					<div class="tCWrapper">
-						<div class="tCheader" style="margin-bottom: -86px;">
-							<div class="tchbox relative" style="display: none;">
-								<div class="dropdownCat">
-				                    <button class="dropbtn" id="djsBtn" title="melihat jurnal berdasarkan :&#013;&#183; harian&#013;&#183; mingguan&#013;&#183; semua jurnal"><span id="djsbtnLabel" style="pointer-events: none;">Mingguan</span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
-				                    <div class="dropdownCat-content" id="djsContent">
-				                        <a onclick="selectDJS('Harian')" href="#" title="melihat jurnal berdasarkan harian"><span class="glyphicon glyphicon-chevron-right"></span> Harian </a>
-				                        <a onclick="selectDJS('Periode')" href="#" title="melihat jurnal berdasarkan rentang waktu yang ditentukan"><span class="glyphicon glyphicon-chevron-right"></span> Periode</a>
-				                        <a onclick="selectDJS('Bulanan')" href="#" title="melihat semua jurnal yang belum dikirim"><span class="glyphicon glyphicon-chevron-right"></span> Semua Jurnal </a>
-				                    </div>
-				                </div>
-								<div class="DJSfilter" style="display: none">
-									<div class="DJSpilihHari">
-										<input id="DJSpilihHari" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>" title="pilih tanggal"/>
-									</div>
-								</div>
-								<div class="DJSfilter" style="display: none">
-									<div class="DJSpilihPeriode">
-										Dari:
-										<input id="DJSpilihAwal" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d', strtotime("-1 month", strtotime(date('Y-m-d'))));?>"/>
-										Sampai:
-										<input id="DJSpilihAkhir" class="w163 h30" data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="hidden" value="<?php echo date('Y-m-d');?>"/>
-									</div>
-								</div>
-				                <div class="DJSfilter" style="display: none">
-									<div class="DJSpilihTahun">
-										<select id="DJSpilihTahun" class="h30" title="pilih tahun">
-											<?php
-												$lsjTahunA = date("Y") - 10;
-												$lsjTahunB = date("Y");
-												for($i=$lsjTahunA; $i < $lsjTahunB; $i++){
+						<div class="tCheader" style="">
+							<div class="tchbox relative" style="">
+								<div class="DJSpilihBulan">
+									<label>Pilih Bulan: </label>
+									<select id="DJSpilihBulan" class="h30" title="pilih bulan">
+										<?php
+											$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+											for($i=1;$i<=12;$i++){
+												$x = str_pad($i,2,0, STR_PAD_LEFT);
+												if($x == date("m")){
 											?>
-											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+										<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
+											<?php
+												} else {
+											?>
+										<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
 											<?php
 												}
+											}
 											?>
-											<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-										</select>
-									</div>
-									<div class="DJSpilihBulan">
-										<select id="DJSpilihBulan" class="h30" title="pilih bulan">
-											<?php
-												$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-												for($i=1;$i<=12;$i++){
-													$x = str_pad($i,2,0, STR_PAD_LEFT);
-													if($x == date("m")){
-												?>
-											<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
-												<?php
-													} else {
-												?>
-											<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
-												<?php
-													}
-												}
-												?>
-										</select>
-									</div>
+									</select>
 								</div>
-								<input id="DJSfilterType" type="hidden" value="">
-
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 							</div>
 						</div>

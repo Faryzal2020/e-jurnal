@@ -1207,42 +1207,17 @@
             }
 
             function lihatDJS(nip){
-              var filType = document.getElementById("DJSfilterType").value;
-              var data = "kosong";
-
-              if ( filType == 'Harian'){
-                var tanggal = document.getElementById("DJSpilihHari").value;
-                var split = tanggal.split("-");
-                var tahun = split[0];
-                var bulan = split[1];
-                var hari = split[2];
-                if ( tanggal != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+              var bulan = document.getElementById("DJSpilihBulan").value;
+              data = { 'nip': nip, 'bulan': bulan };
+              $.ajax({    //create an ajax request to load_page.php
+                type: "GET",
+                url: "ajax/tabelDraftStaff.php",             
+                dataType: "html",   //expect html to be returned
+                data: data,               
+                success: function(response){                    
+                    $("#tabelDJstaffContainer").html(response);
                 }
-              } else if ( filType == 'Periode'){
-                var awal = document.getElementById("DJSpilihAwal").value;
-                var akhir = document.getElementById("DJSpilihAkhir").value;
-                if ( awal != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
-                  console.log(awal)
-                  console.log(akhir)
-                }
-              } else {
-                data = { 'nip': nip, 'tipeFilter': filType };
-              }
-              if ( data != 'kosong'){
-                $.ajax({    //create an ajax request to load_page.php
-                  type: "GET",
-                  url: "ajax/tabelDraftStaff.php",             
-                  dataType: "html",   //expect html to be returned
-                  data: data,               
-                  success: function(response){                    
-                      $("#tabelDJstaffContainer").html(response);
-                  }
-                });
-              } else {
-                alert("Kolom filter kosong");
-              }
+              });
             }
 
             function editDJ(idJ,idAct,dur) {
@@ -1250,55 +1225,58 @@
                document.getElementById("modalDJS").style.display = "block";
                var table = document.getElementById("tabelDJajax");
                for(var i=1; i<table.rows.length; i++){
-                  if(table.rows[i].cells[4].innerHTML == idJ){
-                    var row = table.rows[i];
-                    document.getElementById("EDJSidJ").value = idJ;
-                    document.getElementById("EDJSidAct").value = idAct;
-                    document.getElementById("edjsNamaAct").innerHTML = row.cells[5].innerHTML;
-                    document.getElementById("edjsDurasi").innerHTML = dur;
-                    document.getElementById("edjsNamaCat").innerHTML = row.cells[6].innerHTML;
-                    document.getElementById("edjsVolume").selectedIndex = row.cells[9].innerHTML-1;
-                    document.getElementById("edjsVolumeType").value = row.cells[10].innerHTML;
-                    document.getElementById("edjsKeterangan").value = row.cells[11].innerHTML;
-                    document.getElementById("edjsActType").value = row.cells[7].innerHTML.toLowerCase();
+                  if(table.rows[i].cells.length > 2){
+                    console.log(table.rows[i].cells.length);
+                    if(table.rows[i].cells[4].innerHTML == idJ){
+                      var row = table.rows[i];
+                      document.getElementById("EDJSidJ").value = idJ;
+                      document.getElementById("EDJSidAct").value = idAct;
+                      document.getElementById("edjsNamaAct").innerHTML = row.cells[5].innerHTML;
+                      document.getElementById("edjsDurasi").innerHTML = dur;
+                      document.getElementById("edjsNamaCat").innerHTML = row.cells[6].innerHTML;
+                      document.getElementById("edjsVolume").selectedIndex = row.cells[9].innerHTML-1;
+                      document.getElementById("edjsVolumeType").value = row.cells[10].innerHTML;
+                      document.getElementById("edjsKeterangan").value = row.cells[13].innerHTML;
+                      document.getElementById("edjsActType").value = row.cells[7].innerHTML.toLowerCase();
 
-                    var tabelEDJS = document.getElementById("tableEDJS");
-                    cat = row.cells[6].innerHTML;
-                    if(cat == "izin harian"){
-                      tabelEDJS.rows[7].style.display = "none";
-                      tabelEDJS.rows[5].style.display = "none";
-                      tabelEDJS.rows[6].style.display = "none";
-                      tabelEDJS.rows[8].style.display = "none";
-                      tabelEDJS.rows[13].style.display = "none";
-                      document.getElementById("edjsTanggal").width = "";
-                      document.getElementById("edjsTglMulai").style.display = "";
-                      document.getElementById("edjsTglSelesai").style.display = "";
-                      document.getElementById("btnGantiAct").style.display = "none";
-                      document.getElementById("edjsTanggal").style.width = "";
-                      document.getElementById("edjsTglMulai").value = row.cells[1].innerHTML;
-                      document.getElementById("edjsTglSelesai").value = row.cells[2].innerHTML;
-                      document.getElementById("edtanggalMulai").style.display = "";
-                      document.getElementById("edtanggalSelesai").style.display = "";
-                      document.getElementById("edwaktuMulai").style.display = "none";
-                      document.getElementById("edwaktuSelesai").style.display = "none";
-                    } else {
-                      tabelEDJS.rows[3].style.display = "";
-                      tabelEDJS.rows[5].style.display = "";
-                      tabelEDJS.rows[6].style.display = "";
-                      tabelEDJS.rows[8].style.display = "";
-                      tabelEDJS.rows[13].style.display = "";
-                      document.getElementById("edtanggalMulai").style.display = "none";
-                      document.getElementById("edtanggalSelesai").style.display = "none";
-                      document.getElementById("edwaktuMulai").style.display = "";
-                      document.getElementById("edwaktuSelesai").style.display = "";
-                      document.getElementById("edjsTanggal").width = "1px";
-                      var tgl = row.cells[0].innerHTML;
-                      document.getElementById("edjsTglJurnal").selectedIndex = tgl-1;
-                      document.getElementById("btnGantiAct").style.display = "";
-                      document.getElementById("edjsJamMulai").value = row.cells[1].innerHTML;
-                      document.getElementById("edjsJamSelesai").value = row.cells[2].innerHTML;
+                      var tabelEDJS = document.getElementById("tableEDJS");
+                      cat = row.cells[6].innerHTML;
+                      if(cat == "izin harian"){
+                        tabelEDJS.rows[3].style.display = "none";
+                        tabelEDJS.rows[5].style.display = "none";
+                        tabelEDJS.rows[6].style.display = "none";
+                        tabelEDJS.rows[8].style.display = "none";
+                        tabelEDJS.rows[13].style.display = "none";
+                        document.getElementById("edjsTanggal").width = "";
+                        document.getElementById("edjsTglMulai").style.display = "";
+                        document.getElementById("edjsTglSelesai").style.display = "";
+                        document.getElementById("btnGantiAct").style.display = "none";
+                        document.getElementById("edjsTanggal").style.width = "";
+                        console.log(row.cells[11].innerHTML);
+                        $(document.getElementById("edjsTglMulai")).combodate('setValue', row.cells[11].innerHTML);
+                        $(document.getElementById("edjsTglSelesai")).combodate('setValue', row.cells[12].innerHTML);
+                        document.getElementById("edtanggalMulai").style.display = "";
+                        document.getElementById("edtanggalSelesai").style.display = "";
+                        document.getElementById("edwaktuMulai").style.display = "none";
+                        document.getElementById("edwaktuSelesai").style.display = "none";
+                      } else {
+                        tabelEDJS.rows[3].style.display = "";
+                        tabelEDJS.rows[5].style.display = "";
+                        tabelEDJS.rows[6].style.display = "";
+                        tabelEDJS.rows[8].style.display = "";
+                        tabelEDJS.rows[13].style.display = "";
+                        document.getElementById("edtanggalMulai").style.display = "none";
+                        document.getElementById("edtanggalSelesai").style.display = "none";
+                        document.getElementById("edwaktuMulai").style.display = "";
+                        document.getElementById("edwaktuSelesai").style.display = "";
+                        document.getElementById("edjsTanggal").width = "1px";
+                        var tgl = row.cells[0].innerHTML;
+                        document.getElementById("edjsTglJurnal").selectedIndex = tgl-1;
+                        document.getElementById("btnGantiAct").style.display = "";
+                        document.getElementById("edjsJamMulai").value = row.cells[1].innerHTML;
+                        document.getElementById("edjsJamSelesai").value = row.cells[2].innerHTML;
+                      }
                     }
-
                   }
                }
             }
