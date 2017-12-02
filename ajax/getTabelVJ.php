@@ -9,9 +9,9 @@
 		while($data = mysqli_fetch_array($result)){
 			$nipPegawai = $data[0];
 			if($dateType == 'day'){
-				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND DAY(j.waktu_mulai) = '$date'";
+				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi, j.volume, j.jenis_output FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND DAY(j.waktu_mulai) = '$date'";
 			} elseif($dateType == 'month'){
-				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND MONTH(j.waktu_mulai) = '$date'";
+				$sql2 = "SELECT j.id_jurnal, j.id_aktivitas, j.waktu_mulai, j.waktu_selesai, u.nama_pegawai, a.nama_aktivitas, j.jenis_aktivitas, j.keterangan, a.id_kategori, j.validasi, j.volume, j.jenis_output FROM jurnal as j , user as u, aktivitas as a WHERE j.id_aktivitas = a.id_aktivitas AND j.nip = u.nip AND j.status_jurnal = 'draft' AND u.nip = '$nipPegawai' AND MONTH(j.waktu_mulai) = '$date'";
 			}
 
 			if($result2 = mysqli_query($db,$sql2)){
@@ -30,14 +30,19 @@
 							<td>$tanggal</td>
 							<td>$data2[4]</td>
 							<td>$data2[5]</td>
-							<td>$data2[6]</td>
-							<td>$mulai</td>
-							<td>$selesai</td>
+							<td align='center'>$data2[6]</td>
+							<td align='center'>$mulai</td>
+							<td align='center'>$selesai</td>
+							<td align='center'>$data2[11]</td>
+							<td align='center'>$data2[10]</td>
 							<td>$data2[7]</td>";
 						if($data2[9] == '1'){
 							echo "<td class='validasiOK'><span>OK</span><button onclick=\"bukaModalValidasi('edit','$data2[0]')\">Ganti</button></td>";
 						} else {
-							echo "<td class='validasiNO'><span>NO</span><button onclick=\"bukaModalValidasi('lihat','$data2[9]')\">Lihat Pesan</button></td>";
+							echo "<td class='validasiNO'><span style='display:block'>NO</span><span>
+							<button class='pencetan validasiNObtn1' onclick=\"bukaModalValidasi('lihat','$data2[9]')\"><span class=\"glyphicon glyphicon-search\"></span></button>
+							<button class='pencetan validasiNObtn2' onclick=\"gantiValidasi('ok','$data2[0]')\"><span class=\"glyphicon glyphicon-ok\"></span></button>
+							</span></td>";
 						}
 						echo "</tr>";
 					}
@@ -62,6 +67,8 @@
 		<th>Jenis Aktivitas</th>
 		<th>Mulai</th>
 		<th>Selesai</th>
+		<th>Jenis Output</th>
+		<th>Volume</th>
 		<th>Keterangan</th>
 		<th>Validasi</th>
 	</tr>";

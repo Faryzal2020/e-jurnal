@@ -4,10 +4,9 @@ include("../config.php");
 $nip = $_GET['nip'];
 $bulan = $_GET['bulan'];
 $tahun = $_GET['tahun'];
-$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' AND month(j.waktu_mulai) = '$bulan' AND year(j.waktu_mulai) = '$tahun' ORDER BY date(waktu_mulai) ASC";
+$LJSsql = "SELECT j.id_jurnal, j.volume, j.jenis_output, j.waktu_mulai, j.waktu_selesai, j.tanggal_simpan, j.jenis_aktivitas, a.nama_aktivitas, a.id_kategori, k.nama_kategori, j.keterangan , j.id_aktivitas, a.durasi, j.validasi FROM jurnal as j LEFT JOIN aktivitas as a ON a.id_aktivitas = j.id_aktivitas LEFT JOIN kategori as k ON k.id_kategori = a.id_kategori WHERE j.nip = '$nip' AND j.status_jurnal = 'draft' AND month(j.waktu_mulai) = '$bulan' AND year(j.waktu_mulai) = '$tahun' ORDER BY date(waktu_mulai) ASC";
 $result = mysqli_query($db, $LJSsql);
-
-echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%;'>";
+echo "<table border='1' class='tabelDJ' id='tabelDJajax' cellpadding='20' style='font-size: 75%; margin: auto;'>";
 echo "
     <tr>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Tgl</b></th>
@@ -22,6 +21,7 @@ echo "
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Volume</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Jenis Output</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Keterangan</b></th>
+    <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Validasi</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:60px'><b>Edit / Delete</b></th>
     <th align='center' style='display: none;'></th>
     </tr>";
@@ -43,7 +43,7 @@ if(mysqli_num_rows($result) > 0){
                 } else {
                     echo "<tr>
                     <td align=center>$counter</td>
-                    <td colspan='12' align=center style='height:45px;'>Tidak ada Jurnal</td>
+                    <td colspan='13' align=center style='height:45px;'>Tidak ada Jurnal</td>
                     </tr>";
                     $jurnalExists = 0;
                 }
@@ -226,7 +226,11 @@ if(mysqli_num_rows($result) > 0){
         echo "<td align=center style='display: none;'>$tglMulai</td>";
         echo "<td align=center style='display: none;'>$tglSelesai</td>";
         echo "<td align=center style='min-width: 150px; max-width: 230px; word-wrap: break-word;'>$data[10]</td>";
-    
+        if($data[13] == '1'){
+            echo "<td class='validasiOK'><span>OK</span></td>";
+        } else {
+            echo "<td class='validasiNO'><span>NO</span><button onclick=\"bukaModalValidasi('lihat','$data[13]')\">Lihat Pesan</button></td>";
+        }
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
@@ -239,7 +243,7 @@ if(mysqli_num_rows($result) > 0){
     while($counter <= $maxCount){
         echo "<tr>
                     <td>$counter</td>
-                    <td colspan='12' align=center style='height:45px;'>Tidak ada Jurnal</td>
+                    <td colspan='13' align=center style='height:45px;'>Tidak ada Jurnal</td>
                     </tr>";
         $counter++;
     }
