@@ -2,6 +2,14 @@
    session_start();
    include("config.php");
 
+    if ($_SESSION['timeout'] + 20 * 60 < time()){
+      echo "<script>alert(\"Waktu session anda sudah habis, silahkan login kembali.\")</script>";
+      session_unset();
+      session_destroy();
+    } else {
+      $_SESSION['timeout'] = time();
+    }
+
    function Redirect($url, $permanent = false)
    {
        header('Location: ' . $url, true, $permanent ? 301 : 302);
