@@ -39,9 +39,9 @@
 						if($data2[9] == '1'){
 							echo "<td class='validasiOK'><span>OK</span><button onclick=\"bukaModalValidasi('edit','$data2[0]')\">Ganti</button></td>";
 						} else {
-							echo "<td class='validasiNO'><span style='display:block'>NO</span><span>
-							<button class='pencetan validasiNObtn1' onclick=\"bukaModalValidasi('lihat','$data2[9]')\"><span class=\"glyphicon glyphicon-search\"></span></button>
-							<button class='pencetan validasiNObtn2' onclick=\"gantiValidasi('ok','$data2[0]')\"><span class=\"glyphicon glyphicon-ok\"></span></button>
+							echo "<td class='validasiNO'><span style='display:block'>NO</span><span style='display:flex; width:80px; margin: auto;'>
+							<button class='pencetan validasiNObtn' onclick=\"bukaModalValidasi('lihat','$data2[9]')\"><span class=\"glyphicon glyphicon-search\"></span></button>
+							<button class='pencetan validasiNObtn' onclick=\"gantiValidasi('ok','$data2[0]')\"><span class=\"glyphicon glyphicon-ok\"></span></button>
 							</span></td>";
 						}
 						echo "</tr>";

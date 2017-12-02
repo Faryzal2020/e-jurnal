@@ -2365,7 +2365,7 @@
                     type: "POST",
                     url: "ajax/gantiValidasi.php",             
                     dataType: "html",
-                    data: {'type':type,'pesan':pesan,'id':idJurnal},               
+                    data: {'type':type,'pesan':pesan,'id':idJ},               
                     success: function(response){                    
                       if(response == 'y'){
                         alert("Berhasil mengganti status validasi");
