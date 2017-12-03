@@ -2081,8 +2081,8 @@
                   data: data,               
                   success: function(response){                    
                       $("#JAtabelA").html(response);
-
-                      if(document.getElementById(nip)){
+                      var adaJurnal = document.getElementById('tabelAdmin-'+nip);
+                      if(!adaJurnal){
                         var csv = document.getElementById("csvBtnADM");
                         var xls = document.getElementById("xlsBtnADM");
                         var pdf = document.getElementById("pdfBtnADM");
@@ -2150,7 +2150,8 @@
                   data: data,               
                   success: function(response){                    
                       $("#tabelLJstaffContainer").html(response);
-                      if(document.getElementById(nip)){
+                      var adaJurnal = document.getElementById('tabel-'+nip);
+                      if(!adaJurnal){
                         var csv = document.getElementById("csvBtn");
                         var xls = document.getElementById("xlsBtn");
                         var pdf = document.getElementById("pdfBtn");
@@ -2224,7 +2225,8 @@
                   data: data,               
                   success: function(response){                    
                       $("#tabelLJstaffContainer").html(response);
-                      if(document.getElementById(nip)){
+                      var adaJurnal = document.getElementById('tabelSemua-'+nip);
+                      if(!adaJurnal){
                         var csv = document.getElementById("csvBtn");
                         var xls = document.getElementById("xlsBtn");
                         var pdf = document.getElementById("pdfBtn");

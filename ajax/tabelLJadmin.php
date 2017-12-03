@@ -48,7 +48,6 @@ if(mysqli_num_rows($result) > 0){
         echo "<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'><b>Rating</b></th>
         </tr>";
     }
-    echo "<input type=hidden id='$nip' value='' />";
     $totalDurasiTabel = 0;
     while($data = mysqli_fetch_row($result))
     {   
@@ -313,7 +312,7 @@ if(mysqli_num_rows($result) > 0){
         </tr>";
     }
     echo "<tr>";
-    echo "<td align=center colspan='14'>Tidak ada data</td>";
+    echo "<td align=center colspan='14' id='tabelAdmin-$nip'>Tidak ada data</td>";
     echo "</tr>";
     echo "</table>";
 }

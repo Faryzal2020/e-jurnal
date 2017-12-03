@@ -44,7 +44,6 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:160px'><b>Tanggal Kirim</b></th>
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Keterangan</b></th>
     </tr>";
-    echo "<input type=hidden id='$nip' value='' />";
     while($data = mysqli_fetch_row($result))
     {   
         if($data[11] == 'kirim'){
@@ -86,7 +85,7 @@ if(mysqli_num_rows($result) > 0){
     <th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; font-size:0.8em; width:120px'><b>Keterangan</b></th>
     </tr>";
     echo "<tr>";
-    echo "<td align=center colspan='12'>Tidak ada data</td>";
+    echo "<td align=center colspan='12' id='tabelSemua-$nip'>Tidak ada data</td>";
     echo "</tr>";
 }
 echo "</table>";
