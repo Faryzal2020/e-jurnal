@@ -2,6 +2,14 @@
    session_start();
    include("config.php");
 
+    if ($_SESSION['timeout'] + 20 * 60 < time()){
+      echo "<script>alert(\"Waktu session anda sudah habis, silahkan login kembali.\")</script>";
+      session_unset();
+      session_destroy();
+    } else {
+      $_SESSION['timeout'] = time();
+    }
+
    function Redirect($url, $permanent = false)
    {
        header('Location: ' . $url, true, $permanent ? 301 : 302);
@@ -541,9 +549,9 @@
             }
              
             function selectActivity(id, nama, durasi, cat){
-               document.getElementsByTagName("body")[0].style.overflow = "hidden";
-               var tabel = document.getElementById("tableSJ");
-               for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                var tabel = document.getElementById("tableSJ");
+                for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
                 modal.style.display = "block";
                 namaAct.innerHTML = nama;
                 durasiAct.innerHTML = durasi;
@@ -567,7 +575,9 @@
                   document.getElementById("waktuSelesai").style.display = "none";
                   document.getElementById("tanggalMulai").style.display = "";
                   document.getElementById("tanggalSelesai").style.display = "";
+                  document.getElementById("jenisAktivitas").style.display = "none";
                } else {
+                  document.getElementById("jenisAktivitas").style.display = "";
                   document.getElementById("tanggalMulai").style.display = "none";
                   document.getElementById("tanggalSelesai").style.display = "none";
                   document.getElementById("iconJamMulai").style.display = "";
@@ -1476,7 +1486,7 @@
                     url:'ajax/cekkonflikjurnal.php',
                     async: false,
                     method:'post',
-                    data : {'cat':cat,'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai},
+                    data : {'cat':cat,'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai,'tglSelesai':tglSelesai},
                     success:function(response){
                       if(response == 'y'){
                         alert("Jurnal berhasil disimpan");
@@ -2323,13 +2333,13 @@
               
             }
 
-            function gantiValidasi(type){
+            function gantiValidasi(type,idJ){
               var idJurnal = document.getElementById("EVJidJ").value;
               var pesan = "";
               pesan = document.getElementById("EVJpesan").value;
               if(type == "no" && pesan == ""){
                 alert("Kolom pesan tidak boleh kosong, saran: masukkan alasan mengapa anda ingin mengubah validasi jurnal ini.")
-              } else {
+              } else if(type != "ok"){
                 $.ajax({
                   type: "POST",
                   url: "ajax/gantiValidasi.php",             
@@ -2349,8 +2359,29 @@
                     }
                   }
                 });
+              } else {
+                if(confirm("Ubah status validasi jurnal ini menjadi OK?")){
+                  $.ajax({
+                    type: "POST",
+                    url: "ajax/gantiValidasi.php",             
+                    dataType: "html",
+                    data: {'type':type,'pesan':pesan,'id':idJ},               
+                    success: function(response){                    
+                      if(response == 'y'){
+                        alert("Berhasil mengganti status validasi");
+                        var filter = document.getElementById("vjbtnLabel").innerHTML;
+                        if(filter == ' Hari ini'){
+                          selectVJ('today',filter);
+                        } else if(filter == ' Bulan ini'){
+                          selectVJ('bulan',filter);
+                        } else {
+                          eventFire(document.getElementById("VJbtn"), 'click');
+                        }
+                      }
+                    }
+                  });
+                }
               }
-              
             }
              
             function eventFire(el, etype){

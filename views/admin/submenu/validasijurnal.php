@@ -5,9 +5,9 @@
 								<div class="dropdownCat">
 				                    <button class="dropbtn" id="vjBtn" title=""><span id="vjbtnLabel" style="pointer-events: none;"></span> <span class="glyphicon glyphicon-triangle-bottom" style="pointer-events: none;"></span></button>
 				                    <div class="dropdownCat-content" id="vjContent">
-				                        <a onclick="selectVJ('today', this.innerHTML)" href="#" title="lihat jurnal draft hari ini"><span class="glyphicon glyphicon-chevron-right"></span> Hari ini</a>
-				                        <a onclick="selectVJ('tanggal', this.innerHTML)" href="#" title="lihat jurnal draft pada tanggal yang dipilih"><span class="glyphicon glyphicon-chevron-right"></span> Pilih Tanggal</a>
-				                        <a onclick="selectVJ('bulan', this.innerHTML)" href="#" title="lihat jurnal draft bulan ini"><span class="glyphicon glyphicon-chevron-right"></span> Bulan ini</a>
+				                        <a onclick="selectVJ('today', ' Hari ini')" href="#" title="lihat jurnal draft hari ini"><span class="glyphicon glyphicon-chevron-right"></span> Hari ini</a>
+				                        <a onclick="selectVJ('tanggal', ' Pilih Tanggal')" href="#" title="lihat jurnal draft pada tanggal yang dipilih"><span class="glyphicon glyphicon-chevron-right"></span> Pilih Tanggal</a>
+				                        <a onclick="selectVJ('bulan', ' Bulan ini')" href="#" title="lihat jurnal draft bulan ini"><span class="glyphicon glyphicon-chevron-right"></span> Bulan ini</a>
 				                    </div>
 				                </div>
 								<div class="vjFilter">

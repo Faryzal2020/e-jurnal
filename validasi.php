@@ -45,6 +45,7 @@
                $_SESSION['idjabatan'] = $row['id_jabatan'];
                $_SESSION['jabatan'] = $row['nama_jabatan'];
                $_SESSION['tab'] = 0;
+               $_SESSION['timeout'] = time();
             } //end else
          } //end else
       }
