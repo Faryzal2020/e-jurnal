@@ -132,7 +132,7 @@
 			                                    </td>
 			                                </tr>
 			                                <tr id="tanggalGanti" style="display:none">
-			                                	<td><label>Tanggal Ganti</label></td>
+			                                	<td><label>Terhitung mulai tanggal</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><input type="hidden" name="tglGantiJabatan" id="tglGantiJabatan" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" title="Password dari akun pegawai yang ingin diubah"></td>
 			                                </tr>
