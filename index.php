@@ -309,7 +309,6 @@
             if ( typeof closeEA != 'undefined' ){
               closeEA.onclick = function() {
                 modalEA.style.display = "none";
-                document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
             if ( typeof closeDJS != 'undefined' ){
@@ -592,6 +591,7 @@
             }
             function lihatPegawai(id_jabatan){
               if(document.getElementById("EJBlihat_pegawai")){
+                document.getElementById("idJabatanDilihat").innerHTML = id_jabatan;
                 $.ajax({    //create an ajax request to load_page.php
                   type: "POST",
                   url: "ajax/lihatpegawai.php",             
@@ -1506,12 +1506,19 @@
                var nip = document.forms["FormEA"]["EAnip"].value;
                var nama = document.forms["FormEA"]["nama"].value;
                var jabatan = document.forms["FormEA"]["jabatanBaru"].value;
+               var tgl = document.forms["FormEA"]["tglGantiJabatan"].value;
                var password = document.forms["FormEA"]["password"].value;
                var error = 0;
                var msg;
                if (nama == "" || jabatan == "" || password == ""){
                   msg = "Tidak boleh ada kolom yang kosong";
                   error++;
+               } else {
+                  var regEx = /^\d{4}-\d{2}-\d{2}$/;
+                  if(!tgl.match(regEx)){
+                    msg = "Pilihan tanggal tidak valid";
+                    error++;
+                  }
                }
 
                if ( error == 0){
@@ -1519,10 +1526,13 @@
                       dataType: 'html',
                       url:'ajax/editPegawai.php',
                       method:'post',
-                      data : { 'nip':nip,'nama':nama,'jabatan':jabatan,'password':password },
+                      data : { 'nip':nip,'nama':nama,'jabatan':jabatan,'tglGanti':tgl,'password':password },
                       success:function(response){
                         alert(response);
-                        location.reload();
+                        document.getElementById("ModalEA").style.display = "none";
+                        document.getElementById("EJBlihat_pegawai").style.display = "none";
+                        lihatPegawai(document.getElementById("idJabatanDilihat").innerHTML);
+                        document.getElementsByTagName("body")[0].style.overflow = "";
                       }
                   });
                } else {
@@ -1778,67 +1788,74 @@
             }
 
             function EAselectEch(i){
+              document.getElementById("tanggalGanti").style.display = "none";
               var select = document.getElementById("EAinputEselon");
               var value = select.options[select.selectedIndex].value-1;
               var labels = ["Deputi", "Biro", "Bagian", "SubBagian", "Staf"];
-              if(i < value){
-                document.getElementById("EAbtnSubmit").classList.add("disable");
-              } else {
+              if(value == 0){
+                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
                 document.getElementById("EAbtnSubmit").classList.remove("disable");
-              }
-              if( i == 0 && value >= 1){
-                document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
-                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-                for(var k = 1; k <= 5; k++){
-                  var id = "EAinput-" + k;
-                  var label = labels[k-1];
-                  if(k <= value){
-                    var pilih = "pilih-" + k;
-                    document.getElementById(id).innerHTML = "<option value='" + pilih + "'>Pilih " + label + "</option>";
-                  } else {
-                    document.getElementById(id).innerHTML = "";
-                  }
-                }
-              }
-              if( i < value ){
-                $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
-                for( var j = 0; j <= i; j++){
-                    document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
-                }
-
-                if(i>0){
-                  var id = "EAinput-" + i;
-                  var selectJ = document.getElementById(id);
-                  var valueJ = selectJ.options[selectJ.selectedIndex].value;
-                  if(valueJ == 0){
-                    document.getElementsByClassName("EAjabatan")[i].style.display = "none";
-                  }
-                } else {
-                  var valueJ = "n";
-                }
-                if(valueJ != 0){
-                  $.ajax({
-                    dataType: 'html',
-                    url:'ajax/getSelectJabatan.php',
-                    method:'POST',
-                    data : {'i': i, 'value': value, 'atasan': valueJ},
-                    success:function(response){
-                      var x = i + 1;
-                      var id = "EAinput-" + x;
-                      document.getElementById(id).innerHTML = response;
-                    }
-                  });
-                }
               } else {
-                var j = i++;
-                var id = "EAinput-" + j;
-                var selectJ = document.getElementById(id);
-                var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
-                if( jabatanDipilih == 0){
+                if(i < value){
                   document.getElementById("EAbtnSubmit").classList.add("disable");
-                  document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
                 } else {
-                  document.getElementById("inputJabatanBaru").value = jabatanDipilih;
+                  document.getElementById("EAbtnSubmit").classList.remove("disable");
+                }
+                if( i == 0 && value >= 1){
+                  document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
+                  $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+                  for(var k = 1; k <= 5; k++){
+                    var id = "EAinput-" + k;
+                    var label = labels[k-1];
+                    if(k <= value){
+                      var pilih = "pilih-" + k;
+                      document.getElementById(id).innerHTML = "<option value='" + pilih + "'>Pilih " + label + "</option>";
+                    } else {
+                      document.getElementById(id).innerHTML = "";
+                    }
+                  }
+                }
+                if( i < value ){
+                  $('.EAjabatan').each(function(i, obj) { obj.style.display = "none"});
+                  for( var j = 0; j <= i; j++){
+                      document.getElementsByClassName("EAjabatan")[j].style.display = "table-row";
+                  }
+
+                  if(i>0){
+                    var id = "EAinput-" + i;
+                    var selectJ = document.getElementById(id);
+                    var valueJ = selectJ.options[selectJ.selectedIndex].value;
+                    if(valueJ == 0){
+                      document.getElementsByClassName("EAjabatan")[i].style.display = "none";
+                    }
+                  } else {
+                    var valueJ = "n";
+                  }
+                  if(valueJ != 0){
+                    $.ajax({
+                      dataType: 'html',
+                      url:'ajax/getSelectJabatan.php',
+                      method:'POST',
+                      data : {'i': i, 'value': value, 'atasan': valueJ},
+                      success:function(response){
+                        var x = i + 1;
+                        var id = "EAinput-" + x;
+                        document.getElementById(id).innerHTML = response;
+                      }
+                    });
+                  }
+                } else {
+                  var j = i++;
+                  var id = "EAinput-" + j;
+                  var selectJ = document.getElementById(id);
+                  var jabatanDipilih = selectJ.options[selectJ.selectedIndex].value;
+                  if( jabatanDipilih == 0){
+                    document.getElementById("EAbtnSubmit").classList.add("disable");
+                    document.getElementById("inputJabatanBaru").value = document.getElementById("inputJabatan").value;
+                  } else {
+                    document.getElementById("inputJabatanBaru").value = jabatanDipilih;
+                    document.getElementById("tanggalGanti").style.display = "";
+                  }
                 }
               }
             }
@@ -2429,6 +2446,7 @@
                 if( document.getElementById('HLstart')){
                   $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
+                  $('#tglGantiJabatan').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 } else {
                   if(document.getElementById("LJApilihHari")){
                     $('#LJApilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});

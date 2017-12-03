@@ -22,6 +22,7 @@
 			            </div>
                         <div class="lihat_pegawai" id="EJBlihat_pegawai">
                             <div class="lihat_pegawai-content">
+                            <span id="idJabatanDilihat" style="display:none"></span>
                             <span class="EJBtutup_lihat closeModal">&times;</span>
                             <div id="detail_label">Daftar Pegawai</div>
                             <div id="tablelihatpegawai">
@@ -129,6 +130,11 @@
 			                                    		<option id="pilih-5" value="0">Pilih Staf</option>
 			                                    	</select>
 			                                    </td>
+			                                </tr>
+			                                <tr id="tanggalGanti" style="display:none">
+			                                	<td><label>Tanggal Ganti</label></td>
+			                                	<td>:</td>
+			                                    <td colspan="3"><input type="hidden" name="tglGantiJabatan" id="tglGantiJabatan" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" title="Password dari akun pegawai yang ingin diubah"></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Password</label></td>
