@@ -2385,6 +2385,7 @@
                 $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
+                
                 if( document.getElementById('HLstart')){
                   $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
