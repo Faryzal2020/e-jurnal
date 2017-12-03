@@ -18,13 +18,14 @@
 
 
 
+    $query = mysqli_query($db,"SELECT nip, id_jabatan FROM user WHERE nip = '$nip'");
     $sql = "UPDATE user SET nama_pegawai = '$nama', id_jabatan = '$jabatan', password = '$password' WHERE nip = '$nip'";
 	if(mysqli_query($db,$sql)){
         echo "Berhasil edit data pegawai, ";
-    	$query = mysqli_query($db,"SELECT nip, id_jabatan FROM user WHERE nip = '$nip'");
         while($data = mysqli_fetch_array($query)){
             if($jabatan != $data[1]){
-                $query2 = mysqli_query($db,"INSERT INTO history_jabatan(nip,jabatan_lama,tanggal_pindah,jabatan_baru) VALUES ('$nip','$data[1]','$tglGanti','$jabatan')");
+                $jabatanLama = $data[1];
+                $query2 = mysqli_query($db,"INSERT INTO history_jabatan(nip,jabatan_lama,tanggal_pindah,jabatan_baru) VALUES ('$nip','$jabatanLama','$tglGanti','$jabatan')");
                 if($query2){
                     echo "Jabatan Sebelumnya telah disimpan dalam history jabatan";
                 } else {
