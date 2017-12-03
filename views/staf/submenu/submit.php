@@ -122,7 +122,7 @@
 			                                <tr>
 			                                	<td><label>Keterangan</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><textarea rows="3" cols="40" name="keterangan" form="FormSJ" value="" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
+			                                    <td colspan="3"><textarea rows="3" cols="40" name="SJketerangan" id="SJketerangan" form="FormSJ" value="" title="berikan detail dari aktivitas yang anda kerjakan"></textarea></td>
 			                                </tr>
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
