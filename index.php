@@ -563,6 +563,7 @@
                   tabel.rows[5].style.display = "none";
                   tabel.rows[7].style.display = "none";
                   tabel.rows[10].style.display = "none";
+                  tabel.rows[11].style.display = "none";
                   document.getElementById("volumeType").value = "-";
                   document.getElementById("tanggal").style.width = "190px";
                   //document.getElementById("tglMulai").style.display = "";
@@ -1735,6 +1736,12 @@
                 data : {'type':type,'date':date},
                 success:function(response){
                   document.getElementById("tabelVJContainer").innerHTML = response;
+                  $adaResult = document.getElementsByClassName("validasiOK");
+                  if($adaResult.length > 0){
+                    document.getElementById("tidakAdaJurnal").style.display = "none";
+                  } else {
+                    document.getElementById("tidakAdaJurnal").style.display = "table-cell";
+                  }
                 }
               });
             }
@@ -2339,15 +2346,16 @@
               pesan = document.getElementById("EVJpesan").value;
               if(type == "no" && pesan == ""){
                 alert("Kolom pesan tidak boleh kosong, saran: masukkan alasan mengapa anda ingin mengubah validasi jurnal ini.")
-              } else if(type != "ok"){
+              } else if(type == "no"){
                 $.ajax({
                   type: "POST",
                   url: "ajax/gantiValidasi.php",             
                   dataType: "html",
                   data: {'type':type,'pesan':pesan,'id':idJurnal},               
-                  success: function(response){                    
+                  success: function(response){              
                     if(response == 'y'){
                       alert("Berhasil mengganti status validasi");
+                      document.getElementById("modalEVJ").style.display = "none";
                       var filter = document.getElementById("vjbtnLabel").innerHTML;
                       if(filter == ' Hari ini'){
                         selectVJ('today',filter);
@@ -2359,14 +2367,15 @@
                     }
                   }
                 });
-              } else {
+              } else if(type == "ok") {
+                pesan = "";
                 if(confirm("Ubah status validasi jurnal ini menjadi OK?")){
                   $.ajax({
                     type: "POST",
                     url: "ajax/gantiValidasi.php",             
                     dataType: "html",
                     data: {'type':type,'pesan':pesan,'id':idJ},               
-                    success: function(response){                    
+                    success: function(response){            
                       if(response == 'y'){
                         alert("Berhasil mengganti status validasi");
                         var filter = document.getElementById("vjbtnLabel").innerHTML;

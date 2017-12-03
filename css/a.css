@@ -163,6 +163,8 @@
 		.VJbtn { padding: 5px 12px; margin-top: 19px; font-size: 0.9em; background-color: #2C383B; border-radius: 5px; cursor: pointer; border: 1px solid #ECECEC; box-shadow: 2px 2px 0 rgba(0,0,0,.5); color: #ECECEC;}
 		.VJbtn:hover { background-color: #ECECEC; border: 1px solid #2C383B;  color: #2C383B; text-decoration: none; }
 		.VJbtn:active { box-shadow: 0 0 0; }
+		.vjFilter { margin: 9px; margin-left: 27px; }
+
 		.ratingDiv {unicode-bidi: bidi-override;direction: rtl; }
 		.ratingDiv > span {display: inline-block;position: relative;width: 0.8em; }
 		.ratingDiv > span:hover:before,

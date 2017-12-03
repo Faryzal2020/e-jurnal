@@ -175,7 +175,7 @@
 												</td>
 												<td></td>
 			                                </tr>
-			                                <tr>
+			                                <tr id=jenisAktivitas>
 			                                	<td><label>Jenis Aktifitas</label></td>
 			                                	<td>:</td>
 			                                    <td colspan="3"><select name="actType" title="masukkan jenis aktivitas yang anda kerjakan">

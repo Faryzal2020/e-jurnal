@@ -22,7 +22,7 @@
 										</select> <?php echo date('F Y') ?>
 									</div>
 								</div>
-								<a class="VJbtn2" id="VJbtn" onclick="loadTabelVJ('day')" style="height: 30px; display: none;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
+								<a class="VJbtn2 pencetan" id="VJbtn" onclick="loadTabelVJ('day')" style="height: 30px; display: none;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
 							</div>
 						</div>
 			            <div id="tabelVJContainer">

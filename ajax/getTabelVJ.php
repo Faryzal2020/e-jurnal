@@ -72,6 +72,7 @@
 		<th>Keterangan</th>
 		<th>Validasi</th>
 	</tr>";
+	echo "<tr><td colspan='10' id='tidakAdaJurnal' style='display:none; text-align:center;'>Tidak ada jurnal draft</td></tr>";
 	getBawahan($idJabatan,$dateType,$date);
 	echo "</table>";
 	
