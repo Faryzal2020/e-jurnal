@@ -74,7 +74,9 @@
       $ALquery = mysqli_query($db,$ALsql);
        
       $ALsql2 = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori WHERE k.nama_kategori != 'izin harian'";
+      $ALsql3 = "SELECT a.id_aktivitas, a.nama_aktivitas, a.durasi, k.nama_kategori FROM aktivitas AS a LEFT JOIN kategori AS k ON a.id_kategori = k.id_kategori";
       $ALquery2 = mysqli_query($db,$ALsql2);
+      $ALquery3 = mysqli_query($db,$ALsql3);
       // Category
       $Catsql = "SELECT * FROM kategori";
       $Catquery = mysqli_query($db,$Catsql);
@@ -113,6 +115,18 @@
             $tgljurnal = date("Y-m-d");
             $acttype = $_POST['actType'];
             $ket = $_POST['SJketerangan'];
+            $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `status_jurnal`, `jenis_aktivitas`, `keterangan`)  
+                        VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','draft','$acttype','$ket')";
+            mysqli_query($db,$SJsql);
+         } else if(!empty($_POST['EIJ_idAct'])){
+         	$id = $_POST['EIJ_idAct'];
+            $vol = $_POST['EIJvolume'];
+            $voltype = $_POST['EIJvolumeType'];
+            $mulai = $_POST['EIJtglMulai'] .' '. $_POST['EIJjamMulai'] . ':00';
+            $selesai = $_POST['EIJtglSelesai'] .' '. $_POST['EIJjamSelesai'] . ':00';
+            $tgljurnal = date("Y-m-d");
+            $acttype = $_POST['EIJactType'];
+            $ket = $_POST['EIJketerangan'];
             $SJsql = "INSERT INTO jurnal(`id_aktivitas`, `nip`, `volume`, `jenis_output`, `waktu_mulai`, `waktu_selesai`, `tanggal_simpan`, `status_jurnal`, `jenis_aktivitas`, `keterangan`)  
                         VALUES ('$id','$nip','$vol','$voltype','$mulai','$selesai','$tgljurnal','draft','$acttype','$ket')";
             mysqli_query($db,$SJsql);
@@ -264,6 +278,10 @@
             var closeVJ = document.getElementsByClassName("VJclose")[0];
             var modalEVJ = document.getElementById("modalEVJ");
             var closeEVJ = document.getElementsByClassName("EVJclose")[0];
+            var modalEIJ = document.getElementById("modalEIJ");
+            var closeEIJ = document.getElementsByClassName("EIJclose")[0];
+            var modalEIJ2 = document.getElementById("modalEIJ2");
+            var closeEIJ2 = document.getElementsByClassName("EIJ2close")[0];
              
             span.onclick = function() {
                 modal.style.display = "none";
@@ -384,12 +402,24 @@
                 document.getElementsByTagName("body")[0].style.overflow = "";
               }
             }
+            if ( typeof closeEIJ != 'undefined' ){
+              closeEIJ.onclick = function() {
+                modalEIJ.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
+            if ( typeof closeEIJ2 != 'undefined' ){
+              closeEIJ2.onclick = function() {
+                modalEIJ2.style.display = "none";
+                document.getElementsByTagName("body")[0].style.overflow = "";
+              }
+            }
             
             
             window.onclick = function(event){
                 var detail_select2 = document.getElementById('detail_select');
                 var tutup_detail2 = document.getElementsByClassName("tutup_detail")[0];
-                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalactajuan || event.target == modalEact || event.target == modalEactajuan || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai || event.target == modalVJ || event.target == modalEVJ){
+                if(event.target == modal || event.target == modalLJ || event.target == pass_select || event.target == detail_select || event.target == staff_detail_select || event.target == modalEA || event.target == modalDJS || event.target == modalDJS2 || event.target == foto_select || event.target == ModalTA || event.target == modalact || event.target == modalactajuan || event.target == modalEact || event.target == modalEactajuan || event.target == modalKal || event.target == detail_select2 || event.target == tutup_detail2 || event.target == modalTJ || event.target == modalEJ || event.target == lihat_pegawai || event.target == modalVJ || event.target == modalEVJ || event.target == modalEIJ || event.target == modalEIJ2 ){
                     modal.style.display = "none";
                     pass_select.style.display = "none";
 
@@ -438,6 +468,12 @@
                     if(modalEVJ){
                       modalEVJ.style.display = "none";
                     }
+                    if(modalEIJ){
+                      modalEIJ.style.display = "none";
+                    }
+                    if(modalEIJ2){
+                      modalEIJ2.style.display = "none";
+                    }
                     document.getElementsByTagName("body")[0].style.overflow = "";
                     if(modalKal){
                       if(!detail_select2 || detail_select2.style.display != "block"){
@@ -469,6 +505,7 @@
                     var djs = document.getElementById("djsContent");
                     var pac = document.getElementById("pacContent");
                     var ej = document.getElementById("EJContent");
+                    var eij = document.getElementById("EIJ2Content");
                     if ( ddc.classList.contains("show")){
                         ddc.classList.toggle("show");
                     }
@@ -505,6 +542,11 @@
                     if (aju){
                       if ( aju.classList.contains("show")){
                           aju.classList.toggle("show");
+                      }
+                    }
+                    if (eij){
+                      if ( eij.classList.contains("show")){
+                          eij.classList.toggle("show");
                       }
                     }
                 }
@@ -1018,6 +1060,76 @@
                }
             }
 
+            function searchAct4() {
+               var input, filter, catFilter, catBtn, table, tr, td, i, showCount = 0;
+               catBtn = document.getElementById("EIJ2Btn");
+               input = document.getElementById("EIJ2Search");
+               filter = input.value.toUpperCase();
+               table = document.getElementById("EIJ2ListTable");
+               tr = table.getElementsByTagName("tr");
+
+               if(catBtn.classList.contains("selectd")){
+                  catFilter = document.getElementById("EIJ2btnLabel").innerHTML;
+               } else {
+                  catFilter = '';
+               }
+               for (i = 2; i < tr.length; i++){
+                  td = tr[i].getElementsByTagName("td")[1];
+                  if(td){
+                     tr[i].style.display = "none";
+                  }
+               }
+               if(filter != '' && catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     tdcat = tr[i].getElementsByTagName("td")[3];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1 && tdcat.innerHTML.indexOf(catFilter) > -1){
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+                  if(catFilter == 'izin harian'){
+                    document.getElementById("DJSheaderStandarWaktu").style.display = "none";
+                  } else {
+                    document.getElementById("DJSheaderStandarWaktu").style.display = "";
+                  }
+               } else if(filter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     td = tr[i].getElementsByTagName("td")[1];
+                     if(td){
+                        if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+               } else if( catFilter != ''){
+                  for (i = 2; i < tr.length; i++) {
+                     tdcat = tr[i].getElementsByTagName("td")[3];
+                     if(tdcat){
+                        if(tdcat.innerHTML.indexOf(catFilter) > -1) {
+                           tr[i].style.display = "";
+                           showCount++;
+                        }
+                     }
+                  }
+               }
+
+               document.getElementById("EIJ2Count").innerHTML = showCount;
+               if( showCount <= 0 ){
+                  tr[1].style.display = "";
+                  if( filter != '' || catFilter != ''){
+                     document.getElementById("EIJ2TableMessage").innerHTML = "No Result";
+                  } else {
+                     document.getElementById("EIJ2TableMessage").innerHTML = "Mulai pencarian dengan mengetik pada kolom search atau pilih kategori";
+                  }
+               } else {
+                  tr[1].style.display = "none";
+               }
+            }
+
             function searchAcc() {
                var input, filter, sbFilter, ssbBtn, table, tr, td, i, showCount = 0;
                input = document.getElementById("pegSearch");
@@ -1101,6 +1213,19 @@
                document.getElementById("ajuContent").classList.toggle("show");
                label.innerHTML = cat;
                searchAct3();
+            }
+            function selectCat4(cat) {
+               catBtn = document.getElementById("EIJ2Btn");
+               label = document.getElementById("EIJ2btnLabel");
+               if(cat != 'Semua'){
+                  catBtn.classList.add("selectd");
+               } else {
+                  cat = "Pilih Kategori";
+                  catBtn.classList.toggle("selectd");
+               }
+               document.getElementById("EIJ2Content").classList.toggle("show");
+               label.innerHTML = cat;
+               searchAct4();
             }
 
 
@@ -1492,6 +1617,61 @@
                       if(response == 'y'){
                         alert("Jurnal berhasil disimpan");
                         document.getElementById("FormSJ").submit();
+                      } else {
+                        alert("Sudah ada jurnal yang disimpan pada waktu yang dipilih, "+response);
+                      }
+                    }
+                  });
+               } else {
+                  alert(msg);
+               }
+            }
+
+            function validateEIJ() {
+               var tgl = new Date();
+               var cat = document.getElementById("EIJNamaCat").innerHTML;
+               if(cat != "izin harian"){
+                 var tglMulai = document.forms["FormEIJ"]["EIJtglJurnal"].value;
+                 var tglSelesai = document.forms["FormEIJ"]["EIJtglJurnal"].value;
+                 document.forms["FormEIJ"]["EIJtglMulai"].value = tglMulai;
+                 document.forms["FormEIJ"]["EIJtglSelesai"].value = tglSelesai;
+               } else {
+                 var tglMulai = document.forms["FormEIJ"]["EIJtglMulai"].value;
+                 var tglSelesai = document.forms["FormEIJ"]["EIJtglSelesai"].value;
+               }
+               var volumetype = document.forms["FormEIJ"]["EIJvolumeType"].value;
+               var jamMulai = document.forms["FormEIJ"]["EIJjamMulai"].value;
+               var jamSelesai = document.forms["FormEIJ"]["EIJjamSelesai"].value;
+               var keterangan = document.forms["FormEIJ"]["EIJketerangan"].value;
+               var error = 0;
+               var msg;
+               if (volumetype == "" || tglMulai == "" || tglSelesai == ""){
+                  msg = "Semua kolom harus diisi";
+                  error++;
+               } else if ( tglMulai > tglSelesai){
+                  msg = "Tanggal selesai tidak boleh lebih awal dari tanggal mulai";
+                  error++;
+               } else if ( tglMulai == tglSelesai) {
+                  if ( jamMulai > jamSelesai ) {
+                     msg = "Jam selesai tidak boleh lebih awal dari jam mulai di hari yang sama"
+                     error++;
+                  } else if(jamMulai == jamSelesai) {
+                     msg = "Jam selesai tidak boleh sama dengan jam mulai di hari yang sama"
+                     error++;
+                  }
+               }
+
+               if ( error == 0){
+                  $.ajax({
+                    dataType: 'html',
+                    url:'ajax/cekkonflikjurnal.php',
+                    async: false,
+                    method:'post',
+                    data : {'cat':cat,'tanggal':tglMulai,'jamMulai':jamMulai,'jamSelesai':jamSelesai,'tglSelesai':tglSelesai},
+                    success:function(response){
+                      if(response == 'y'){
+                        alert("Jurnal berhasil disimpan");
+                        document.getElementById("FormEIJ").submit();
                       } else {
                         alert("Sudah ada jurnal yang disimpan pada waktu yang dipilih, "+response);
                       }
@@ -2056,6 +2236,9 @@
             function lihatJurnalAdmin(nip) {
               var filType = document.getElementById("LJAfilterType").value;
               var data = "kosong";
+              var error = 0;
+              var msg = "";
+              console.log(filType);
               if ( filType == 'Harian'){
                 var tanggal = document.getElementById("LJApilihHari").value;
                 var split = tanggal.split("-");
@@ -2064,16 +2247,29 @@
                 var hari = split[2];
                 if ( tanggal != ""){
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+                } else {
+                	msg = "Tanggal yang dipilih tidak valid";
+                	error++;
                 }
               } else {
                 var awal = document.getElementById("LJApilihAwal").value;
                 var akhir = document.getElementById("LJApilihAkhir").value;
-                if ( awal != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
+                var tglAwal = new Date(awal);
+                var tglAkhir = new Date(akhir);
+                if(tglAkhir < tglAwal){
+                	msg = "Tanggal sampai tidak bisa lebih awal daripada tanggal dari";
+                	error++;
+                } else {
+	                if ( awal != ""){
+	                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
+	                } else {
+	                	msg = "Input tanggal tidak valid";
+	                	error++;
+	                }
                 }
               }
 
-              if ( data != 'kosong'){
+              if ( error == 0 ){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
                   url: "ajax/tabelLJadmin.php",             
@@ -2114,14 +2310,15 @@
                   }
                 });
               } else {
-                alert("Kolom filter kosong");
+                alert(msg);
               }
             }
 
             function lihatJurnalStaff(nip) {
               var filType = document.getElementById("LJSfilterType").value;
               var data = "kosong";
-
+              var msg = "";
+              var error = 0;
               if (document.getElementById("LJSnip")){
                 nip = document.getElementById("LJSnip").value;
               }
@@ -2133,16 +2330,29 @@
                 var hari = split[2];
                 if ( tanggal != ""){
                   data = { 'nip': nip, 'tipeFilter': filType, 'tahun': tahun, 'bulan': bulan, 'hari': hari };
+                } else {
+                	msg = "Tanggal yang dipilih tidak valid";
+                	error++;
                 }
               } else {
                 var awal = document.getElementById("LJSpilihAwal").value;
                 var akhir = document.getElementById("LJSpilihAkhir").value;
-                if ( awal != ""){
-                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
-                }
+                var tglAwal = new Date(awal);
+                var tglAkhir = new Date(akhir);
+                if(tglAkhir < tglAwal){
+                	msg = "Tanggal sampai tidak bisa lebih awal daripada tanggal dari";
+                	error++;
+                } else {
+	                if ( awal != ""){
+	                  data = { 'nip': nip, 'tipeFilter': filType, 'awal': awal, 'akhir': akhir };
+	                } else {
+	                	msg = "Input tanggal tidak valid";
+	                	error++;
+	                }
+	            }
               }
 
-              if ( data != 'kosong'){
+              if ( error == 0 ){
                 $.ajax({    //create an ajax request to load_page.php
                   type: "GET",
                   url: "ajax/tabelLJstaff.php",             
@@ -2183,7 +2393,7 @@
                   }
                 });
               } else {
-                alert("Kolom filter kosong");
+                alert(msg);
               }
             }
 
@@ -2260,6 +2470,72 @@
               } else {
                 alert("Kolom filter kosong");
               }
+            }
+
+            function EIJpilihAct(id, nama, durasi, cat){
+                var tabel = document.getElementById("tableEIJ");
+                var tanggal = document.getElementById("EIJ2tanggalDipilih").innerHTML;
+            	var date = new Date(tanggal);
+            	var textDate = date.getDate()+" "+date.getMonthName()+" "+date.getFullYear();
+                for(var i=0; i<tabel.rows.length;i++ ){tabel.rows[i].style.display = ""; vt = "";}
+                document.getElementById("modalEIJ").style.display = "block";
+                document.getElementById("EIJNamaAct").innerHTML = nama;
+                document.getElementById("EIJDurasi").innerHTML = durasi;
+                document.getElementById("EIJNamaCat").innerHTML = cat;
+                document.getElementById("EIJ_idAct").value = id;
+                if(cat == "izin harian"){
+                  tabel.rows[2].style.display = "none";
+                  tabel.rows[4].style.display = "none";
+                  tabel.rows[5].style.display = "none";
+                  tabel.rows[7].style.display = "none";
+                  tabel.rows[10].style.display = "none";
+                  tabel.rows[11].style.display = "none";
+                  document.getElementById("EIJvolumeType").value = "-";
+                  document.getElementById("EIJtanggal").style.width = "190px";
+                  //document.getElementById("tglMulai").style.display = "";
+                  //document.getElementById("tglSelesai").style.display = "";
+                  document.getElementById("EIJjamMulai").value = "00:00";
+                  document.getElementById("EIJjamSelesai").value = "23:59";
+                  document.getElementById("EIJiconJamMulai").style.display = "none";
+                  document.getElementById("EIJiconJamSelesai").style.display = "none";
+                  document.getElementById("EIJwaktuMulai").style.display = "none";
+                  document.getElementById("EIJwaktuSelesai").style.display = "none";
+                  document.getElementById("EIJtanggalMulai").style.display = "";
+                  document.getElementById("EIJtanggalSelesai").style.display = "";
+                  document.getElementById("EIJjenisAktivitas").style.display = "none";
+               	  document.getElementById("EIJtglMulai").value = document.getElementById("EIJ2tanggalDipilih").innerHTML;
+               	  document.getElementById("EIJtextTglMulai").innerHTML = textDate;
+               } else {
+               	  document.getElementById("EIJtglJurnal").value = document.getElementById("EIJ2tanggalDipilih").innerHTML;
+               	  document.getElementById("EIJtextTglJurnal").innerHTML = textDate;
+                  document.getElementById("EIJjenisAktivitas").style.display = "";
+                  document.getElementById("EIJtanggalMulai").style.display = "none";
+                  document.getElementById("EIJtanggalSelesai").style.display = "none";
+                  document.getElementById("EIJiconJamMulai").style.display = "";
+                  document.getElementById("EIJiconJamSelesai").style.display = "";
+                  document.getElementById("EIJtanggal").style.width = "3px";
+                  document.getElementById("EIJjam").style.width = "88px";
+                  //document.getElementById("tglMulai").style.display = "none";
+                  //document.getElementById("tglSelesai").style.display = "none";
+                  document.getElementById("EIJvolumeType").value = "";
+               }
+            }
+
+            Date.prototype.getMonthName = function() {
+			  	var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+			  	return months[this.getMonth()];
+			};
+
+            function bukaEIJ2(tanggalInput){
+            	var bulan = document.getElementById("DJSpilihBulan").options[document.getElementById("DJSpilihBulan").selectedIndex].value;
+            	var tahun = document.getElementById("DJSpilihTahun").options[document.getElementById("DJSpilihTahun").selectedIndex].value;
+            	if(tanggalInput.toString().length == 1 ){
+            		tanggalInput = "0" + tanggalInput;
+            	}
+            	var tanggal = tahun+"-"+bulan+"-"+tanggalInput;
+            	document.getElementById("modalEIJ2").style.display = "block";
+              	document.getElementsByTagName("body")[0].style.overflow = "hidden";
+              	document.getElementById("EIJ2tanggalDipilih").innerHTML = tanggal;
             }
 
             function openTAform(id_jabatan,nama_jabatan){
@@ -2441,6 +2717,7 @@
               if(elem){
                 $('#tglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 $('#tglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                $('#EIJtglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
@@ -2513,6 +2790,9 @@
                 }
                 if (document.getElementById("EJContent")){
                   document.getElementById("EJContent").classList.toggle("show");
+                }
+                if (document.getElementById("EIJ2Content")){
+                  document.getElementById("EIJ2Content").classList.toggle("show");
                 }
              })
              $('.clockpicker').clockpicker({
