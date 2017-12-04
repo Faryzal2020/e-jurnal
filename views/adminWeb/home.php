@@ -54,7 +54,7 @@
 				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk menambahkan,&#013;mengedit, dan menghapus hari libur.&#013;sehingga submit jurnal bulanan dapat&#013;dipindah ke hari selanjutnya apabila jatuh&#013;pada hari libur."><span class="glyphicon glyphicon-calendar"></span><a href="#">Hari Libur</a></li>
 			</ul>
 			<ul>
-				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk melihat,mengedit, dan menyetujui&#013;Aktivitas yang diajukan Eselon 1 dan 2."><span class="glyphicon glyphicon-calendar"></span><a href="#">List Aktivitas</a></li>
+				<li class="menu-item" id="menuHL" title="Menu ini digunakan untuk melihat,mengedit, dan menyetujui&#013;Aktivitas yang diajukan Eselon 1 dan 2."><span class="glyphicon glyphicon-calendar"></span><a href="#">List Ajuan Aktivitas</a></li>
 			</ul>
 			<ul class="menuProfil">
 				<li class="menu-item"  title="Di menu profile anda dapat melihat data&#013;anda dan mengubah password." ><span class="glyphicon glyphicon-user"></span><a href="#">Profile  </a></li>
