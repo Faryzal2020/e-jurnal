@@ -127,6 +127,7 @@
 		.LJSpilihPeriode { margin-right: 3px; }
 		.DJSpilihBulan { margin-right: 2.5px; margin-top: 7px; margin-left: 32px;}
 		.DJSnoJurnal { text-align: center; }
+		.tabelDJ a { cursor: pointer; }
 		.DJSnoJurnal a.disabled { color: grey; cursor: not-allowed;  }
 		.LJSfilter, .DJSfilter { margin-left: 30px; padding-top: 8px;}
 		.LJSfilter div, .DJSfilter div { display: inline-block; }

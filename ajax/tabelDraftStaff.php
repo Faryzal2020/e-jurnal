@@ -1,6 +1,10 @@
 <?php
 include("../config.php");
 
+function days_in_month($month, $year){
+    return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
+} 
+
 $nip = $_GET['nip'];
 $bulan = $_GET['bulan'];
 $tahun = $_GET['tahun'];
@@ -27,7 +31,7 @@ echo "
     </tr>";
 
 if(mysqli_num_rows($result) > 0){
-    $maxCount = date('t');
+    $maxCount = days_in_month($bulan, $tahun);
     $counter = 1;
     $jurnalExists = 0;
     while($data = mysqli_fetch_array($result))
