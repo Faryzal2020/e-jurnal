@@ -215,5 +215,24 @@
 								</div>
 			                </div>
 			            </div>
+			            <div id="modalEVJ" class="tCmodal">
+			                <div class="tCmodal-content" style="width: 540px;">
+			                    <span class="close EVJclose">&times;</span>
+			                    <div id="VJModalLabel">Ganti status validasi jurnal</div>
+			                    <form name="FormEVJ" id="FormEVJ" method="post" action="">
+			                        <table border="0" cellpadding="8" cellspacing="0" align="center" class="tableEVJ" id="tableEVJ">
+			                            <tr><input type="hidden" name="EVJidJ" id="EVJidJ" value=""/></tr>
+			                            <tr>
+			                            	<td>Pesan:</td>
+			                            </tr>
+			                            <tr>
+			                            	<td><textarea id="EVJpesan" name="EVJpesan" form="FormEVJ" rows="3" cols="40"></textarea></td>
+			                            </tr>
+			                            <tr><td>
+			                            <button type="button" id="EVJeditBtn" class="VJbtn" onclick="" style="float: right; display: none;">OK</button>
+			                        </table>
+			                    </form>
+			                </div>
+			            </div>
 					</div>
 				</div>

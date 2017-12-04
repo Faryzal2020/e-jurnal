@@ -37,7 +37,7 @@
 							<td align='center'>$data2[10]</td>
 							<td>$data2[7]</td>";
 						if($data2[9] == '1'){
-							echo "<td class='validasiOK'><span>OK</span><button onclick=\"bukaModalValidasi('edit','$data2[0]')\">Ganti</button></td>";
+							echo "<td class='validasiOK'><span>OK</span><button class='pencetan' onclick=\"bukaModalValidasi('edit','$data2[0]')\">Ganti</button></td>";
 						} else {
 							echo "<td class='validasiNO'><span style='display:block'>NO</span><span style='display:flex; width:80px; margin: auto;'>
 							<button class='pencetan validasiNObtn' onclick=\"bukaModalValidasi('lihat','$data2[9]')\"><span class=\"glyphicon glyphicon-search\"></span></button>
