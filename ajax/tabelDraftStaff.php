@@ -64,7 +64,7 @@ if(mysqli_num_rows($result) > 0){
                     <td>-</td>
                     <td>-</td>
                     <td>
-                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2($counter)\" style=\"display: inline; font-size: 1.5em;\">
+                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                     <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>
@@ -280,7 +280,7 @@ if(mysqli_num_rows($result) > 0){
                     <td>-</td>
                     <td>-</td>
                     <td>
-                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2($counter)\" style=\"display: inline; font-size: 1.5em;\">
+                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                     <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>
@@ -306,7 +306,7 @@ if(mysqli_num_rows($result) > 0){
                 <td>-</td>
                 <td>-</td>
                 <td>
-                <a class=\"inputDJBtn\" onclick=\"bukaEIJ2($counter)\" style=\"display: inline; font-size: 1.5em;\">
+                <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                 <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>

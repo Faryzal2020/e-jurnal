@@ -1926,7 +1926,8 @@
                 data : {'type':type,'date':date},
                 success:function(response){
                   document.getElementById("tabelVJContainer").innerHTML = response;
-                  $adaResult = document.getElementsByClassName("validasiOK");
+                  $adaResult = document.getElementsByClassName("barisJurnalValidasi");
+                  console.log($adaResult.length);
                   if($adaResult.length > 0){
                     document.getElementById("tidakAdaJurnal").style.display = "none";
                   } else {
@@ -2639,29 +2640,32 @@
               var idJurnal = document.getElementById("EVJidJ").value;
               var pesan = "";
               pesan = document.getElementById("EVJpesan").value;
-              if(type == "no" && pesan == ""){
-                alert("Kolom pesan tidak boleh kosong, saran: masukkan alasan mengapa anda ingin mengubah validasi jurnal ini.")
-              } else if(type == "no"){
-                $.ajax({
-                  type: "POST",
-                  url: "ajax/gantiValidasi.php",             
-                  dataType: "html",
-                  data: {'type':type,'pesan':pesan,'id':idJurnal},               
-                  success: function(response){              
-                    if(response == 'y'){
-                      alert("Berhasil mengganti status validasi");
-                      document.getElementById("modalEVJ").style.display = "none";
-                      var filter = document.getElementById("vjbtnLabel").innerHTML;
-                      if(filter == ' Hari ini'){
-                        selectVJ('today',filter);
-                      } else if(filter == ' Bulan ini'){
-                        selectVJ('bulan',filter);
-                      } else {
-                        eventFire(document.getElementById("VJbtn"), 'click');
-                      }
-                    }
-                  }
-                });
+              if(type == "no"){
+              	if(pesan == ""){
+              		alert("Kolom pesan tidak boleh kosong, saran: masukkan alasan mengapa anda ingin mengubah validasi jurnal ini.");
+              	} else {
+	                $.ajax({
+	                  type: "POST",
+	                  url: "ajax/gantiValidasi.php",             
+	                  dataType: "html",
+	                  data: {'type':type,'pesan':pesan,'id':idJurnal},               
+	                  success: function(response){              
+	                    if(response == 'y'){
+	                      alert("Berhasil mengganti status validasi");
+	                      document.getElementById("modalEVJ").style.display = "none";
+	                      var filter = document.getElementById("vjbtnLabel").innerHTML;
+	                      console.log(filter);
+	                      if(filter == ' Hari ini'){
+	                        selectVJ('today',filter);
+	                      } else if(filter == ' Bulan ini'){
+	                        selectVJ('bulan',filter);
+	                      } else {
+	                        eventFire(document.getElementById("VJbtn"), 'click');
+	                      }
+	                    }
+	                  }
+	                });
+            	}
               } else if(type == "ok") {
                 pesan = "";
                 if(confirm("Ubah status validasi jurnal ini menjadi OK?")){
@@ -2706,7 +2710,7 @@
              selectDJS('Bulanan');
              selectReport('Periode');
              if(document.getElementById("vjbtnLabel")){
-              selectVJ('today', 'Hari ini');
+              selectVJ('today', ' Hari ini');
              }
              getHLdata();
 
