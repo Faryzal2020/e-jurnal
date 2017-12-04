@@ -229,7 +229,7 @@ if(mysqli_num_rows($result) > 0){
         if($data[13] == '1'){
             echo "<td class='validasiOK'><span>OK</span></td>";
         } else {
-            echo "<td class='validasiNO'><span>NO</span><button class='pencetan' style='display: block; padding: 5px; margin: 3px; width: -moz-max-content; width: max-content;' onclick=\"bukaModalValidasi('lihat','$data[13]')\">Lihat Pesan</button></td>";
+            echo "<td class='validasiNO'><span>NO</span><button onclick=\"bukaModalValidasi('lihat','$data[13]')\">Lihat Pesan</button></td>";
         }
         echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
