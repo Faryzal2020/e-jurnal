@@ -1681,7 +1681,7 @@
                  {
                     var durasinya = 0;
                  }else{
-                    var durasinya = null;
+                    var durasinya = durasi;
                  } 
                  console.log(aktivitas+kategori+durasinya);
                  if (aktivitas == "" || kategori == "" || durasinya==null)                 {
