@@ -1,10 +1,6 @@
 <?php
 include("../config.php");
 
-function days_in_month($month, $year){
-    return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
-} 
-
 $nip = $_GET['nip'];
 $bulan = $_GET['bulan'];
 $tahun = $_GET['tahun'];
@@ -31,46 +27,23 @@ echo "
     </tr>";
 
 if(mysqli_num_rows($result) > 0){
-    $maxCount = days_in_month($bulan, $tahun);
+    $maxCount = date('t');
     $counter = 1;
     $jurnalExists = 0;
     while($data = mysqli_fetch_array($result))
     {
         $tgl = date('j', strtotime($data[3]));
-        //echo $tgl;
-        $tgl_end = date('j', strtotime($data[4]));
-        $tanggal= $tgl .$tgl_end;
-        //echo $tanggal;
-        $date = str_split($tgl);
-        $date_end = str_split($tgl_end);
-        echo $date_end[0];
         while($counter <= $maxCount){
-            if($counter == $tanggal){
+            if($counter == $tgl){
                 $jurnalExists = 1;
                 break;
             } else {
                 if($jurnalExists == 1){
                     $jurnalExists = 0;
                 } else {
-                    echo "<tr class='DJSnoJurnal'>
-                    <td style='height:45px;'>$counter</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td align=center>Tidak ada Jurnal</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
-                    <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>
+                    echo "<tr>
+                    <td align=center>$counter</td>
+                    <td colspan='13' align=center style='height:45px;'>Tidak ada Jurnal</td>
                     </tr>";
                     $jurnalExists = 0;
                 }
@@ -258,7 +231,7 @@ if(mysqli_num_rows($result) > 0){
         } else {
             echo "<td class='validasiNO'><span>NO</span><button onclick=\"bukaModalValidasi('lihat','$data[13]')\">Lihat Pesan</button></td>";
         }
-        echo "<td align=center style=\"\">
+        echo "<td align=center style=\"font-size: 0.8em;\">
                 <a class=\"editDJBtn\" onclick=\"editDJ($idJurnal,$idAct,$durasi)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
@@ -268,54 +241,16 @@ if(mysqli_num_rows($result) > 0){
     }
     $counter++;
     while($counter <= $maxCount){
-        echo "<tr class='DJSnoJurnal'>
-                    <td style='height:45px;'>$counter</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td align=center>Tidak ada Jurnal</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                    <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
-                    <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>
+        echo "<tr>
+                    <td>$counter</td>
+                    <td colspan='13' align=center style='height:45px;'>Tidak ada Jurnal</td>
                     </tr>";
         $counter++;
     }
 } else {
-    $maxCount = date('t');
-    $counter = 1;
-    while($counter <= $maxCount){
-        echo "<tr class='DJSnoJurnal'>
-                <td style='height:45px;'>$counter</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td align=center>Tidak ada Jurnal</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>
-                <a class=\"inputDJBtn\" onclick=\"bukaEIJ2('$counter')\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
-                <a class=\"deleteDJBtn disabled\" style=\"display: inline; font-size: 1.5em;\">
-                    <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a></td>
-                </tr>";
-        $counter++;
-    }
+    echo "<tr>";
+    echo "<td id='noData' align=center colspan='13'>Tidak ada data</td>";
+    echo "</tr>";
 }
 echo "</table>";
 ?>

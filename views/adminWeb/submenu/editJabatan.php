@@ -83,7 +83,7 @@
 			                                    <td colspan="3">
 			                                    	<select onchange="EAselectEch(0)" id="EAinputEselon" title="Masukkan tingkat jabatan">
 			                                    		<option value="1">Pilih Eselon</option>
-			                                    		<option value="2">Eselon I</option>
+			                                    		<option value="2">Eselon I / Non-Aktif</option>
 			                                    		<option value="3">Eselon II</option>
 			                                    		<option value="4">Eselon III / Fungsional</option>
 			                                    		<option value="5">Eselon IV</option>
