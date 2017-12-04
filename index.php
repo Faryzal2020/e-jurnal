@@ -15,6 +15,9 @@
        header('Location: ' . $url, true, $permanent ? 301 : 302);
        exit();
    }
+   	function days_in_month($month, $year){
+		return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
+	} 
 
    function getTglSubmit()
    {
@@ -1365,8 +1368,10 @@
             }
 
             function lihatDJS(nip){
-              var bulan = document.getElementById("DJSpilihBulan").value;
-              var tahun = document.getElementById("DJSpilihTahun").value;
+              var bulanTahun = document.getElementById("DJSpilihBulan").value;
+              var split = bulanTahun.split("-");
+              var tahun = split[0];
+              var bulan = split[1];
               data = { 'nip': nip, 'bulan': bulan, 'tahun': tahun };
               $.ajax({    //create an ajax request to load_page.php
                 type: "GET",
@@ -2528,8 +2533,10 @@
 			};
 
             function bukaEIJ2(tanggalInput){
-            	var bulan = document.getElementById("DJSpilihBulan").options[document.getElementById("DJSpilihBulan").selectedIndex].value;
-            	var tahun = document.getElementById("DJSpilihTahun").options[document.getElementById("DJSpilihTahun").selectedIndex].value;
+            	var bulanTahun = document.getElementById("DJSpilihBulan").value;
+              	var split = bulanTahun.split("-");
+              	var tahun = split[0];
+              	var bulan = split[1];
             	if(tanggalInput.toString().length == 1 ){
             		tanggalInput = "0" + tanggalInput;
             	}
@@ -2719,9 +2726,9 @@
              var elem = document.createElement('input');
              elem.setAttribute('type', 'date');
               if(elem){
-                $('#tglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                $('#tglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                $('#EIJtglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                $('#tglSelesai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                $('#tglMulai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                $('#EIJtglSelesai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 $('#LJSpilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                 $('#LJSpilihAkhir').datepicker({ dateFormat: 'yy-mm-dd' });
@@ -2729,19 +2736,19 @@
                 if( document.getElementById('HLstart')){
                   $('#HLstart').datepicker({ dateFormat: 'yy-mm-dd' });
                   $('#HLend').datepicker({ dateFormat: 'yy-mm-dd' });
-                  $('#tglGantiJabatan').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#tglGantiJabatan').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                 } else {
                   if(document.getElementById("LJApilihHari")){
-                    $('#LJApilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                    $('#LJApilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                    $('#LJApilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                    $('#LJApilihHari').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                    $('#LJApilihAwal').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                    $('#LJApilihAkhir').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   }
-                  $('#LJSpilihHari').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#LJSpilihAwal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#LJSpilihAkhir').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglJurnal').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglSelesai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglMulai').combodate({ minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihHari').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihAwal').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#LJSpilihAkhir').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglJurnal').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglSelesai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
+                  $('#edjsTglMulai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   if( document.getElementById('LJApilihAwal')){
                     $('#LJApilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                     $('#LJApilihHari').datepicker({ dateFormat: 'yy-mm-dd' });

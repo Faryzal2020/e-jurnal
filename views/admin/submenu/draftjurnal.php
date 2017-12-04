@@ -3,30 +3,16 @@
 						<div class="tCheader" style="">
 							<div class="tchbox relative" style="">
 								<div class="DJSpilihBulan">
-									<label>Pilih Bulan dan Tahun: </label>
+									<label>Pilih Bulan: </label>
 									<select id="DJSpilihBulan" class="h30" title="pilih bulan">
 										<?php
 											$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-											for($i=1;$i<=12;$i++){
-												$x = str_pad($i,2,0, STR_PAD_LEFT);
-												if($x == date("m")){
-											?>
-										<option value="<?php echo $x; ?>" selected><?php echo $m[$i-1]; ?></option>
-											<?php
-												} else {
-											?>
-										<option value="<?php echo $x; ?>"><?php echo $m[$i-1]; ?></option>
-											<?php
-												}
-											}
-											?>
-									</select>
-									<select id="DJSpilihTahun" class="h30" title="pilih tahun">
-										<?php $thisyear = Date("Y");?>
-											<option value="<?php echo $thisyear; ?>" selected><?php echo $thisyear; ?></option>
-										<?php for($i=$thisyear-1;$i>=$thisyear-5;$i--){ ?>
-											<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-											<?php } ?>
+											$prevMonth = date('m',strtotime('-1 months'));
+											$thisMonth = date('m');
+											$prevDate = date('Y-m',strtotime('-1 months'));
+											$thisDate = date('Y-m'); ?>
+										<option value="<?php echo $thisDate; ?>" selected><?php echo $m[$thisMonth-1]; ?></option>
+										<option value="<?php echo $prevDate; ?>"><?php echo $m[$prevMonth-1]; ?></option>
 									</select>
 								</div>
 								<a class="DJSbtn" id="DJSbtn" onclick="lihatDJS('<?php echo $nip; ?>')" style="height: 30px;"><span class="glyphicon glyphicon-ok" title="klik untuk lihat jurnal"></span></a>
