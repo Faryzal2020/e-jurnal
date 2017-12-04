@@ -70,12 +70,42 @@
 			                                <tr>
 			                                	<td><label>Tanggal</label></td>
 			                                	<td>:</td>
-			                                    <td colspan="3"><input type="hidden" name="edjsTglJurnal" id="edjsTglJurnal" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td colspan="3">
+			                                    	<input type="hidden" name="edjsTglJurnal" id="edjsTglJurnal" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda">
+			                                    	<select id="edjsPilihHari" title="pilih tanggal">
+			                                    		<option selected><?php echo date('d'); ?></option>
+			                                    	</select>
+			                                    	<select onchange="updateTanggalEDJS(this,'tgl')" id="edjsPilihBulan" title="pilih bulan">
+														<?php
+															$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+															$prevMonth = date('m',strtotime('-1 months'));
+															$thisMonth = date('m');
+															$prevDate = date('Y-m',strtotime('-1 months'));
+															$thisDate = date('Y-m'); ?>
+														<option value="<?php echo $thisDate; ?>" selected><?php echo $m[$thisMonth-1]; ?></option>
+														<option value="<?php echo $prevDate; ?>"><?php echo $m[$prevMonth-1]; ?></option>
+													</select>
+			                                    </td>
 			                                </tr>
 			                                <tr id=edtanggalMulai>
 			                                	<td><label>Dari tanggal</label></td>
 			                                    <td>:</td>
-			                                    <td id="edjsTanggal"><input type="hidden" name="edjsTglMulai" id="edjsTglMulai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value=""  title="masukkan tanggal mulai aktivitas pada jurnal anda"></td>
+			                                    <td id="edjsTanggal">
+			                                    	<input type="hidden" name="edjsTglMulai" id="edjsTglMulai" value="" title="masukkan tanggal mulai aktivitas pada jurnal anda">
+			                                    	<select id="edjsPilihHariMulai" title="pilih tanggal">
+			                                    		<option selected><?php echo date('d'); ?></option>
+			                                    	</select>
+			                                    	<select onchange="updateTanggalEDJS(this,'mulai')" id="edjsPilihBulanMulai" title="pilih bulan">
+														<?php
+															$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+															$prevMonth = date('m',strtotime('-1 months'));
+															$thisMonth = date('m');
+															$prevDate = date('Y-m',strtotime('-1 months'));
+															$thisDate = date('Y-m'); ?>
+														<option value="<?php echo $thisDate; ?>" selected><?php echo $m[$thisMonth-1]; ?></option>
+														<option value="<?php echo $prevDate; ?>"><?php echo $m[$prevMonth-1]; ?></option>
+													</select>
+			                                    </td>
 			                                </tr>
 			                                <tr id=edwaktuMulai>
 			                                    <td><label>Waktu Mulai</label></td>
@@ -93,7 +123,22 @@
 			                                <tr id=edtanggalSelesai>
 			                                	<td><label>Sampai</label></td>
 			                                    <td>:</td>
-			                                    <td id="tanggal2"><input type="hidden" name="edjsTglSelesai" id="edjsTglSelesai" data-format="YYYY-MM-DD" data-template="D MMM YYYY" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda"></td>
+			                                    <td id="tanggal2">
+			                                    	<input type="hidden" name="edjsTglSelesai" id="edjsTglSelesai" value="<?php echo date("Y-m-d"); ?>" title="masukkan tanggal selesai aktivitas pada jurnal anda">
+			                                    	<select id="edjsPilihHariSelesai" title="pilih tanggal">
+			                                    		<option selected><?php echo date('d'); ?></option>
+			                                    	</select>
+			                                    	<select onchange="updateTanggalEDJS(this,'selesai')" id="edjsPilihBulanSelesai" title="pilih bulan">
+														<?php
+															$m = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+															$prevMonth = date('m',strtotime('-1 months'));
+															$thisMonth = date('m');
+															$prevDate = date('Y-m',strtotime('-1 months'));
+															$thisDate = date('Y-m'); ?>
+														<option value="<?php echo $thisDate; ?>" selected><?php echo $m[$thisMonth-1]; ?></option>
+														<option value="<?php echo $prevDate; ?>"><?php echo $m[$prevMonth-1]; ?></option>
+													</select>
+			                                    </td>
 			                                </tr>
 			                                <tr id=edwaktuSelesai>
 			                                    <td><label>Waktu Selesai</label></td>

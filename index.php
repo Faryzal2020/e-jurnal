@@ -1385,6 +1385,9 @@
             }
 
             function editDJ(idJ,idAct,dur) {
+            	updateTanggalEDJS(document.getElementById("edjsPilihBulan"),'tgl');
+            	updateTanggalEDJS(document.getElementById("edjsPilihBulanMulai"),'mulai');
+            	updateTanggalEDJS(document.getElementById("edjsPilihBulanSelesai"),'selesai');
                document.getElementsByTagName("body")[0].style.overflow = "hidden";
                document.getElementById("modalDJS").style.display = "block";
                var table = document.getElementById("tabelDJajax");
@@ -1416,9 +1419,21 @@
                         document.getElementById("edjsTglSelesai").style.display = "";
                         document.getElementById("btnGantiAct").style.display = "none";
                         document.getElementById("edjsTanggal").style.width = "";
-                        console.log(row.cells[11].innerHTML);
-                        $(document.getElementById("edjsTglMulai")).combodate('setValue', row.cells[11].innerHTML);
-                        $(document.getElementById("edjsTglSelesai")).combodate('setValue', row.cells[12].innerHTML);
+                        var jurnalDateMulai = new Date(row.cells[11].innerHTML);
+                        var jurnalDateSelesai = new Date(row.cells[12].innerHTML);
+                        var date = new Date();
+                        if(jurnalDateMulai.getMonth() == date.getMonth()){
+                        	document.getElementById("edjsPilihBulanMulai").selectedIndex = 0;
+                        } else {
+                        	document.getElementById("edjsPilihBulanMulai").selectedIndex = 1;
+                        }
+                        document.getElementById("edjsPilihHariMulai").selectedIndex = jurnalDateMulai.getDate()-1;
+                        if(jurnalDateSelesai.getMonth() == date.getMonth()){
+                        	document.getElementById("edjsPilihBulanSelesai").selectedIndex = 0;
+                        } else {
+                        	document.getElementById("edjsPilihBulanSelesai").selectedIndex = 1;
+                        }
+                        document.getElementById("edjsPilihHariSelesai").selectedIndex = jurnalDateSelesai.getDate()-1;
                         document.getElementById("edtanggalMulai").style.display = "";
                         document.getElementById("edtanggalSelesai").style.display = "";
                         document.getElementById("edwaktuMulai").style.display = "none";
@@ -1434,7 +1449,15 @@
                         document.getElementById("edwaktuMulai").style.display = "";
                         document.getElementById("edwaktuSelesai").style.display = "";
                         document.getElementById("edjsTanggal").width = "1px";
-                        $(document.getElementById("edjsTglJurnal")).combodate('setValue', row.cells[11].innerHTML);
+                        var jurnalDate = new Date(row.cells[11].innerHTML);
+                        var date = new Date();
+                        if(jurnalDate.getMonth() == date.getMonth()){
+                        	document.getElementById("edjsPilihBulan").selectedIndex = 0;
+                        } else {
+                        	document.getElementById("edjsPilihBulan").selectedIndex = 1;
+                        }
+                        document.getElementById("edjsPilihHari").selectedIndex = jurnalDate.getDate()-1;
+
                         document.getElementById("btnGantiAct").style.display = "";
                         document.getElementById("edjsJamMulai").value = row.cells[1].innerHTML;
                         document.getElementById("edjsJamSelesai").value = row.cells[2].innerHTML;
@@ -1473,17 +1496,52 @@
               document.getElementById("modalDJS2").style.display = "none";
             }
 
+            function days_in_month(month, year){
+				return month == 2 ? (year % 4 ? 28 : (year % 100 ? 29 : (year % 400 ? 28 : 29))) : ((month - 1) % 7 % 2 ? 30 : 31); 
+			} 
+
+            function updateTanggalEDJS(select,type){
+            	var bulanTahun = select.value;
+            	var split = bulanTahun.split("-");
+            	var tahun = split[0];
+            	var bulan = split[1];
+            	var maxDay = days_in_month(bulan,tahun);
+            	if(type == 'tgl'){
+            		var selectHari = document.getElementById("edjsPilihHari");
+            	} else if(type == 'mulai'){
+            		var selectHari = document.getElementById("edjsPilihHariMulai");
+            	} else if(type == 'selesai'){
+            		var selectHari = document.getElementById("edjsPilihHariSelesai");
+            	}
+            	selectHari.innerHTML = "";
+            	for (var i = 1; i<=maxDay; i++){
+				    var opt = document.createElement('option');
+				    opt.value = i;
+				    opt.innerHTML = i;
+				    selectHari.appendChild(opt);
+				}
+            }
+
             function validateEDJ() {
                var tgl = new Date();
                var cat = document.getElementById("edjsNamaCat").innerHTML;
                var idj = document.getElementById("EDJSidJ").value;
                document.getElementById("edjsNamaCat2").value = cat;
                if( cat != "izin harian"){
+               	var hari = document.getElementById("edjsPilihHari").value;
+               	if(hari.length == 1){ hari = "0"+hari; }
+               	 document.forms["FormDJS"]["edjsTglJurnal"].value = document.getElementById("edjsPilihBulan").value+"-"+hari;
                  var tglMulai = document.forms["FormDJS"]["edjsTglJurnal"].value;
                  var tglSelesai = document.forms["FormDJS"]["edjsTglJurnal"].value;
                  document.forms["FormDJS"]["edjsTglMulai"].value = tglMulai;
                  document.forms["FormDJS"]["edjsTglSelesai"].value = tglSelesai;
                } else {
+               	var hariM = document.getElementById("edjsPilihHariMulai").value;
+               	var hariS = document.getElementById("edjsPilihHariSelesai").value;
+               	if(hariM.length == 1){ hariM = "0"+hariM; }
+               	if(hariS.length == 1){ hariS = "0"+hariS; }
+               	 document.forms["FormDJS"]["edjsTglMulai"].value = document.getElementById("edjsPilihBulanMulai").value+"-"+hariM;
+               	 document.forms["FormDJS"]["edjsTglSelesai"].value = document.getElementById("edjsPilihBulanSelesai").value+"-"+hariS;
                  var tglMulai = document.forms["FormDJS"]["edjsTglMulai"].value;
                  var tglSelesai = document.forms["FormDJS"]["edjsTglSelesai"].value;
                }
@@ -2746,9 +2804,6 @@
                   $('#LJSpilihHari').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAwal').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   $('#LJSpilihAkhir').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglJurnal').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglSelesai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
-                  $('#edjsTglMulai').combodate({ smartDays: true, minYear: tanggal.getFullYear()-1, maxYear: tanggal.getFullYear()});
                   if( document.getElementById('LJApilihAwal')){
                     $('#LJApilihAwal').datepicker({ dateFormat: 'yy-mm-dd' });
                     $('#LJApilihHari').datepicker({ dateFormat: 'yy-mm-dd' });
