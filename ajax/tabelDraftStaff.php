@@ -33,6 +33,14 @@ if(mysqli_num_rows($result) > 0){
     while($data = mysqli_fetch_array($result))
     {
         $tgl = date('j', strtotime($data[3]));
+        $tgl_end = date('j', strtotime($data[4]));
+        
+        if($tgl!=$tgl_end){
+            $tanggal=$tgl;
+        }else{
+            $tanggal=$tgl_end;
+        }
+        echo $tanggal;
         while($counter <= $maxCount){
             if($counter == $tgl){
                 $jurnalExists = 1;
