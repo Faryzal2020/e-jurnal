@@ -34,12 +34,15 @@ if(mysqli_num_rows($result) > 0){
     $maxCount = days_in_month($bulan, $tahun);
     $counter = 1;
     $jurnalExists = 0;
+    //$tanggal_izin = 0;
     while($data = mysqli_fetch_array($result))
     {
         $tgl = date('j', strtotime($data[3]));
-        //
-        
+        $tanggal_izin = $tgl;
+        $tgl_end = date('j', strtotime($data[4]));
         while($counter <= $maxCount){
+            if ($data[9]=='izin harian'){
+            }
             if($counter == $tgl ){
                     //  echo $tgl;
                 $jurnalExists = 1;
@@ -205,7 +208,6 @@ if(mysqli_num_rows($result) > 0){
             echo "<td align=center>-</td>";
             
             
-            
         }else{
             
             $dateMulai = $data[3];
@@ -260,7 +262,18 @@ if(mysqli_num_rows($result) > 0){
                     <span class=\"glyphicon glyphicon-edit\" title=\"Edit jurnal\"></span></a>
                 <a class=\"deleteDJBtn\" onclick=\"deleteDJ($idJurnal)\" style=\"display: inline; font-size: 1.5em;\">
                     <span class=\"glyphicon glyphicon-trash\" title=\"Hapus jurnal\"></span></a>
-            </td>";
+            </td></tr>";
+        if($kategori == 'izin_harian'){
+            $timeAwal = strtotime($data[3]);
+            $timeAkhir = strtotime($data[4]);
+            $durasi = $timeAkhir - $timeAwal;
+            $durasiInt = (int)date('j',$durasi);
+            for ($i=$counter+1; $i < $durasiInt; $i++) { 
+                echo "<tr> TES
+                    </tr>";
+            }
+            $counter = $counter + $durasiInt;
+        }
         
     }
     $counter++;
