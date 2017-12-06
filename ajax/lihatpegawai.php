@@ -14,7 +14,7 @@ if(mysqli_num_rows($detail) > 0){
 		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>NIP</th>
 		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Nama Pegawai</th>
 		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Jabatan</th>
-		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Kepala</th>
+		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Atasan Langsung</th>
 		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px;'>Password</th>
 		<th align='center' style='background-color: #2C383B; color: #ECECEC; text-align: center; height: 45px; width: 200px'>Opsi</th>
 		</tr>";

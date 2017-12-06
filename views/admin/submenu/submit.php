@@ -149,7 +149,7 @@
 			                                    <td style="width: 1px;">:</td>
 			                                    <td id="jam" style="width: 130px">
 			                                    	<div class="input-group clockpicker">
-													    <input readonly type="text" class="form-control" name="jamMulai" id="jamMulai" value="09:30" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
+													    <input readonly type="text" class="form-control" name="jamMulai" id="jamMulai" value="00:00" title="masukkan jam mulai pada aktivitas jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamMulai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>
@@ -167,7 +167,7 @@
 			                                    <td>:</td>
 			                                    <td>
 			                                    	<div class="input-group clockpicker">
-													    <input readonly type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="09:30" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
+													    <input readonly type="text" class="form-control" name="jamSelesai" id="jamSelesai" value="23:59" title="masukkan jam selesai aktivitas pada jurnal anda" style="background-color: white">
 													    <span class="input-group-addon" id="iconJamSelesai">
 													        <span class="glyphicon glyphicon-time"></span>
 													    </span>

@@ -1723,6 +1723,7 @@
                      error++;
                   }
                }
+                console.log(tglMulai);
 
                if ( error == 0){
                   $.ajax({
